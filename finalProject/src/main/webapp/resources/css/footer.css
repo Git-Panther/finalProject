@@ -1,0 +1,99 @@
+#footer {
+    width: 100%;
+    height: 242px;
+    background: #363c48;
+    position: relative;
+}
+
+#footer {
+    position: relative;
+    float: left;
+    height: 350px;
+    width: 100%;
+}
+
+.footer_col {
+    width: 261px;
+    margin-right: 16px;
+}
+
+.footer_title {
+    width: 261px;
+    height: 19px;
+    border-bottom: solid 1px #424753;
+    margin-top: 30px;
+    color: #999999;
+    font-size: 13px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+#footer a {
+    display: block;
+    color: #fff;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.footer_lang_box {
+    width: 113px;
+    height: 31px;
+    border: solid #545963 1px;
+    line-height: 31px;
+    margin-right: 10px;
+    color: #fff;
+    padding-left: 10px;
+    cursor: pointer;
+    position: relative;
+    background: url(/planner/resources/images/common/gnb/hidden_sel_arrow.png) no-repeat;
+    background-position: 90% center;
+}
+
+#lang_chage_item_box {
+    width: 113px;
+    border: solid #545963 1px;
+    color: #fff;
+    position: absolute;
+    margin-top: 30px;
+    background: #363c48;
+    display: none;
+}
+
+.lang_change_item {
+    display: block;
+    padding: 10px;
+    margin-bottom: 0px !important;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.footer_sns_icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.footer_sns_icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.footer_bottom {
+    width: 100%;
+    height: 40px;
+    background: #2e333d;
+    color: #c9c9c9;
+    line-height: 40px;
+    position: absolute;
+    bottom: 0px;
+    font-size: 11px;
+}
+

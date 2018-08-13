@@ -1,0 +1,270 @@
+.main_top {
+    background: url(/planner/resources/images/key_bg_1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 454px;
+}
+
+.main_top_title {
+    color: white;
+    font-size: 44px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 75px;
+}
+
+.main_top_desc {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.search_area {
+    width: 640px;
+    height: 138px;
+    border-radius: 3px;
+    background: url(/planner/resources/images/component/bg/bgb_60.png) repeat;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding: 20px;
+    position: relative;
+}
+
+.search_input {
+    width: 100%;
+    height: 50px;
+    padding-left: 15px;
+    border: none;
+    font-size: 20px;
+    color: #b3b3b3;
+    background: url(/planner/resources/images/area/area_search_ico.gif) no-repeat white;
+    background-position: center right;
+    margin-bottom: 10px;
+}
+
+#city_autocomplete {
+    width: 600px;
+    /* border: solid 1px #c8c8ca; */
+    background: #fff;
+    position: absolute;
+    top: 70px;
+    z-index: 9;
+    display: none;
+}
+
+.latest_search {
+    float: left;
+    font-size: 14px;
+    color: white;
+}
+
+.latest_a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.go_map {
+    float: right;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+.page.white {
+    background: white;
+}
+
+.page {
+    width: 100%;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.page_title {
+    color: #363636;
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.page_desc {
+    font-size: 16px;
+    color: #808080;
+    text-align: center;
+    padding-top: 13px;
+    margin-bottom: 40px;
+}
+
+.intro_list {
+    padding-top: 40px;
+    width: 1116px;
+    overflow: hidden;
+}
+
+.intro_box {
+    width: 348px;
+    height: 295px;
+    margin-right: 24px;
+    display: block;
+    cursor: pointer;
+    float: left;
+}
+
+.intro_box img {
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+
+.intro_title {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    color: #1a7ad9;
+    padding-top: 30px;
+}
+
+.intro_desc {
+    padding-top: 23px;
+    font-weight: bold;
+    color: #555555;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 22px;
+}
+
+.intro_link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #ff9320;
+    text-decoration: underline;
+}
+
+.page.silver {
+    background: #f6f6f6;
+}
+
+.plan_list .box {
+    display: block;
+    width: 348px;
+    height: 296px;
+    border: 1px solid #dfdfdf;
+    position: relative;
+    float: left;
+    margin-right: 24px;
+    margin-bottom: 30px;
+    background: #fff;
+}
+
+.plan_list .plan_bg {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient( to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 100px;
+}
+
+.plan_list .plan_bg_inner {
+    padding: 15px;
+    margin-top: 35px;
+    font-size: 16px;
+    color: white;
+    line-height: 20px;
+}
+
+.plan_list .plan_bg_inner span {
+    color: #1a7ad9;
+    font-size: 14px;
+}
+
+.plan_list .tour_day {
+    margin-left: 10px;
+    color: #b3b3b3 !important;
+    font-size: 14px;
+}
+
+.plan_list .plan_img_box {
+    width: 346px;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.plan_list .plan_img {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+    transition: all 3.6s;
+    -webkit-transition: all 3.6s;
+}
+
+.plan_list .plan_bg_inner2 {
+    width: 100%;
+    padding: 15px;
+    position: absolute;
+    top: 200px;
+    font-size: 14px;
+    color: #6f6f6f;
+    line-height: 20px;
+}
+
+.plan_list .pn_list_copy_icon {
+    background: url(/res/img/mypage/plan/pn_list_copy_icon.png) no-repeat 0px 2px;
+    padding-left: 15px;
+    margin-left: 10px;
+}
+
+.plan_list .pn_list_view_icon {
+    background: url(/res/img/mypage/plan/pn_list_view_icon.png) no-repeat 0px 3.5px;
+    padding-left: 21px;
+    margin-left: 10px;
+}
+
+.plan_list .pn_list_spot_icon {
+    background: url(/res/img/mypage/plan/pn_list_spot_icon.png) no-repeat 0px 1px;
+    padding-left: 17px;
+}
+
+.plan_list .pn_list_city {
+    margin-top: 4px;
+}
+
+.plan_list .pn_list_user {
+    margin-top: 4px;
+    padding-left: 20px;
+    background: url(/res/img/mypage/plan/pn_list_user_icon.png) no-repeat 0px 2px;
+}
+
+.more_btn {
+    width: 348px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 13px;
+    color: #808080;
+    font-weight: bold;
+    border: 1px solid #dfdfdf;
+    cursor: pointer;
+    text-align: center;
+    background: white;
+    margin: 0 auto;
+}
+
+.plan_list .box:nth-child(3n) {
+    margin-right: 0px;
+}

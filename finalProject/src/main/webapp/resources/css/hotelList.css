@@ -1,0 +1,468 @@
+.area_bg.top.silver {
+    background: url(/planner/resources/images/common/top_bg.png) repeat-x #f8f8fa;
+    padding-top: 8px;
+}
+
+.area_bg {
+    width: 100%;
+    background: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.area_nav {
+    font-size: 12px;
+    color: #555555;
+    font-family: dotum;
+}
+
+.nav_btn {
+    color: #1a7ad9;
+    text-decoration: underline;
+}
+
+.area_title {
+    margin-top: 13px;
+    font-size: 24px;
+    color: #363636;
+}
+
+.area_title span {
+    color: #898989;
+}
+
+.common_menu {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    background: #223b68;
+    color: white;
+    margin-top: 17px;
+    overflow: hidden;
+}
+
+.common_menu a {
+    display: block;
+    width: 156px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    float: left;
+    font-size: 15px;
+    color: white;
+    border-right: 1px solid #4e6286;
+}
+
+.common_menu a.on {
+    background: #1a7ad9;
+}
+
+.filter_box {
+    width: 100%;
+    border: 1px solid #bbbbbd;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.filter_top {
+    background: white;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #bbbbbd;
+    padding-right: 20px;
+}
+
+.cicu_names {
+    font-size: 20px;
+    color: #555555;
+    padding-left: 20px;
+    display: inline-block;
+}
+
+.search_area {
+    float: right;
+}
+
+.hotel_search {
+    background: url(/planner/resources/images/common/gnb/search_icon.png) no-repeat;
+    background-position: 245px center;
+    width: 271px;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #c8c8ca;
+    padding-left: 10px;
+    float: left;
+    margin-top: 13px;
+    margin-left: 8px;
+}
+
+.ht_search {
+    color: white;
+    font-size: 13px;
+    width: 84px;
+    height: 31px;
+    line-height: 31px;
+    background: #ff9320;
+    text-align: center;
+    border: 1px solid #f7870f;
+    float: left;
+    cursor: pointer;
+    margin-left: 8px;
+    margin-top: 13px;
+}
+
+.list_bg {
+    padding-top: 0px;
+    background: white;
+    border-top: 1px solid #d8d8d8;
+}
+
+.list_left {
+    width: 831px;
+    border-right: 1px solid #d8d8d8;
+    float: left;
+    padding-top: 27px;
+    padding-right: 15px;
+    padding-bottom: 30px;
+}
+
+.list_top {
+    width: 100%;
+    margin-bottom: 10px;
+    height: 25px;
+}
+
+.list_cnt {
+    float: left;
+    font-size: 13px;
+    color: #555555;
+    display: inline-block;
+    height: 31px;
+    line-height: 31px;
+}
+
+.list_cnt a {
+    color: #49b2e9;
+    text-decoration: underline;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.list_sort {
+    float: right;
+    height: 25px;
+    background: url(/planner/resources/images/component/input/select_arrow.gif) no-repeat white;
+    background-position: center right;
+    overflow: hidden;
+    border: 1px solid #c8c8ca;
+    width: 80px;
+}
+
+.list_sort {
+    width: 120px;
+}
+
+.list_sort select {
+    width: 140px;
+}
+
+.sort {
+    width: 100px;
+    background: transparent;
+    height: 25px;
+    border: none;
+    outline: none;
+    padding-left: 5px;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+.list {
+    min-height: 1000px;
+}
+
+.box {
+    width: 100%;
+    height: 186px;
+    border: 1px solid #dfdfdf;
+    margin-bottom: 15px;
+}
+
+.ht_img {
+    float: left;
+    width: 290px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.box_right {
+    width: 513px;
+    height: 100%;
+    float: left;
+    padding: 15px;
+    position: relative;
+}
+
+.btn_clip {
+    position: absolute;
+    right: 65px;
+    top: 15px;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: #808080;
+    cursor: pointer;
+    display: none;
+}
+
+.btn_addplan {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: #49b2e9;
+    cursor: pointer;
+    display: none;
+}
+
+.ht_title {
+    font-size: 17px;
+    color: #555555;
+    font-weight: bold;
+    width: 400px;
+}
+
+.ht_title_en {
+    font-size: 14px;
+    color: #b3b3b3;
+    font-weight: bold;
+    width: 400px;
+    padding-top: 5px;
+}
+
+.ht_rate_img {
+    float: left;
+}
+
+.ht_line {
+    width: 1px;
+    height: 12px;
+    background: #e6e6e6;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.ht_rate {
+    float: left;
+    color: #808080;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.ht_review {
+    float: left;
+    text-decoration: underline;
+    font-size: 13px;
+    color: #49b2e9;
+    line-height: 20px;
+    margin-left: 5px;
+}
+
+.ht_addr {
+    width: 100%;
+    color: #808080;
+    font-size: 13px;
+    height: 15px;
+    line-height: 15px;
+    background: url(/planner/resources/images/city/addr_icon.png) no-repeat;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.map_link {
+    text-decoration: underline;
+    font-size: 13px;
+    color: #49b2e9;
+    line-height: 20px;
+    margin-left: 5px;
+}
+
+.ht_desc {
+    width: 100%;
+    background: #f3f3f3;
+    height: 57px;
+    font-size: 14px;
+    color: #555555;
+    line-height: 18px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.ht_count {
+    width: 100%;
+    color: #808080;
+    font-size: 13px;
+    height: 15px;
+    line-height: 15px;
+    margin-top: 10px;
+}
+
+.ht_bottom {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 100%;
+}
+
+.ht_view {
+    display: block;
+    width: 122px;
+    height: 35px;
+    color: white;
+    font-size: 13px;
+    float: right;
+    background: #ff9320;
+    border: 1px solid #f7870f;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.ht_price {
+    float: right;
+    font-size: 18px;
+    color: #ff440d;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 35px;
+    margin-right: 10px;
+    display: block;
+}
+
+.price_desc {
+    font-size: 14px;
+    color: #808080;
+    float: right;
+    display: inline-block;
+    line-height: 35px;
+    margin-right: 3px;
+}
+
+#paging {
+    padding: 15px 0 30px;
+    text-align: center;
+}
+
+#paging button.on {
+    border: 1px solid #1a7ad9;
+    color: #1a7ad9;
+    font-weight: bold;
+}
+
+#paging button {
+    min-width: 23px;
+    height: 20px;
+    margin-left: 3px;
+    padding: 1px 4px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: #808080;
+    font-size: 11px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+	#paging .nv button {
+    width: 24px;
+    border: 1px solid #c6c6c6;
+    text-indent: -5000px;
+    overflow: hidden;
+}
+
+#paging .pgn-pv1 {
+    background: url(/planner/resources/images/common/paging/pg_first.png) no-repeat;
+    background-position: 6px 4px;
+}
+
+#paging .pgn-nx1 {
+    background: url(/planner/resources/images/common/paging/pg_last.png) no-repeat;
+    background-position: 7px 4px;
+}
+
+#paging .pgn-nx2 {
+    background: url(/planner/resources/images/common/paging/pg_next.png) no-repeat;
+    background-position: 10px 4px;
+}
+
+.list_right {
+    position: relative;
+}
+
+.list_right {
+    float: right;
+    width: 261px;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.scroll_area {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.scroll_area {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+.right_box {
+    width: 100%;
+    padding-top: 27px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d8d8d8;
+    position: relative;
+}
+
+.right_title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #363636;
+    margin-bottom: 20px;
+}
+
+.map_box {
+    position: relative;
+    width: 100%;
+    height: 188px;
+}
+
+.map-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.map_full {
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    right: 0px;
+    bottom: 0px;
+}
+
+
+

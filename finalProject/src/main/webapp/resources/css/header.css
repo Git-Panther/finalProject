@@ -1,0 +1,177 @@
+* {
+    font-family: '³ª´®¹Ù¸¥°íµñ',NanumBarunGothic,'nanum','µ¸¿ò',Dotum,'¸¼Àº°íµñ','Malgun Gothic','±¼¸²',Gulim,Helvetica,sans-serif;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: nanum;
+    font-size: 12px;
+}
+
+div {
+    display: block;
+}
+
+div, input, label, a, select, ul, li {
+    box-sizing: border-box;
+}
+
+#header {
+    width: 100%;
+    height: 64px;
+    border-top: solid #4eb1e4 2px;
+    position: relative;
+}
+
+#header {
+    position: relative;
+    float: left;
+    height: 60px;
+    background-color: white;
+    width: 100%;
+    min-width: 1092px;
+    z-index: 100;
+    border-bottom: 1px solid #ddd;
+}
+
+.wrap {
+    width: 1092px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.logo {
+    margin-right: 13px;
+    padding-top: 11px;
+    cursor: pointer;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+.gnb {
+    height: 62px;
+    line-height: 62px;
+    font-family: nanum_b;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.gnb a {
+    color: #363636;
+    display: block;
+}
+
+.gnb li {
+    height: 62px;
+    margin-right: 5px;
+    padding: 0px 19px;
+    cursor: pointer;
+    float: left;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.gnb_box {
+    height: 62px;
+    position: relative;
+}
+
+.gnb_search_box {
+    width: 210px;
+    height: 31px;
+    margin-top: 17px;
+    margin-right: 10px;
+    position: relative;
+}
+
+#gnb_search {
+    width: 180px;
+    border: solid #c8c8ca 1px;
+    height: 29px;
+    font-family: nanum;
+    padding: 0 0 0 10px;
+    color: #555555;
+    float: right;
+    background: url(/planner/resources/images/common/gnb/search_icon.png) no-repeat;
+    background-position: 98% center;
+}
+
+.gnb_search_btn {
+    background: url(/planner/resources/images/common/gnb/search_icon.png) no-repeat;
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    cursor: pointer;
+}
+
+#gnb_search_autocomplete {
+    width: 320px;
+    background: #fff;
+    position: absolute;
+    top: 45px;
+    display: none;
+    margin-left: -10px;
+    border-bottom: 1px solid rgb(178,178,178);
+    z-index: 9999;
+}
+
+.gnb_join_btn {
+    width: 63px;
+    height: 29px;
+    line-height: 29px;
+    border: solid #3099dd 1px;
+    border-left: 0px;
+    margin-top: 17px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    background: #49b2e9;
+    margin-left: 5px;
+}
+
+.gnb_login_btn {
+    width: 63px;
+    height: 29px;
+    line-height: 29px;
+    border: solid #f7870f 1px;
+    border-left: 0px;
+    margin-top: 17px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    background: #ff9320;
+}
+
+.clear {
+    clear: both;
+}

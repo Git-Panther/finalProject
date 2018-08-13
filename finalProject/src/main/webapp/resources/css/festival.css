@@ -1,0 +1,71 @@
+@charset "UTF-8";
+.area{
+	text-align:center;
+}
+.festivalList{
+	text-align:center;
+	display:inline-block;
+}
+
+.festivalInfo{
+	display:inline-block;
+}
+.disactive{
+	color:gray;
+}
+.link:hover{
+	font-weight: bold;
+	text-decoration: underline;
+	cursor:pointer;
+}
+.pageList{
+	display:inline-block;
+	text-align: center;
+}
+.pageElement{
+	display:inline-block;
+	margin:5px;
+}
+
+.selected{
+	font-weight: bold;
+	color:black;
+}
+
+.outer{
+	text-align: center;
+	height: auto;
+}
+	
+.outer div{
+	display: inline-block;
+}
+
+#map{
+	display:inline-block;
+	width:500px;
+	height:500px;
+}
+
+.map_wrap {position:relative;width:100%;height:350px;}
+.title {font-weight:bold;display:block;}
+.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#centerAddr {display:block;margin-top:2px;font-weight: normal;}
+.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; }
+
+#resultAmount{
+	margin-top:10px;
+	margin-botton:10px;
+}
+
+.selectRow{
+	text-align:justify;
+}
+
+#resultAmount{
+	margin-right:200px;
+}
+
+#arrangeList{
+	margin-left:200px;
+}
