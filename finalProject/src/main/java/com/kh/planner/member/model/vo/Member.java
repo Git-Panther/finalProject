@@ -19,7 +19,7 @@ public class Member {
 	public Member(){}
 
 	public Member(int userNo, String userId, String password, String userName, String gender, String email,
-			Date birthday, String profilePic) {
+			String birthday, String profilePic) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -79,11 +79,11 @@ public class Member {
 		this.email = email;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	
