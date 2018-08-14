@@ -6,23 +6,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CommonController {
-	@RequestMapping(value = "header.do", method = RequestMethod.GET)
+	@RequestMapping(value = "header.do")
 	public String header() {
 		return "common/header";
 	}
 	
-	@RequestMapping(value = "footer.do", method = RequestMethod.GET)
+	@RequestMapping(value = "footer.do")
 	public String footer() {
 		return "common/footer";
-	}
-	
-	@RequestMapping(value = "area.do", method = RequestMethod.GET)
-	public String area() {
-		return "area/area";
-	}
-	
-	@RequestMapping(value = "hotel.do", method = RequestMethod.GET)
-	public String hotel() {
-		return "hotel/hotel";
 	}
 }
