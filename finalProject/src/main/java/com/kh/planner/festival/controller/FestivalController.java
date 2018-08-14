@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.planner.common.GPStoGRIDConverter;
 
 @Controller
 public class FestivalController {
@@ -126,9 +129,12 @@ public class FestivalController {
 	// 축제 상세 정보 페이지로 이동
 	@RequestMapping("festival.do")
 	public ModelAndView festivalDetail(ModelAndView mv
-			, @RequestParam(value="contentid", defaultValue="") int contentid) {
-		//System.out.println(contentid);
+			, @RequestParam(value="contentid", defaultValue="0") int contentid
+			, @RequestParam(value="eventstartdate", defaultValue="0") int eventstartdate
+			, @RequestParam(value="eventenddate", defaultValue="0") int eventenddate) {
 		mv.addObject("contentid", contentid);
+		mv.addObject("eventstartdate", eventstartdate);
+		mv.addObject("eventenddate", eventenddate);	
 		mv.setViewName("festival/festivalDetail");
 		return mv;
 	}
@@ -291,21 +297,46 @@ public class FestivalController {
 	
 	// 지역 맞춤형 일기예보 조회 : 참고로 위경도 변환 가능하니 그거 쓰도록!
 	@RequestMapping(value = "forecast.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public @ResponseBody String forecast(String addr){	
-		String address = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastTimeData";
+	public @ResponseBody String forecast(double mapx, double mapy){	
+		String address = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
 		StringBuilder params = new StringBuilder("?");
 		params.append("ServiceKey="+forecastkey);
-		params.append("&numOfRows=100"); // 모든 기상 정보
-		// 발표일 : 오늘
+		params.append("&numOfRows=10000"); // 모든 기상 정보
+		// 발표일 : 오늘, 동네예보 기준
 		SimpleDateFormat today = new SimpleDateFormat("yyyyMMdd-kkmm"); // 오늘 날짜를 뽑아옴
 		String todayStr = today.format(new Date());
-		params.append("&base_date="+todayStr.split("-")[0]);
-		//params.append("&base_time="+todayStr.split("-")[1]);
-		params.append("&base_time="+"0930");
+		String currentDate = todayStr.split("-")[0];
+		String currentTime = todayStr.split("-")[1];
+		String baseTime; // 진짜 보낼 값
+		
+		params.append("&base_date="+currentDate);
+		// 동네예보 기준으로 시간 맞춤
+		if("0210".compareTo(currentTime) <= 0 && "0510".compareTo(currentTime) > 0) {
+			baseTime = "0200";
+		}else if("0510".compareTo(currentTime) <= 0 && "0810".compareTo(currentTime) > 0) {
+			baseTime = "0500";
+		}else if("0810".compareTo(currentTime) <= 0 && "1110".compareTo(currentTime) > 0) {
+			baseTime = "0800";
+		}else if("1110".compareTo(currentTime) <= 0 && "1410".compareTo(currentTime) > 0) {
+			baseTime = "1100";
+		}else if("1410".compareTo(currentTime) <= 0 && "1710".compareTo(currentTime) > 0) {
+			baseTime = "1400";
+		}else if("1710".compareTo(currentTime) <= 0 && "2010".compareTo(currentTime) > 0) {
+			baseTime = "1700";
+		}else if("2010".compareTo(currentTime) <= 0 && "2310".compareTo(currentTime) > 0) {
+			baseTime = "2000";
+		}else{
+			baseTime = "2300";
+		}
+		params.append("&base_time="+baseTime);
 		// 좌표 결정
-		params.append("&nx=60");
-		params.append("&ny=127");
+		Map<String, Double> grid = GPStoGRIDConverter.convertToGRID(mapx, mapy);
+			
+		params.append("&nx="+grid.get("nx").intValue());
+		params.append("&ny="+grid.get("ny").intValue());
 		params.append("&_type=json"); // json으로
+		
+		logger.info(grid.get("nx").intValue() + ", " + grid.get("ny").intValue());		
 		
 		URL url = null; // 결과를 볼 url
 		InputStream in = null; // 바이트를 읽어오기 위해 필요한 인풋 스트림

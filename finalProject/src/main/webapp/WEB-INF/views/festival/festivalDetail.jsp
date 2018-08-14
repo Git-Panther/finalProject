@@ -75,15 +75,15 @@
 	    });	
 	}
 	
-	function forecast(addr){
+	function forecast(mapx, mapy){
 		$.ajax({        
 	        url: 'forecast.do',
 	        type: 'post',
-	        data: { addr : addr }, // 날짜는 controller에서 처리. 좌표는 엑셀 파일 읽어서 처리해야한다. 주소 파싱할 것
+	        data: { mapx : mapy, mapy : mapx }, // 발표일은 controller에서 처리. 둘이 자리 바뀐 이유는 mapx 쪽이 세자리 나옴(...)
 	        dataType: 'json',
 	        success: function(data){
-	        	console.log(data);
-	        	//printNearInfo(data.response.body.items.item, contenttypeid); // 공통 정보만 뽑았다.
+	        	//console.log(data);
+	        	printForecast(data.response.body);
 	        }
 	        , error: function(XMLHttpRequest, textStatus, errorThrown) { 
 	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -144,7 +144,7 @@
 		
 		locationBasedList(x, y, 32); // 숙박
 		locationBasedList(x, y, 39); // 음식점
-		forecast(common.addr1);
+		forecast(x, y);
 		
 		// 지도 표시를 해준다 ㅇㅇ.
 		printMark(new daum.maps.LatLng(y, x));
@@ -251,7 +251,7 @@
 		table.appendTo($festivalDetailInfo);
 	}
 	
-	function printNearInfo(list, contenttypeid){
+	function printNearInfo(list, contenttypeid){ // 근처 정보
 		//console.log(list, contenttypeid);
 		var $nearInfo;
 		var noSearch; // 검색 결과 없을 때
@@ -335,8 +335,30 @@
 		$nearInfo.append(tableList);
 	}
 	
-	function printForecast(forecast){
-		
+	function printForecast(body){
+		console.log(body);
+		var $festivalForecast = $("#festivalForecast"); // div
+		var eventstartdate = <c:out value='${eventstartdate}'/>;
+		var eventenddate = <c:out value='${eventenddate}'/>;
+		//console.log(eventstartdate, eventenddate);
+		if(body.totalCount > 0){ // 결과가 하나라도 있으면
+			var item = body.items.item;
+			if(undefined === item.length) item = [item]; // 배열이 아니면 배열로 만듬(결과가 1개이면)
+			var forecast = item.filter(function(v){
+				return v.fcstDate >= eventstartdate && v.fcstDate <= eventenddate;
+			});
+			console.log(forecast);
+			if(forecast.length === 0)
+				$("<p>").text("조회된 결과가 없습니다.").appendTo($festivalForecast);
+			else {
+				forecast.forEach(function(v) {
+					// 출력
+					$("<p>").text("조회된 결과가 있습니다.").appendTo($festivalForecast);
+				});
+			}
+		}else{
+			$("<p>").text("조회된 결과가 없습니다.").appendTo($festivalForecast);
+		}
 	}
 	
 	function festivalTapEvent(){

@@ -53,6 +53,10 @@
         var size; // 결과 개수
         var dateString; // 행사 기간
         var cols = 4; // 한 행에 n열
+        //var info; // 행사 개개 정보. 이벤트 때문에 넣음
+        var contentid;
+        var eventstartdate;
+        var eventenddate;
         
         $("#resultAmount").text("");
         $("#resultAmount").append($("<p>").text("결과  : " + list.response.body.totalCount + "건"));
@@ -67,11 +71,16 @@
         	myItem = [myItem]; // 배열화시켜서 for문 처리 통일함
         }
         else size = myItem.length; // 결과가 2개 이상 있으므로 2 이상
-        
+ 
         for(var i = 0; i < size; i++){
         	//console.log(myItem[i]);
+        	// info = myItem[i]; // 지역 변수에 담아서 함수에 쓸 수 있게 해야 함
+        	
         	maintd = $("<td>");
-        	subTable = $("<table class='festivalInfo link'>").attr("onclick", "festivalDetail('"+myItem[i].contentid+"')");
+        	subTable = $("<table class='festivalInfo link'>");
+        	subTable.attr("onclick", "festivalDetail("+myItem[i].contentid+", "+myItem[i].eventstartdate+", "+myItem[i].eventenddate+")");
+        	//subTable = $("<table class='festivalInfo link'>");
+        	
         	tr = $("<tr>");
         	//th = $("<th>");
         	td = $("<td colspan='2'>");
@@ -111,6 +120,7 @@
         	if(myItem[i].eventstartdate != myItem[i].eventenddate) dateString += ' ~ ' + dateFormat(myItem[i].eventenddate);
         	$("<p>").text(dateString).appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);
+        	
         	/* 좌표
         	tr = $("<tr>");
         	th = $("<th>");
@@ -119,11 +129,21 @@
         	$("<p>").text(myItem[i].mapx + ', ' + myItem[i].mapy).appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);
         	*/
+        	
         	maintd.append(subTable).appendTo(maintr);
         	if( i % cols == cols - 1 || i == myItem.length - 1){
         		maintr.appendTo(tableList);
         		maintr = $("<tr>");
-        	}    
+        	}
+        	/*
+        	contentid = myItem[i].contentid;
+        	eventstartdate = myItem[i].eventstartdate;
+        	eventenddate = myItem[i].eventenddate;
+        	
+        	subTable.on("click", function(){
+        		festivalDetail(contentid, eventstartdate, eventenddate);
+        	});
+        	*/
         } 
         $festivals.append(tableList);
 	}
@@ -252,10 +272,28 @@
     	return dateStr.substr(0, 4) + "년 " + dateStr.substr(4, 2) + "월 " + dateStr.substr(6, 2) + "일"
     }
     
-    function festivalDetail(contentid){
-    	//console.log(contentid, 15);
-    	location.href="/planner/festival.do?contentid="+contentid;
-    	// 정 보안을 원한다면 가려라. form 태그로
+    //function festivalDetail(info){
+    function festivalDetail(contentid, eventstartdate, eventenddate){
+    	//console.log(contentid);
+    	// location.href="/planner/festival.do?contentid="+contentid;
+    	// 정 보안을 원한다면 가려라. form 태그로    	
+    	<c:url var="festival" value="/festival.do"></c:url>
+    	var form = $("<form>");
+    	form.attr("id", "festivalDetail");
+    	form.attr("method", "post");
+    	form.attr("action", "${festival}");
+    	//$("<input type='hidden'>").attr("name", "contentid").val(info.contentid).appendTo(form);
+    	//$("<input type='hidden'>").attr("name", "eventstartdate").val(info.eventstartdate).appendTo(form);
+    	//$("<input type='hidden'>").attr("name", "eventenddate").val(info.eventenddate).appendTo(form);
+    	
+    	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+    	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
+    	$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
+    	
+    	// 참고로 날짜에 따른 기상청 조회는 detail 페이지에서 직접 처리할 것이다.
+   		form.appendTo($("#festivals"));
+    	//console.log(form);
+		form.submit(); // 이렇게 해야 url 노출을 막을 수 있다.
     }
 </script>
 </head>
