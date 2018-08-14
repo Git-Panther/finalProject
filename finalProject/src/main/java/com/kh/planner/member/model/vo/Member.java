@@ -12,7 +12,7 @@ public class Member {
 	private String userName;
 	private String gender;
 	private String email;
-	private Date birthday;
+	private String birthday;
 	private Date enrollDate;
 	private String profilePic;
 	
