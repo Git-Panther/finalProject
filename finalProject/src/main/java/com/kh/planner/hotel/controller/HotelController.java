@@ -35,8 +35,7 @@ public class HotelController {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		JsonParser jp = new JsonParser();
-		String result = jp.getSearchStay(areaCode, sigunguCode, arrange, pageNo);
+		String result = JsonParser.getSearchStay(areaCode, sigunguCode, arrange, pageNo);
 
 		PrintWriter out = response.getWriter();
 		out.println(result);

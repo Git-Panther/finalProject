@@ -16,13 +16,4 @@ public class CommonController {
 		return "common/footer";
 	}
 	
-	@RequestMapping(value = "area.do", method = RequestMethod.GET)
-	public String area() {
-		return "area/area";
-	}
-	
-	@RequestMapping(value = "hotel.do", method = RequestMethod.GET)
-	public String hotel() {
-		return "hotel/hotel";
-	}
 }
