@@ -20,23 +20,6 @@
 		selectFestivalList(params);
 	});
 	
-	function selectFestivalList(params){
-		$.ajax({        
-	        url: 'selectFestivalList.do',
-	        type: 'post',
-	        data: params,
-	        dataType: 'json',
-	        success: function(data){
-	        	//console.log(data)
-	            printFestivalList(data);
-	    		printFestivalPageList(data);
-	        }
-	        , error: function(XMLHttpRequest, textStatus, errorThrown) { 
-	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-	    	} 
-	    });
-	}
-	
 	function printFestivalList(list){
 		//console.log(list);
         //console.log(list.response);        
@@ -54,9 +37,9 @@
         var dateString; // 행사 기간
         var cols = 4; // 한 행에 n열
         //var info; // 행사 개개 정보. 이벤트 때문에 넣음
-        var contentid;
-        var eventstartdate;
-        var eventenddate;
+        //var contentid;
+        //var eventstartdate;
+        //var eventenddate;
         
         $("#resultAmount").text("");
         $("#resultAmount").append($("<p>").text("결과  : " + list.response.body.totalCount + "건"));
@@ -88,7 +71,7 @@
         	img = $("<img>").addClass("img");
         	if(undefined == myItem[i].firstimage) img.attr("src", "/planner/resources/images/festival/no_image.png");
         	else img.attr("src", myItem[i].firstimage);
-        	td.append(img).appendTo(td);
+        	td.append(img);
         	tr.append(td).appendTo(subTable);
         	
         	tr = $("<tr>");

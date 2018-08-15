@@ -8,42 +8,11 @@
 <meta charset="UTF-8">
 <title>Search Area</title>
 <link href="resources/css/festival.css" rel="stylesheet">
+<script type="text/javascript" src="resources/js/festivalAjax.js"></script>
 <script>
 	var area = '<c:out value="${areaCode}"/>'; // 이름 중복 막으려고 줄임
 	var sigungu = '<c:out value="${sigunguCode}"/>'; // 여기에 원래 선택한 area, sigungu 저장하고 반영 후에 날림
 
-	function areaCodeList(){
-		$.ajax({        
-	        url: 'areaCodeList.do',
-	        type: 'post',
-	        dataType: 'json',
-	        success: function(data){
-	        	//console.log(data);
-	        	printAreaList(data.response.body.items.item);
-	        }
-	        , error: function(XMLHttpRequest, textStatus, errorThrown) { 
-	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-	    	} 
-	    });
-	}
-	
-	function sigunguCodeList(areaCode){
-		$.ajax({        
-	        url: 'areaCodeList.do',
-	        type: 'post',
-	        data: { areaCode : areaCode },
-	        dataType: 'json',
-	        success: function(data){
-	        	//console.log(data);
-	        	//console.log(data.response);
-	        	printSigunguList(areaCode, data.response.body.items.item);
-	        }
-	        , error: function(XMLHttpRequest, textStatus, errorThrown) { 
-	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-	    	} 
-	    });
-	}
-	
 	function printAreaList(list){
 		var $select = $("#areaSelect");
 		var option = $("<option>");
@@ -82,7 +51,7 @@
 		option.val(undefined);
 		option.text("(시군구 선택)");
 		$select.append(option);
-		console.log(list);
+		//console.log(list);
 		if(areaCode != ""){
 			if(undefined == list.length){
 				list = [list]; // 하나만 결과가 반환되면 이렇게 배열화시켜준다.	
