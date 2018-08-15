@@ -10,6 +10,24 @@
 .festivalInfo{
 	display:inline-block;
 }
+
+.festivalList > td{
+	width:400px;
+	height:450px;
+}
+
+.festivalInfo > tr > td:nth-child(2n-1){
+	width:50px;
+}
+
+.festivalInfo > tr > td:nth-child(2n){
+	width:300px;
+}
+
+.festivalInfo td{
+	height:40px;
+}
+
 .disactive{
 	color:gray;
 }
@@ -18,6 +36,18 @@
 	text-decoration: underline;
 	cursor:pointer;
 }
+
+.img{
+	width:350px;
+	height:350px;
+}
+
+/*
+.img:hover{
+	border:2px solid blue;
+}
+*/
+
 .pageList{
 	display:inline-block;
 	text-align: center;
@@ -41,31 +71,130 @@
 	display: inline-block;
 }
 
-#map{
-	display:inline-block;
-	width:500px;
-	height:500px;
-}
-
-.map_wrap {position:relative;width:100%;height:350px;}
-.title {font-weight:bold;display:block;}
-.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-#centerAddr {display:block;margin-top:2px;font-weight: normal;}
-.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; }
-
 #resultAmount{
 	margin-top:10px;
 	margin-botton:10px;
 }
 
-.selectRow{
+.search{
+	width:1200px;
+	display:inline-table;
 	text-align:justify;
 }
 
-#resultAmount{
-	margin-right:200px;
+.searchHead {
+	width:100px;
 }
 
-#arrangeList{
-	margin-left:200px;
+#festivalTap{
+	font-size:20px;
+	border-collapse: collapse;
 }
+
+.showing{
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#festivalTap td{
+	width:160px;
+	height:40px;
+	padding:8px;
+	border:1px solid black;
+}
+
+#festivalTap td:hover{
+	cursor:pointer;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#festivalTitle{
+	text-align: justify;
+	width:1200px;
+	height:auto;
+	padding:5px;
+	font-weight:bold;
+	font-size: 25px;
+	border-bottom:2px solid black;
+}
+
+#favorite{
+	padding:5px;
+	display:block;
+	text-align:center;
+	width:100px;
+	heigth:auto;
+}
+
+#festivalTitle > p{
+	align-items:center;
+	margin-left: 30px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+#festivalDetail{
+	width:auto;
+}
+
+#festivalDetailInfo{
+	margin:10px;
+}
+
+#festivalInfo{
+	width:1200px;
+	height:auto;
+	margin-top:10px;
+}
+
+#festivalPicture{
+	width:560px;
+	height:315px;
+}
+
+.infoList{
+	display: block;
+    list-style-type: none;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0px;
+}
+
+.tapGroup1{
+	width:560px;
+	height:315px;
+	overflow:scroll;
+}
+
+.tapGroup2{
+	width:1200px;
+	height:auto;
+}
+
+.infoTable{
+	width:100%;
+}
+
+.infoTable th{
+	width:15%;
+	background-color: gray;
+}
+
+.infoTable td{
+	width:85%;
+	background-color: teal;
+}
+
+#map{
+	width:560px;
+	height:315px;
+}
+
+.map_wrap {position:relative !important;width:100% !important;height:350px !important;}
+#addrTitle {font-weight:bold !important;display:block !important;}
+.hAddr {position:absolute !important;left:10px !important;top:10px !important;border-radius: 2px !important;background:#fff !important;background:rgba(255,255,255,0.8) !important;z-index:1 !important;padding:5px !important;}
+#centerAddr {display:block !important;margin-top:2px !important;font-weight: normal !important;}
+#bAddr {padding:5px !important;text-overflow: ellipsis !important;overflow: hidden !important;white-space: nowrap !important; }
