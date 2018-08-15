@@ -2,29 +2,29 @@
 .area{
 	text-align:center;
 }
-.festivalList{
+.festivalList, .nearList{
 	text-align:center;
 	display:inline-block;
 }
 
-.festivalInfo{
+.festivalInfo, .nearInfo{
 	display:inline-block;
 }
 
-.festivalList > td{
+.festivalList > td, .nearList > td{
 	width:400px;
 	height:450px;
 }
 
-.festivalInfo > tr > td:nth-child(2n-1){
+.festivalInfo > tr > td:nth-child(2n-1), .nearInfo > tr > th{
 	width:50px;
 }
 
-.festivalInfo > tr > td:nth-child(2n){
+.festivalInfo > tr > td:nth-child(2n), .nearInfo > tr > td{
 	width:300px;
 }
 
-.festivalInfo td{
+.festivalInfo td, .nearInfo th, .nearInfo td{
 	height:40px;
 }
 
@@ -40,6 +40,10 @@
 .img{
 	width:350px;
 	height:350px;
+}
+
+.opacity{
+	opacity: 0;
 }
 
 /*
