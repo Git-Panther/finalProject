@@ -8,7 +8,7 @@ import org.apache.commons.io.IOUtils;
 
 public class JsonParser {
 
-	public String getJsonString(String address) {
+	public static String getJsonString(String address) {
 		String resultStr = "";
 		try {
 			URL url = new URL(address);
@@ -27,10 +27,11 @@ public class JsonParser {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("resultStr : " + resultStr );
 		return resultStr;
 	}
 
-	public String getSearchStay(String areaCode, String sigunguCode, String arrange, String pageNo) {
+	public static String getSearchStay(String areaCode, String sigunguCode, String arrange, String pageNo) {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?serviceKey=";
@@ -59,7 +60,7 @@ public class JsonParser {
 		return resultJson;
 	}
 
-	public String getLocationBasedList(String contentTypeId, String mapX, String mapY, String pageNo) {
+	public static String getLocationBasedList(String contentTypeId, String mapX, String mapY, String pageNo) {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?serviceKey=";
@@ -87,5 +88,83 @@ public class JsonParser {
 		}
 		return resultJson;
 	}
+	
+	public static String getAreaList() {
+		String resultJson = "";
+		try {
+			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=";
+			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
+			String parameter = "";
+
+			parameter += "&numOfRows=" + 17;
+			parameter += "&MobileOS=" + "ETC";
+			parameter += "&MobileApp=" + "AppTest";
+			parameter += "&listYN=" + "Y";
+			parameter += "&arrange=" + "A";
+			parameter += "&_type= " + "json";
+			address += serviceKey + parameter;
+
+			resultJson = getJsonString(address);
+			System.out.println("getAreaList : =" + resultJson);
+			return resultJson;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultJson;
+	}
+	
+	public static String getSigunguCount(String areaCode) {
+		String resultJson = "";
+		try {
+			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?serviceKey=";
+			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
+			String parameter = "";
+
+			parameter += "&numOfRows=" + 0;
+			parameter += "&areaCode=" + areaCode;
+			parameter += "&MobileOS=" + "ETC";
+			parameter += "&MobileApp=" + "AppTest";
+			parameter += "&listYN=" + "Y";
+			parameter += "&arrange=" + "A";
+			parameter += "&_type= " + "json";
+			address += serviceKey + parameter;
+
+			resultJson = getJsonString(address);
+			System.out.println("getSigunguCount : =" + resultJson);
+			return resultJson;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultJson;
+	}
+	
+	public static String getSigunguList(String areaCode, String numOfSigungu) {
+		String resultJson = "";
+		try {
+			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?serviceKey=";
+			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
+			String parameter = "";
+
+			parameter += "&numOfRows=" + numOfSigungu;
+			parameter += "&areaCode=" + areaCode;
+			parameter += "&MobileOS=" + "ETC";
+			parameter += "&MobileApp=" + "AppTest";
+			parameter += "&listYN=" + "Y";
+			parameter += "&arrange=" + "A";
+			parameter += "&_type= " + "json";
+			address += serviceKey + parameter;
+
+			resultJson = getJsonString(address);
+			System.out.println("getSigunguList : =" + resultJson);
+			return resultJson;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultJson;
+	}
+
+
+	
+	
 
 }

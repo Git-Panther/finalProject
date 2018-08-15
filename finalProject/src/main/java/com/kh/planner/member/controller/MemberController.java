@@ -24,7 +24,7 @@ public class MemberController{
 		}else{
 			System.out.println("비밀번호가 일치하지 않습니다");
 		}
-		 return "index";
+		 return "redirect:index.do";
 	}
 	
 	@RequestMapping(value = "loginPage.do", method = RequestMethod.GET)
