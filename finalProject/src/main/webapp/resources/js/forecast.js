@@ -2,7 +2,7 @@
  */
 
 function printForecast(body){
-	console.log(body);
+	//console.log(body);
 	var $festivalForecast = $("#festivalForecast"); // div
 	//console.log(eventstartdate, eventenddate);
 	// 출력 대상 : 강수확률, 강수형태, 6시간 강수량, 습도, 하늘상태, 6시간 신적설(겨울 한정), 3시간 기온, 풍향, 풍속
