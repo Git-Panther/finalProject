@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script type="text/javascript" src="/resources/js/common/component.js?v=150805"></script>
+<script type="text/javascript" src="/resources/js/common/common_script.js?v=151210"></script>
 <link href="resources/css/area.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
@@ -17,6 +18,7 @@ $(document).ready(function(){
 
 	$(document).on('click','.travel_city',function(){
 		var _this_show = $(this).attr('data-show');
+		var _this_code = $(this).attr('code');
 		$('.travel_city').each(function(){
 			if($(this).attr('data-show') != _this_show){
 				$(this).removeClass('on');
@@ -63,9 +65,9 @@ function get_city() {
 				console.log("item : ", item);
 				if(index != 7) {
 					if(index < 10) {
-					_html += '<div class="travel_city" data-on="off" data-show="00' + index + '">';
+					_html += '<div class="travel_city" data-on="off" data-show="00' + index + '" code="' + item.code + '">';
 					} else {
-					_html += '<div class="travel_city" data-on="off" data-show="0' + index + '">';
+					_html += '<div class="travel_city" data-on="off" data-show="0' + index + '" code="' + item.code + '">';
 					}
 				_html += '<div>';
 				_html += '<span>' + item.name + '</span> <img src="/planner/resources/images/area/area_arrow.gif" alt=""';
@@ -73,9 +75,9 @@ function get_city() {
 				_html += '<div class="clear"></div>';
 				_html += '</div>';
 				_html += '</div>';
-				get_sigungu(item.code, index);
+				get_sigungu(index, item.code);
 				}
-				if(index == 9) {
+				if(index == 8) {
 					_html += '<div class="clear"></div>';
 					$('.pa10').html(_html);
 					_html = "";
@@ -89,7 +91,7 @@ function get_city() {
 			});
 	}
 	
-	function get_sigungu(areaCode, dataId) {
+	function get_sigungu(id, areaCode) {
 		console.log("get_sugungu");
 		$.ajax({
 			type :'get',
@@ -100,7 +102,6 @@ function get_city() {
 			dataType : 'json',
 			success : function(data) {
 				var count = data.response.body.totalCount;
-				console.log(count);
 				$.ajax({
 					type :'get',
 					url :'sigunguList.do',
@@ -112,21 +113,20 @@ function get_city() {
 					success : function(data) {
 						var object = data.response.body.items.item;
 						_html = "";
-						if(dataId < 10) {
-						_html +=	'<div class="travel_hide" data-id="00' + dataId + '" style="">';
-						} else {
-						_html +=	'<div class="travel_hide" data-id="0' + dataId + '" style="">';
-						}
+						if(id < 10) {
+							_html +=	'<div class="travel_hide" data-id="00' + id + '" style="">';
+							} else {
+							_html +=	'<div class="travel_hide" data-id="0' + id + '" style="">';
+							}
 						$.each(object, function(index, item) {
-							_html += '<a href="' + areaCode + '_' + index + '" class="travel_ar"> ' + item.name + ' </a>';
+							_html += '<a href="' + areaCode + '_' + id + '_' + index + '" class="travel_ar"> ' + object[index].name + ' </a>';
 						});
-						_html += '</div>';
-						if(dataId < 9) {
-							$('.pa10').after(_html);
-						} else {
-							_html = "";
-							$('.pa20').after(_html);
-						}
+							_html += '</div>';
+							if(id < 9) {
+								$('.pa10').after(_html);
+							} else {
+								$('.pa20').after(_html);
+							}
 					}
 				});
 			}
@@ -185,32 +185,25 @@ function get_city() {
 		</div>
 	</div>
 
-	<div class="area_silver">
-		<div class="wrap">
-			<div class="area_title">전국 행사지</div>
-			<div class="travel_box">
-				<div class="travel_section">
-					<div class="clear"></div>
-				</div>
-				<div class="travel_section pa10">
-					<!-- 첫번째 메뉴 -->
-
-					<div class="clear"></div>
-				</div>
-
-				<!-- travel_hide -->
-
-				<div class="travel_section pa20">
-					<!-- 두번째 메뉴 -->
-
-					<div class="clear"></div>
-				</div>
-				<!-- travel_hide -->
-
+<div class="area_silver">
+	<div class="wrap">
+		<div class="area_title">
+			국내 여행지		</div>
+		<div class="travel_box">
+			<!-- <div class="travel_section">
+				<div class="travel_left">
+					주요도시				</div>
+				<div class="clear"></div>
+			</div> -->
+			<div class="travel_section pa10">
+				<div class="clear"></div>
 			</div>
-			<!-- travel_box -->
+			<div class="travel_section pa20">
+				<div class="clear"></div>
+			</div>
 		</div>
 	</div>
+</div>
 	<div class="area_white">
 		<div class="wrap">
 			<div class="area_title">국내 인기 여행지</div>
