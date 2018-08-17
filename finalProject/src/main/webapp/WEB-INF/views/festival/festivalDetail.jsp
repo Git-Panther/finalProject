@@ -125,7 +125,7 @@
 		
 			var options = {
 				center: new daum.maps.LatLng(33.450701, 126.570667),
-				level: 7
+				level: 5
 				// ,marker: markers // 이미지 지도에 표시할 마커 
 			};
 			
@@ -143,6 +143,7 @@
 		    	festivalDetailInfo(${contentid}); // 반복 정보 표시
 		    	$("#festivalTap td").eq(1).click(); // 기본 정보부터 표시
 		    	$("#festivalTap td").eq(0).click(); // 기본 정보부터 표시
+		    	map.panTo(new daum.maps.LatLng(festivaly, festivalx)); // 마지막에 지도 중심 잡기
 			});
 		</script>
 		<div id="festivalDetailInfo" class="tapGroup2"></div>

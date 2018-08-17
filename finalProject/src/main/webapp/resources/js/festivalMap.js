@@ -2,68 +2,51 @@
  * 
  */
 function printMark(position, title, isNear){ // 마커 생성
+	/*
+	 * 만일 중심정보이면 마커를 표시
+	 * 중심정보가 아니면 커스텀 오버레이 표시
+	 */
 	var marker = new daum.maps.Marker({
         position: position
     }); // 생성할 마커 
 	marker.setMap(map); // 맵에다가 붙임
 	
-	var markerText = $("<div>").addClass("markerText").append($("<p>").html(title));
-	//console.log(markerText.get(0));
+	// div 만들기
+	var markerContent = $("<div>").addClass("markerContent");
+	var cols = 16;
+	var rows = Math.ceil(title.length / cols);	
+	var titleArr = [];
 	
-	var infowindow = new daum.maps.InfoWindow({
-		position : position
-		, content : markerText.get(0)
+	for(var i = 0; i < rows; i++){
+		titleArr[i] = title.substr(i * cols, cols);
+	}
+	
+	titleArr.forEach(function(v, i){
+		markerContent.append(v);
+		if(i < titleArr.length - 1) markerContent.append("<br/>");
 	});
 	
-	// $("#map img").addClass("marker");
+	var customOverlay = new daum.maps.CustomOverlay({
+	    map: map,
+	    position: position,
+	    content: markerContent.get(0),
+	    yAnchor: 1.5
+	});
 	
-	if(isNear){
+	if(isNear){ // 올렸을 때에만 표시
+		customOverlay.setVisible(false); // 우선은 숨기고 마우스 커서 올렸을 때만 보여준다 ㅇㅇ
 		// 마커에 마우스오버 이벤트를 등록합니다
 		daum.maps.event.addListener(marker, 'mouseover', function() {
-		  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-		    infowindow.open(map, marker);
+			// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+			customOverlay.setVisible(true);
 		});
 		// 마커에 마우스아웃 이벤트를 등록합니다
 		daum.maps.event.addListener(marker, 'mouseout', function() {
 		    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-		    infowindow.close();
+			customOverlay.setVisible(false);
 		});
-		/*
-		marker.md.onmouseenter = function(){
-			infowindow.open(map, marker)
-		};
-		*/
 	}else{
-		infowindow.open(map, marker);
+		customOverlay.setVisible(false);
+		customOverlay.setVisible(true);
 	}
-	
-	//console.log(marker);
-	/*
-	searchDetailAddrFromCoords(position, function(result, status) {
-        if (status === daum.maps.services.Status.OK) {
-            var detailAddr = result[0].road_address != undefined ? '<p>도로명주소 <br>' + result[0].road_address.address_name + '</p>' : '';
-            detailAddr += '<p>지번 주소<br>' + result[0].address.address_name + '</p>';
-            
-            var content = '<div id="bAddr">' +
-                            //'<span id="addrTitle">법정동 주소정보</span>' + 
-                            detailAddr + 
-                        '</div>';
-
-            // 마커를 클릭한 위치에 표시합니다 
-            marker.setPosition(position);
-            // marker.setMap(map);
-
-            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-            infowindow.setContent(content);
-            infowindow.open(map, marker);
-        }   
-    });
-	*/
 }
-
-/*
-function searchDetailAddrFromCoords(coords, callback) {
-    // 좌표로 법정동 상세 주소 정보를 요청합니다
-    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-}
-*/

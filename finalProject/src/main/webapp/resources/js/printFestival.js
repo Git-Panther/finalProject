@@ -55,7 +55,6 @@ function printFestivalCommon(common){
 	
 	// 지도 표시를 해준다 ㅇㅇ.
 	var center = new daum.maps.LatLng(festivaly, festivalx);
-	map.setCenter(center);
 	printMark(center, common.title, false);
 	
 	locationBasedList(festivalx, festivaly, 32); // 숙박
