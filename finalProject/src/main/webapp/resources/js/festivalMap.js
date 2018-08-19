@@ -27,26 +27,28 @@ function printMark(position, title, isNear){ // 마커 생성
 	});
 	
 	var customOverlay = new daum.maps.CustomOverlay({
-	    map: map,
+		//map: map,
 	    position: position,
 	    content: markerContent.get(0),
 	    yAnchor: 1.5
 	});
 	
 	if(isNear){ // 올렸을 때에만 표시
-		customOverlay.setVisible(false); // 우선은 숨기고 마우스 커서 올렸을 때만 보여준다 ㅇㅇ
+		//customOverlay.setVisible(false); // 우선은 숨기고 마우스 커서 올렸을 때만 보여준다 ㅇㅇ
 		// 마커에 마우스오버 이벤트를 등록합니다
 		daum.maps.event.addListener(marker, 'mouseover', function() {
 			// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-			customOverlay.setVisible(true);
+			//customOverlay.setVisible(true);
+			customOverlay.setMap(map);
 		});
 		// 마커에 마우스아웃 이벤트를 등록합니다
 		daum.maps.event.addListener(marker, 'mouseout', function() {
 		    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-			customOverlay.setVisible(false);
+			//customOverlay.setVisible(false);
+			customOverlay.setMap(null);
 		});
 	}else{
-		customOverlay.setVisible(false);
-		customOverlay.setVisible(true);
+		map.panTo(position); // 마지막에 지도 중심 잡기
+		customOverlay.setMap(map);
 	}
 }

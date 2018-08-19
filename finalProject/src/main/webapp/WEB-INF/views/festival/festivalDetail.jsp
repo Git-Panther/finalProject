@@ -14,7 +14,7 @@
 <script>
 	var eventstartdate = <c:out value='${eventstartdate}'/>; // 전역 변수로 만들어 사용해야 외부 js 파일과 쓸 수 있다. 아마?
 	var eventenddate = <c:out value='${eventenddate}'/>;
-	var festivalx, festivaly; // x, y축 저장용
+	//var festivalx, festivaly; // x, y축 저장용
 	var contentid = ${contentid}, contenttypeid = 15; // 행사의 contentid, contenttypeid
 
 	function festivalTapEvent(){
@@ -130,12 +130,7 @@
 			};
 			
 			var map = new daum.maps.Map(container, options);
-			
-			// var markers = []; // 마커들 저장
-			
-		    // var infowindow = new daum.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
-		 	// 주소-좌표 변환 객체를 생성합니다
-		    // var geocoder = new daum.maps.services.Geocoder();
+			var markerInfo = []; // 중심 + 사이드 좌표와 텍스트 리스트
 		    
 		    $(function(){
 		    	festivalTapEvent(); // 탭 이벤트 추가	
@@ -143,7 +138,6 @@
 		    	festivalDetailInfo(${contentid}); // 반복 정보 표시
 		    	$("#festivalTap td").eq(1).click(); // 기본 정보부터 표시
 		    	$("#festivalTap td").eq(0).click(); // 기본 정보부터 표시
-		    	map.panTo(new daum.maps.LatLng(festivaly, festivalx)); // 마지막에 지도 중심 잡기
 			});
 		</script>
 		<div id="festivalDetailInfo" class="tapGroup2"></div>
