@@ -12,6 +12,7 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/sql/memberMapper.xml" />
+		<mapper resource="mybatis/sql/favoriteMapper.xml" />
 	</mappers>
 </configuration>
 

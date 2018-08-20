@@ -197,6 +197,12 @@
 	height:315px;
 }
 
+#map img {
+	max-width: none;
+	height: auto;
+	border: 0;
+}
+
 .markerContent{
 	position:relative;
 	bottom:25px;

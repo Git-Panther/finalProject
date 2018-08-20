@@ -50,8 +50,8 @@ function printFestivalCommon(common){
 	
 	// $("#festivalIntro").html(common.overview); // 상세한 설명
 	
-	festivalx = common.mapx;
-	festivaly = common.mapy;
+	var festivalx = common.mapx;
+	var festivaly = common.mapy;
 	
 	// 지도 표시를 해준다 ㅇㅇ.
 	var center = new daum.maps.LatLng(festivaly, festivalx);

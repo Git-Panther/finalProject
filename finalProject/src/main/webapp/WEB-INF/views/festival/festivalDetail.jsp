@@ -16,6 +16,12 @@
 	var eventenddate = <c:out value='${eventenddate}'/>;
 	//var festivalx, festivaly; // x, y축 저장용
 	var contentid = ${contentid}, contenttypeid = 15; // 행사의 contentid, contenttypeid
+	var userNo;
+	var isUser = false;
+	<c:if test="${!empty sessionScope.user}">
+		isUser = true;
+		userNo = <c:out value="${sessionScope.user.userNo}"/>;
+	</c:if>
 
 	function festivalTapEvent(){
 		$("#festivalTap td").each(function(){
@@ -60,27 +66,6 @@
 			break;
 		}
 	}
-	
-	function checkUserFavorite(item){ // 로그인 상태인데 찜을 해놓고 있냐 아니냐
-		//console.log("${sessionScope.user}");
-		if("${sessionScope.user}" != ""){
-			// ajax로 item의 contenttype과 contenttypeid, 그리고 user.userNo 대조하여 되어있는지 검사
-		}else{
-			// 좋아요 버튼 이벤트 추가 : 로그인 후에 찜할 수 있습니다.
-			$("#favorite p").append("☆");
-			$("#favorite").click(function(){
-				alert("로그인 후에 찜할 수 있습니다.");
-			});
-		}
-	}
-	
-	function insertFavorite(){ // 찜 등록
-		// ajax로 수신
-	}
-	
-	function deleteFavorite(){ // 찜 삭제
-		// ajax로 수신
-	}
 </script>
 </head>
 <body>
@@ -114,7 +99,7 @@
 					</td>
 				</tr>
 			</table>
-			<div id="favorite" class="link"><p>찜하기 </p></div>
+			<div id="favorite" class="link"></div>
 		</div>
 		<!-- <div id="festivalIntro"></div> -->
 		<!-- <br> -->

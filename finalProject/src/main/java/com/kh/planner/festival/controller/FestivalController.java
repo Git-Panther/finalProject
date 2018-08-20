@@ -23,8 +23,9 @@ import com.kh.planner.common.GPStoGRIDConverter;
 
 @Controller
 public class FestivalController {
-	private String tourapikey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	private String forecastkey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	private String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	private String forecastkey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	private String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
 	
 	private static final Logger logger = LoggerFactory.getLogger(FestivalController.class);
 	
@@ -53,15 +54,10 @@ public class FestivalController {
 	@RequestMapping(value = "areaCodeList.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public @ResponseBody String areaCodeList(String areaCode){	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode";
-		StringBuilder params = new StringBuilder("?");
-		params.append("ServiceKey="+tourapikey);
+		StringBuilder params = new StringBuilder(tourapikey + tourParams);
 		params.append("&numOfRows=100"); // 모든 주요 도시
-		//params.append("&pageNo="+1); // 주변 정보 전체
-		params.append("&MobileOS=ETC"); // 모바일이 아니므로 etc
-		params.append("&MobileApp=planner"); // 앱 이름
 		if(null != areaCode) params.append("&areaCode="+areaCode); // 지역코드가 있으면 그 지역의 시군구, 아니면 주요 도시 전체
-		params.append("&_type=json"); // json으로
-		//System.out.println(mapx + ", " + mapy + ", " + contenttypeid);
+		logger.info(address + params.toString());
 		
 		URL url = null; // 결과를 볼 url
 		InputStream in = null; // 바이트를 읽어오기 위해 필요한 인풋 스트림
@@ -90,18 +86,15 @@ public class FestivalController {
 	public @ResponseBody String festivalApi(String pageNo, String arrange, String areaCode, String sigunguCode
 			, String eventStartDate, String eventEndDate){ // 페이지 번호, 정렬 기준	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival";
-		StringBuilder params = new StringBuilder("?");
-		params.append("ServiceKey="+tourapikey);
+		StringBuilder params = new StringBuilder(tourapikey + tourParams);
 		params.append("&numOfRows=12"); // 한 번에 조회하는 정보 : 12개
 		params.append("&pageNo="+ (null != pageNo ? pageNo : "1")); // x페이지
-		params.append("&MobileOS=ETC"); // 모바일이 아니므로 etc
-		params.append("&MobileApp=planner"); // 앱 이름
 		params.append("&arrange=" + (null != arrange ? arrange : "D")); // D 조건(생성일순)으로 정렬 -> C 조건(수정일 순) -> Q(이미지 있는 수정일 순)
 		if(null != areaCode) params.append("&areaCode="+areaCode); // 지역코드 : 전체
 		if(null != sigunguCode) params.append("&sigunguCode="+sigunguCode); // 지역코드 : 시군구 - 안 따짐
 		if(null != eventStartDate) params.append("&eventStartDate="+eventStartDate.replaceAll("-", "")); // 1월 1일부터
 		if(null != eventEndDate) params.append("&eventEndDate="+eventEndDate.replaceAll("-", "")); // 12월 3일까지
-		params.append("&_type=json"); // json으로
+		
 		logger.info(pageNo + ", " + arrange + ", " + areaCode + ", " + sigunguCode + ", " + eventStartDate + ", " + eventEndDate);
 		
 		URL url = null; // 결과를 볼 url
@@ -143,12 +136,7 @@ public class FestivalController {
 	@RequestMapping(value = "festivalDetailCommon.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public @ResponseBody String festivalDetailCommon(int contentid){	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon";
-		StringBuilder params = new StringBuilder("?");
-		params.append("ServiceKey="+tourapikey);
-		//params.append("&numOfRows=1"); // 상세정보 1개
-		//params.append("&pageNo="+1); // 1페이지
-		params.append("&MobileOS=ETC"); // 모바일이 아니므로 etc
-		params.append("&MobileApp=planner"); // 앱 이름
+		StringBuilder params = new StringBuilder(tourapikey + tourParams);
 		params.append("&contentId="+contentid); // 컨텐츠 id
 		params.append("&contentTypeId="+15); // 컨텐츠 분류 id
 		params.append("&defaultYN=Y"); // 기본정보 조회 여부
@@ -158,7 +146,6 @@ public class FestivalController {
 		params.append("&addrinfoYN=Y"); // 주소 조회
 		params.append("&mapinfoYN=Y"); // 좌표 조회
 		params.append("&overviewYN=Y"); // 개요 조회
-		params.append("&_type=json"); // json으로
 		
 		URL url = null; // 결과를 볼 url
 		InputStream in = null; // 바이트를 읽어오기 위해 필요한 인풋 스트림
@@ -186,17 +173,11 @@ public class FestivalController {
 	@RequestMapping(value = "festivalDetailIntro.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public @ResponseBody String festivalDetailIntro(int contentid){	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro";
-		StringBuilder params = new StringBuilder("?");
-		params.append("ServiceKey="+tourapikey);
-		//params.append("&numOfRows=1"); // 상세정보 1개
-		//params.append("&pageNo="+1); // 1페이지
-		params.append("&MobileOS=ETC"); // 모바일이 아니므로 etc
-		params.append("&MobileApp=planner"); // 앱 이름
+		StringBuilder params = new StringBuilder(tourapikey + tourParams);
 		params.append("&contentId="+contentid); // 컨텐츠 id
 		params.append("&contentTypeId="+15); // 컨텐츠 분류 id
 		params.append("&introYN=Y"); // 소개정보 조회
-		params.append("&_type=json"); // json으로
-		
+	
 		URL url = null; // 결과를 볼 url
 		InputStream in = null; // 바이트를 읽어오기 위해 필요한 인풋 스트림
 		ByteArrayOutputStream bos1 = null; // 바이트 출력 스트림
@@ -223,16 +204,10 @@ public class FestivalController {
 	@RequestMapping(value = "festivalDetailInfo.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public @ResponseBody String festivalDetailInfo(int contentid){	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailInfo";
-		StringBuilder params = new StringBuilder("?");
-		params.append("ServiceKey="+tourapikey);
-		//params.append("&numOfRows=1"); // 상세정보 1개
-		//params.append("&pageNo="+1); // 1페이지
-		params.append("&MobileOS=ETC"); // 모바일이 아니므로 etc
-		params.append("&MobileApp=planner"); // 앱 이름
+		StringBuilder params = new StringBuilder(tourapikey + tourParams);
 		params.append("&contentId="+contentid); // 컨텐츠 id
 		params.append("&contentTypeId="+15); // 컨텐츠 분류 id
 		params.append("&detailYN=Y"); // 반복정보 조회
-		params.append("&_type=json"); // json으로
 		
 		URL url = null; // 결과를 볼 url
 		InputStream in = null; // 바이트를 읽어오기 위해 필요한 인풋 스트림
@@ -260,18 +235,11 @@ public class FestivalController {
 	@RequestMapping(value = "locationBasedList.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public @ResponseBody String locationBasedList(double mapx, double mapy, int contenttypeid){	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList";
-		StringBuilder params = new StringBuilder("?");
-		params.append("ServiceKey="+tourapikey);
-		//params.append("&numOfRows=10"); // 주변 정보 전체
-		//params.append("&pageNo="+1); // 주변 정보 전체
-		params.append("&MobileOS=ETC"); // 모바일이 아니므로 etc
-		params.append("&MobileApp=planner"); // 앱 이름
+		StringBuilder params = new StringBuilder(tourapikey + tourParams);
 		params.append("&contentTypeId="+contenttypeid); // 컨텐츠 분류 id
 		params.append("&mapX="+mapx); // x 좌표
 		params.append("&mapY="+mapy); // y 좌표
 		params.append("&radius=1000"); // 거리 반경(m)
-		params.append("&_type=json"); // json으로
-		//System.out.println(mapx + ", " + mapy + ", " + contenttypeid);
 		
 		URL url = null; // 결과를 볼 url
 		InputStream in = null; // 바이트를 읽어오기 위해 필요한 인풋 스트림
@@ -299,16 +267,14 @@ public class FestivalController {
 	@RequestMapping(value = "forecast.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public @ResponseBody String forecast(double mapx, double mapy){	
 		String address = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
-		StringBuilder params = new StringBuilder("?");
-		params.append("ServiceKey="+forecastkey);
+		StringBuilder params = new StringBuilder(forecastkey);
 		params.append("&numOfRows=10000"); // 모든 기상 정보
 		// 발표일 : 오늘, 동네예보 기준
 		SimpleDateFormat today = new SimpleDateFormat("yyyyMMdd-kkmm"); // 오늘 날짜를 뽑아옴
 		String todayStr = today.format(new Date());
 		String currentDate = todayStr.split("-")[0];
 		String currentTime = todayStr.split("-")[1];
-		String baseTime; // 진짜 보낼 값
-		
+		String baseTime; // 진짜 보낼 값	
 		params.append("&base_date="+currentDate);
 		// 동네예보 기준으로 시간 맞춤
 		if("0210".compareTo(currentTime) <= 0 && "0510".compareTo(currentTime) > 0) {
