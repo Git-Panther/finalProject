@@ -59,7 +59,7 @@
 	position:absolute;
 	left:544px;
 	bottom:10px;
-	background:url('/res/img/component/bg/bgb_60.png') repeat;
+	background:url('/planner/resources/images/component/bg/bgb_60.png') repeat;
 	width:70px;
 	height:30px;
 	line-height:30px;
@@ -131,7 +131,7 @@
 	left:0px;
 	width:100%;
 	height:44px;
-	background:url('/res/img/component/bg/bgw_80.png') repeat;
+	background:url('/planner/resources/images/component/bg/bgw_80.png') repeat;
 	z-index:1;
 	padding:9px;
 }
@@ -283,7 +283,7 @@
 }
 
 .hotel_search{
-	background: url('/res/img/common/gnb/search_icon.png') no-repeat;
+	background: url('/planner/resources/images/common/gnb/search_icon.png') no-repeat;
 	background-position: 295px center;
 	width:321px;
 	height:31px;
@@ -298,7 +298,7 @@
 	height:31px;
 	border:1px solid #c8c8ca;
 	padding-left:10px;
-	background: url('/res/img/main/hotel/check_in_bg.png') no-repeat 125px 6px;
+	background: url('/planner/resources/images/main/hotel/check_in_bg.png') no-repeat 125px 6px;
 	float:left;
 	margin-right:8px;
 }
@@ -382,7 +382,7 @@
 	position:absolute;
 	left:0px;
 	bottom:0px;
-	background:url('/res/img/area/city_bg.png') repeat-x;
+	background:url('/planner/resources/images/area/city_bg.png') repeat-x;
 	z-index:1;
 }
 
@@ -567,7 +567,7 @@
 	padding-left:4px;
 	padding-right:4px;
 	border-radius:3px;
-	background:url('/res/img/component/bg/bgw_80.png') repeat;
+	background:url('/planner/resources/images/component/bg/bgw_80.png') repeat;
 	box-shadow:0px 0px 5px silver;
 	height:20px;
 	line-height:20px;
@@ -693,7 +693,7 @@
 	position:absolute;
 	left:10px;
 	bottom:5px;
-	background:url('/res/img/area/si_bg.png') repeat;
+	background:url('/planner/resources/images/area/si_bg.png') repeat;
 }
 
 .f_content_box{
@@ -718,11 +718,11 @@
 #paging button:hover{border:1px solid #c6c6c6;}
 #paging button.on{border:1px solid #1a7ad9;color:#1a7ad9;font-weight:bold;}
 #paging .nv button{width:24px;border:1px solid #c6c6c6;text-indent:-5000px;overflow:hidden;}
-#paging .pgn-pv1{background:url('/res/img/common/paging/pg_first.png') no-repeat;background-position:6px 4px;}
-#paging .pgn-pv2{background:url('/res/img/common/paging/pg_prev.png') no-repeat;background-position:10px 4px;}
-#paging .pgn-nx1{background:url('/res/img/common/paging/pg_last.png') no-repeat;background-position:7px 4px;}
-#paging .pgn-nx2{background:url('/res/img/common/paging/pg_next.png') no-repeat;background-position:10px 4px;}
-[class^="pgn-"],[class*=" pgn-"]{display:inline-block;background-image:url(../img/bt_paging.png);background-repeat:no-repeat;}
+#paging .pgn-pv1{background:url('/planner/resources/images/common/paging/pg_first.png') no-repeat;background-position:6px 4px;}
+#paging .pgn-pv2{background:url('/planner/resources/images/common/paging/pg_prev.png') no-repeat;background-position:10px 4px;}
+#paging .pgn-nx1{background:url('/planner/resources/images/common/paging/pg_last.png') no-repeat;background-position:7px 4px;}
+#paging .pgn-nx2{background:url('/planner/resources/images/common/paging/pg_next.png') no-repeat;background-position:10px 4px;}
+[class^="pgn-"],[class*=" pgn-"]{display:inline-block;background-image:url(/planner/resources/images/bt_paging.png);background-repeat:no-repeat;}
 
 .m_img{
 	width:624px;
@@ -734,7 +734,7 @@
 	float:left;
 	min-width:24px;
 	height:24px;
-	background:url('/res/img/component/bg/bgb_60.png') repeat;
+	background:url('/planner/resources/images/component/bg/bgb_60.png') repeat;
 	border:2px solid white;
 	border-radius:12px;
 	position:absolute;

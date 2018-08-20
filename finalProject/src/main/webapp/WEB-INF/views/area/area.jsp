@@ -25,19 +25,26 @@ $(document).ready(function(){
 				$('.city_arrow',this).attr('src',$('.city_arrow').attr('src').replace('_on.gif','.gif'));				
 				$(this).attr('data-on','off');
 				$('.travel_hide[data-id='+$(this).attr('data-show')+']').slideUp('fast');
+				
 			}
 		});
 
 		if($(this).attr('data-on') == 'off'){
+			var object = $('.travel_hide[data-id='+$(this).attr('data-show')+']');
 			$(this).addClass('on');
 			$('.city_arrow',this).attr('src',$('.city_arrow').attr('src').replace('.gif','_on.gif'));
 			$(this).attr('data-on','on');
-			$('.travel_hide[data-id='+$(this).attr('data-show')+']').slideDown();
+			object.attr('style', 'height:' + (Math.ceil(object.children().length/5)) * 55 + 'px');
+			object.slideDown();
+			console.log(Math.ceil(object.children().length/5));
 		}else{
+			var object = $('.travel_hide[data-id='+$(this).attr('data-show')+']');
 			$('.travel_city').removeClass('on');
 			$('.city_arrow',this).attr('src',$('.city_arrow').attr('src').replace('_on.gif','.gif'));
 			$(this).attr('data-on','off');
-			$('.travel_hide[data-id='+$(this).attr('data-show')+']').slideUp();
+			object.attr('style', 'height:' + (Math.ceil(object.children().length/5)) * 55 + 'px');
+			object.slideUp();
+			console.log(Math.ceil(object.children().length/5));
 		}
 	});
 

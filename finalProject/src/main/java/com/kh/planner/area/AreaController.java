@@ -85,7 +85,7 @@ public class AreaController {
 	}
 
 	@RequestMapping(value = "popList.do", method = RequestMethod.GET)
-	public void popFestival(HttpServletRequest request, HttpServletResponse response, @RequestParam String sidoCode,
+	public void popContents(HttpServletRequest request, HttpServletResponse response, @RequestParam String sidoCode,
 			@RequestParam String sigunguCode, @RequestParam String contentTypeId) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");

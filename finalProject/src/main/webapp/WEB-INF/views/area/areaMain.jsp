@@ -37,6 +37,19 @@ var restaurant = 39;
 							  console.log("sigunguCode: ", sigunguCode);
 							} */
 							popList(15);
+							
+							$(document).on('click', '.pospot_tab', function() {
+								var _this_cate = $(this).attr('data-cate');
+								
+								if($(this).attr('class') == 'pospot_tab on') {
+									console.log("class가 on이므로 데이터를 받아오지 않음");
+								} else {
+									console.log("class가 off이므로 데이터를 받아옴");
+									$('.pospot_tab').removeClass('on');
+									$(this).addClass('on');
+									popList(_this_cate);
+								}
+							});
 					});
 
 	function popList(contentTypeId) {
@@ -72,13 +85,13 @@ var restaurant = 39;
 					_html += '</div>';
 					_html += '<div class="po_name">' + object[index].title + '</div>';
 					_html += '<div class="po_bottom">';
-					_html += '<img src="/res/img/city/clip_icon.png" alt="" class="po_clip">';
+					_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
 					_html += '<div class="po_cnt">' + object[index].readcount + '</div>';
 					_html += '<div class="po_tag">유명한거리/지역</div>';
 					_html += '</div></a>'; 
 					
 				});
-				$(".pospot_content").append(_html);
+				$(".pospot_content").html(_html);
 				$(".pospot_content").append('<div class="clear"></div>');
 			}
 			
@@ -207,10 +220,10 @@ var restaurant = 39;
 						<div class="owl-controls">
 							<div class="owl-nav">
 								<div class="owl-prev" style="">
-									<img src="/res/img/area/ar_img_nav_prev.png">
+									<img src="/planner/resources/images/area/ar_img_nav_prev.png">
 								</div>
 								<div class="owl-next" style="">
-									<img src="/res/img/area/ar_img_nav_next.png">
+									<img src="/planner/resources/images/area/ar_img_nav_next.png">
 								</div>
 							</div>
 							<div class="owl-dots" style="">
@@ -241,23 +254,23 @@ var restaurant = 39;
 
 	<div class="area_bg line spot_list silver">
 		<div class="wrap">
-			<div class="area_title_center city_po">서울 인기장소</div>
+			<div class="area_title_center city_po"><c:out value="${name }" /> 인기장소</div>
 
 			<div class="pospot_tab_box">
-				<div class="pospot_tab on" data-cate="1">축제/공연/행사</div>
-				<div class="pospot_tab" data-cate="2">관광지</div>
-				<div class="pospot_tab" data-cate="3">문화시설</div>
-				<div class="pospot_tab" data-cate="4">숙박</div>
-				<div class="pospot_tab" data-cate="5">쇼핑</div>
-				<div class="pospot_tab last" data-cate="6">음식</div>
+				<div class="pospot_tab on" data-cate="15">축제/공연</div>
+				<div class="pospot_tab" data-cate="12">관광지</div>
+				<div class="pospot_tab" data-cate="14">문화시설</div>
+				<div class="pospot_tab" data-cate="32">숙박</div>
+				<div class="pospot_tab" data-cate="38">쇼핑</div>
+				<div class="pospot_tab last" data-cate="39">음식</div>
 				<div class="pospot_tab_blank">&nbsp;</div>
 				<div class="clear"></div>
 			</div>
 
 			<div class="pospot_content"></div>
 
-			<a class="list_more spot_list" href="/ko/city/seoul_310/attraction">298개
-				관광명소 모두보기</a>
+			<!-- <a class="list_more spot_list" href="/ko/city/seoul_310/attraction">298개
+				관광명소 모두보기</a> -->
 		</div>
 	</div>
 
