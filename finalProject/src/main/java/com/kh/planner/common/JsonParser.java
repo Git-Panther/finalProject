@@ -3,10 +3,15 @@ package com.kh.planner.common;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.apache.commons.io.IOUtils;
 
 public class JsonParser {
+	private static String serviceKey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	//String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 
 	public static String getJsonString(String address) {
 		String resultStr = "";
@@ -35,7 +40,6 @@ public class JsonParser {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?serviceKey=";
-			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 			String parameter = "";
 
 			parameter += "&numOfRows=" + 2;
@@ -64,7 +68,6 @@ public class JsonParser {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?serviceKey=";
-			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 			String parameter = "";
 
 			parameter += "&numOfRows=" + 15;
@@ -93,7 +96,6 @@ public class JsonParser {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=";
-			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 			String parameter = "";
 
 			parameter += "&numOfRows=" + 17;
@@ -117,7 +119,6 @@ public class JsonParser {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?serviceKey=";
-			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 			String parameter = "";
 
 			parameter += "&numOfRows=" + 0;
@@ -142,7 +143,6 @@ public class JsonParser {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?serviceKey=";
-			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 			String parameter = "";
 
 			parameter += "&numOfRows=" + numOfSigungu;
@@ -162,9 +162,65 @@ public class JsonParser {
 		}
 		return resultJson;
 	}
-
-
 	
+	public static String getPopList(String sidoCode, String sigunguCode, String contentTypeId) {
+		String resultJson = "";
+		String today, p_year, p_month, p_day = "";
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		today = sdf.format(date);
+		
+		int year = Integer.parseInt(today.substring(0, 4));
+		int month = Integer.parseInt(today.substring(4, 6)) - 1;
+		int day = Integer.parseInt(today.substring(6, 8));
+		if(month == 0) {
+			year =- 1;
+			month = 12;
+		}
+		p_year = String.valueOf(year);
+		p_month = String.valueOf(month);
+		p_day = String.valueOf(day);
+		if(p_month.length() < 2) {
+			p_month = "0" + p_month;
+		}
+		if(p_day.length() < 2) {
+			p_day = "0" + p_day;
+		}
+		String dateParam = p_year + p_month + p_day;
+		
+		
+		
+		try {
+			String address = "";
+			if(contentTypeId.equals("15")) {
+				address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=";
+			} else {
+				address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=";
+			}
+			String parameter = "";
+
+			parameter += "&numOfRows=" + 8;
+			parameter += "&areaCode=" + sidoCode;
+			parameter += "&sigunguCode=" + (Integer.parseInt(sigunguCode)+1);
+			parameter += "&contentTypeId=" + contentTypeId;
+			parameter += "&arrange=" + "B";
+			if(contentTypeId.equals("15")){
+				parameter += "&eventStartDate=" + dateParam;
+			}
+			parameter += "&MobileOS=" + "ETC";
+			parameter += "&MobileApp=" + "AppTest";
+			parameter += "&_type=" + "json";
+			address += serviceKey + parameter;
+
+			resultJson = getJsonString(address);
+			System.out.println("getPopAttractionList : =" + resultJson);
+			return resultJson;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultJson;
+	}
+
 	
 
 }
