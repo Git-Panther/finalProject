@@ -48,18 +48,16 @@ function printFestivalCommon(common){
 
 	table.appendTo($festivalCommonInfo);
 	
-	// $("#festivalIntro").html(common.overview); // 상세한 설명
-	
 	var festivalx = common.mapx;
 	var festivaly = common.mapy;
-	
-	// 지도 표시를 해준다 ㅇㅇ.
-	var center = new daum.maps.LatLng(festivaly, festivalx);
-	printMark(center, common.title, false);
 	
 	locationBasedList(festivalx, festivaly, 32); // 숙박
 	locationBasedList(festivalx, festivaly, 39); // 음식점
 	forecast(festivalx, festivaly); // 날씨 정보 불러오기 ajax
+	
+	// 지도 표시를 해준다 ㅇㅇ.
+	var center = new daum.maps.LatLng(festivaly, festivalx);
+	printMark(center, common.title, contenttypeid);
 }
 
 function printFestivalDetail(detail){
@@ -239,7 +237,7 @@ function printNearInfo(list, contenttypeid){ // 근처 정보
         	
         	maintd.append(subTable).appendTo(maintr);
         	
-        	printMark(new daum.maps.LatLng(list[i].mapy, list[i].mapx), list[i].title, true);
+        	printMark(new daum.maps.LatLng(list[i].mapy, list[i].mapx), list[i].title, contenttypeid);
         	if( i % cols == cols - 1 || i == list.length - 1){
         		if(i == list.length - 1 && i < 2){ // 2개 이하일 때에는 테이블 깨짐.
         			var extra = 0;

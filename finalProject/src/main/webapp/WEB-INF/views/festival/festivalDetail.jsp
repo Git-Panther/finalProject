@@ -7,10 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Festival Detail</title>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript" src="resources/js/forecast.js"></script>
-<script type="text/javascript" src="resources/js/printFestival.js"></script>
-<script type="text/javascript" src="resources/js/festivalMap.js"></script>
 <script>
 	var eventstartdate = <c:out value='${eventstartdate}'/>; // 전역 변수로 만들어 사용해야 외부 js 파일과 쓸 수 있다. 아마?
 	var eventenddate = <c:out value='${eventenddate}'/>;
@@ -22,7 +18,15 @@
 		isUser = true;
 		userNo = <c:out value="${sessionScope.user.userNo}"/>;
 	</c:if>
-
+	
+	var festivalMarker;
+	var hotelMarkers = [], restaurantMarkers = [];
+</script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="resources/js/forecast.js"></script>
+<script type="text/javascript" src="resources/js/printFestival.js"></script>
+<script type="text/javascript" src="resources/js/festivalMap.js"></script>
+<script>
 	function festivalTapEvent(){
 		$("#festivalTap td").each(function(){
 			$(this).click(function(){
@@ -79,7 +83,7 @@
 				<td>숙박</td>
 				<td>식당</td>
 				<td>일기예보</td>
-				<td>교통상황</td>
+				<!-- <td>교통상황</td>  -->
 			</tr>
 		</table>
 	</div>
@@ -95,7 +99,7 @@
 						<div id="festivalCommonInfo" class="tapGroup1"></div>
 						<div id="map" class="tapGroup1"></div>
 						<div id="festivalForecast" class="tapGroup1"></div>
-						<div id="festivalTraffic" class="tapGroup1"></div>
+						<!-- <div id="festivalTraffic" class="tapGroup1"></div> 교통정보는 지도에 표시하는걸로 -->
 					</td>
 				</tr>
 			</table>
@@ -103,11 +107,9 @@
 		</div>
 		<!-- <div id="festivalIntro"></div> -->
 		<!-- <br> -->
-		<script type="text/javascript">		
-			// 고정 지도로 바꿀 듯?
-			
+		<script type="text/javascript">	
 			var container = document.getElementById('map');
-		
+			
 			var options = {
 				center: new daum.maps.LatLng(33.450701, 126.570667),
 				level: 5
@@ -115,14 +117,14 @@
 			};
 			
 			var map = new daum.maps.Map(container, options);
-			var markerInfo = []; // 중심 + 사이드 좌표와 텍스트 리스트
-		    
+		
 		    $(function(){
 		    	festivalTapEvent(); // 탭 이벤트 추가	
 		    	festivalDetailCommon(${contentid}); // 기본정보 표시	
 		    	festivalDetailInfo(${contentid}); // 반복 정보 표시
 		    	$("#festivalTap td").eq(1).click(); // 기본 정보부터 표시
 		    	$("#festivalTap td").eq(0).click(); // 기본 정보부터 표시
+		    	map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);
 			});
 		</script>
 		<div id="festivalDetailInfo" class="tapGroup2"></div>

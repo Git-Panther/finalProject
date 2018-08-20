@@ -108,7 +108,7 @@ function locationBasedList(mapx, mapy, contenttypeid){
         data: { mapx : mapx, mapy : mapy, contenttypeid : contenttypeid},
         dataType: 'json',
         success: function(data){
-        	//console.log(data);
+        	console.log(data);
         	printNearInfo(data.response.body.items.item, contenttypeid); // 공통 정보만 뽑았다.
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -142,7 +142,7 @@ function checkFavorite(item){ // 로그인 상태인데 찜을 해놓고 있냐 
 		$.ajax({        
 	        url: 'checkFavorite.do',
 	        type: 'post',
-	        data: { userno : userNo, contentid : item.contentid, contenttypeid : item.contenttypeid},
+	        data: { userno : userNo, contenttypeid : item.contenttypeid, contentid : item.contentid},
 	        success: function(data){
 	        	//console.log(data);
 	        	if(data){ // 있다면 검은별
@@ -178,7 +178,12 @@ function insertFavorite(item){ // 찜 등록
 	$.ajax({        
         url: 'insertFavorite.do',
         type: 'post',
-        data: { userno : userNo, contentid : item.contentid, contenttypeid : item.contenttypeid},
+        data: { userno : userNo, 
+        		contenttypeid : item.contenttypeid,
+        		contentid : item.contentid,
+        		eventstartdate : eventstartdate,
+        		eventenddate : eventenddate
+        },
         success: function(data){
         	//console.log(data);
         	if(data){ // 성공
@@ -204,7 +209,7 @@ function deleteFavorite(item){ // 찜 삭제
 	$.ajax({        
         url: 'deleteFavorite.do',
         type: 'post',
-        data: { userno : userNo, contentid : item.contentid, contenttypeid : item.contenttypeid}, // 
+        data: { userno : userNo, contenttypeid : item.contenttypeid, contentid : item.contentid}, // 
         success: function(data){
         	//console.log(data);
         	if(data){ // 성공
