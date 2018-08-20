@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="/resources/js/common/component.js?v=150805"></script>
-<script type="text/javascript" src="/resources/js/common/common_script.js?v=151210"></script>
-<link href="resources/css/area.css" rel="stylesheet" />
+<script type="text/javascript" src="resources/js/common/component.js"></script>
+<script type="text/javascript" src="resources/js/common/common_script.js"></script>
+<link href="resources/css/area/area.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
 <script>
@@ -119,7 +119,8 @@ function get_city() {
 							_html +=	'<div class="travel_hide" data-id="0' + id + '" style="">';
 							}
 						$.each(object, function(index, item) {
-							_html += '<a href="' + areaCode + '_' + id + '_' + index + '" class="travel_ar"> ' + object[index].name + ' </a>';
+							_html += '<a href="areaMain.do?name=' + object[index].name + '&sido=' + areaCode + '&sigungu=' + index + '" class="travel_ar"> ' + object[index].name + ' </a>';
+							/* _html += '<a href="areaMain.do?sido=' + areaCode + '_' + id + '_' + index + '" class="travel_ar"> ' + object[index].name + ' </a>'; */
 						});
 							_html += '</div>';
 							if(id < 9) {

@@ -162,9 +162,33 @@ public class JsonParser {
 		}
 		return resultJson;
 	}
-
-
 	
+	public static String getPopList(String sidoCode, String sigunguCode, String contentTypeId) {
+		String resultJson = "";
+		try {
+			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=";
+			String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
+			String parameter = "";
+
+			parameter += "&numOfRows=" + 8;
+			parameter += "&areaCode=" + sidoCode;
+			parameter += "&sigunguCode=" + (Integer.parseInt(sigunguCode)+1);
+			parameter += "&contentTypeId=" + contentTypeId;
+			parameter += "&arrange=" + "B";
+			parameter += "&MobileOS=" + "ETC";
+			parameter += "&MobileApp=" + "AppTest";
+			parameter += "&_type=" + "json";
+			address += serviceKey + parameter;
+
+			resultJson = getJsonString(address);
+			System.out.println("getPopAttractionList : =" + resultJson);
+			return resultJson;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultJson;
+	}
+
 	
 
 }
