@@ -306,3 +306,47 @@ function printNearInfo(list, contenttypeid){ // 근처 정보
 	}           
 	$nearInfo.append(tableList);
 }
+
+function festivalTapEvent(){
+	$("#festivalTap td").each(function(){
+		$(this).click(function(){
+			//$("#festivalTap td").removeClass("showing");
+			//$(this).addClass("showing");
+			showInfo($(this).text());
+		});
+	});
+}
+
+function showInfo(content){
+	//console.log(content);
+	switch(content){
+	case "개요":
+		$(".tapGroup1").hide();
+		$("#festivalCommonInfo").show();
+		break;
+	case "안내":
+		$(".tapGroup2").hide();
+		$("#festivalDetailInfo").show();
+		break;
+	case "지도":
+		$(".tapGroup1").hide();
+		$("#festivalMap").show();
+		break;
+	case "숙박":
+		$(".tapGroup2").hide();
+		$("#festivalHotels").show();
+		break;
+	case "식당":
+		$(".tapGroup2").hide();
+		$("#festivalRestaurants").show();
+		break;
+	case "일기예보":
+		$(".tapGroup1").hide();
+		$("#festivalForecast").show();
+		break;
+	case "교통상황":
+		$(".tapGroup1").hide();
+		$("#festivalTraffic").show();
+		break;
+	}
+}

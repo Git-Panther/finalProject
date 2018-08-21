@@ -108,7 +108,7 @@ function locationBasedList(mapx, mapy, contenttypeid){
         data: { mapx : mapx, mapy : mapy, contenttypeid : contenttypeid},
         dataType: 'json',
         success: function(data){
-        	console.log(data);
+        	//console.log(data);
         	printNearInfo(data.response.body.items.item, contenttypeid); // 공통 정보만 뽑았다.
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
