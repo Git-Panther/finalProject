@@ -239,7 +239,7 @@ function printNearInfo(list, contenttypeid){ // 근처 정보
         	
         	printMark(new daum.maps.LatLng(list[i].mapy, list[i].mapx), list[i].title, contenttypeid);
         	if( i % cols == cols - 1 || i == list.length - 1){
-        		if(i == list.length - 1 && i < 2){ // 2개 이하일 때에는 테이블 깨짐.
+        		if(i == list.length - 1 && i < cols - 1){ // 2개 이하일 때에는 테이블 깨짐.
         			var extra = 0;
         			switch(i % cols){
         			case 0:

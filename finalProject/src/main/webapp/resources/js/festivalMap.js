@@ -32,7 +32,7 @@ function printMark(position, title, contenttypeid){ // 마커 생성
 		//map: map,
 	    position: position,
 	    content: markerContent.get(0),
-	    xAnchor: 0.55,
+	    xAnchor: 0,
 	    yAnchor: 3.5
 	});
 

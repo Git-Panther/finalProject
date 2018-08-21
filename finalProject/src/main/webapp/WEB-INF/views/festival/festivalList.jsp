@@ -87,14 +87,7 @@
         	$("<p>").text("장소 : ").appendTo(th);       	
         	$("<p>").html(myItem[i].addr1).appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);
-        	/* 전화
-        	tr = $("<tr>");
-        	th = $("<th>");
-        	td = $("<td>");   	
-        	$("<p>").text("문의전화").appendTo(th);       	
-        	$("<p>").html(myItem[i].tel).appendTo(td);
-        	tr.append(th).append(td).appendTo(subTable);
-        	*/
+
         	tr = $("<tr>");
         	th = $("<th>");
         	td = $("<td>");   	
@@ -104,17 +97,69 @@
         	$("<p>").text(dateString).appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);
         	
-        	/* 좌표
-        	tr = $("<tr>");
-        	th = $("<th>");
-        	td = $("<td>");   	
-        	$("<p>").text("좌표").appendTo(th);       	
-        	$("<p>").text(myItem[i].mapx + ', ' + myItem[i].mapy).appendTo(td);
-        	tr.append(th).append(td).appendTo(subTable);
-        	*/
-        	
         	maintd.append(subTable).appendTo(maintr);
         	if( i % cols == cols - 1 || i == myItem.length - 1){
+        		if(i == myItem.length - 1 && i < cols - 1){ // 2개 이하일 때에는 테이블 깨짐.
+        			var extra = 0;
+        			switch(i % cols){
+        			case 0:
+        				extra = 3;
+        				break;
+        			case 1:
+        				extra = 2;
+        				break;
+        			case 2:
+        				extra = 1;
+        				break;
+        			case 3:
+        				extra = 0;
+        				break;
+        			}
+        			// 빈칸 채우기용
+	        		for(var j = 0; j < extra; j++){
+	        			maintd = $("<td>");
+	        			subTable = $("<table class='opacity'>");
+	        			tr = $("<tr>");
+	    	        	//th = $("<th>");
+	    	        	td = $("<td colspan='2'>");
+	                	
+	                	tr = $("<tr>");
+	                	//th = $("<th>");
+	                	td = $("<td colspan='2'>");
+	            
+	                	img = $("<img>").addClass("img");
+	                	if(undefined == myItem[i].firstimage) img.attr("src", "/planner/resources/images/festival/no_image.png");
+	                	else img.attr("src", myItem[i].firstimage);
+	                	td.append(img);
+	                	tr.append(td).appendTo(subTable);
+	                	
+	                	tr = $("<tr>");
+	                	th = $("<th>");
+	                	td = $("<td>");   	
+	                	$("<p>").text("축제명 : ").appendTo(th);       	
+	                	$("<p>").text(myItem[i].title).appendTo(td);
+	                	tr.append(th).append(td).appendTo(subTable);   	
+	                	
+	                	tr = $("<tr>");
+	                	th = $("<th>");
+	                	td = $("<td>");   	
+	                	$("<p>").text("장소 : ").appendTo(th);       	
+	                	$("<p>").html(myItem[i].addr1).appendTo(td);
+	                	tr.append(th).append(td).appendTo(subTable);
+
+	                	tr = $("<tr>");
+	                	th = $("<th>");
+	                	td = $("<td>");   	
+	                	$("<p>").text("기간 : ").appendTo(th);
+	                	dateString = dateFormat(myItem[i].eventstartdate);
+	                	if(myItem[i].eventstartdate != myItem[i].eventenddate) dateString += ' ~ ' + dateFormat(myItem[i].eventenddate);
+	                	$("<p>").text(dateString).appendTo(td);
+	                	tr.append(th).append(td).appendTo(subTable);
+	    	        	
+	    	        	maintd.append(subTable).appendTo(maintr);
+	        		}
+	        	}
+        		
         		maintr.appendTo(tableList);
         		maintr = $("<tr>");
         	}
@@ -238,16 +283,6 @@
 		form.appendTo($("#pageList"));
     	//console.log(form);
 		form.submit(); // 이렇게 해야 url 노출을 막을 수 있다.
-    	
-    	/*
-    	var loc = "/planner/festivalList.do?pageNo="+pageNo;
-    	if("${arrange}" != "") loc += "&arrange="+"${arrange}";
-    	if("${areaCode}" != "") loc += "&areaCode="+"${areaCode}";
-    	if("${sigunguCode}" != "") loc += "&sigunguCode="+"${sigunguCode}";
-    	if("${eventStartDate}" != "") loc += "&eventStartDate="+"${eventStartDate}";
-    	if("${eventEndDate}" != "") loc += "&eventEndDate="+"${eventEndDate}";
-    	location.href = loc;
-    	*/
     }
     
     function dateFormat(date){
@@ -255,19 +290,13 @@
     	return dateStr.substr(0, 4) + "년 " + dateStr.substr(4, 2) + "월 " + dateStr.substr(6, 2) + "일"
     }
     
-    //function festivalDetail(info){
     function festivalDetail(contentid, eventstartdate, eventenddate){
     	//console.log(contentid);
-    	// location.href="/planner/festival.do?contentid="+contentid;
-    	// 정 보안을 원한다면 가려라. form 태그로    	
     	<c:url var="festival" value="/festival.do"></c:url>
     	var form = $("<form>");
     	form.attr("id", "festivalDetail");
     	form.attr("method", "post");
     	form.attr("action", "${festival}");
-    	//$("<input type='hidden'>").attr("name", "contentid").val(info.contentid).appendTo(form);
-    	//$("<input type='hidden'>").attr("name", "eventstartdate").val(info.eventstartdate).appendTo(form);
-    	//$("<input type='hidden'>").attr("name", "eventenddate").val(info.eventenddate).appendTo(form);
     	
     	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
     	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
