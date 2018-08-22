@@ -40,7 +40,8 @@ public class AreaController {
 	}
 
 	@RequestMapping(value = "sigunguCount.do", method = RequestMethod.GET)
-	public void sigunguCount(HttpServletRequest request, HttpServletResponse response, @RequestParam String areaCode)
+	public void sigunguCount(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam String areaCode)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -54,7 +55,8 @@ public class AreaController {
 	}
 
 	@RequestMapping(value = "sigunguList.do", method = RequestMethod.GET)
-	public void sigunguList(HttpServletRequest request, HttpServletResponse response, @RequestParam String areaCode,
+	public void sigunguList(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam String areaCode,
 			@RequestParam String numOfSigungu) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -66,27 +68,34 @@ public class AreaController {
 		JSONObject json = new JSONObject();
 		json.put("data", result);
 	}
-
-	@RequestMapping(value = "areaMain.do", method = RequestMethod.GET)
-	public ModelAndView areaMain(HttpServletRequest request, HttpServletResponse response, ModelAndView mv)
+	@RequestMapping(value = "areaMain.do", method = RequestMethod.POST)
+	public ModelAndView areaMain(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, 
+			@RequestParam(value="sidoName", defaultValue="") String sidoName,
+			@RequestParam(value="sidoCode", defaultValue="") String sidoCode,
+			@RequestParam(value="sigunguName", defaultValue="") String sigunguName,
+			@RequestParam(value="sigunguCode", defaultValue="") String sigunguCode)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		mv.addObject("name", request.getParameter("name"));
-		System.out.println(request.getParameter("name"));
-		mv.addObject("sidoCode", request.getParameter("sido"));
-		System.out.println(request.getParameter("sido"));
-		mv.addObject("sigunguCode", request.getParameter("sigungu"));
-		System.out.println(request.getParameter("sigungu"));
+		mv.addObject("sidoName", sidoName);
+		System.out.println(sidoName);
+		mv.addObject("sidoCode", sidoCode);
+		System.out.println(sidoCode);
+		mv.addObject("sigunguName", sigunguName);
+		System.out.println(sigunguName);
+		mv.addObject("sigunguCode", sigunguCode);
+		System.out.println(sigunguCode);
 
 		mv.setViewName("area/areaMain");
 		return mv;
 	}
 
 	@RequestMapping(value = "popList.do", method = RequestMethod.GET)
-	public void popContents(HttpServletRequest request, HttpServletResponse response, @RequestParam String sidoCode,
-			@RequestParam String sigunguCode, @RequestParam String contentTypeId) throws Exception {
+	public void popList(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam(defaultValue = "") String sidoCode,
+			@RequestParam(defaultValue = "") String sigunguCode, 
+			@RequestParam String contentTypeId) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
@@ -96,6 +105,13 @@ public class AreaController {
 		out.println(result);
 		JSONObject json = new JSONObject();
 		json.put("data", result);
+	}
+	
+	@RequestMapping(value = "contentDetail.do")
+	public ModelAndView areaDetail(ModelAndView mv) throws Exception{
+		
+		mv.setViewName("area/areaDetail");
+		return mv;
 	}
 
 }
