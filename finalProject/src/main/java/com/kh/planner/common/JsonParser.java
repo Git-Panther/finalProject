@@ -10,8 +10,8 @@ import java.util.GregorianCalendar;
 import org.apache.commons.io.IOUtils;
 
 public class JsonParser {
-	private static String serviceKey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	//String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
+//	private static String serviceKey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	private static String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 
 	public static String getJsonString(String address) {
 		String resultStr = "";
@@ -200,8 +200,12 @@ public class JsonParser {
 			String parameter = "";
 
 			parameter += "&numOfRows=" + 8;
-			parameter += "&areaCode=" + sidoCode;
-			parameter += "&sigunguCode=" + (Integer.parseInt(sigunguCode)+1);
+			if(!sidoCode.equals("") && !sigunguCode.equals("")) {
+				parameter += "&areaCode=" + sidoCode;
+				parameter += "&sigunguCode=" + (Integer.parseInt(sigunguCode)+1);
+			} else {
+				parameter += "&areaCode=" + sidoCode;
+			}
 			parameter += "&contentTypeId=" + contentTypeId;
 			parameter += "&arrange=" + "B";
 			if(contentTypeId.equals("15")){

@@ -6,16 +6,23 @@
 <html>
 <head>
 <script type="text/javascript" src="resources/js/common/component.js"></script>
-<script type="text/javascript" src="resources/js/common/common_script.js"></script>
+<script type="text/javascript"
+	src="resources/js/common/common_script.js"></script>
+<script type="text/javascript" src="resources/js/area/area_common.js"></script>
+<script type="text/javascript" src="resources/js/area/area_script.js"></script>
 <link href="resources/css/area/area.css" rel="stylesheet" />
+<link href="resources/css/city/main.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
 <script>
+var sidoCode = 0;
+var sidoName = "";
+var sigunguCode = 0;
+var sigunguName = "";
 
 $(document).ready(function(){
-	get_reco_city();
 	get_city();
-
+	//popList(15);
 	$(document).on('click','.travel_city',function(){
 		var _this_show = $(this).attr('data-show');
 		var _this_code = $(this).attr('code');
@@ -25,7 +32,6 @@ $(document).ready(function(){
 				$('.city_arrow',this).attr('src',$('.city_arrow').attr('src').replace('_on.gif','.gif'));				
 				$(this).attr('data-on','off');
 				$('.travel_hide[data-id='+$(this).attr('data-show')+']').slideUp('fast');
-				
 			}
 		});
 
@@ -47,15 +53,7 @@ $(document).ready(function(){
 			console.log(Math.ceil(object.children().length/5));
 		}
 	});
-
-	$('.po_city_area').click(function(){
-		console.log('aaaaaaaaaaaaaaaaa');
-		$('.po_city_area').removeClass('on');
-		$(this).addClass('on');
-		get_reco_city();
-	});
 });
-
 
 function get_city() {
 	console.log("get_city");
@@ -65,7 +63,7 @@ function get_city() {
 		dataType : 'json',
 		success:function(data) {
 			var object = data.response.body.items.item;
-			_html = '';
+			_html = "";
 
 			$.each(object ,function(index,item){
 				console.log("index : ", index);
@@ -82,7 +80,7 @@ function get_city() {
 				_html += '<div class="clear"></div>';
 				_html += '</div>';
 				_html += '</div>';
-				get_sigungu(index, item.code);
+				get_sigungu(index, item.code, item.name);
 				}
 				if(index == 8) {
 					_html += '<div class="clear"></div>';
@@ -93,12 +91,12 @@ function get_city() {
 					_html += '<div class="clear"></div>';
 					$('.pa20').html(_html);
 											}
-																});
-								}
+									});
+				}
 			});
-	}
+}
 	
-	function get_sigungu(id, areaCode) {
+	function get_sigungu(id, areaCode, sidoName) {
 		console.log("get_sugungu");
 		$.ajax({
 			type :'get',
@@ -125,9 +123,13 @@ function get_city() {
 							} else {
 							_html +=	'<div class="travel_hide" data-id="0' + id + '" style="">';
 							}
-						$.each(object, function(index, item) {
-							_html += '<a href="areaMain.do?name=' + object[index].name + '&sido=' + areaCode + '&sigungu=' + index + '" class="travel_ar"> ' + object[index].name + ' </a>';
-							/* _html += '<a href="areaMain.do?sido=' + areaCode + '_' + id + '_' + index + '" class="travel_ar"> ' + object[index].name + ' </a>'; */
+						
+					$.each(object, function(index, item) {
+							console.log(sidoName.length);
+							_html += ('<a href="javascript:moveAreaMain(' + "'" + sidoName + "', '" 
+									+ sidoCode + "', '" 
+									+ object[index].name + "', '" 
+									+ object[index].code + "'" +  ')" class="travel_ar">' + object[index].name + ' </a>');
 						});
 							_html += '</div>';
 							if(id < 9) {
@@ -140,6 +142,8 @@ function get_city() {
 			}
 		});
 	}
+	
+	
 
 	function get_reco_city() {
 		console.log('aaaa');
@@ -171,6 +175,55 @@ function get_city() {
 					}
 				});
 	}
+	
+	function popList(contentTypeId) {
+		$.ajax({
+			type:'GET',
+			url:'popList.do',
+			dataType : 'json',
+			data:{
+				contentTypeId:contentTypeId
+			},
+			success: function(data) {
+				var items = data.response.body.items;
+				var object = data.response.body.items.item;
+				_html = "";
+				if(data.response.body.totalCount == 1){
+					object = items;
+				} else if(data.response.body.totalCount == 0) {
+					_html = "<h2>조회 결과가 없습니다.</h2>";
+				} else {
+				$.each(object, function(index, item) {
+					_html += '<a class="pospot"';
+					_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
+					if(index == 3 || index == 7) {
+					_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
+					} else {
+					_html += 'target="_blank"><div class="po_img_box">';
+					}
+					_html += '<img ';
+					 if(object[index].firstimage == undefined) {
+					_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
+					} else {
+					_html += 'src="' + object[index].firstimage + '"';
+					} 
+					_html += 'alt="" class="po_img">';
+					_html += '</div>';
+					_html += '<div class="po_name">' + object[index].title + '</div>';
+					_html += '<div class="po_bottom">';
+					_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
+					_html += '<div class="po_cnt">' + object[index].readcount + '</div>';
+					_html += '<div class="po_tag">유명한거리/지역</div>';
+					_html += '</div></a>'; 
+					
+				});
+				}
+				$(".pospot_content").html(_html);
+				$(".pospot_content").append('<div class="clear"></div>');
+			}
+		});
+	};
+
 </script>
 </head>
 <body>
@@ -183,8 +236,7 @@ function get_city() {
 				<input class="search_input" id="city_search" placeholder="지역명으로 검색">
 				<div id="city_autocomplete"></div>
 				<div class="latest_search">
-					추천도시 : <a href="http://www.earthtory.com/city/jeju_312"
-						class="latest_a">제주도</a>
+					추천도시 : <a href="#" class="latest_a">제주도</a>
 				</div>
 				<a class="go_map" href="javascript:void(0)"
 					onclick="et_full_modal('/modal/world_map')">지도에서 검색 ></a>
@@ -193,71 +245,43 @@ function get_city() {
 		</div>
 	</div>
 
-<div class="area_silver">
-	<div class="wrap">
-		<div class="area_title">
-			국내 여행지		</div>
-		<div class="travel_box">
-			<!-- <div class="travel_section">
+	<div class="area_silver">
+		<div class="wrap">
+			<div class="area_title">국내 여행지</div>
+			<div class="travel_box">
+				<!-- <div class="travel_section">
 				<div class="travel_left">
 					주요도시				</div>
 				<div class="clear"></div>
 			</div> -->
-			<div class="travel_section pa10">
-				<div class="clear"></div>
-			</div>
-			<div class="travel_section pa20">
-				<div class="clear"></div>
+				<div class="travel_section pa10">
+					<div class="clear"></div>
+				</div>
+				<div class="travel_section pa20">
+					<div class="clear"></div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 	<div class="area_white">
 		<div class="wrap">
 			<div class="area_title">국내 인기 여행지</div>
-			<div class="po_city_tab">
-				<div class="po_city_area on" data="all">추천</div>
-				<div class="po_line">&nbsp;</div>
-				<div class="po_city_area" data="as">서울</div>
-				<div class="po_line">&nbsp;</div>
-				<div class="po_city_area" data="eu">춘천</div>
-				<div class="po_line">&nbsp;</div>
-				<div class="po_city_area" data="oc">강릉</div>
-				<div class="po_line">&nbsp;</div>
-				<div class="po_city_area" data="na">대전</div>
-				<div class="po_line">&nbsp;</div>
-				<div class="po_city_area" data="sa">부산</div>
-				<div class="clear"></div>
+			<div class="area_bg line spot_list silver">
+				<div class="wrap">
+					<div class="pospot_tab_box">
+						<div class="pospot_tab on" data-cate="15">축제/공연</div>
+						<div class="pospot_tab" data-cate="12">관광지</div>
+						<div class="pospot_tab" data-cate="14">문화시설</div>
+						<div class="pospot_tab" data-cate="32">숙박</div>
+						<div class="pospot_tab" data-cate="38">쇼핑</div>
+						<div class="pospot_tab last" data-cate="39">음식</div>
+						<div class="pospot_tab_blank">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+					<div class="pospot_content"></div>
+				</div>
 			</div>
 			<div class="clear"></div>
-			<div class="po_city_box">
-				<a href="/ko/city/prague_196" class="po_city"><div
-						class="po_city_name">춘천</div> <img
-					src="/planner/resources/images/city/춘천.jpg" alt=""
-					class="po_city_img"></a> <a href="/ko/city/toronto_10488"
-					class="po_city"><div class="po_city_name">단양</div> <img
-					src="/planner/resources/images/city/단양.jpg" alt=""
-					class="po_city_img"></a><a href="/ko/city/saipan_10025"
-					class="po_city"><div class="po_city_name">정선</div> <img
-					src="/planner/resources/images/city/정선.jpg" alt=""
-					class="po_city_img"></a><a href="/ko/city/melbourne_10003"
-					class="po_city"><div class="po_city_name">통영</div> <img
-					src="/planner/resources/images/city/통영.jpg" alt=""
-					class="po_city_img"></a><a href="/ko/city/hong-kong_245"
-					class="po_city"><div class="po_city_name">여수</div> <img
-					src="/planner/resources/images/city/여수.jpg" alt=""
-					class="po_city_img"></a><a href="/ko/city/jeju_312"
-					class="po_city"><div class="po_city_name">전주</div> <img
-					src="/planner/resources/images/city/전주.jpg" alt=""
-					class="po_city_img"></a><a href="/ko/city/vancouver_10484"
-					class="po_city"><div class="po_city_name">정동진</div> <img
-					src="/planner/resources/images/city/정동진.jpg" alt=""
-					class="po_city_img"></a><a href="/ko/city/istanbul_202"
-					class="po_city"><div class="po_city_name">담양</div> <img
-					src="/planner/resources/images/city/담양.jpg" alt=""
-					class="po_city_img"></a>
-				<div class="clear"></div>
-			</div>
 		</div>
 	</div>
 
