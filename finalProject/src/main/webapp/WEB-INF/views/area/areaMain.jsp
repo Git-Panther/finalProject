@@ -8,6 +8,8 @@
 <script type="text/javascript" src="resources/js/common/component.js"></script>
 <script type="text/javascript"
 	src="resources/js/common/common_script.js"></script>
+<script type="text/javascript" src="resources/js/area/area_common.js"></script>
+<script type="text/javascript" src="resources/js/area/area_main.js"></script>
 <link href="resources/css/area/area_main.css" rel="stylesheet" />
 <link href="resources/css/city/main.css" rel="stylesheet" />
 <link href="resources/css/city/header_v2.css" rel="stylesheet" />
@@ -16,113 +18,116 @@
 <script type="text/javascript"
 	src="resources/js/owl_carousel/owl.carousel2.js"></script>
 <script type="text/javascript" src="resources/js/web/jui/jquery-ui.js"></script>
+<script>
+var sidoCode = "";
+var sigunguCode = "";
+var sidoCode = <c:out value="${sidoCode}"></c:out>;
+<c:if test="${sigunguCode} != '' ">
+var sigunguCode = <c:out value="${sigunguCode}"></c:out>;
+</c:if>
+	
+$(document).ready(function() {
+	popList(15);
+});
+
+
+function popList(contentTypeId) {
+	$.ajax({
+		type:'GET',
+		url:'popList.do',
+		dataType : 'json',
+		data:{
+			sidoCode:sidoCode,
+			<c:if test="${sigunguCode != ''}">
+			sigunguCode:sigunguCode,
+			</c:if>
+			contentTypeId:contentTypeId
+		},
+		success: function(data) {
+			var items = data.response.body.items;
+			var object = data.response.body.items.item;
+			_html = "";
+			if(data.response.body.totalCount == 1){
+				object = items;
+			} else if(data.response.body.totalCount == 0) {
+				_html = "<h2>조회 결과가 없습니다.</h2>";
+			} else {
+			$.each(object, function(index, item) {
+				_html += '<a class="pospot"';
+				if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
+					_html += 'href="javascript:festivalDetail('
+							+ object[index].contentid
+							+ ', ' + object[index].eventstartdate 
+							+ ', ' + object[index].eventenddate + ');"';
+				}else{
+					_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
+				}
+				if(index == 3 || index == 7) {
+				_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
+				} else {
+				_html += 'target="_blank"><div class="po_img_box">';
+				}
+				_html += '<img ';
+				 if(object[index].firstimage == undefined) {
+				_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
+				} else {
+				_html += 'src="' + object[index].firstimage + '"';
+				} 
+				_html += 'alt="" class="po_img">';
+				_html += '</div>';
+				_html += '<div class="po_name">' + object[index].title + '</div>';
+				_html += '<div class="po_bottom">';
+				_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
+				_html += '<div class="po_cnt">' + object[index].readcount + '</div>';
+				_html += '<div class="po_tag">유명한거리/지역</div>';
+				_html += '</div></a>'; 
+				
+			});
+			}
+			$(".pospot_content").html(_html);
+			$(".pospot_content").append('<div class="clear"></div>');
+		}
+	});
+};
+
+
+
+
+function contentsDetail(sidoCode, sigunguCode, cateName, contentid ){
+	<c:url var="contents" value="/contentDetail.do"></c:url>
+	var form = $("<form>");
+	form.attr("id", "festivalDetail");
+	form.attr("method", "post");
+	form.attr("action", "${contents}");
+	
+	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
+	$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
+	
+		form.appendTo($("#festivals"));
+	form.submit();
+}
+
+function festivalDetail(contentid, eventstartdate, eventenddate){ // 축제 페이지로 이동
+	//console.log(contentid);
+	<c:url var="festival" value="/festival.do"></c:url>
+	var form = $("<form>");
+	form.attr("id", "festivalDetail");
+	form.attr("method", "post");
+	form.attr("action", "${festival}");
+	
+	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
+	$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
+	
+	// 참고로 날짜에 따른 기상청 조회는 detail 페이지에서 직접 처리할 것이다.
+		form.appendTo($(".wrap"));
+	//console.log(form);
+	form.submit(); // 이렇게 해야 url 노출을 막을 수 있다.
+}
+</script>
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
-<script>
-var festival = 15;
-var attraction = 12;
-var culture = 14;
-var hotel = 32;
-var shopping = 38;
-var restaurant = 39;
-	$(document).ready(	function() {
-						sidoCode = document.location.href.split("?")[1]
-								.split("&")[1].split("=")[1];
-						sigunguCode = document.location.href.split("?")[1]
-								.split("&")[2].split("=")[1];
-						/* for(var i=0; i < document.location.href.split("?")[1].split("&").length; i++){
-							  console.log("key", document.location.href.split("?")[1].split("&")[i].split("=")[0]);
-							  console.log("value", document.location.href.split("?")[1].split("&")[i].split("=")[1]);
-							  console.log("sidoCode: ", sidoCode);
-							  console.log("sigunguCode: ", sigunguCode);
-							} */
-							popList(15);
-							
-							$(document).on('click', '.pospot_tab', function() {
-								var _this_cate = $(this).attr('data-cate');
-								
-								if($(this).attr('class') == 'pospot_tab on') {
-									console.log("class가 on이므로 데이터를 받아오지 않음");
-								} else {
-									console.log("class가 off이므로 데이터를 받아옴");
-									$('.pospot_tab').removeClass('on');
-									$(this).addClass('on');
-									popList(_this_cate);
-								}
-							});
-					});
-
-	function popList(contentTypeId) {
-		$.ajax({
-			type:'GET',
-			url:'popList.do',
-			dataType : 'json',
-			data:{
-				sidoCode:sidoCode,
-				sigunguCode:sigunguCode,
-				contentTypeId:contentTypeId
-			},
-			success: function(data) {
-				var object = data.response.body.items.item;
-				_html = "";
-				console.log(object);
-				
-				$.each(object, function(index, item) {
-					_html += '<a class="pospot"';
-					if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
-						_html += 'href="javascript:festivalDetail('
-								+ object[index].contentid
-								+ ', ' + object[index].eventstartdate 
-								+ ', ' + object[index].eventenddate + ');"';
-					}else{
-						_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
-					}
-					if(index == 3 || index == 7) {
-					_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
-					} else {
-					_html += 'target="_blank"><div class="po_img_box">';
-					}
-					_html += '<img ';
-					 if(object[index].firstimage == undefined) {
-					_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
-					} else {
-					_html += 'src="' + object[index].firstimage + '"';
-					} 
-					_html += 'alt="" class="po_img">';
-					_html += '</div>';
-					_html += '<div class="po_name">' + object[index].title + '</div>';
-					_html += '<div class="po_bottom">';
-					_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
-					_html += '<div class="po_cnt">' + object[index].readcount + '</div>';
-					_html += '<div class="po_tag">유명한거리/지역</div>';
-					_html += '</div></a>'; 
-					
-				});
-				$(".pospot_content").html(_html);
-				$(".pospot_content").append('<div class="clear"></div>');
-			}
-			
-		});
-	};
-	
-	function festivalDetail(contentid, eventstartdate, eventenddate){ // 축제 페이지로 이동
-    	//console.log(contentid);
-    	<c:url var="festival" value="/festival.do"></c:url>
-    	var form = $("<form>");
-    	form.attr("id", "festivalDetail");
-    	form.attr("method", "post");
-    	form.attr("action", "${festival}");
-    	
-    	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
-    	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
-    	$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
-    	
-    	// 참고로 날짜에 따른 기상청 조회는 detail 페이지에서 직접 처리할 것이다.
-   		form.appendTo($(".wrap"));
-    	//console.log(form);
-		form.submit(); // 이렇게 해야 url 노출을 막을 수 있다.
-    }
-</script>
 </head>
 <body>
 	<div class="area_bg top silver">
@@ -131,9 +136,8 @@ var restaurant = 39;
 
 			<div class="area_nav">
 				<a href="area.do" class="nav_btn">여행지</a> &gt; <a
-					href="areaMain.do?name=${name }&sido=${sido }&sigungu${name }"
-					class="nav_btn"> <c:out value="${name }" />
-				</a>
+					href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')"><c:out
+						value="${sidoName }" /></a> <c:if test="${sigungu } != '' "> &gt; <a href="javascript:moveAreaMain()" class="nav_btn"> <c:out value="${sigunguName }" /> </a></c:if>
 			</div>
 
 			<div class="area_title">
