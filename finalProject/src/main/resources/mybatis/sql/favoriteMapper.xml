@@ -5,18 +5,18 @@
 <mapper namespace="FavoriteMapper">
 	<select id="checkFavorite" parameterType="map" resultType="hashMap">
 		SELECT * FROM FAVORITE
-		WHERE USERNO = ${userno}
-		AND CONTENTID = ${contentid}
-		AND CONTENTTYPEID = ${contenttypeid}
+		WHERE USERNO = #{userno}
+		AND CONTENTID = #{contentid}
+		AND CONTENTTYPEID = #{contenttypeid}
 	</select>	
 	<insert id="insertFavorite" parameterType="map">
 		INSERT INTO FAVORITE
-		VALUES(${userno}, ${contenttypeid}, ${contentid}, ${eventstartdate}, ${eventenddate})
+		VALUES(#{userno}, #{contenttypeid}, #{contentid}, #{eventstartdate}, #{eventenddate})
 	</insert>
 	<delete id="deleteFavorite" parameterType="map">
 		DELETE FROM FAVORITE
-		WHERE USERNO = ${userno}
-		AND CONTENTID = ${contentid}
-		AND CONTENTTYPEID = ${contenttypeid}
+		WHERE USERNO = #{userno}
+		AND CONTENTID = #{contentid}
+		AND CONTENTTYPEID = #{contenttypeid}
 	</delete>
 </mapper> 

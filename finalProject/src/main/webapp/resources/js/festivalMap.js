@@ -32,7 +32,7 @@ function printMark(position, title, contenttypeid){ // 마커 생성
 		//map: map,
 	    position: position,
 	    content: markerContent.get(0),
-	    xAnchor: 0,
+	    xAnchor: 0.6,
 	    yAnchor: 3.5
 	});
 
@@ -74,40 +74,6 @@ function printMark(position, title, contenttypeid){ // 마커 생성
 	// marker.setMap(map); // 맵에다가 붙임. 이제는 분류를 클릭해야 표시
 	
 	//console.log(marker);
-	/*
-	if(isNear){ // 올렸을 때에만 표시
-		//customOverlay.setVisible(false); // 우선은 숨기고 마우스 커서 올렸을 때만 보여준다 ㅇㅇ
-		// 마커에 마우스오버 이벤트를 등록합니다
-		daum.maps.event.addListener(marker, 'mouseover', function() {
-			// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-			//customOverlay.setVisible(true);
-			customOverlay.setMap(map);
-		});
-		// 마커에 마우스아웃 이벤트를 등록합니다
-		daum.maps.event.addListener(marker, 'mouseout', function() {
-		    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-			//customOverlay.setVisible(false);
-			customOverlay.setMap(null);
-		});
-	}else{
-		var event = function() {
-		    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-			//customOverlay.setVisible(false);
-			//customOverlay.setMap(null);
-			customOverlay.setMap(map);
-		};
-		
-		map.panTo(position); // 지도 중심 잡기
-		customOverlay.setMap(map);
-		//daum.maps.event.addListener(marker, 'click', event);
-		
-		//console.log(marker, $(marker));
-		//$(marker).click();
-		
-		//daum.maps.event.trigger(marker, 'click', ''); // 이벤트 강제 발생
-		//daum.maps.event.removeListener(marker, 'click', event); // 이벤트 제거
-	}
-	*/
 }
 
 function markerCategoryEvent(){
@@ -125,9 +91,6 @@ function markerCategoryEvent(){
 }
 
 function changeMarker(type){ 
-    //var $festivalMarkers = $("#festivalMarkers");
-    //var $hotelMarkers = $("#hotelMarkers");
-    //var $restaurantMarkers = $("#restaurantMarkers");
     var $markerMenu = $(".markerMenu");
     //console.log(type);
     $markerMenu.removeClass("menu_selected"); // 공통 부분이므로 먼저 실행
@@ -138,19 +101,16 @@ function changeMarker(type){
     
     switch(type){
     case "festivalMarkers":
-    	//$festivalMarkers.addClass("menu_selected");
     	showMarkers("축제/행사", map);
     	showMarkers("숙박", null);
     	showMarkers("식당", null);
     	break;
     case "hotelMarkers":
-    	//$hotelMarkers.addClass("menu_selected");
     	showMarkers("축제/행사", null);
     	showMarkers("숙박", map);
     	showMarkers("식당", null);
     	break;
     case "restaurantMarkers":
-    	//$restaurantMarkers.addClass("menu_selected");
     	showMarkers("축제/행사", null);
     	showMarkers("숙박", null);
     	showMarkers("식당", map);
