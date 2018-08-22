@@ -44,6 +44,7 @@ function popList(contentTypeId) {
 			contentTypeId:contentTypeId
 		},
 		success: function(data) {
+			//console.log(data);
 			var items = data.response.body.items;
 			var object = data.response.body.items.item;
 			_html = "";
@@ -58,7 +59,8 @@ function popList(contentTypeId) {
 					_html += 'href="javascript:festivalDetail('
 							+ object[index].contentid
 							+ ', ' + object[index].eventstartdate 
-							+ ', ' + object[index].eventenddate + ');"';
+							+ ', ' + object[index].eventenddate
+							+ ', ' + "'.wrap'" + ');"';
 				}else{
 					_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
 				}
@@ -90,9 +92,6 @@ function popList(contentTypeId) {
 	});
 };
 
-
-
-
 function contentsDetail(sidoCode, sigunguCode, cateName, contentid ){
 	<c:url var="contents" value="/contentDetail.do"></c:url>
 	var form = $("<form>");
@@ -106,24 +105,6 @@ function contentsDetail(sidoCode, sigunguCode, cateName, contentid ){
 	
 		form.appendTo($("#festivals"));
 	form.submit();
-}
-
-function festivalDetail(contentid, eventstartdate, eventenddate){ // 축제 페이지로 이동
-	//console.log(contentid);
-	<c:url var="festival" value="/festival.do"></c:url>
-	var form = $("<form>");
-	form.attr("id", "festivalDetail");
-	form.attr("method", "post");
-	form.attr("action", "${festival}");
-	
-	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
-	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
-	$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
-	
-	// 참고로 날짜에 따른 기상청 조회는 detail 페이지에서 직접 처리할 것이다.
-		form.appendTo($(".wrap"));
-	//console.log(form);
-	form.submit(); // 이렇게 해야 url 노출을 막을 수 있다.
 }
 </script>
 <meta charset="UTF-8">

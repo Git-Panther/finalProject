@@ -62,6 +62,7 @@ function get_city() {
 		url:'areaList.do',
 		dataType : 'json',
 		success:function(data) {
+			//console.log(data);
 			var object = data.response.body.items.item;
 			_html = "";
 
@@ -195,7 +196,15 @@ function get_city() {
 				} else {
 				$.each(object, function(index, item) {
 					_html += '<a class="pospot"';
-					_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
+					if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
+						_html += 'href="javascript:festivalDetail('
+								+ object[index].contentid
+								+ ', ' + object[index].eventstartdate 
+								+ ', ' + object[index].eventenddate
+								+ ', ' + "'.wrap'" + ');"';
+					}else{
+						_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
+					}
 					if(index == 3 || index == 7) {
 					_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 					} else {
