@@ -29,4 +29,10 @@
 		</constructor-arg>
 		</bean>
 		
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+		<property value="100000000" name="maxUploadSize" />
+		<property value="100000000" name="maxInMemorySize" />
+
+	</bean>
 </beans>

@@ -11,14 +11,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
 <meta charset="UTF-8">
+<style>
+.gnb_mn_drop a{
+	line-height:300%;
+	text-decoration:none;
+	color:grey;
+	padding-left:15px;
+}
+
+</style>
 <title>Header</title>
 <script>
+
+function joinPage(){
+	location.href="joinPage.do";
+}
 function loginPage(){
 	location.href="loginPage.do";
 }
 function logout(){
 	location.href="logout.do";
 }
+$(function(){
+	$(".header_profile").hover(function(){
+	    $(".gnb_mn_drop").css("display", "block");
+	}, function(){
+	$(".gnb_mn_drop").css("display", "none");
+	});
+})
 </script>
 </head>
 <body>
@@ -53,11 +73,15 @@ function logout(){
 					<div class="clear"></div>
 				</c:if>
 				<c:if test="${!empty sessionScope.user}">
-					<a href="javascript:void(0)" class="fr" onclick="myPage();">
-						<div class="fl gnb_join_btn">정보수정</div></a>
-					<a href="javascript:void(0)" class="fr" onclick="logout();">
-						<div class="fl gnb_login_btn">로그아웃</div></a>
-					<a href="javascript:void(0);" class="fr" style="display: none;"> </a>
+					<div class="header_profile fr"><img src="resources/upload/${user.getProfilePic()}"/>
+						<div class="gnb_mn_drop" style="display:none;">
+							<a href="" class="item">찜 목록</a><br/>
+							<a href="" class="item">내 일정</a><br/>
+							<a href="" class="item">리뷰</a><br/>
+							<a href="/planner/memberInfo.do" class="item">내 정보</a><br/>
+							<a href="/planner/logout.do" class="item">로그아웃</a>
+						</div>
+					</div>
 					<div class="clear"></div>
 				</c:if>
 			</div>
