@@ -203,8 +203,10 @@ public class JsonParser {
 			if(!sidoCode.equals("-1") && !sigunguCode.equals("-1")) {
 				parameter += "&areaCode=" + sidoCode;
 				parameter += "&sigunguCode=" + sigunguCode;
-			} else if(sigunguCode.equals("-1")){
+			} else if(!sidoCode.equals("-1") && sigunguCode.equals("-1")){
 				parameter += "&areaCode=" + sidoCode;
+			} else {
+				
 			}
 			parameter += "&contentTypeId=" + contentTypeId;
 			parameter += "&arrange=" + "B";

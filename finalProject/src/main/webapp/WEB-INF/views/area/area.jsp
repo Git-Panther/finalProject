@@ -15,8 +15,10 @@
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
 <script>
-var sidoName = "";
-var sidoCode = "";
+var sidoName = "-1";
+var sidoCode = "-1";
+var sigunguName = "-1";
+var sigunguCode = "-1";
 
 $(document).ready(function(){
 	get_city();
@@ -205,8 +207,11 @@ function get_city() {
 								+ ', ' + object[index].eventenddate
 								+ ', ' + "'.wrap'" + ');"';
 					}else{
-						_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
-					}
+						_html += 'href="javascript:moveContent(' +	"'" 
+						+ sidoName + "'," + sidoCode + ", '" 
+						+ sigunguName + "', " + sigunguCode + ", '" 
+						+ object[index].contenttypeid + "', " + object[index].contentid + ", '" + object[index].title + "')" + '"';		
+			}
 					if(index == 3 || index == 7) {
 					_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 					} else {
