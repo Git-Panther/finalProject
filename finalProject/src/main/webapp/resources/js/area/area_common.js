@@ -20,7 +20,7 @@ $(document).ready(	function() {
 				});
 		});
 
-function moveAreaMain(sidoName, sidoCode){ //함수 오버로딩
+function moveAreaMain(sidoName, sidoCode){ // 함수 오버로딩
 	var form = $("<form>");
 	form.attr("id", "areaMain");
 	form.attr("method", "post");
@@ -32,7 +32,8 @@ function moveAreaMain(sidoName, sidoCode){ //함수 오버로딩
 	form.submit();
 }
 
-function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ //함수 오버로딩
+function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
+																		// 오버로딩
 	var form = $("<form>");
 	form.attr("id", "areaMain");
 	form.attr("method", "post");
@@ -45,6 +46,50 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ //함수 �
 	form.appendTo($("#header"));
 	form.submit();
 }
+
+function moveContent(sidoName, sidoCode, 
+		sigunguName, sigunguCode, 
+		contenttypeid, contentid, title){
+	var form = $("<form>");
+	var contenttypename = '-1';
+	
+	switch(contenttypeid) {
+	case 15 :
+		contenttypename = '축제/행사';
+		break;
+	case 12 :
+		contenttypename = '관광지';
+		break;
+	case 14 :
+		contenttypename = '문화시설';
+		break;
+	case 32 :
+		contenttypename = '숙박';
+		break;
+	case 38 :
+		contenttypename = '쇼핑';
+		break;
+	case 39 :
+		contenttypename = '음식';
+	}
+	
+	form.attr("id", "contentDetail");
+	form.attr("method", "post");
+	form.attr("action", "/planner/contentDetail.do");
+	
+	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
+	
+	form.appendTo($("#header"));
+	form.submit();
+}
+
+
 
 
 
