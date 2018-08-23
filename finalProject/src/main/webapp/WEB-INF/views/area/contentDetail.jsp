@@ -8,14 +8,27 @@
 <link href="resources/css/city/spot_info.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+$(document).ready(	function() {
+	$.ajax({
+		
+		
+		
+		
+	});
+	
+});
+</script>
 </head>
 <body>
 	<div class="spot_header">
 		<div class="wrap">
 			<div class="nav_box">
-				<a href="/ko/area">여행지</a> &gt; <a href="/ko/area/republic-of-korea">대한민국</a>
-				&gt; <a href="/ko/city/seoul_310">서울</a> &gt; <a
-					href="/ko/city/seoul_310/attraction">관광명소</a> &gt;경복궁
+				<a href="/area.do">여행지</a> 
+				<c:if test="${sidoName} != '-1' ">&gt; <a href="/ko/city/seoul_310">${sidoName}</a></c:if> 
+				<c:if test="${sigunguName} != '-1' ">&gt; <a href="/ko/area/republic-of-korea">${sigunguName}</a></c:if>
+				<c:if test="${contenttypename} != '-1' ">&gt; <a href="/ko/city/seoul_310/attraction">${contenttypename}</a></c:if>
+				<c:if test="${title} != '-1' ">&gt;${title}</c:if>
 			</div>
 
 			<div class="header_left">
@@ -35,28 +48,35 @@
 			<div class="header_right">
 				<div class="header_btn btn_review" onclick="go_review();">
 					<div class="header_btn_icon">
-						<img src="/planner/resources/images/city/spot_info/spot_review_btn.png" alt="">
+						<img
+							src="/planner/resources/images/city/spot_info/spot_review_btn.png"
+							alt="">
 					</div>
 					<div class="header_btn_txt">리뷰쓰기</div>
 				</div>
 				<div class="header_btn btn_clip" data-yn="n" data-srl="6638"
 					onclick="set_clip('6638','1364392','btn_clip');">
 					<div class="header_btn_icon">
-						<img src="/planner/resources/images/city/spot_info/spot_clip_btn.png" alt="">
+						<img
+							src="/planner/resources/images/city/spot_info/spot_clip_btn.png"
+							alt="">
 					</div>
 					<div class="header_btn_txt">클립</div>
 				</div>
 				<div class="header_btn on">
 					<div class="header_btn_icon add_plan"
 						onclick="et_modal('590px','400px','1','0','/ko/modal/add_plan_inspot?ci_srl=310&amp;pl_srl=6638','2','1');">
-						<img src="/planner/resources/images/city/spot_info/spot_padd_btn.png" alt="">
+						<img
+							src="/planner/resources/images/city/spot_info/spot_padd_btn.png"
+							alt="">
 					</div>
 					<div class="header_btn_txt">일정에 넣기</div>
 				</div>
 
 				<div class="clip_bubble">
-					<img src="/planner/resources/images/city/spot_info/spot_bubble_x.gif" alt=""
-						class="bubble_close" onclick="del_bubble();">
+					<img
+						src="/planner/resources/images/city/spot_info/spot_bubble_x.gif"
+						alt="" class="bubble_close" onclick="del_bubble();">
 					<div class="bubble_txt">
 						관심장소를 클립해두면 편리하게<br>일정을 계획할 수 있습니다.
 					</div>
@@ -86,7 +106,8 @@
 
 			<div class="spot_tip">
 				<img class="spot_info_ico"
-					src="/planner/resources/images/city/spot_info/info_icon.gif">컨텐츠 내용
+					src="/planner/resources/images/city/spot_info/info_icon.gif">컨텐츠
+				내용
 				<div class="clear"></div>
 			</div>
 
@@ -99,92 +120,6 @@
 							<col width="135">
 							<col width="251">
 						</colgroup>
-						<!--
-					<tr>
-						<th>
-							카테고리
-						</th>
-						<td>
-							음식 > 일식, 중식
-						</td>
-						<th>
-							메뉴
-						</th>
-						<td>
-							아침식사, 브런치, 점심식사, 저녁식사
-						</td>
-					</tr>
-					<tr>
-						<th>
-							전화번호
-						</th>
-						<td>
-							+82 2412 2112
-						</td>
-						<th>
-							음료
-						</th>
-						<td>
-							맥주,와인,모든주류 판매
-						</td>
-					</tr>
-					<tr>
-						<th>
-							웹사이트
-						</th>
-						<td>
-							www.earthtory.com
-						</td>
-						<th>
-							WIFI
-						</th>
-						<td>
-							예
-						</td>
-					</tr>
-					<tr>
-						<th>
-							예산
-						</th>
-						<td>
-							2~4만원
-						</td>
-						<th>
-							신용카드
-						</th>
-						<td>
-							예
-						</td>
-					</tr>
-					<tr>
-						<th>
-							체류시간
-						</th>
-						<td colspan=3>
-							1시간 이상
-						</td>
-					</tr>
-					<tr>
-						<th>
-							운영시간
-						</th>
-						<td colspan=3>
-							월~금 - 15:00 ~ 23:00<br>
-							주말 및 공휴일 - 휴무<br>
-							오늘은 쉽니다.
-						</td>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<div class="btn_spot_edit">
-								정보수정 및 업데이트							</div>
-							<div class="source_txt">
-								Powered by Foursquare
-							</div>
-							<div class="clear"></div>
-						</td>
-					</tr>
-					-->
 						<tbody>
 							<tr>
 								<th></th>
@@ -252,22 +187,6 @@
 							<col width="251">
 						</colgroup>
 						<tbody></tbody>
-						<!--
-					<tr>
-						<th>
-							카테고리
-						</th>
-						<td>
-							음식 > 일식, 중식
-						</td>
-						<th>
-							메뉴
-						</th>
-						<td>
-							아침식사, 브런치, 점심식사, 저녁식사
-						</td>
-					</tr>
-					-->
 					</table>
 
 					<table class="spot_info_table" id="fq_open_info" width="100%"
@@ -279,17 +198,6 @@
 							<col width="251">
 						</colgroup>
 						<tbody></tbody>
-						<!--
-					<tr>
-						<th>
-							운영시간
-						</th>
-						<td colspan="3" id="fq_open_info_content">
-							일 오전 8:00–오후 9:00<br>
-							목–토 오전 8:00–오후 11:00
-						</td>
-					</tr>
-					-->
 					</table>
 
 					<br> <br>
@@ -309,12 +217,7 @@
 						</tbody>
 					</table>
 				</div>
-
 			</div>
-
-
-
-
 
 			<div class="spot_info_box community">
 				<div class="community_tab on line" data-id="review">리뷰</div>
@@ -322,7 +225,7 @@
 				<div class="clear"></div>
 
 				<div class="cmmt_tab_content review"></div>
-				<div id="no_result_box" style="display: block;"> 
+				<div id="no_result_box" style="display: block;">
 					<img src="/planner/resources/images/common/no_result_icon.png">
 					<div class="no_result_text">아직 리뷰가 없습니다.</div>
 					<br> <br> <br> <br> <br>
