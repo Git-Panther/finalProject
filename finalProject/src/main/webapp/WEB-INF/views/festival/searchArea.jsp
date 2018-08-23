@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Search Area</title>
 <link href="resources/css/festival.css" rel="stylesheet">
-<script type="text/javascript" src="resources/js/festivalAjax.js"></script>
+<script type="text/javascript" src="resources/js/festival/festivalAjax.js"></script>
 <script>
 	var area = '<c:out value="${areaCode}"/>'; // 이름 중복 막으려고 줄임
 	var sigungu = '<c:out value="${sigunguCode}"/>'; // 여기에 원래 선택한 area, sigungu 저장하고 반영 후에 날림

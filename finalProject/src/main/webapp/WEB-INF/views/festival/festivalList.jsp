@@ -36,10 +36,7 @@
         var size; // 결과 개수
         var dateString; // 행사 기간
         var cols = 4; // 한 행에 n열
-        //var info; // 행사 개개 정보. 이벤트 때문에 넣음
-        //var contentid;
-        //var eventstartdate;
-        //var eventenddate;
+        var onclick = ""; // 하나의 축제에 들어갈 onclick 이벤트 텍스트
         
         $("#resultAmount").text("");
         $("#resultAmount").append($("<p>").text("결과  : " + list.response.body.totalCount + "건"));
@@ -61,7 +58,11 @@
         	
         	maintd = $("<td>");
         	subTable = $("<table class='festivalInfo link'>");
-        	subTable.attr("onclick", "festivalDetail("+myItem[i].contentid+", "+myItem[i].eventstartdate+", "+myItem[i].eventenddate+")");
+        	onclick = "festivalDetail(" + myItem[i].contentid
+    			+ ", " + myItem[i].eventstartdate
+    			+ ", " + myItem[i].eventenddate
+    			+ ", " + "'#festivals'" + ")";
+        	subTable.attr("onclick", onclick);
         	//subTable = $("<table class='festivalInfo link'>");
         	
         	tr = $("<tr>");
@@ -288,24 +289,6 @@
     function dateFormat(date){
     	var dateStr = date.toString();
     	return dateStr.substr(0, 4) + "년 " + dateStr.substr(4, 2) + "월 " + dateStr.substr(6, 2) + "일"
-    }
-    
-    function festivalDetail(contentid, eventstartdate, eventenddate){
-    	//console.log(contentid);
-    	<c:url var="festival" value="/festival.do"></c:url>
-    	var form = $("<form>");
-    	form.attr("id", "festivalDetail");
-    	form.attr("method", "post");
-    	form.attr("action", "${festival}");
-    	
-    	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
-    	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
-    	$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
-    	
-    	// 참고로 날짜에 따른 기상청 조회는 detail 페이지에서 직접 처리할 것이다.
-   		form.appendTo($("#festivals"));
-    	//console.log(form);
-		form.submit(); // 이렇게 해야 url 노출을 막을 수 있다.
     }
 </script>
 </head>

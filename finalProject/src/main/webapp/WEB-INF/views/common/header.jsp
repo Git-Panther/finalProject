@@ -9,6 +9,7 @@
 <head>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/common/common_festival.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>Header</title>

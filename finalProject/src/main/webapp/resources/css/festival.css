@@ -211,6 +211,7 @@
 .markerContent{
 	position:relative;
 	bottom:0px;
+	float:left;
 	border-radius:6px;
 	padding:5px;
 	width:auto;
