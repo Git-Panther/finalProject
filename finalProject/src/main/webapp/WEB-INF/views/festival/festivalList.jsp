@@ -79,7 +79,7 @@
         	tr = $("<tr>");
         	th = $("<th>");
         	td = $("<td>");   	
-        	$("<p>").text("축제명").appendTo(th);       	
+        	$("<p>").text("이름").appendTo(th);       	
         	$("<p>").text(myItem[i].title).appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);   	
         	
