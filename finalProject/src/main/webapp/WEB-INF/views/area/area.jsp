@@ -69,10 +69,6 @@ function get_city() {
 			$.each(object ,function(index,item){
 				console.log("index : ", index);
 				console.log("item : ", item);
-				sidoName = object[index].name;
-				console.log("sidoName: ", sidoName);
-				sidoCode = object[index].code;
-				console.log("sidoCode: ", sidoCode);
 				if(index != 7) {
 					if(index < 10) {
 					_html += '<div class="travel_city" data-on="off" data-show="00' + index + '" code="' + item.code + '">';
@@ -85,7 +81,7 @@ function get_city() {
 				_html += '<div class="clear"></div>';
 				_html += '</div>';
 				_html += '</div>';
-				get_sigungu(index, sidoCode, sidoName);
+				get_sigungu(index, item.code, item.name);
 				}
 				if(index == 8) {
 					_html += '<div class="clear"></div>';
@@ -101,13 +97,13 @@ function get_city() {
 			});
 }
 	
-	function get_sigungu(id, sidoCode, sidoName) {
+	function get_sigungu(id, areaCode, sidoName) {
 		console.log("get_sugungu");
 		$.ajax({
 			type :'get',
 			url :'sigunguCount.do',
 			data: {
-				sidoCode : sidoCode
+				areaCode : areaCode
 			},
 			dataType : 'json',
 			success : function(data) {
@@ -116,7 +112,7 @@ function get_city() {
 					type :'get',
 					url :'sigunguList.do',
 					data: {
-						sidoCode : sidoCode,
+						areaCode : areaCode,
 						numOfSigungu : count
 					},
 					dataType : 'json',
@@ -128,8 +124,7 @@ function get_city() {
 							} else {
 							_html +=	'<div class="travel_hide" data-id="0' + id + '" style="">';
 							}
-							_html += ('<a href="javascript:moveAreaMain(' + "'" + sidoName + "', '" 
-									+ sidoCode + "'" + ')" class="travel_ar">' + sidoName + ' </a>');
+						
 					$.each(object, function(index, item) {
 							console.log(sidoName.length);
 							_html += ('<a href="javascript:moveAreaMain(' + "'" + sidoName + "', '" 
