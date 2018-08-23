@@ -15,14 +15,14 @@
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
 <script>
-var sidoCode = 0;
-var sidoName = "";
-var sigunguCode = 0;
-var sigunguName = "";
+var sidoName = "-1";
+var sidoCode = "-1";
+var sigunguName = "-1";
+var sigunguCode = "-1";
 
 $(document).ready(function(){
 	get_city();
-	//popList(15);
+	popList(15);
 	$(document).on('click','.travel_city',function(){
 		var _this_show = $(this).attr('data-show');
 		var _this_code = $(this).attr('code');
@@ -62,13 +62,16 @@ function get_city() {
 		url:'areaList.do',
 		dataType : 'json',
 		success:function(data) {
-			//console.log(data);
 			var object = data.response.body.items.item;
 			_html = "";
 
 			$.each(object ,function(index,item){
 				console.log("index : ", index);
 				console.log("item : ", item);
+				sidoName = object[index].name;
+				console.log("sidoName: ", sidoName);
+				sidoCode = object[index].code;
+				console.log("sidoCode: ", sidoCode);
 				if(index != 7) {
 					if(index < 10) {
 					_html += '<div class="travel_city" data-on="off" data-show="00' + index + '" code="' + item.code + '">';
@@ -81,7 +84,7 @@ function get_city() {
 				_html += '<div class="clear"></div>';
 				_html += '</div>';
 				_html += '</div>';
-				get_sigungu(index, item.code, item.name);
+				get_sigungu(index, sidoCode, sidoName);
 				}
 				if(index == 8) {
 					_html += '<div class="clear"></div>';
@@ -97,13 +100,13 @@ function get_city() {
 			});
 }
 	
-	function get_sigungu(id, areaCode, sidoName) {
+	function get_sigungu(id, sidoCode, sidoName) {
 		console.log("get_sugungu");
 		$.ajax({
 			type :'get',
 			url :'sigunguCount.do',
 			data: {
-				areaCode : areaCode
+				sidoCode : sidoCode
 			},
 			dataType : 'json',
 			success : function(data) {
@@ -112,7 +115,7 @@ function get_city() {
 					type :'get',
 					url :'sigunguList.do',
 					data: {
-						areaCode : areaCode,
+						sidoCode : sidoCode,
 						numOfSigungu : count
 					},
 					dataType : 'json',
@@ -124,7 +127,8 @@ function get_city() {
 							} else {
 							_html +=	'<div class="travel_hide" data-id="0' + id + '" style="">';
 							}
-						
+							_html += ('<a href="javascript:moveAreaMain(' + "'" + sidoName + "', '" 
+									+ sidoCode + "'" + ')" class="travel_ar">' + sidoName + ' </a>');
 					$.each(object, function(index, item) {
 							console.log(sidoName.length);
 							_html += ('<a href="javascript:moveAreaMain(' + "'" + sidoName + "', '" 
@@ -203,8 +207,11 @@ function get_city() {
 								+ ', ' + object[index].eventenddate
 								+ ', ' + "'.wrap'" + ');"';
 					}else{
-						_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
-					}
+						_html += 'href="javascript:moveContent(' +	"'" 
+						+ sidoName + "'," + sidoCode + ", '" 
+						+ sigunguName + "', " + sigunguCode + ", '" 
+						+ object[index].contenttypeid + "', " + object[index].contentid + ", '" + object[index].title + "')" + '"';		
+			}
 					if(index == 3 || index == 7) {
 					_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 					} else {
@@ -232,6 +239,27 @@ function get_city() {
 			}
 		});
 	};
+	
+	function moveContent(sidoName, sidoCode, 
+			sigunguName, sigunguCode, 
+			contenttypeid, contentid, title){
+		<c:url var="contents" value="/contentDetail.do"></c:url>
+		var form = $("<form>");
+		form.attr("id", "contentDetail");
+		form.attr("method", "post");
+		form.attr("action", "${contents}");
+		
+		$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+		$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+		$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+		$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+		$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
+		$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+		$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
+		
+		form.appendTo($("#header"));
+		form.submit();
+	}
 
 </script>
 </head>
