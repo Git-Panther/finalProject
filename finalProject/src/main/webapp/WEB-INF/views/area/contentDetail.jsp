@@ -11,6 +11,8 @@
 <script>
 $(document).ready(	function() {
 	$.ajax({
+		type:'get',
+		url:'/content.do'
 		
 		
 		

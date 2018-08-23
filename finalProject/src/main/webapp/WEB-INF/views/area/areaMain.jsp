@@ -41,6 +41,7 @@ function popList(contentTypeId) {
 			contentTypeId:contentTypeId
 		},
 		success: function(data) {
+			var count = data.response.body;
 			var items = data.response.body.items;
 			var object = data.response.body.items.item;
 			console.log(object);
