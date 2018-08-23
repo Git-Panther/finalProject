@@ -23,13 +23,10 @@ var sidoCode = ${sidoCode};
 var sidoName = '${sidoName}';
 var sigunguCode = ${sigunguCode};
 var sigunguName = '${sigunguName}';
-
 	
 $(document).ready(function() {
 	popList(15);
 });
-
-
 function popList(contentTypeId) {
 	$.ajax({
 		type:'GET',
@@ -41,7 +38,6 @@ function popList(contentTypeId) {
 			contentTypeId:contentTypeId
 		},
 		success: function(data) {
-			var count = data.response.body;
 			var items = data.response.body.items;
 			var object = data.response.body.items.item;
 			console.log(object);
@@ -92,8 +88,6 @@ function popList(contentTypeId) {
 		}
 	});
 };
-
-
 </script>
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
