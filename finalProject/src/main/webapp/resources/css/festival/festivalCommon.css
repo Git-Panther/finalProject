@@ -1,0 +1,68 @@
+@charset "UTF-8";
+.festivalList, .nearList{
+	text-align:center;
+	display:inline-block;
+}
+
+.festivalInfo, .nearInfo{
+	display:inline-block;
+	margin:10px;
+	border:1px solid gray;
+	border-collapse: collapse;
+}
+
+.festivalList > td, .nearList > td{
+	width:400px;
+	height:450px;
+}
+
+.festivalInfo > tr:nth-child(2) th, .festivalInfo > tr:nth-child(2) td, .nearInfo > tr:nth-child(2) th, .nearInfo > tr:nth-child(2) td{
+	border-top:1px solid gray;
+}
+
+.festivalInfo > tr > th, .nearInfo > tr > th{
+	width:50px;
+}
+
+.festivalInfo > tr > td:nth-child(2), .nearInfo > tr > td:nth-child(2){
+	width:300px;
+	border-left:1px solid gray;
+}
+
+.festivalInfo th, .festivalInfo td, .nearInfo th, .nearInfo td{
+	height:auto;
+	font-size:13px;
+	padding:5px;
+}
+
+.disactive{
+	color:gray;
+}
+
+.link:hover{
+	font-weight: bold;
+	text-decoration: underline;
+	cursor:pointer;
+}
+
+.img{
+	width:350px;
+	height:350px;
+}
+
+.opacity{
+	opacity: 0;
+}
+
+.outer{
+	text-align: center;
+	height: auto;
+}
+	
+.outer div{
+	display: inline-block;
+}
+
+.button{
+	cursor:pointer;
+}

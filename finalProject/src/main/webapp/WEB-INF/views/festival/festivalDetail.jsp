@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Festival Detail</title>
+<link href="resources/css/festival/festivalDetail.css" rel="stylesheet">
+<link href="resources/css/festival/festivalMap.css" rel="stylesheet">
 </head>
 <body>
 <div class="outer">
@@ -67,9 +69,9 @@
 	</div>	
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript" src="resources/js/forecast.js"></script>
-<script type="text/javascript" src="resources/js/printFestival.js"></script>
-<script type="text/javascript" src="resources/js/festivalMap.js"></script>
+<script type="text/javascript" src="resources/js/festival/forecast.js"></script>
+<script type="text/javascript" src="resources/js/festival/printFestival.js"></script>
+<script type="text/javascript" src="resources/js/festival/festivalMap.js"></script>
 <script>
 	var eventstartdate = <c:out value='${eventstartdate}'/>; // 전역 변수로 만들어 사용해야 외부 js 파일과 쓸 수 있다. 아마?
 	var eventenddate = <c:out value='${eventenddate}'/>;
@@ -88,7 +90,7 @@
 	var container = document.getElementById('map');			
 	var options = {
 		center: new daum.maps.LatLng(33.450701, 126.570667),
-		level: 5
+		level: 6
 		// ,marker: markers // 이미지 지도에 표시할 마커 
 	};			
 	var map = new daum.maps.Map(container, options);

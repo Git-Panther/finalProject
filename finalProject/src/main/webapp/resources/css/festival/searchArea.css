@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+#resultAmount{
+	margin-top:10px;
+	margin-botton:10px;
+}
+
+.search{
+	width:auto;
+	display:inline-table;
+	text-align:justify;
+	font-size:16px;
+	border-collapse: collapse;
+}
+
+.searchHead {
+	width:100px;
+	height:30px;
+	background: #45a7e0;
+	font-weight: bold;
+	border: 1px solid gray;
+	color:white;
+}
+
+.search td{
+	padding: 10px;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+#searchArea{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.searchRow > td:last-child {
+	border-right: 1px solid gray;
+	width:100px;
+}
+
+#areaList, #sigunguList, #eventStartDate, #eventEndDate, #resultAmount, #arrangeList, #submitSearchBtn{
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#areaSelect, #sigunguSelect, #eventStartDate, #eventEndDate, #arrangeList select{
+	font-size: 14px;
+	padding:7px;
+}
+
+
+.searchRow > td:nth-child(2) {
+	width:600px;
+}
+
+#submitSearchBtn{
+	width:80px;
+	height:48px;
+	background-color:#7da4d1; 
+	color:white;
+	text-align: center;
+	padding:12px;
+	border-radius:10px;
+}
+
+#submitSearchBtn:hover{
+	background-color:#3c5168; 
+	font-weight: bold;
+}
+
+.searchArea{
+	border-bottom:1px solid #cccccc;
+	padding-top:15px;
+	padding-bottom:15px;
+}

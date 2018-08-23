@@ -69,7 +69,7 @@ function printEachForecast(list){ // 각각의 날짜에 해당하는 것을 출
 		}));
 	});
 	
-	console.log(forecastEachTime);
+	//console.log(forecastEachTime);
 	
 	$("<p>").html(parseFcstDate(list[0].fcstDate)).appendTo($festivalForecast);
 	forecastEachTime.forEach(function(v){

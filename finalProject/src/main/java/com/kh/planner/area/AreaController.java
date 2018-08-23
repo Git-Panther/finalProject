@@ -40,12 +40,13 @@ public class AreaController {
 	}
 
 	@RequestMapping(value = "sigunguCount.do", method = RequestMethod.GET)
-	public void sigunguCount(HttpServletRequest request, HttpServletResponse response, @RequestParam String areaCode)
+	public void sigunguCount(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam String sidoCode)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		String result = JsonParser.getSigunguCount(areaCode);
+		String result = JsonParser.getSigunguCount(sidoCode);
 
 		PrintWriter out = response.getWriter();
 		out.println(result);
@@ -54,39 +55,47 @@ public class AreaController {
 	}
 
 	@RequestMapping(value = "sigunguList.do", method = RequestMethod.GET)
-	public void sigunguList(HttpServletRequest request, HttpServletResponse response, @RequestParam String areaCode,
+	public void sigunguList(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam String sidoCode,
 			@RequestParam String numOfSigungu) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		String result = JsonParser.getSigunguList(areaCode, numOfSigungu);
+		String result = JsonParser.getSigunguList(sidoCode, numOfSigungu);
 
 		PrintWriter out = response.getWriter();
 		out.println(result);
 		JSONObject json = new JSONObject();
 		json.put("data", result);
 	}
-
-	@RequestMapping(value = "areaMain.do", method = RequestMethod.GET)
-	public ModelAndView areaMain(HttpServletRequest request, HttpServletResponse response, ModelAndView mv)
+	@RequestMapping(value = "areaMain.do", method = RequestMethod.POST)
+	public ModelAndView areaMain(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, 
+			@RequestParam(value="sidoName", defaultValue="-1") String sidoName,
+			@RequestParam(value="sidoCode", defaultValue="-1") String sidoCode,
+			@RequestParam(value="sigunguName", defaultValue="-1") String sigunguName,
+			@RequestParam(value="sigunguCode", defaultValue="-1") String sigunguCode)
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		mv.addObject("name", request.getParameter("name"));
-		System.out.println(request.getParameter("name"));
-		mv.addObject("sidoCode", request.getParameter("sido"));
-		System.out.println(request.getParameter("sido"));
-		mv.addObject("sigunguCode", request.getParameter("sigungu"));
-		System.out.println(request.getParameter("sigungu"));
+		mv.addObject("sidoName", sidoName);
+		System.out.println(sidoName);
+		mv.addObject("sidoCode", sidoCode);
+		System.out.println(sidoCode);
+		mv.addObject("sigunguName", sigunguName);
+		System.out.println(sigunguName);
+		mv.addObject("sigunguCode", sigunguCode);
+		System.out.println(sigunguCode);
 
 		mv.setViewName("area/areaMain");
 		return mv;
 	}
 
 	@RequestMapping(value = "popList.do", method = RequestMethod.GET)
-	public void popContents(HttpServletRequest request, HttpServletResponse response, @RequestParam String sidoCode,
-			@RequestParam String sigunguCode, @RequestParam String contentTypeId) throws Exception {
+	public void popList(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam(defaultValue = "-1") String sidoCode,
+			@RequestParam(defaultValue = "-1") String sigunguCode, 
+			@RequestParam String contentTypeId) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
@@ -96,6 +105,37 @@ public class AreaController {
 		out.println(result);
 		JSONObject json = new JSONObject();
 		json.put("data", result);
+	}
+	
+	/*$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);*/
+	
+	@RequestMapping(value = "contentDetail.do")
+	public ModelAndView areaDetail(ModelAndView mv,
+			@RequestParam(defaultValue = "-1") String sidoName,
+			@RequestParam(defaultValue = "-1") String sidoCode,
+			@RequestParam(defaultValue = "-1") String sigunguName,
+			@RequestParam(defaultValue = "-1") String sigunguCode,
+			@RequestParam(defaultValue = "-1") String contenttypename,
+			@RequestParam(defaultValue = "-1") String contentid,
+			@RequestParam(defaultValue = "-1") String title
+			) throws Exception{
+		
+		mv.addObject("sidoName", sidoName);
+		mv.addObject("sidoCode", sidoCode);
+		mv.addObject("sigunguName", sigunguName);
+		mv.addObject("sigunguCode", sigunguCode);
+		mv.addObject("contenttypename", contenttypename);
+		mv.addObject("contentid", contentid);
+		mv.addObject("title", title);
+		
+		mv.setViewName("area/contentDetail");
+		return mv;
 	}
 
 }
