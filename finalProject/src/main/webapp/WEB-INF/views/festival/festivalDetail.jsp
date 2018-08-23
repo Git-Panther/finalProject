@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Festival Detail</title>
+<link href="resources/css/festival/festivalDetail.css" rel="stylesheet">
+<link href="resources/css/festival/festivalMap.css" rel="stylesheet">
 </head>
 <body>
 <div class="outer">
@@ -88,7 +90,7 @@
 	var container = document.getElementById('map');			
 	var options = {
 		center: new daum.maps.LatLng(33.450701, 126.570667),
-		level: 5
+		level: 6
 		// ,marker: markers // 이미지 지도에 표시할 마커 
 	};			
 	var map = new daum.maps.Map(container, options);
