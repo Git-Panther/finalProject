@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Festival List</title>
+<link href="resources/css/festival/festivalList.css" rel="stylesheet">
 <script>
 	$(function(){
 		var params = {
@@ -26,10 +27,10 @@
         var myItem = list.response.body.items.item;
         var $festivals = $("#festivals");
         var img;
-        var tableList = $("<table class='festivalList' border='1'>");
+        var tableList = $("<table class='festivalList'>");
         var maintr = $("<tr>");
         var maintd = $("<td>");
-        var subTable = $("<table border='1' align='center'>");
+        var subTable = $("<table align='center'>");
         var tr = $("<tr>");
         var th = $("<th>");
         var td = $("<td>");
@@ -39,7 +40,7 @@
         var onclick = ""; // 하나의 축제에 들어갈 onclick 이벤트 텍스트
         
         $("#resultAmount").text("");
-        $("#resultAmount").append($("<p>").text("결과  : " + list.response.body.totalCount + "건"));
+        $("#resultAmount").append((list.response.body.totalCount + " 건"));
         
         $festivals.html("");
         //console.log(myItem);
@@ -78,21 +79,21 @@
         	tr = $("<tr>");
         	th = $("<th>");
         	td = $("<td>");   	
-        	$("<p>").text("축제명 : ").appendTo(th);       	
+        	$("<p>").text("축제명").appendTo(th);       	
         	$("<p>").text(myItem[i].title).appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);   	
         	
         	tr = $("<tr>");
         	th = $("<th>");
         	td = $("<td>");   	
-        	$("<p>").text("장소 : ").appendTo(th);       	
+        	$("<p>").text("장소").appendTo(th);       	
         	$("<p>").html(myItem[i].addr1).appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);
 
         	tr = $("<tr>");
         	th = $("<th>");
         	td = $("<td>");   	
-        	$("<p>").text("기간 : ").appendTo(th);
+        	$("<p>").text("기간").appendTo(th);
         	dateString = dateFormat(myItem[i].eventstartdate);
         	if(myItem[i].eventstartdate != myItem[i].eventenddate) dateString += ' ~ ' + dateFormat(myItem[i].eventenddate);
         	$("<p>").text(dateString).appendTo(td);
@@ -137,21 +138,21 @@
 	                	tr = $("<tr>");
 	                	th = $("<th>");
 	                	td = $("<td>");   	
-	                	$("<p>").text("축제명 : ").appendTo(th);       	
+	                	$("<p>").text("축제명").appendTo(th);       	
 	                	$("<p>").text(myItem[i].title).appendTo(td);
 	                	tr.append(th).append(td).appendTo(subTable);   	
 	                	
 	                	tr = $("<tr>");
 	                	th = $("<th>");
 	                	td = $("<td>");   	
-	                	$("<p>").text("장소 : ").appendTo(th);       	
+	                	$("<p>").text("장소").appendTo(th);       	
 	                	$("<p>").html(myItem[i].addr1).appendTo(td);
 	                	tr.append(th).append(td).appendTo(subTable);
 
 	                	tr = $("<tr>");
 	                	th = $("<th>");
 	                	td = $("<td>");   	
-	                	$("<p>").text("기간 : ").appendTo(th);
+	                	$("<p>").text("기간").appendTo(th);
 	                	dateString = dateFormat(myItem[i].eventstartdate);
 	                	if(myItem[i].eventstartdate != myItem[i].eventenddate) dateString += ' ~ ' + dateFormat(myItem[i].eventenddate);
 	                	$("<p>").text(dateString).appendTo(td);

@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Search Area</title>
-<link href="resources/css/festival.css" rel="stylesheet">
+<link href="resources/css/festival/festivalCommon.css" rel="stylesheet">
+<link href="resources/css/festival/searchArea.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/festival/festivalAjax.js"></script>
 <script>
 	var area = '<c:out value="${areaCode}"/>'; // 이름 중복 막으려고 줄임
@@ -90,7 +91,7 @@
 </script>
 </head>
 <body>
-<div class="outer">
+<div class="outer searchArea">
 	<c:url var="searchResult" value="/festivalList.do"></c:url>
 	<form id="searchArea" method="post" action="${searchResult}">
 		<!-- <div id="typeList"></div><br> -->
@@ -98,7 +99,7 @@
 		<table class="search">
 			<tr class="searchRow">
 				<td class="searchHead">
-					<label>지역 : </label>
+					<label>지역</label>
 				</td>
 				<td>
 					<div id="areaList">
@@ -110,11 +111,11 @@
 						</select>
 					</div>
 				</td>
-				<td colspan="4"></td>
+				<td></td>
 			</tr>
 			<tr class="searchRow">
 				<td class="searchHead">
-					<label>기간 : </label>
+					<label>기간</label>
 				</td>
 				<td>
 					<!-- 달력 1 -->
@@ -123,16 +124,19 @@
 					<!-- 달력 2 -->
 					<input type="date" name="eventEndDate" id="eventEndDate"/>
 				</td>
-				<td colspan="3"></td>
 				<td>
-					<button id="submitSearchBtn">검색</button>
+					<div id="submitSearchBtn" class="button">
+						<span>검색</span>
+					</div>
 				</td>
 			</tr>
 			<tr class="searchRow">
 				<td class="searchHead">
-					<div id="resultAmount"></div>
+					<label>결과</label>
 				</td>
-				<td colspan="4"></td>
+				<td>
+					<span id="resultAmount"></span>
+				</td>
 				<td>
 					<div id="arrangeList">
 						<select id="arrange" name="arrange">
@@ -144,8 +148,7 @@
 				</td>
 			</tr>
 		</table>
-	</form>
-	<hr>		
+	</form>		
 </div>
 <script>
 	$(function(){
