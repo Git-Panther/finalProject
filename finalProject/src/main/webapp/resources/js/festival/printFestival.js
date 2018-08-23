@@ -224,7 +224,7 @@ function printNearInfo(list, contenttypeid){ // 근처 정보
         	tr = $("<tr>");
         	th = $("<th>");
         	td = $("<td>");   	
-        	$("<p>").text("행사 장소로부터").appendTo(th);       	
+        	$("<p>").text("거리").appendTo(th);       	
         	$("<p>").html(list[i].dist + "m").appendTo(td);
         	tr.append(th).append(td).appendTo(subTable);
         		
