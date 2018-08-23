@@ -23,9 +23,10 @@ var sidoCode = ${sidoCode};
 var sidoName = '${sidoName}';
 var sigunguCode = ${sigunguCode};
 var sigunguName = '${sigunguName}';
+
 	
 $(document).ready(function() {
-	//popList(15);
+	popList(15);
 });
 
 
@@ -42,15 +43,27 @@ function popList(contentTypeId) {
 		success: function(data) {
 			var items = data.response.body.items;
 			var object = data.response.body.items.item;
+			console.log(object);
 			_html = "";
 			if(data.response.body.totalCount == 1){
 				object = items;
 			} else if(data.response.body.totalCount == 0) {
 				_html = "<h2>조회 결과가 없습니다.</h2>";
-			} else {
+			}
 			$.each(object, function(index, item) {
 				_html += '<a class="pospot"';
-				_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
+				if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
+					_html += 'href="javascript:festivalDetail('
+							+ object[index].contentid
+							+ ', ' + object[index].eventstartdate 
+							+ ', ' + object[index].eventenddate
+							+ ', ' + "'.wrap'" + ');"';
+				}else{
+					_html += 'href="javascript:moveContent(' +	"'" 
+							+ sidoName + "'," + sidoCode + ", '" 
+							+ sigunguName + "', " + sigunguCode + ", '" 
+							+ object[index].contenttypeid + "', " + object[index].contentid + ", '" + object[index].title + "')" + '"';		
+				}
 				if(index == 3 || index == 7) {
 				_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 				} else {
@@ -72,28 +85,31 @@ function popList(contentTypeId) {
 				_html += '</div></a>'; 
 				
 			});
-			}
+			
 			$(".pospot_content").html(_html);
 			$(".pospot_content").append('<div class="clear"></div>');
 		}
 	});
 };
 
-
-
-
-function contentsDetail(sidoCode, sigunguCode, cateName, contentid ){
+function moveContent(sidoName, sidoCode, 
+		sigunguName, sigunguCode, 
+		contenttypeid, contentid, title){
 	<c:url var="contents" value="/contentDetail.do"></c:url>
 	var form = $("<form>");
-	form.attr("id", "festivalDetail");
+	form.attr("id", "contentDetail");
 	form.attr("method", "post");
 	form.attr("action", "${contents}");
 	
+	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
-	$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
-	$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
+	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
 	
-		form.appendTo($("#festivals"));
+	form.appendTo($("#header"));
 	form.submit();
 }
 </script>

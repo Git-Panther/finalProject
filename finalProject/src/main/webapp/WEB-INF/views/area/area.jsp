@@ -20,7 +20,7 @@ var sidoCode = "";
 
 $(document).ready(function(){
 	get_city();
-	//popList(15);
+	popList(15);
 	$(document).on('click','.travel_city',function(){
 		var _this_show = $(this).attr('data-show');
 		var _this_code = $(this).attr('code');
@@ -198,7 +198,15 @@ function get_city() {
 				} else {
 				$.each(object, function(index, item) {
 					_html += '<a class="pospot"';
-					_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
+					if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
+						_html += 'href="javascript:festivalDetail('
+								+ object[index].contentid
+								+ ', ' + object[index].eventstartdate 
+								+ ', ' + object[index].eventenddate
+								+ ', ' + "'.wrap'" + ');"';
+					}else{
+						_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
+					}
 					if(index == 3 || index == 7) {
 					_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 					} else {
@@ -226,6 +234,27 @@ function get_city() {
 			}
 		});
 	};
+	
+	function moveContent(sidoName, sidoCode, 
+			sigunguName, sigunguCode, 
+			contenttypeid, contentid, title){
+		<c:url var="contents" value="/contentDetail.do"></c:url>
+		var form = $("<form>");
+		form.attr("id", "contentDetail");
+		form.attr("method", "post");
+		form.attr("action", "${contents}");
+		
+		$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+		$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+		$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+		$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+		$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
+		$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+		$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
+		
+		form.appendTo($("#header"));
+		form.submit();
+	}
 
 </script>
 </head>

@@ -110,7 +110,7 @@ public class AreaController {
 	@RequestMapping(value = "contentDetail.do")
 	public ModelAndView areaDetail(ModelAndView mv) throws Exception{
 		
-		mv.setViewName("area/areaDetail");
+		mv.setViewName("area/contentDetail");
 		return mv;
 	}
 
