@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -20,15 +19,13 @@
 	src="resources/js/owl_carousel/owl.carousel2.js"></script>
 <script type="text/javascript" src="resources/js/web/jui/jquery-ui.js"></script>
 <script>
-var sidoCode = "";
-var sigunguCode = "";
-var sidoCode = <c:out value="${sidoCode}"></c:out>;
-<c:if test="${sigunguCode} != '' ">
-var sigunguCode = <c:out value="${sigunguCode}"></c:out>;
-</c:if>
+var sidoCode = ${sidoCode};
+var sidoName = '${sidoName}';
+var sigunguCode = ${sigunguCode};
+var sigunguName = '${sigunguName}';
 	
 $(document).ready(function() {
-	popList(15);
+	//popList(15);
 });
 
 
@@ -39,13 +36,10 @@ function popList(contentTypeId) {
 		dataType : 'json',
 		data:{
 			sidoCode:sidoCode,
-			<c:if test="${sigunguCode != ''}">
 			sigunguCode:sigunguCode,
-			</c:if>
 			contentTypeId:contentTypeId
 		},
 		success: function(data) {
-			//console.log(data);
 			var items = data.response.body.items;
 			var object = data.response.body.items.item;
 			_html = "";
@@ -56,15 +50,7 @@ function popList(contentTypeId) {
 			} else {
 			$.each(object, function(index, item) {
 				_html += '<a class="pospot"';
-				if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
-					_html += 'href="javascript:festivalDetail('
-							+ object[index].contentid
-							+ ', ' + object[index].eventstartdate 
-							+ ', ' + object[index].eventenddate
-							+ ', ' + "'.wrap'" + ');"';
-				}else{
-					_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
-				}
+				_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
 				if(index == 3 || index == 7) {
 				_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 				} else {
@@ -93,6 +79,9 @@ function popList(contentTypeId) {
 	});
 };
 
+
+
+
 function contentsDetail(sidoCode, sigunguCode, cateName, contentid ){
 	<c:url var="contents" value="/contentDetail.do"></c:url>
 	var form = $("<form>");
@@ -118,8 +107,14 @@ function contentsDetail(sidoCode, sigunguCode, cateName, contentid ){
 
 			<div class="area_nav">
 				<a href="area.do" class="nav_btn">여행지</a> &gt; <a
-					href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')"><c:out
-						value="${sidoName }" /></a> <c:if test="${sigungu } != '' "> &gt; <a href="javascript:moveAreaMain()" class="nav_btn"> <c:out value="${sigunguName }" /> </a></c:if>
+					href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')">
+					<c:out value="${sidoName }" />
+				</a>
+				<c:choose>
+					<c:when test="${sigunguCode ne -1}"> &gt; 
+					<a href="javascript:moveAreaMain('${sidoName}', ${sidoCode}, '${sigunguName }', ${sigunguCode })" class="nav_btn">${sigunguName}</a>
+					</c:when>
+				</c:choose>
 			</div>
 
 			<div class="area_title">

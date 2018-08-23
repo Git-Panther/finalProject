@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -16,10 +15,8 @@
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
 <script>
-var sidoCode = 0;
 var sidoName = "";
-var sigunguCode = 0;
-var sigunguName = "";
+var sidoCode = "";
 
 $(document).ready(function(){
 	get_city();
@@ -63,13 +60,16 @@ function get_city() {
 		url:'areaList.do',
 		dataType : 'json',
 		success:function(data) {
-			//console.log(data);
 			var object = data.response.body.items.item;
 			_html = "";
 
 			$.each(object ,function(index,item){
 				console.log("index : ", index);
 				console.log("item : ", item);
+				sidoName = object[index].name;
+				console.log("sidoName: ", sidoName);
+				sidoCode = object[index].code;
+				console.log("sidoCode: ", sidoCode);
 				if(index != 7) {
 					if(index < 10) {
 					_html += '<div class="travel_city" data-on="off" data-show="00' + index + '" code="' + item.code + '">';
@@ -82,7 +82,7 @@ function get_city() {
 				_html += '<div class="clear"></div>';
 				_html += '</div>';
 				_html += '</div>';
-				get_sigungu(index, item.code, item.name);
+				get_sigungu(index, sidoCode, sidoName);
 				}
 				if(index == 8) {
 					_html += '<div class="clear"></div>';
@@ -98,13 +98,13 @@ function get_city() {
 			});
 }
 	
-	function get_sigungu(id, areaCode, sidoName) {
+	function get_sigungu(id, sidoCode, sidoName) {
 		console.log("get_sugungu");
 		$.ajax({
 			type :'get',
 			url :'sigunguCount.do',
 			data: {
-				areaCode : areaCode
+				sidoCode : sidoCode
 			},
 			dataType : 'json',
 			success : function(data) {
@@ -113,7 +113,7 @@ function get_city() {
 					type :'get',
 					url :'sigunguList.do',
 					data: {
-						areaCode : areaCode,
+						sidoCode : sidoCode,
 						numOfSigungu : count
 					},
 					dataType : 'json',
@@ -125,7 +125,8 @@ function get_city() {
 							} else {
 							_html +=	'<div class="travel_hide" data-id="0' + id + '" style="">';
 							}
-						
+							_html += ('<a href="javascript:moveAreaMain(' + "'" + sidoName + "', '" 
+									+ sidoCode + "'" + ')" class="travel_ar">' + sidoName + ' </a>');
 					$.each(object, function(index, item) {
 							console.log(sidoName.length);
 							_html += ('<a href="javascript:moveAreaMain(' + "'" + sidoName + "', '" 
@@ -197,15 +198,7 @@ function get_city() {
 				} else {
 				$.each(object, function(index, item) {
 					_html += '<a class="pospot"';
-					if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
-						_html += 'href="javascript:festivalDetail('
-								+ object[index].contentid
-								+ ', ' + object[index].eventstartdate 
-								+ ', ' + object[index].eventenddate
-								+ ', ' + "'.wrap'" + ');"';
-					}else{
-						_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
-					}
+					_html += 'href="/ko/city/seoul_310/attraction/bukchon-hanok-village_6725"';
 					if(index == 3 || index == 7) {
 					_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 					} else {
