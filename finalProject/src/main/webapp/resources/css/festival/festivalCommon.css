@@ -12,8 +12,8 @@
 }
 
 .festivalList > td, .nearList > td{
-	width:400px;
-	height:450px;
+	width:auto;
+	height:auto;
 }
 
 .festivalInfo > tr:nth-child(2) th, .festivalInfo > tr:nth-child(2) td, .nearInfo > tr:nth-child(2) th, .nearInfo > tr:nth-child(2) td{
@@ -29,10 +29,15 @@
 	border-left:1px solid gray;
 }
 
-.festivalInfo th, .festivalInfo td, .nearInfo th, .nearInfo td{
+.festivalInfo th, .festivalInfo > tr > td:nth-child(2), .nearInfo th, .nearInfo > tr > td:nth-child(2){
 	height:auto;
 	font-size:13px;
 	padding:5px;
+}
+
+.festivalInfo td:first-child, .nearInfo td:first-child{
+	width:360px;
+	height:365px;
 }
 
 .disactive{

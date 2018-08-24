@@ -16,7 +16,7 @@ $(document).ready(	function() {
 		
 		
 	});
-	
+	console.log('${contenttypename}', '${contentid}', '${title}'); // 넘어오는 값들
 });
 </script>
 </head>
