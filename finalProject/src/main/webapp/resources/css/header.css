@@ -1,5 +1,5 @@
 * {
-    font-family: '³ª´®¹Ù¸¥°íµñ',NanumBarunGothic,'nanum','µ¸¿ò',Dotum,'¸¼Àº°íµñ','Malgun Gothic','±¼¸²',Gulim,Helvetica,sans-serif;
+    font-family: 'ï¿½ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½',NanumBarunGothic,'nanum','ï¿½ï¿½ï¿½ï¿½',Dotum,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','Malgun Gothic','ï¿½ï¿½ï¿½ï¿½',Gulim,Helvetica,sans-serif;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -174,4 +174,31 @@ ol, ul {
 
 .clear {
     clear: both;
+}
+
+.header_profile{
+	height:37px;
+	width:37px;
+	border-radius:50%;
+}
+
+.header_profile img{
+	max-height:37px;
+	max-width:37px;
+	height:37px;
+	width:auto;
+	align:center;
+	vertical-align:middle;
+	margin-top:12px;
+	margin-left:10px;
+	border-radius:50%;
+	cursor:pointer;
+}
+.gnb_mn_drop{
+	width:138px;
+	height:auto;
+	background:white;
+	color:grey;
+	font-size:13px;
+	border:1px grey solid;
 }

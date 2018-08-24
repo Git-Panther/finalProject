@@ -10,8 +10,13 @@ import com.kh.planner.member.model.vo.Member;
 public class MemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
 	public Member selectMember(Member member) {
 		return sqlSession.selectOne("MemberMapper.selectMemberId", member);
+	}
+	
+	public int insertMember (Member member) {
+		return sqlSession.insert("MemberMapper.insertMember", member);
 	}
 
 }
