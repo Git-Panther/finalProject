@@ -20,6 +20,7 @@ var sidoCode = "-1";
 var sigunguName = "-1";
 var sigunguCode = "-1";
 
+
 $(document).ready(function(){
 	get_city();
 	popList(15);
