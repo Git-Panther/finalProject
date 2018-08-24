@@ -8,7 +8,14 @@
 <link href="resources/css/city/spot_info.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>상세정보</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="resources/js/common/common_ajax.js"></script>
+<script type="text/javascript" src="resources/js/common/common_detail.js"></script>
+<script type="text/javascript" src="resources/js/common/common_map.js"></script>
+<script type="text/javascript" src="resources/js/common/forecast.js"></script>
+<script type="text/javascript" src="resources/js/festival/festivalDetail.js"></script>
 <script>
+/*
 $(document).ready(	function() {
 	$.ajax({
 		
@@ -17,8 +24,23 @@ $(document).ready(	function() {
 		
 	});
 	console.log('${contenttypename}', '${contentid}', '${title}'); // 넘어오는 값들
-	console.log('${eventstartdate}', '${eventenddate}');
+	
 });
+*/
+	var contentid = ${contentid};
+	var contenttypeid = ${contenttypeid};
+	<c:if test="15 eq ${contenttypeid}"> // 이걸 하는 이유가, 축제는 좋아요 기능을 넣어햐 하기 때문
+		var eventstartdate = ${eventstartdate}, eventenddate = ${eventenddate};
+		console.log(eventstartdate, eventenddate);
+	</c:if>
+	
+	$(function(){
+		//console.log(contentid, contenttypeid);
+		detailCommon(contenttypeid, contentid); // 기본 정보
+		detailIntro(contenttypeid, contentid); // 상세 정보
+		detailInfo(contenttypeid, contentid); // 반복 정보
+		detailImage(contentid); // 이미지 정보
+	});
 </script>
 </head>
 <body>
@@ -50,10 +72,16 @@ $(document).ready(	function() {
 
 			<div class="header_left">
 				<div class="spot_name">
-					경복궁&nbsp;<span>Gyeongbokgung</span>
+					<c:choose>
+						<c:when test="${title ne '-1'}"> &gt; 
+							<c:out value="${title}"/>
+						</c:when>
+						<c:otherwise>
+							UNKNOWN
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<div class="spot_addr">161 Sajik-ro, Jongno-gu, Seoul, South
-					Korea</div>
+				<div class="spot_addr"></div>
 				<div class="clip_cnt">477</div>
 				<div class="cnt_line">&nbsp;</div>
 				<div class="rate">
