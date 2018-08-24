@@ -86,6 +86,48 @@ function popList(contentTypeId) {
 		}
 	});
 };
+
+function moveContent(sidoName, sidoCode, sigunguName, sigunguCode, contenttypeid, contentid, title){ //area
+	<c:url var="contents" value="/contentDetail.do"></c:url>
+	var form = $("<form>");
+	var contenttypename = '-1';
+	
+	switch(contenttypeid) {
+	case 15 :
+		contenttypename = '축제/행사';
+		break;
+	case 12 :
+		contenttypename = '관광지';
+		break;
+	case 14 :
+		contenttypename = '문화시설';
+		break;
+	case 32 :
+		contenttypename = '숙박';
+		break;
+	case 38 :
+		contenttypename = '쇼핑';
+		break;
+	case 39 :
+		contenttypename = '음식';
+	}
+	
+	form.attr("id", "contentDetail");
+	form.attr("method", "post");
+	form.attr("action", "${contents}");
+	
+	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
+	
+	form.appendTo($("#header"));
+	form.submit();
+}
 </script>
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
@@ -96,12 +138,14 @@ function popList(contentTypeId) {
 		<div class="wrap">
 
 			<div class="area_nav">
-				<a href="area.do" class="nav_btn">여행지</a> &gt; <a
-					href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')">
-					<c:out value="${sidoName }" />
-				</a>
+				<a href="area.do" class="nav_btn">여행지</a>
 				<c:choose>
-					<c:when test="${sigunguCode ne -1}"> &gt; 
+					<c:when test="${sidoName ne '-1'}"> &gt; 
+					<a href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')" class="nav_btn">${sidoName }</a>
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${sigunguName ne '-1'}"> &gt; 
 					<a href="javascript:moveAreaMain('${sidoName}', ${sidoCode}, '${sigunguName }', ${sigunguCode })" class="nav_btn">${sigunguName}</a>
 					</c:when>
 				</c:choose>

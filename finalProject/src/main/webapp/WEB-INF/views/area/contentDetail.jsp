@@ -25,10 +25,26 @@ $(document).ready(	function() {
 		<div class="wrap">
 			<div class="nav_box">
 				<a href="/area.do">여행지</a> 
-				<c:if test="${sidoName} != '-1' ">&gt; <a href="/ko/city/seoul_310">${sidoName}</a></c:if> 
-				<c:if test="${sigunguName} != '-1' ">&gt; <a href="/ko/area/republic-of-korea">${sigunguName}</a></c:if>
-				<c:if test="${contenttypename} != '-1' ">&gt; <a href="/ko/city/seoul_310/attraction">${contenttypename}</a></c:if>
-				<c:if test="${title} != '-1' ">&gt;${title}</c:if>
+				<c:choose>
+					<c:when test="${sidoName ne '-1'}"> &gt; 
+					<a href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')" class="nav_btn">${sidoName }</a>
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${sigunguName ne '-1'}"> &gt; 
+					<a href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')" class="nav_btn">${sigunguName }</a>
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${contenttypename ne '-1'}"> &gt; 
+					${contenttypename }
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${title ne '-1'}"> &gt; 
+					${title }
+					</c:when>
+				</c:choose>
 			</div>
 
 			<div class="header_left">
