@@ -49,13 +49,15 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 
 function moveContent(sidoName, sidoCode, 
 		sigunguName, sigunguCode, 
-		contenttypeid, contentid, title){
+		contenttypeid, contentid, title, eventstartdate, eventenddate){
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
 	switch(contenttypeid) {
 	case 15 :
 		contenttypename = '축제/행사';
+		$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
+		$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
 		break;
 	case 12 :
 		contenttypename = '관광지';
@@ -81,6 +83,7 @@ function moveContent(sidoName, sidoCode,
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
 	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);

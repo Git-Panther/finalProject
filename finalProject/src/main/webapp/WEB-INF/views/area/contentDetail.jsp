@@ -7,7 +7,7 @@
 <head>
 <link href="resources/css/city/spot_info.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상세정보</title>
 <script>
 $(document).ready(	function() {
 	$.ajax({

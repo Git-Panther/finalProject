@@ -65,7 +65,7 @@
 		<div id="festivalHotels" class="tapGroup2"></div>
 		<div id="festivalRestaurants" class="tapGroup2"></div>
 		<br>
-		<div id="festivalComment">코멘트 부분</div>
+		<!--  <div id="festivalComment">코멘트 부분</div> -->
 				<!--  댓글  -->
     <div class="container">
         <label for="content">comment</label>

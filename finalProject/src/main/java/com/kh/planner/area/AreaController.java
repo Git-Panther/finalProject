@@ -115,6 +115,7 @@ public class AreaController {
 	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);*/
 	
+	/*
 	@RequestMapping(value = "contentDetail.do")
 	public ModelAndView areaDetail(ModelAndView mv,
 			@RequestParam(defaultValue = "-1") String sidoName,
@@ -137,5 +138,6 @@ public class AreaController {
 		mv.setViewName("area/contentDetail");
 		return mv;
 	}
+	*/
 
 }

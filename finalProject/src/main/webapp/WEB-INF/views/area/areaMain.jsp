@@ -49,18 +49,16 @@ function popList(contentTypeId) {
 			}
 			$.each(object, function(index, item) {
 				_html += '<a class="pospot"';
-				if(15 === object[index].contenttypeid){// 링크는 축제 한정으로 옮긴다..
-					_html += 'href="javascript:festivalDetail('
-							+ object[index].contentid
-							+ ', ' + object[index].eventstartdate 
-							+ ', ' + object[index].eventenddate
-							+ ', ' + "'.wrap'" + ');"';
-				}else{
-					_html += 'href="javascript:moveContent(' +	"'" 
-							+ sidoName + "'," + sidoCode + ", '" 
-							+ sigunguName + "', " + sigunguCode + ", '" 
-							+ object[index].contenttypeid + "', " + object[index].contentid + ", '" + object[index].title + "')" + '"';		
+				_html += 'href="javascript:moveContent(' +	"'" 
+				+ sidoName + "'," + sidoCode + ", '" 
+				+ sigunguName + "', " + sigunguCode + ", '" 
+				+ object[index].contenttypeid + "', " + object[index].contentid + ", '" + object[index].title;		
+				if(15 === object[index].contenttypeid){// 축제이면 날짜도 같이 보내버린다.
+					_html += + ', ' + object[index].eventstartdate 
+							+ ', ' + object[index].eventenddate;
 				}
+				
+				_html += "')" + '"';
 				if(index == 3 || index == 7) {
 				_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
 				} else {
