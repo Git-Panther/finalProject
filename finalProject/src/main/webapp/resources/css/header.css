@@ -65,6 +65,9 @@ div, input, label, a, select, ul, li {
     cursor: pointer;
 }
 
+.logo img{
+	width: 200px;
+}
 a, a:hover {
     text-decoration: none;
 }

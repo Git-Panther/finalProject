@@ -47,7 +47,7 @@ $(function(){
 		<div class="wrap">
 			<h1 class="logo fl" alt="여행의 시작! 어스토리">
 				<a href="/planner/index.do"><img
-					src="/planner/resources/images/common/gnb/logo.png" alt="여행의 시작! 어스토리"></a>
+					src="/planner/resources/images/common/gnb/logo.jpg" alt="여행의 시작! 어스토리" style="width: 200px;"></a>
 			</h1>
 			<ul class="gnb fl">
 				<c:url var="festivalList" value="/festivalList.do"></c:url>
