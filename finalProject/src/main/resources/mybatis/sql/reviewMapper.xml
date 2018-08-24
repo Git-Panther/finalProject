@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewMapper">
+	<select id="selectReviewAll" parameterType="Review" resultType="Review">
+		SELECT CNO, CONTENT_ID, CONTENT, WRITER, REG_DATE, USERNAME as writerNM
+		FROM REVIEW
+		JOIN MEMBER M ON (WRITER = USERNO)
+		WHERE CONTENT_ID = #{content_id}
+	</select>
+	<insert id="insertReview" parameterType="Review">
+		INSERT INTO REVIEW
+		VALUES(REVIEW_SEQ.NEXTVAL, #{content_id}, #{content}, #{writer}, DEFAULT)
+	</insert>
+	<delete id="deleteReview" parameterType="Review">
+		DELETE FROM REVIEW
+		WHERE CNO = #{cno}
+	</delete>
+	
+	<update id="updateReview" parameterType="Review">
+		UPDATE REVIEW
+		SET CONTENT = #{content}
+		WHERE CNO = #{cno}
+	</update>
+</mapper>
