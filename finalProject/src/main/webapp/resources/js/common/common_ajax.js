@@ -9,7 +9,10 @@ function detailCommon(contenttypeid, contentid){ // 해당 정보의 공통정�
         dataType: 'json',
         success: function(data){
         	console.log(data);
-        	printCommon(data.response.body.items.item);
+        	printCommon(data.response.body.items.item); // 공통정보 출력
+        	detailIntro(contenttypeid, contentid); // 공통정보 출력이 끝나면 상세정보를 조회
+        	// 지도 조회
+        	// 기상청 조회
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -25,7 +28,8 @@ function detailIntro(contenttypeid, contentid){ // 해당 정보의 상세정보
         dataType: 'json',
         success: function(data){
         	console.log(data);
-        	printIntro(data.response.body.items.item);
+        	printIntro(data.response.body.items.item); // 상세정보 출력
+        	detailInfo(contenttypeid, contentid); // 상세정보 출력이 끝나면 반복 정보를 조회
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -41,7 +45,8 @@ function detailInfo(contenttypeid, contentid){ // 해당 정보의 반복정보
         dataType: 'json',
         success: function(data){
         	console.log(data);
-        	printInfo(data.response.body.items.item);
+        	printInfo(data.response.body.items.item); // 반복정보 출력
+        	detailImage(contentid); // 반복정보 출력이 끝나면 이미지 정보를 조회
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
