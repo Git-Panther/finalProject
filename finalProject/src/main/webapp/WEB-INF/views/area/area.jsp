@@ -62,11 +62,9 @@ function get_city() {
 		url:'areaList.do',
 		dataType : 'json',
 		success:function(data) {
-			var count = data.response.body;
 			var object = data.response.body.items.item;
 			_html = "";
 
-			if(count != 0) { 
 			$.each(object ,function(index,item){
 				console.log("index : ", index);
 				console.log("item : ", item);

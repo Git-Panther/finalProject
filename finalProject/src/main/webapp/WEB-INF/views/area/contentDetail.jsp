@@ -8,19 +8,6 @@
 <link href="resources/css/city/spot_info.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-$(document).ready(	function() {
-	$.ajax({
-		type:'get',
-		url:'/content.do'
-		
-		
-		
-		
-	});
-	
-});
-</script>
 </head>
 <body>
 	<div class="spot_header">
