@@ -46,7 +46,7 @@ public class CommonController { // 공통으로 쓰는 컨트롤러
 		mv.addObject("sigunguName", sigunguName);
 		mv.addObject("sigunguCode", sigunguCode);
 		mv.addObject("contenttypename", contenttypename);
-		mv.addObject("contentid", contenttypeid);
+		mv.addObject("contenttypeid", contenttypeid);
 		mv.addObject("contentid", contentid);
 		mv.addObject("eventstartdate", eventstartdate);
 		mv.addObject("eventenddate", eventenddate);	
