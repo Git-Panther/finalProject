@@ -20,36 +20,7 @@ $(document).ready(	function() {
 				});
 		});
 
-function moveAreaMain(sidoName, sidoCode){ // 함수 오버로딩
-	var form = $("<form>");
-	form.attr("id", "areaMain");
-	form.attr("method", "post");
-	form.attr("action", "/planner/areaMain.do");
-	
-	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
-	form.appendTo($("#header"));
-	form.submit();
-}
-
-function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
-																		// 오버로딩
-	var form = $("<form>");
-	form.attr("id", "areaMain");
-	form.attr("method", "post");
-	form.attr("action", "/planner/areaMain.do");
-	
-	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
-	form.appendTo($("#header"));
-	form.submit();
-}
-
-function moveContent(sidoName, sidoCode, 
-		sigunguName, sigunguCode, 
-		contenttypeid, contentid, title){
+/*function moveContent(sidoCode, contenttypeid, contentid, title){ 백업
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -87,10 +58,34 @@ function moveContent(sidoName, sidoCode,
 	
 	form.appendTo($("#header"));
 	form.submit();
+}*/
+
+
+function moveAreaMain(sidoName, sidoCode){ // 함수 오버로딩
+	var form = $("<form>");
+	form.attr("id", "areaMain");
+	form.attr("method", "post");
+	form.attr("action", "/planner/areaMain.do");
+	
+	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+	form.appendTo($("#header"));
+	form.submit();
 }
 
-
-
-
+function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
+																		// 오버로딩
+	var form = $("<form>");
+	form.attr("id", "areaMain");
+	form.attr("method", "post");
+	form.attr("action", "/planner/areaMain.do");
+	
+	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	form.appendTo($("#header"));
+	form.submit();
+}
 
 
