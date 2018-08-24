@@ -37,7 +37,7 @@ public class AreaController {
 		out.println(result);
 		JSONObject json = new JSONObject();
 		json.put("data", result);
-	}
+	}//dddddddd
 
 	@RequestMapping(value = "sigunguCount.do", method = RequestMethod.GET)
 	public void sigunguCount(HttpServletRequest request, HttpServletResponse response, 
