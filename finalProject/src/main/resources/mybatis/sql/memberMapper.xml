@@ -13,6 +13,16 @@
 		VALUES(SEQ_USERNO.NEXTVAL, #{userId}, #{password}, #{userName}, #{gender}, #{email}, TO_DATE(#{birthday}, 'YYYY/MM/DD'), SYSDATE, #{profilePic})
 	</insert>
 	<update id="updateMember" parameterType="Member">
-		
+		UPDATE MEMBER
+		SET EMAIL = #{email}, BIRTHDAY = TO_DATE(#{birthday}, 'YYYY/MM/DD'), EMAIL = #{email}, PROFILEPIC = #{newProfilePic}
+		WHERE USERID = #{userId}
 	</update>
+	<update id="updatePassword" parameterType="Member" >
+		UPDATE MEMBERSET PASSWORD = #{newPassword}
+		WHERE USERID = #{userId}
+	</update>
+	<delete id="deleteMember" parameterType="Member">
+		DELETE FROM MEMBER
+		WHERE USERID = #{userId}
+	</delete>
 </mapper>

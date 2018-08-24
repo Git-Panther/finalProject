@@ -18,4 +18,8 @@ public class MemberService {
 		public int insertMember(Member member){
 			return dao.insertMember(member);
 		}
+
+		public int deleteMember(Member member) {
+			return dao.deleteMember(member);
+		}
 }

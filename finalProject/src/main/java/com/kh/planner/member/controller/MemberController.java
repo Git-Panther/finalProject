@@ -1,5 +1,6 @@
 package com.kh.planner.member.controller;
 
+import java.awt.Window;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -67,6 +68,7 @@ public class MemberController {
 		}
 		return result;
 	}
+	
 	@RequestMapping(value = "join.do")
 	public String memberJoin(Member member, @RequestParam(value="profilePic1", required=false) MultipartFile file, HttpServletRequest request){
 		
@@ -107,5 +109,18 @@ public class MemberController {
 	@RequestMapping(value="memberUpdate.do")
 	public String memberUpdate(){
 		return "redirect:memberInfo.do";
+	}
+	
+	@RequestMapping(value="memberDelete.do")
+	public String memberDelete(Member member, HttpSession session){
+		Member user = (Member) session.getAttribute("user");
+		int result = memberService.deleteMember(user);
+		System.out.println(result);
+		System.out.println(user);
+		if(result != 0){
+			return "redirect:logout.do";
+		}else{
+			return "redirect:memberInfo.do";
+		}
 	}
 }
