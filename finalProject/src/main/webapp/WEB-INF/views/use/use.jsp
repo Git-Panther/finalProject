@@ -8,6 +8,7 @@
 <link href="resources/css/master.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
+
 <style>
 /*====================*/
 /* reset.css */
@@ -56,7 +57,7 @@ th {
 </style>
 <body>
 
-<section>
+<section style="padding-top: 90px; padding-bottom: 90px;">
   <table class="demo01">
     <tr>
       <th>축제/행사</th>
@@ -65,6 +66,18 @@ th {
     <tr>
       <th>여행지</th>
       <td>여행지...</td>
+    </tr>
+    <tr>
+      <th>일정만들기</th>
+      <td>일정만들기...</td>
+    </tr>
+    <tr>
+      <th>호텔</th>
+      <td>호텔...</td>
+    </tr>
+    <tr>
+      <th>리뷰</th>
+      <td>리뷰...</td>
     </tr>
   </table>
 </section>
