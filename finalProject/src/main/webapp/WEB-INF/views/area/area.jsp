@@ -94,14 +94,9 @@ function get_city() {
 					if(index == 16){
 					_html += '<div class="clear"></div>';
 					$('.pa20').html(_html);
-											}
-									});
-			} else {
-			_html += '조회 결과가 없습니다.';
-			$('.pa10').html(_html);
-			}
-
 	}
+										});
+					}
 				});
 	}
 
