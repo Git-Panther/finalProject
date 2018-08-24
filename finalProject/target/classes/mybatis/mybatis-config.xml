@@ -5,14 +5,16 @@
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.kh.planner.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.planner.review.model.vo.Review" alias="Review"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/sql/memberMapper.xml" />
 		<mapper resource="mybatis/sql/favoriteMapper.xml" />
+		<mapper resource="mybatis/sql/reviewMapper.xml" />
 	</mappers>
 </configuration>
 
