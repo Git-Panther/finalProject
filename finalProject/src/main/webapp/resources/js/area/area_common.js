@@ -53,6 +53,10 @@ function moveContent(sidoName, sidoCode,
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
+	form.attr("id", "contentDetail");
+	form.attr("method", "post");
+	form.attr("action", "/planner/contentDetail.do");
+	
 	switch(contenttypeid) {
 	case 15 :
 		contenttypename = '축제/행사';
@@ -74,10 +78,6 @@ function moveContent(sidoName, sidoCode,
 	case 39 :
 		contenttypename = '음식';
 	}
-	
-	form.attr("id", "contentDetail");
-	form.attr("method", "post");
-	form.attr("action", "/planner/contentDetail.do");
 	
 	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);

@@ -17,6 +17,7 @@ $(document).ready(	function() {
 		
 	});
 	console.log('${contenttypename}', '${contentid}', '${title}'); // 넘어오는 값들
+	console.log('${eventstartdate}', '${eventenddate}');
 });
 </script>
 </head>

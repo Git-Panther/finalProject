@@ -27,6 +27,7 @@ var sigunguName = '${sigunguName}';
 $(document).ready(function() {
 	popList(15);
 });
+/*
 function popList(contentTypeId) {
 	$.ajax({
 		type:'GET',
@@ -54,7 +55,7 @@ function popList(contentTypeId) {
 				+ sigunguName + "', " + sigunguCode + ", '" 
 				+ object[index].contenttypeid + "', " + object[index].contentid + ", '" + object[index].title;		
 				if(15 === object[index].contenttypeid){// 축제이면 날짜도 같이 보내버린다.
-					_html += + ', ' + object[index].eventstartdate 
+					_html += ', ' + object[index].eventstartdate 
 							+ ', ' + object[index].eventenddate;
 				}
 				
@@ -86,7 +87,8 @@ function popList(contentTypeId) {
 		}
 	});
 };
-
+*/
+/*
 function moveContent(sidoName, sidoCode, sigunguName, sigunguCode, contenttypeid, contentid, title){ //area
 	<c:url var="contents" value="/contentDetail.do"></c:url>
 	var form = $("<form>");
@@ -128,6 +130,7 @@ function moveContent(sidoName, sidoCode, sigunguName, sigunguCode, contenttypeid
 	form.appendTo($("#header"));
 	form.submit();
 }
+*/
 </script>
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>

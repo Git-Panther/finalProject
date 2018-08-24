@@ -48,8 +48,8 @@ public class CommonController { // 공통으로 쓰는 컨트롤러
 		mv.addObject("contenttypename", contenttypename);
 		mv.addObject("contenttypeid", contenttypeid);
 		mv.addObject("contentid", contentid);
-		mv.addObject("eventstartdate", eventstartdate);
-		mv.addObject("eventenddate", eventenddate);	
+		if(-1 != eventstartdate) mv.addObject("eventstartdate", eventstartdate);
+		if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);	
 		mv.addObject("title", title);
 		mv.setViewName("area/contentDetail");
 		
