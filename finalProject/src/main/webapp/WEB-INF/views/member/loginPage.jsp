@@ -6,9 +6,17 @@
 <html>
 <meta charset="UTF-8">
 <style>
+#loginFormDiv{
+	width: 400px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid grey;
+	padding: 5px 5px 5px 5px;
+}
 #loginBtn, #loginMainBtn {
-	width: 300px;
-	height: 30px;
+	width: 290px;
+	height: 40px;
 	display: block;
 	background: black;
 	color: white;
@@ -17,7 +25,6 @@
 	font-size:16px;
 	cursor: pointer;
 	margin-bottom:3px;	
-	margin-left:3px;
 }
 #loginBtn:before, #loginMainBtn:before {
   content: "";
@@ -28,11 +35,24 @@
 td {
 	width:150px;
 	height:40px;
-	padding-left:5px;
 }
 .infoInput{
 	width:290px;
 	height:30px;
+}
+#loginFormDiv{
+	background-color:white;
+	margin-top:5px;
+	margin-bottom:5px;
+	margin-left:auto;
+	margin-right:auto;
+	border: 3px solid #aaaaaa;
+}
+#loginFormDivTitle{
+	color: grey !important;
+	font-size: 20px !important;
+	font-weight: bold !important;
+	line-height: 250%;
 }
 </style>
 <title>Header</title>
@@ -43,28 +63,26 @@ td {
 	function mainPage() {
 		location.href = "index.do";
 	}
-	function passwordCheckMessage() {
-	    alert(msg);
-	}
 </script>
 <head>
 <body>
 </body>
 </head>
-<div class="outer">
+<div id="loginFormDiv" align="center">
+	<h2 id="loginFormDivTitle">로그인</h2>
 	<form id="loginForm" method="post" action="login.do">
 		<table>
 			<tr>
-				<td colspan="2"><input type="text" name="userId" placeholder="아이디" class="infoInput" required/></td>
+				<td><input type="text" name="userId" placeholder="아이디" class="infoInput" required/></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="password" name="password" placeholder="비밀번호" class="infoInput" required/></td>
+				<td><input type="password" name="password" placeholder="비밀번호" class="infoInput" required/></td>
 			</tr>
 		</table>
 	</form>
-</div>
-<div class="btns">
-	<div id="loginBtn" onclick="login();">로그인</div><div id="loginMainBtn" onclick="mainPage();">취소</div>
+	<div class="btns">
+		<div id="loginBtn" onclick="login();">로그인</div><div id="loginMainBtn" onclick="mainPage();">취소</div>
+	</div>
 </div>
 <c:import url="../common/footer.jsp" />
 </html>
