@@ -10,11 +10,49 @@ public class Review {
     private int writer;
     private String writerNm;
     private Date reg_date;
+    private int grade;
+    private int reviewCnt;
+    private String profilePic;
+    
     
     public Review(){
     }
-	
-    public Review(int contentid) {
+    
+    public int getReviewCnt() {
+		return reviewCnt;
+	}
+
+
+
+
+	public void setReviewCnt(int reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
+
+
+
+
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+
+
+
+	public Review(int contentid) {
     	content_id = String.valueOf(contentid);
 	}
 
@@ -58,10 +96,14 @@ public class Review {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
+
 	@Override
 	public String toString() {
 		return "Review [cno=" + cno + ", content_id=" + content_id + ", content=" + content + ", writer=" + writer
-				+ ", reg_date=" + reg_date + "]";
+				+ ", writerNm=" + writerNm + ", reg_date=" + reg_date + ", grade=" + grade + ", reviewCnt=" + reviewCnt
+				+ "]";
 	}
+	
+	
 
 }

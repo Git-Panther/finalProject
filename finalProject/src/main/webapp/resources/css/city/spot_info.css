@@ -80,6 +80,28 @@ input,textarea{
 	margin-bottom:15px;
 }
 
+.spot_homepage{
+	background:url('/planner/resources/images/city/clip_icon.png') no-repeat;
+	font-size:13px;
+	color:#808080;
+	padding-left:15px;
+	height:15px;
+	line-height:15px;
+	margin-top:10px;
+	margin-bottom:15px;
+}
+
+.spot_tel{
+	background:url('/planner/resources/images/city/spot_rate_icon.png') no-repeat;
+	font-size:13px;
+	color:#808080;
+	padding-left:15px;
+	height:15px;
+	line-height:15px;
+	margin-top:10px;
+	margin-bottom:15px;
+}
+
 .clip_cnt{
 	background:url('/planner/resources/images/city/clip_icon.png') no-repeat;
 	height:19px;
