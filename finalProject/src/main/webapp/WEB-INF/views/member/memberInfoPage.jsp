@@ -61,7 +61,7 @@ span{
   vertical-align: middle;
   height: 100%;
 }
-#btnsDiv, #changePwdBtnDiv{
+#btnsDiv{
 	width: 440px;
 	height: auto;
 	display: inline-block;
@@ -102,23 +102,18 @@ span{
 	height: auto;
 	border: 1px solid #aaaaaa;
 }
-#checkDiv2, #checkPwdDiv{
-	color: red;
-}
 #memberInfoDivTitle{
 	color: grey !important;
 	font-size: 20px !important;
 	font-weight: bold !important;
 	line-height: 250%;
 }
-#passwordChangeDiv{
-	display:none;
-}
 </style>
 <title>Insert title here</title>
+<script src="resources/js/jquery-3.3.1.min.js"></script>
 <script>
 function updateMemberInfo(){
-	$("#memberInfoForm".submit);
+	$("#memberInfoForm").submit();
 }
 function deleteMember(){
 	var really = confirm("정말로 탈퇴하시겠습니까?");
@@ -127,31 +122,9 @@ function deleteMember(){
 		$("#memberInfoForm").submit();
 	}
 }
-function updatePassword(){
-	
+function changePwdPage(){
+	location.href="changePwdPage.do";
 }
-$(function(){
-	var idChk= /^[A-Za-z0-9]{4,20}$/;
-
-	$("#newPassword").on('keyup', function() {
-		var id = $(this).val();
-		var chk = idChk.test(id);
-			if(chk) {
-				$("#checkDiv2").html("");
-			} else {
-				$("#checkDiv2").html("4~20자의 영문 소문자 및 숫자만 가능합니다");
-			}
-		});    
-		$("#newPassword2").on('keyup', function() {
-			if($("#newPassword").val() == $("#newPassword2").val()) {
-				$("#checkPwdDiv").html("");
-			} else {
-				$("#checkPwdDiv").html("비밀번호가 일치하지 않습니다");
-			}
-		});    
-});
-
-
 </script>
 </head>
 <body>
@@ -165,7 +138,7 @@ $(function(){
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><div id="changePwdBtn" onclick="triggerPwdModal();">비밀번호 변경</div></td>
+					<td><div id="changePwdBtn" onclick="changePwdPage();">비밀번호 변경</div></td>
 				</tr>
 				<tr>
 					<th>성명</th>
@@ -202,31 +175,6 @@ $(function(){
 					<div id="updateBtn" onclick="updateMemberInfo();">내 정보 수정</div>
 					<div id="deleteBtn" onclick="deleteMember();">회원 탈퇴</div>
 				</div>
-			</div>
-		</form>
-	</div>
-	<div id="passwordChangeDiv" align="center">
-		<form id="passwordChangeForm">
-			<table>
-				<tr>
-					<th>현재 비밀번호</th>
-					<td><input type="password" name="oldPassword" id="oldPassword" class="infoInput"/></td>
-				</tr>
-				<tr>
-					<th>새로운 비밀번호</th>
-					<td><input type="password" name="newPassword" id="newPassword" class="infoInput"/>
-						<span id="checkDiv2"></span>
-					</td>
-					</tr>
-				<tr>
-					<th>비밀번호 확인</th>
-					<td><input type="password" name="newPassword2" id="newPassword2" class="infoInput"/>
-						<span id="checkPwdDiv"></span>
-					</td>
-				</tr>
-			</table>
-			<div id="changePwdBtnDiv" align="center">
-				<div id="changePwdConfirmBtn">확인</div>
 			</div>
 		</form>
 	</div>

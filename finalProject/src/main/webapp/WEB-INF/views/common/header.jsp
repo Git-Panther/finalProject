@@ -19,7 +19,31 @@
 	color:grey;
 	padding-left:15px;
 }
-
+.header_profile{
+	height:37px;
+	width:37px;
+	border-radius:50%;
+}
+.header_profile img{
+	max-height:37px;
+	max-width:37px;
+	height:37px;
+	width:auto;
+	align:center;
+	vertical-align:middle;
+	margin-top:12px;
+	margin-left:10px;
+	border-radius:50%;
+	cursor:pointer;
+}
+.gnb_mn_drop{
+	width:138px;
+	height:auto;
+	background:white;
+	color:grey;
+	font-size:13px;
+	border:1px grey solid;
+}
 </style>
 <title>Header</title>
 <script>

@@ -22,4 +22,12 @@ public class MemberService {
 		public int deleteMember(Member member) {
 			return dao.deleteMember(member);
 		}
+
+		public int updatePassword(Member member) {
+			return dao.updatePassword(member);
+		}
+
+		public int updateMember(Member member) {
+			return dao.updateMember(member);
+		}
 }
