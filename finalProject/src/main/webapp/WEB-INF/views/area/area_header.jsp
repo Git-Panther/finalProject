@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="resources/js/area/area_map.js"></script>
 <!-- common -->
 <script type="text/javascript" src="resources/js/common/component.js"></script>
 <script type="text/javascript"
@@ -16,6 +18,7 @@
 <!-- /common -->
 
 <!-- css -->
+<link href="resources/css/area/area_home.css" rel="stylesheet" />
 <link href="resources/css/city/main.css" rel="stylesheet" />
 <link href="resources/css/city/header_v2.css" rel="stylesheet" />
 <link rel="stylesheet"
@@ -29,9 +32,6 @@
 	width: 100%; /* The width is the width of the web page */
 }
 </style>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript" src="resources/js/area/area_map.js"></script>
 
 
 <script>
