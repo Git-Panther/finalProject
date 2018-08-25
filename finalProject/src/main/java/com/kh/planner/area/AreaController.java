@@ -27,6 +27,7 @@ public class AreaController {
 		mv.addObject("sidoCode", "-1");
 		mv.addObject("sigunguName", "-1");
 		mv.addObject("sigunguCode", "-1");
+		
 		mv.setViewName("area/area");
 		return mv;
 	}
@@ -78,11 +79,11 @@ public class AreaController {
 	public void popList(HttpServletRequest request, HttpServletResponse response, 
 			@RequestParam(defaultValue = "-1") String sidoCode,
 			@RequestParam(defaultValue = "-1") String sigunguCode, 
-			@RequestParam String contentTypeId) throws Exception {
+			@RequestParam(defaultValue = "-1") String contenttypeid) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		String result = JsonParser.getPopList(sidoCode, sigunguCode, contentTypeId);
+		String result = JsonParser.getPopList(sidoCode, sigunguCode, contenttypeid);
 
 		PrintWriter out = response.getWriter();
 		out.println(result);
