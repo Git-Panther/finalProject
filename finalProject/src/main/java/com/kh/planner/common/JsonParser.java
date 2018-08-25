@@ -10,8 +10,8 @@ import java.util.GregorianCalendar;
 import org.apache.commons.io.IOUtils;
 
 public class JsonParser {
-	//private static String serviceKey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	private static String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
+	private static String serviceKey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	//private static String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 
 	public static String getJsonString(String address) {
 		String resultStr = "";
@@ -36,10 +36,15 @@ public class JsonParser {
 		return resultStr;
 	}
 
-	public static String getSearchStay(String sidoCode, String sigunguCode, String arrange, String pageNo) {
+	public static String getContentList(String sidoCode, String sigunguCode, String contenttypeid, String arrange, String pageNo) {
 		String resultJson = "";
+		String address = "";
 		try {
-			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?serviceKey=";
+			if(contenttypeid.equals("32")) {
+				address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?serviceKey=";
+			} else {
+				address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=";
+			}
 			String parameter = "";
 
 			parameter += "&numOfRows=" + 15;
@@ -52,11 +57,12 @@ public class JsonParser {
 			if (!sigunguCode.equals("-1")) {
 				parameter += "&sigunguCode=" + sigunguCode;
 			}
+			parameter += "&contenttypeid=" + contenttypeid;
 			parameter += "&_type= " + "json";
 			address += serviceKey + parameter;
 
 			resultJson = getJsonString(address);
-			System.out.println("getSearchStay : =" + resultJson);
+			System.out.println("getContentList : =" + resultJson);
 			return resultJson;
 		} catch (Exception e) {
 			e.printStackTrace();

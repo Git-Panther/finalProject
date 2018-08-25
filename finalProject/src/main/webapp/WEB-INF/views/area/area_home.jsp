@@ -21,6 +21,13 @@
 	src="resources/js/owl_carousel/owl.carousel2.js"></script>
 <script type="text/javascript" src="resources/js/web/jui/jquery-ui.js"></script>
 <script>
+var sidoCode = '${sidoCode}';
+var sigunguCode = '${sigunguCode}';
+var contenttypeid = '${contenttypeid}';
+var arrange = "B";
+var pageNo = 1;
+var total = 0;
+var curPage = 1;
 	$(document).ready(function() {
 		popList(15);
 	});

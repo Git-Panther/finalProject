@@ -96,8 +96,145 @@ function areaMenu(menu) {
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "menu").val(menu).appendTo(form);
 	
 	form.appendTo($("#header"));
 	form.submit();
+}
+
+
+function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage) {
+	$(function() {
+		  $.ajax({
+			url : 'getList.do',
+			type : 'get',
+			data : {
+				sidoCode : sidoCode,
+				sigunguCode : sigunguCode,
+				contenttypeid : contenttypeid,
+				arrange : arrange,
+				pageNo : pageNo
+			}, //contentid, contentTypeid 서버로 전송
+			dataType : 'json',
+			success : function(data) {
+				console.log(data.response.body.totalCount);
+				console.log(data.response.body.items.item);
+				total = data.response.body.totalCount;
+				if(total != 1) {
+					var item = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
+				} else {
+					var item = data.response.body.items;
+				}
+				var output = '';
+				
+				$(".list_cnt").html("총 " + total + "개의 호텔");
+
+				for (var i = 0; i < (item.length); i++) {
+					if(item[i].firstimage == undefined) {
+						item[i].firstimage = "/planner/resources/images/common/no_img/hotel55.png";
+					}
+					output += '<div class="box" id="' + item[i].contentid + '">';
+					output += '<img ';
+					output += 'src="' + item[i].firstimage + '"';
+					output += 'alt="" class="ht_img"';
+					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '" ';
+					output += 'data-srl="' + item[i].contentid + '">';
+					output += '<div class="box_right">';
+					output += '<div class="btn_clip" data-yn="n" data-srl="' + item[i].contentid + '"'; 
+					output += 'onclick="set_clip(' + item[i].contentid + ",'0','btn_clip','2');" + '">';
+					output += '<img src="/planner/resources/images/city/spot_list/clip_ico.png" alt="">';
+					output += '</div>';
+					output += '<div class="btn_addplan"'; 
+					output += 'onclick="et_modal(' + "'365px','380px','1','0','/ko/member','2','1')" + '">';
+					output += '<img src="/planner/resources/images/city/spot_list/addplan_ico.png" alt="">';
+					output += '</div>';
+					output += '<a ';
+					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '"';
+					output += 'class="ht_title">' + item[i].title + '</a>';
+					output += '<div class="ht_info">';
+					output += '&nbsp;' + '<span>0개의 리뷰가 있습니다.</span>';
+					output += '<div class="clear"></div>';
+					output += '</div>';
+					output += '<div class="ht_addr">';
+					output += item[i].addr1 + " " + item[i].addr2 + '<a class="map_link"';
+					output += 'href="javascript:et_modal(' + "'1144px','816px','1','0','/ko/modal/spot_map?srl=" + item[i].contentId + "&amp;type=2','2','1');" + '">지도보기</a>';
+					output += '</div>';
+					output += '<div class="ht_count	">';
+					output += '조회수 : ' + item[i].readcount + '건';
+					output += '</div>';	
+					output += '<div class="ht_bottom">';
+					output += '<a class="ht_view"';
+					output += 'href="javascript:moveContent('
+							+ item[i].contenttypeid + ", "
+							+ item[i].contenttypeid + ",'"
+							+ item[i].title + "') " + '"'
+							+ '>자세히보기</a>';
+							output += '</div>';
+							output += '</div>';
+							output += '<div class="clear"></div>';
+							output += '</div>';
+				}
+
+				$(".list").html(output);
+				makePaging(total, curPage);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("Status: " + textStatus);
+				alert("Error: " + errorThrown);
+			}
+		});  
+	}); 
+}
+
+function moveListPage(pageNo) {
+	curPage = pageNo;
+	pageNo = pageNo;
+	getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage);
+}
+
+// 페이징 생성
+function makePaging(total, curPage){
+	console.log(total+'/'+curPage)
+	$('html, body').scrollTop(0);
+	
+	// 페이지당 리스트출력수
+	var viewPage = 10;
+	var movePage = viewPage-1;
+	var perPage = 15;
+	// 전체 페이지
+	var totalPage =  Math.ceil(total/perPage);
+	var startPage = (Math.floor((curPage-1)/viewPage))*viewPage+1;
+	var endpage = (startPage+movePage < totalPage)? startPage+movePage: totalPage;
+
+
+	// 페이징 생성
+	var paging ='<span class="nv">';
+	if(curPage > 1){
+		paging += '<button type="button" class="pgn-pv1" onclick="moveListPage'+'(1)">처음으로</button>';
+	}
+	if(startPage > viewPage && curPage > 1){
+		paging += '<button type="button" class="pgn-pv2" onclick="moveListPage'+'('(startPage-viewPage)+')">이전</button>';
+	}
+
+	paging += '</span>';
+	for(var i=startPage ; i<= endpage; i++){
+		if(curPage == i){
+		  paging += '<button type="button" class="on" onclick="moveListPage'+'(' + i+')">'+i+'</button>';
+		}else{
+		  paging += '<button type="button" onclick="moveListPage(' + i +')">'+ i +'</button>';
+		}
+	}
+
+	paging += '<span class="nv">';
+	if((startPage+movePage) < totalPage && curPage < totalPage){
+		paging += '<button type="button" class="pgn-nx2" onclick="moveListPage'+'(' + (startPage+viewPage)+')">다음</button>';
+	}
+
+	if(curPage < totalPage){
+		paging += '<button type="button" class="pgn-nx1" onclick="moveListPage'+'(' + totalPage+')">맨뒤로</button>';
+	}
+
+	paging += '</span>';
+		$('#paging').html(paging);
 }
