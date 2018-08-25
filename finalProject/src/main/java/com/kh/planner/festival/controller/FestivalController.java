@@ -18,9 +18,11 @@ import com.kh.planner.review.model.vo.Review;
 
 @Controller
 public class FestivalController {
-	private String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	//private String forecastkey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	private String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
+	private static final String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	//private static final String tourapikey = "?ServiceKey=EuYOKtjgM9QR9GFYmz2fS0z%2FHXF3%2B80PelXkPL7lRVc2nzcw4dg8OwalAxk2OZu%2F%2BNOmxyqSRqKFXnUg2pGeBg%3D%3D";
+	//private static final String forecastkey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	//private static final String tourapikey = "?ServiceKey=z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
+	private static final String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
 	
 	@Autowired
 	private ReviewService rs;
@@ -67,7 +69,7 @@ public class FestivalController {
 			, String eventStartDate, String eventEndDate){ // 페이지 번호, 정렬 기준	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival";
 		StringBuilder params = new StringBuilder(tourapikey + tourParams);
-		params.append("&numOfRows=12"); // 한 번에 조회하는 정보 : 12개
+		params.append("&numOfRows=8"); // 한 번에 조회하는 정보 : 12개
 		params.append("&pageNo="+ (null != pageNo ? pageNo : "1")); // x페이지
 		params.append("&arrange=" + (null != arrange ? arrange : "D")); // D 조건(생성일순)으로 정렬 -> C 조건(수정일 순) -> Q(이미지 있는 수정일 순)
 		if(null != areaCode) params.append("&areaCode="+areaCode); // 지역코드 : 전체

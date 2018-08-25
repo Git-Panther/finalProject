@@ -61,7 +61,7 @@ th {
   <table class="demo01">
     <tr>
       <th>축제/행사</th>
-      <td>축제/행사 페이지는...</td>
+      <td>사람들이..</td>
     </tr>
     <tr>
       <th>여행지</th>
