@@ -5,21 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="resources/js/common/component.js"></script>
-<script type="text/javascript"
-	src="resources/js/common/common_script.js"></script>
-<script type="text/javascript" src="resources/js/area/area_common.js"></script>
-<script type="text/javascript"
-	src="resources/js/area/area_main.js?ber=1"></script>
-
-<link href="resources/css/area/area_main.css" rel="stylesheet" />
-<link href="resources/css/city/main.css" rel="stylesheet" />
-<link href="resources/css/city/header_v2.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="resources/js/owl_carousel/owl.carousel2.css">
-<script type="text/javascript"
-	src="resources/js/owl_carousel/owl.carousel2.js"></script>
-<script type="text/javascript" src="resources/js/web/jui/jquery-ui.js"></script>
 <script>
 var sidoCode = '${sidoCode}';
 var sigunguCode = '${sigunguCode}';
@@ -29,7 +14,7 @@ var pageNo = 1;
 var total = 0;
 var curPage = 1;
 	$(document).ready(function() {
-		popList(15);
+		popList(sidoCode, sigunguCode, 15);
 	});
 </script>
 <meta charset="UTF-8">
@@ -157,7 +142,16 @@ var curPage = 1;
 	<div class="area_bg line spot_list silver">
 		<div class="wrap">
 			<div class="area_title_center city_po">
-				<c:out value="${name }" />
+				<c:choose>
+					<c:when test="${sidoName ne '-1'}">
+					${sidoName} 
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${sigunguName ne '-1'}">
+					${sigunguName}
+					</c:when>
+				</c:choose>
 				인기장소
 			</div>
 

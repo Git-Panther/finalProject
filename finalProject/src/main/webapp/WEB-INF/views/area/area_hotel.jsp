@@ -5,35 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- javascript -->
-<!-- <script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA_nL375kZbKh_UyHyB8EFsXdhJll3w0E&callback=initMap"type="text/javascript">
-	</script> -->
-<script type="text/javascript" src="resources/js/common/component.js"></script>
-<script type="text/javascript"
-	src="resources/js/common/common_script.js"></script>
-<script type="text/javascript" src="resources/js/area/area_common.js?a=1"></script>
-<script type="text/javascript"
-	src="resources/js/owl_carousel/owl.carousel2.js"></script>
-<script type="text/javascript" src="resources/js/web/jui/jquery-ui.js"></script>
-<script type="text/javascript" src="resources/js/area/area_hotel.js"></script>
-
-<!-- /javascript -->
-
-<!-- css -->
-<link href="resources/css/city/main.css" rel="stylesheet" />
-<link href="resources/css/city/header_v2.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="resources/js/owl_carousel/owl.carousel2.css">
-<link href="resources/css/hotelList.css" rel="stylesheet">
-<!-- /css -->
-
-<style>
-#map {
-	height: 400px; /* The height is 400 pixels */
-	width: 100%; /* The width is the width of the web page */
-}
-</style>
 <script>
 	var sidoCode = '${sidoCode}';
 	var sigunguCode = '${sigunguCode}';
