@@ -84,9 +84,11 @@ public class FestivalController {
 	// 축제 상세 정보 페이지로 이동
 	@RequestMapping("festival.do")
 	public ModelAndView festivalDetail(ModelAndView mv
+			, @RequestParam(value="contenttypeid", defaultValue="0") int contenttypeid
 			, @RequestParam(value="contentid", defaultValue="0") int contentid
 			, @RequestParam(value="eventstartdate", defaultValue="0") int eventstartdate
 			, @RequestParam(value="eventenddate", defaultValue="0") int eventenddate) {
+		mv.addObject("contenttypeid", contenttypeid);
 		mv.addObject("contentid", contentid);
 		mv.addObject("eventstartdate", eventstartdate);
 		mv.addObject("eventenddate", eventenddate);
