@@ -29,14 +29,14 @@
 								src="/planner/resources/images/common/profile/img_profile.png"
 							</c:if>
 							<c:if test="${!empty user.profilePic}">
-								src="/planner/resources/images/common/profile/${user.profilePic}"
+								src="/planner/resources/images/common/profile/${review.profilePic}"
 							</c:if>
 							class="cmmt_content_uimg"
 							onerror="this.src='/planner/resources/images/common/profile/img_profile.png';">
 							</a>
 							<div class="review_opbtn">
 							<div class="rv_op_btn rop_delete" data-srl="5353" onclick="reviewDelete(${review.cno})">삭제</div>
-							<div class="rv_op_btn line rop_edit" onclick="slideDownComment();">수정</div>
+							<div class="rv_op_btn line rop_edit" onclick="reviewModify(${review.cno}, this, '${review.content}');">수정</div>
 							<div class="rv_op_btn line rop_cancel" onclick="slideUpComment();">취소</div></div>
 						<div class="cmmt_c_user_txt">
 								<div class="cmmt_c_user_name">
@@ -219,6 +219,12 @@
     	//$(".write_area").hide();	
     	//$(".rv_op_btn.rop_cancel").hide();
     	
+    	console.log('${user.reviewyn}');
+    	<c:if test="${user.reviewyn eq 'N'}">
+	    	$(".review_opbtn").hide();
+    		$(".write_area").hide();	
+    	</c:if>
+    	
 		$(".rate_btn").click(function(){
 			var clickBtn = $(this).data("val");
 			$(".rate_btn").each(function(index){
@@ -270,43 +276,61 @@
 		        return num.length < 2 ? '0' + num : num;
 		}
 		 
-		tbody = $("#reviewContent");
-		tbody.empty();
+		var reviewDiv = $(".cmmt_tab_content.review");
+		reviewDiv.empty();
 		
+		var reviewHtml = "";
 		for(var i in list){
 			var writeDate = new Date(list[i].reg_date);
-			var tr = $("<tr>"); 
-			var userTd = $("<td>").text(list[i].writerNm);				
-			var dateTd = $("<td>").text(writeDate.getFullYear() + "-" + pad(writeDate.getMonth() + 1) + "-" + pad(writeDate.getDate()));				
-			var contentTd = $("<td>").text(list[i].content);
-			tr.append(userTd);
-			tr.append(dateTd);
-			tr.append(contentTd);
-			var actionTd;
-			
-			console.log(list[i]);
-			console.log(list[i].content);
-			if(list[i].writer == 123){
-				var htmlText = "<td><span class='btnDiv'><button onclick='reviewModify("+list[i].cno+", this, \""+list[i].content+"\");'>수정</button><button onclick='reviewDelete("+list[i].cno+")'>삭제</button></span></td>";
-				actionTd = $(htmlText);
+			reviewHtml += '<div class="cmmt_content_box">';
+			reviewHtml += 	'<a class="cmmt_c_user" href="내정보보기 호출 url" style= "width: 750px;">';
+			reviewHtml += 		'<img ';
+			if(list[i].profilePic == ''){
+				reviewHtml += 	'src="/planner/resources/images/common/profile/img_profile.png"';
 			}else{
-				actionTd = $("<td></td>");
+				reviewHtml += 	'src="/planner/resources/images/common/profile/' + list[i].profilePic + '" ';
 			}
-			tr.append(actionTd);
-			tbody.append(tr);
+			reviewHtml += 		'class="cmmt_content_uimg" onerror="this.src=\'/planner/resources/images/common/profile/img_profile.png\';">';
+			reviewHtml += 	'</a>';
+			reviewHtml +=	'<div class="review_opbtn">';
+			reviewHtml +=	'<div class="rv_op_btn rop_delete" data-srl="5353" onclick="reviewDelete(' + list[i].cno+ ')">삭제</div>';
+			reviewHtml +=	'<div class="rv_op_btn line rop_edit" onclick="reviewModify('+list[i].cno+', this, "'+list[i].content+'");">수정</div>';
+			reviewHtml +=	'<div class="rv_op_btn line rop_cancel" onclick="slideUpComment();">취소</div></div>';
+			reviewHtml +=	'<div class="cmmt_c_user_txt">';
+			reviewHtml +=		'<div class="cmmt_c_user_name">';
+			reviewHtml +=		list[i].writerNm + '<span>&nbsp;&nbsp;' + writeDate.getFullYear() + "-" + pad(writeDate.getMonth() + 1) + "-" + pad(writeDate.getDate()) + '</span>';
+			reviewHtml +=		'<div class="clear"></div>';
+			reviewHtml +=		'</div>';
+			reviewHtml +=		'<div class="cmmt_c_user_level">';
+			reviewHtml +=			'<div class="rv_cnt" style="margin-left: 1px;">' + list[i].reviewCnt + '개의 평가</div>';
+			reviewHtml +=			'<div class="clear"></div>';
+			reviewHtml +=		'</div>';
+			reviewHtml +=	'</div>';
+			reviewHtml +=	'<div class="clear"></div><div class="clear"></div>';
+			reviewHtml +=	'<div class="cmmt_content" style="padding-left :13px;">';
+			reviewHtml +=		'<div class="cmmt_content_info">';
+			console.log(list[i].grade);
+			if(list[i].grade == 1){
+				reviewHtml +=		'<span>별로에요!</span>';
+			}else if(list[i].grade == 3){
+				reviewHtml +=		'<span>괜찮아요!</span>';              
+			}else{
+				reviewHtml +=		'<span>좋아요!</span>';
+			}
+			reviewHtml += 	'</div>';
+			reviewHtml +=	list[i].content;
+			reviewHtml +='</div></div>';
+			//var dateTd = $("<td>").text(writeDate.getFullYear() + "-" + pad(writeDate.getMonth() + 1) + "-" + pad(writeDate.getDate()));				
 		}
+		reviewDiv.html(reviewHtml);
 		$("#content").val("");
 	}
 	
 	function reviewModify(cno, btn, replyContent){
-		if($("#writeReviewForm").length != 0){
-			alert("여러개의 댓글을 동시에 수정할 수 없습니다.");
-			return;
-		};
+				
+		$(".rv_op_btn").hide();
 		
-		$(".btnDiv").hide();
-		
-		content = $(btn).parent().prev().text();
+		$(btn).next().removeClass("line").show();
 		
 		var tr = $("<tr>");
 		var tdContent = $("<td colspan='3'><input type='text' id='writeReviewForm' value='"+replyContent+"'/></td>");

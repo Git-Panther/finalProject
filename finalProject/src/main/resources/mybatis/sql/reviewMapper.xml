@@ -5,7 +5,7 @@
 <mapper namespace="ReviewMapper">
 	<select id="selectReviewAll" parameterType="Review" resultType="Review">
 		SELECT CNO, CONTENT_ID, CONTENT, WRITER, REG_DATE, USERNAME as writerNM,
-			 nvl((select count(*) from review r where r.WRITER = writer),0) as "reviewCnt", profilePic
+			 nvl((select count(*) from review r where r.WRITER = m.userno),0) as "reviewCnt", PROFILEPIC, GRADE
 		FROM REVIEW
 		JOIN MEMBER M ON (WRITER = USERNO)
 		WHERE CONTENT_ID = #{content_id}

@@ -28,4 +28,8 @@ public class MemberService {
 		public List<Member> selectAdminMemberList() {
 			return dao.selectAdminMemberList();
 		}
+
+		public int updateReviewYn(Member member) {
+			return dao.updateReviewYn(member);
+		}
 }

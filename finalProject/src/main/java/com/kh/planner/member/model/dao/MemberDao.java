@@ -29,4 +29,8 @@ public class MemberDao {
 		return sqlSession.selectList("MemberMapper.selectAdminMemberList");
 	}
 
+	public int updateReviewYn(Member member) {
+		return sqlSession.insert("MemberMapper.updateReviewYn", member);
+	}
+
 }
