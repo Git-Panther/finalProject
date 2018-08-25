@@ -16,7 +16,7 @@
 <script>
 	var contentid = ${contentid};
 	var contenttypeid = ${contenttypeid};
-	<c:if test="15 eq ${contenttypeid}"> // 이걸 하는 이유가, 축제는 좋아요 기능을 넣어햐 하기 때문
+	<c:if test="15 eq ${contenttypeid}"> // 이걸 하는 이유가, 축제는 좋아요 기능을 넣어햐 하기 때문 + 호텔도
 		var eventstartdate = ${eventstartdate}, eventenddate = ${eventenddate};
 		console.log(eventstartdate, eventenddate);
 	</c:if>
@@ -163,7 +163,7 @@
 							</tr>
 							<tr>
 								<th>분류</th> <!-- 카테고리는 공통? 위와 중복이라 뺄수도 -->
-								<td colspan="3" id="category">???</td>
+								<td colspan="3" id="category">여행지 > <c:out value="${contenttypename}"></c:out></td>
 							</tr>
 							<!-- 이 아래부터는 각각의 정보가 들어갈 것이다. -->
 						</tbody>
