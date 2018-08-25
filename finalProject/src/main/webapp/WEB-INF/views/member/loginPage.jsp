@@ -12,7 +12,11 @@
 	margin-left: auto;
 	margin-right: auto;
 	border: 3px solid grey;
-	padding: 5px 5px 5px 5px;
+	
+	margin-top: 170px !important;
+    margin-bottom: 200px !important;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 #loginBtn, #loginMainBtn {
 	width: 290px;
@@ -50,9 +54,12 @@ td {
 }
 #loginFormDivTitle{
 	color: grey !important;
-	font-size: 20px !important;
+	font-size: 30px !important;
 	font-weight: bold !important;
 	line-height: 250%;
+    padding-bottom: 40px;
+    margin-top: -50px;
+	
 }
 </style>
 <title>Header</title>
@@ -80,10 +87,10 @@ td {
 	<form id="loginForm" method="post" action="login.do">
 		<table>
 			<tr>
-				<td><input type="text" name="userId" placeholder="아이디" class="infoInput" required/></td>
+				<td><input type="text" name="userId" placeholder="아이디" class="infoInput" required style="height: 46px; margin-bottom: 10px;"/></td>
 			</tr>
 			<tr>
-				<td><input type="password" name="password" placeholder="비밀번호" class="infoInput" required/></td>
+				<td><input type="password" name="password" placeholder="비밀번호" class="infoInput" required style="height: 46px; margin-bottom: 10px;"/></td>
 			</tr>
 		</table>
 		<input type="submit" style="display: none" />

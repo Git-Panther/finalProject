@@ -112,6 +112,11 @@ span {
    margin-right: auto;
    border: 3px solid #aaaaaa;
    padding: 5px 5px 5px 5px;
+ 
+    margin-top: 150px;
+    margin-bottom: 150px;
+    padding-top: 30px;
+    padding-bottom: 40px;
 }
 #checkDiv, #checkDiv2, #checkPwdDiv {
    color: red;
