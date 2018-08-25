@@ -10,10 +10,9 @@
 <title>상세정보</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="resources/js/common/common_ajax.js"></script>
-<script type="text/javascript" src="resources/js/common/common_detail.js"></script>
+<script type="text/javascript" src="resources/js/common/common_print.js"></script>
 <script type="text/javascript" src="resources/js/common/common_map.js"></script>
 <script type="text/javascript" src="resources/js/common/forecast.js"></script>
-<script type="text/javascript" src="resources/js/festival/festivalDetail.js"></script>
 <script>
 	var contentid = ${contentid};
 	var contenttypeid = ${contenttypeid};
