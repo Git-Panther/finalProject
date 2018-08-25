@@ -237,7 +237,7 @@
     	$.ajax({        
 	        url: 'writeReview.do',
 	        type: 'post',
-	        data: { content_id : ${contentid}, content : $("#content").val(), writer:${user.userNo}, grade:$(".rate_btn.on").data("val") },
+	        data: { contenttypeid : contenttypeid, contentid : ${contentid}, content : $("#content").val(), writer:${user.userNo}, grade:$(".rate_btn.on").data("val") },
 	        success: function(data){
 	        	console.log(data);
 	        	//1. 댓글 작성 성공 여부 화면 출력
@@ -328,7 +328,7 @@
 		$.ajax({        
 	        url: 'deleteReview.do',
 	        type: 'post',
-	        data: { content_id : ${contentid}, cno : cno },
+	        data: { contentid : ${contentid}, cno : cno },
 	        success: function(data){
 	        	console.log(data);
 	        	//1. 댓글 작성 성공 여부 화면 출력
@@ -349,7 +349,7 @@
 		$.ajax({        
 	        url: 'updateReview.do',
 	        type: 'post',
-	        data: { content_id : ${contentid}, cno : cno, content : $("#writeReviewForm").val() },
+	        data: { contentid : ${contentid}, cno : cno, content : $("#writeReviewForm").val() },
 	        success: function(data){
 	        	console.log(data);
 	        	//1. 댓글 작성 성공 여부 화면 출력
@@ -370,7 +370,7 @@
 		$.ajax({        
 	        url: 'selectReview.do',
 	        type: 'post',
-	        data: { content_id : ${contentid}},
+	        data: { contentid : ${contentid}},
 	        success: function(data){
 	        	setReviewList(data.list);
 	        }, error: function(XMLHttpRequest, textStatus, errorThrown) { 

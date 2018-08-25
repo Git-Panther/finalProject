@@ -5,7 +5,8 @@ import java.sql.Date;
 public class Review {
 	 
     private int cno;
-    private String content_id;
+    private int contenttypeid;
+    private int contentid;
     private String content;
     private int writer;
     private String writerNm;
@@ -53,7 +54,7 @@ public class Review {
 
 
 	public Review(int contentid) {
-    	content_id = String.valueOf(contentid);
+    	this.contentid = contentid;
 	}
 
 	public int getCno() {
@@ -62,11 +63,19 @@ public class Review {
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
-	public String getContent_id() {
-		return content_id;
+	
+	public int getContenttypeid() {
+		return this.contenttypeid;
 	}
-	public void setContent_id(String content_id) {
-		this.content_id = content_id;
+	public void setContenttypeid(int contenttypeid) {
+		this.contenttypeid = contenttypeid;
+	}
+	
+	public int getContentid() {
+		return this.contentid;
+	}
+	public void setContentid(int contentid) {
+		this.contentid = contentid;
 	}
 	public String getContent() {
 		return content;
@@ -99,7 +108,7 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [cno=" + cno + ", content_id=" + content_id + ", content=" + content + ", writer=" + writer
+		return "Review [cno=" + cno + ", contenttypeid=" + contenttypeid + ", contentid=" + contentid + ", content=" + content + ", writer=" + writer
 				+ ", writerNm=" + writerNm + ", reg_date=" + reg_date + ", grade=" + grade + ", reviewCnt=" + reviewCnt
 				+ "]";
 	}
