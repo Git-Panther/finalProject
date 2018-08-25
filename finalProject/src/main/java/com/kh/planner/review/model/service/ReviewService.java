@@ -30,4 +30,8 @@ public class ReviewService {
 		return dao.updateReview(review);
 	}
 
+	public List<Review> selectMyReview(Review review) {
+		return dao.selectMyReview(review);
+	}
+
 }

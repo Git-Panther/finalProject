@@ -23,7 +23,7 @@
 	}
 </script>
 <style>
-th {
+th, td {
 	text-align: center;
 	/* color: black; */
 }
@@ -44,12 +44,13 @@ th {
 <div class="container">
 <div class="jumbotron text-center">
   <h1>Admin page</h1> 
-  <p>Member Management, Review Management</p> 
-
+  <p>Member Management</p> 
+</div>
 <!-- <h2>관리자 페이지</h2>
   <p>회원 관리</p>   -->          
 	<table class="table table-bordered">
 		<tr>
+		    <th>No</th>
 			<th>이름</th>
 			<th>성별</th>
 			<th>이메일</th>
@@ -60,15 +61,16 @@ th {
 			<th>댓글 작성<br>가능 여부</th>
 			<th>탈퇴</th>
 		</tr>
-		<c:forEach items="${mlist }" var="member">
+		<c:forEach items="${mlist }" var="member" varStatus="status">
 			<tr>
+				<td>${status.count }</td>
 				<td>${member.userName }</td>
 				<td>
 					<c:if test="${member.gender eq 'M'}">
 						남
 					</c:if>
 					<c:if test="${member.gender ne 'M'}">
-						녀
+						여
 					</c:if>
 				</td>
 				<td>${member.email }</td>
@@ -94,7 +96,6 @@ th {
 		
 	</table>
 </div>
-</div>		
 <c:import url="/footer.do"/>	
 </body>
 </html>

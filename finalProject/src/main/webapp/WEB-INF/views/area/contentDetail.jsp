@@ -270,7 +270,7 @@
                            <div class="clear"></div>
                         </div>
                         <div class="cmmt_c_user_level">
-                           <div class="rv_cnt" style="margin-left: 1px;">${review.reviewCnt}개의 평가</div>
+                           <a href="myReviewList.do?writer=${review.writer}"><div class="rv_cnt" style="margin-left: 1px;">${review.reviewCnt}개의 평가</div></a>
                            <div class="clear"></div>
                         </div>
                      </div>
@@ -526,7 +526,8 @@ function setReviewList(list){
      reviewHtml +=      '<div class="clear"></div>';
      reviewHtml +=      '</div>';
      reviewHtml +=      '<div class="cmmt_c_user_level">';
-     reviewHtml +=         '<div class="rv_cnt" style="margin-left: 1px;">' + list[i].reviewCnt + '개의 평가</div>';
+     reviewHtml +=         '<a href="myReviewList.do?writer=' + list[i].writer + '">';
+     reviewHtml +=         '<div class="rv_cnt" style="margin-left: 1px;">' + list[i].reviewCnt + '개의 평가</div></a>';
      reviewHtml +=         '<div class="clear"></div>';
      reviewHtml +=      '</div>';
      reviewHtml +=   '</div>';
@@ -570,6 +571,7 @@ function reviewModify(cno, btn, replyContent, grade){
   
   //var id = ;
   $("#content").val($("#content" + cno).text().trim());
+  $("#content").focus();
   $("#si_review_form_submit").text("수정");
   $("#si_review_form_submit").attr("onclick", "updateReview("+cno+");");
   

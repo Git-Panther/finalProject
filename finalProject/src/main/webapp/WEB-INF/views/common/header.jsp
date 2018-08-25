@@ -105,7 +105,7 @@ $(function(){
 						<div class="gnb_mn_drop" style="display:none;">
 							<a href="" class="item">찜 목록</a><br/>
 							<a href="" class="item">내 일정</a><br/>
-							<a href="" class="item">리뷰</a><br/>
+							<a href="myReviewList.do?writer=${user.userNo}" class="item">리뷰</a><br/>
 							<c:if test="${user.userNo eq 1}">
 								<a href="adminMain.do" class="item">관리자 페이지</a><br/>
 							</c:if>

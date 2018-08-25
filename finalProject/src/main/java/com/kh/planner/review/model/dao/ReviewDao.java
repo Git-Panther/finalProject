@@ -29,4 +29,8 @@ public class ReviewDao {
 		return sqlSession.update("ReviewMapper.updateReview", review);
 	}
 
+	public List<Review> selectMyReview(Review review) {
+		return sqlSession.selectList("ReviewMapper.selectMyReview", review);
+	}
+
 }
