@@ -28,8 +28,13 @@
       font-size: 50px;
   }
   .logo {
+  	
       color: #538ce8;
       font-size: 200px;
+  }
+ img{
+    float: left;
+    margin-top: -20px;
   }
   @media screen and (max-width: 768px) {
     .col-sm-4 {

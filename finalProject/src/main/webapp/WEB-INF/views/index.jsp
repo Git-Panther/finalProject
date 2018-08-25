@@ -59,13 +59,14 @@
 	<div class="page silver" style="padding-top: 30px;">
 
 		<!-- 축제/행사 배너 자리 -->
-		<center style="padding-bottom: 50px;">
+		<%-- <center style="padding-bottom: 50px;">
 			<a href="/" target="_blank"><img src="/res/1600_210_1.png"
 				style="width: 1000px; height: auto;">축제/행사 배너 자리</a>
-		</center>
+		</center> --%>
 
 		<!--//<center style="padding-bottom:50px;"><a href="/earthtory_agoda" target="_blank"><img src="/res/et_x_agoda/1000X131.jpg" style="width:1000px;height:auto;"></a></center>-->
-		<div class="wrap">
+			<!--  ㅇ-->	
+	<!-- 	<div class="wrap">
 			<div class="page_title">인기 축제 일정</div>
 			<div class="page_desc">현재 진행 중인 인기있는 축제를 만나보세요!</div>
 			<div class="plan_list">
@@ -95,10 +96,11 @@
 			</div>
 			<div class="more_btn" onclick="location.href='/ko/plan';">
 				(축제 개수 조회)개의 축제일정 모두 보기
-				<!-- api에서 진행중인 축제 개수를 얻어옴 -->
+				api에서 진행중인 축제 개수를 얻어옴
 			</div>
 		</div>
-	</div>
+	</div> -->
+	<!-- ㅇ -->
 	<c:import url="/footer.do"/>
 </body>
 </html>
