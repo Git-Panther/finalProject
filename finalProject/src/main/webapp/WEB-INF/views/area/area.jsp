@@ -9,16 +9,15 @@
 <script type="text/javascript"
 	src="resources/js/common/common_script.js"></script>
 <script type="text/javascript" src="resources/js/area/area_common.js"></script>
-<script type="text/javascript" src="resources/js/area/area_script.js"></script>
 <link href="resources/css/area/area.css" rel="stylesheet" />
 <link href="resources/css/city/main.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
 <script>
-var sidoName = "-1";
-var sidoCode = "-1";
-var sigunguName = "-1";
-var sigunguCode = "-1";
+var sidoName = '${sidoName}';
+var sidoCode = '${sidoCode}';
+var sigunguName = '${sigunguName}';
+var sigunguCode = '${sigunguCode}';
 
 
 $(document).ready(function(){
@@ -67,12 +66,10 @@ function get_city() {
 			_html = "";
 
 			$.each(object ,function(index,item){
-				console.log("index : ", index);
-				console.log("item : ", item);
-				sidoName = object[index].name;
-				console.log("sidoName: ", sidoName);
-				sidoCode = object[index].code;
-				console.log("sidoCode: ", sidoCode);
+				console.log("get_city::index: ", index);
+				console.log("get_city::item: ", item);
+				console.log("get_city::sidoName: ", sidoName);
+				console.log("get_city::sidoCode: ", sidoCode);
 				if(index != 7) {
 					if(index < 10) {
 					_html += '<div class="travel_city" data-on="off" data-show="00' + index + '" code="' + item.code + '">';
@@ -85,7 +82,7 @@ function get_city() {
 				_html += '<div class="clear"></div>';
 				_html += '</div>';
 				_html += '</div>';
-				get_sigungu(index, sidoCode, sidoName);
+				get_sigungu(index, object[index].code, object[index].name);
 				}
 				if(index == 8) {
 					_html += '<div class="clear"></div>';
@@ -113,8 +110,7 @@ function get_city() {
 					dataType : 'json',
 					success : function(data) {
 						var count = data.response.body.totalCount;
-						$
-								.ajax({
+						$.ajax({
 									type : 'get',
 									url : 'sigunguList.do',
 									data : {
@@ -124,6 +120,8 @@ function get_city() {
 									dataType : 'json',
 									success : function(data) {
 										var object = data.response.body.items.item;
+										console.log("get_sigungu::sidoCode: ",sidoCode);
+										console.log("get_sigungu::object: ",object);
 										_html = "";
 										if (id < 10) {
 											_html += '<div class="travel_hide" data-id="00' + id + '" style="">';
@@ -138,24 +136,19 @@ function get_city() {
 												+ "'"
 												+ ')" class="travel_ar">'
 												+ sidoName + ' </a>');
-										$
-												.each(
-														object,
-														function(index, item) {
-															console
-																	.log(sidoName.length);
-															_html += ('<a href="javascript:moveAreaMain('
-																	+ "'"
-																	+ sidoName
-																	+ "', '"
-																	+ sidoCode
-																	+ "', '"
-																	+ object[index].name
-																	+ "', '"
-																	+ object[index].code
-																	+ "'"
-																	+ ')" class="travel_ar">'
-																	+ object[index].name + ' </a>');
+										$.each(object,	function(index, item) {
+												_html += ('<a href="javascript:moveAreaMain('
+														+ "'"
+														+ sidoName
+														+ "', '"
+														+ sidoCode
+														+ "', '"
+														+ object[index].name
+														+ "', '"
+														+ object[index].code
+														+ "'"
+														+ ')" class="travel_ar">'
+														+ object[index].name + ' </a>');
 														});
 										_html += '</div>';
 										if (id < 9) {
@@ -169,7 +162,7 @@ function get_city() {
 				});
 	}
 
-	function get_reco_city() {
+	/*function get_reco_city() { 
 		console.log('aaaa');
 		_ct_code = $('.po_city_area.on').attr('data');
 		console.log(_ct_code);
@@ -201,11 +194,10 @@ function get_city() {
 						$('.po_city_box').html(_html);
 					}
 				});
-	}
+	} */
 
 	function popList(contentTypeId) {
-		$
-				.ajax({
+		$.ajax({
 					type : 'GET',
 					url : 'popList.do',
 					dataType : 'json',
@@ -321,6 +313,7 @@ function get_city() {
 		form.appendTo($("#header"));
 		form.submit();
 	}
+	
 </script>
 </head>
 <body>

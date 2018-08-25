@@ -1,4 +1,5 @@
 package com.kh.planner.member.model.service;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,12 @@ public class MemberService {
 
 		public int updateMember(Member member) {
 			return dao.updateMember(member);
+		}
+		public List<Member> selectAdminMemberList() {
+			return dao.selectAdminMemberList();
+		}
+
+		public int updateReviewYn(Member member) {
+			return dao.updateReviewYn(member);
 		}
 }

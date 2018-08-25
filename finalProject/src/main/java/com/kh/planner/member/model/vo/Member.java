@@ -15,6 +15,10 @@ public class Member {
 	private String birthday;
 	private Date enrollDate;
 	private String profilePic;
+	private int cnt1;
+	private int cnt3;
+	private int cnt5;
+	private String reviewyn;
 	
 	public Member(){}
 
@@ -101,6 +105,38 @@ public class Member {
 
 	public void setProfilePic(String profilePic) {
 		this.profilePic = profilePic;
+	}
+
+	public int getCnt1() {
+		return cnt1;
+	}
+
+	public void setCnt1(int cnt1) {
+		this.cnt1 = cnt1;
+	}
+
+	public int getCnt3() {
+		return cnt3;
+	}
+
+	public void setCnt3(int cnt3) {
+		this.cnt3 = cnt3;
+	}
+
+	public int getCnt5() {
+		return cnt5;
+	}
+
+	public void setCnt5(int cnt5) {
+		this.cnt5 = cnt5;
+	}
+
+	public String getReviewyn() {
+		return reviewyn;
+	}
+
+	public void setReviewyn(String reviewyn) {
+		this.reviewyn = reviewyn;
 	}
 
 	@Override

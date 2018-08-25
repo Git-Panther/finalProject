@@ -57,3 +57,4 @@ function popList(contentTypeId) {
 		}
 	});
 };
+

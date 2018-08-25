@@ -8,17 +8,24 @@
 <link href="resources/css/city/spot_info.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>상세정보</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="resources/js/common/common_ajax.js"></script>
+<script type="text/javascript" src="resources/js/common/common_detail.js"></script>
+<script type="text/javascript" src="resources/js/common/common_map.js"></script>
+<script type="text/javascript" src="resources/js/common/forecast.js"></script>
+<script type="text/javascript" src="resources/js/festival/festivalDetail.js"></script>
 <script>
-$(document).ready(	function() {
-	$.ajax({
-		
-		
-		
-		
+	var contentid = ${contentid};
+	var contenttypeid = ${contenttypeid};
+	<c:if test="15 eq ${contenttypeid}"> // 이걸 하는 이유가, 축제는 좋아요 기능을 넣어햐 하기 때문
+		var eventstartdate = ${eventstartdate}, eventenddate = ${eventenddate};
+		console.log(eventstartdate, eventenddate);
+	</c:if>
+	
+	$(function(){
+		//console.log(contentid, contenttypeid);
+		detailCommon(contenttypeid, contentid); // 기본 정보 조회. 이후 순서대로 조회될 것이다.
 	});
-	console.log('${contenttypename}', '${contentid}', '${title}'); // 넘어오는 값들
-	console.log('${eventstartdate}', '${eventenddate}');
-});
 </script>
 </head>
 <body>
@@ -50,10 +57,19 @@ $(document).ready(	function() {
 
 			<div class="header_left">
 				<div class="spot_name">
-					경복궁&nbsp;<span>Gyeongbokgung</span>
+					<c:choose>
+						<c:when test="${title ne '-1'}"> &gt; 
+							<c:out value="${title}"/>
+						</c:when>
+						<c:otherwise>
+							UNKNOWN
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<div class="spot_addr">161 Sajik-ro, Jongno-gu, Seoul, South
-					Korea</div>
+				<div class="spot_addr">address</div>
+				<div class="spot_homepage">homepage</div>
+				<div class="spot_tel">tel</div>
+				<!--  
 				<div class="clip_cnt">477</div>
 				<div class="cnt_line">&nbsp;</div>
 				<div class="rate">
@@ -61,6 +77,7 @@ $(document).ready(	function() {
 						평가</span>
 				</div>
 				<div class="add_img" onclick="$('#img1').click();">사진추가</div>
+				-->
 			</div>
 			<div class="header_right">
 				<div class="header_btn btn_review" onclick="go_review();">
@@ -78,7 +95,7 @@ $(document).ready(	function() {
 							src="/planner/resources/images/city/spot_info/spot_clip_btn.png"
 							alt="">
 					</div>
-					<div class="header_btn_txt">클립</div>
+					<div class="header_btn_txt">찜하기</div>
 				</div>
 				<div class="header_btn on">
 					<div class="header_btn_icon add_plan"
@@ -106,6 +123,7 @@ $(document).ready(	function() {
 	<div class="wrap">
 		<div class="content_left">
 			<div class="spot_img_box">
+			<!-- 이미지 알고리즘은 뜯어고칠 예정 : 어스토리의 슬라이드쇼 또는 세미프로젝트 -->
 				<div class="spot_img" onclick="img_slide('0');">
 					<img
 						src="http://img.earthtory.com/img/place_img_user/820668/6645/6645_1415673028.JPG">
@@ -138,33 +156,17 @@ $(document).ready(	function() {
 							<col width="251">
 						</colgroup>
 						<tbody>
-							<tr>
+							<tr><!-- 형식을 맞춘 것으로 추정 -->
 								<th></th>
 								<td></td>
 								<th></th>
 								<td></td>
 							</tr>
 							<tr>
-								<th>카테고리</th>
-								<td>명소 &gt; 랜드마크, 성/궁궐</td>
-								<th>웹사이트</th>
-								<td><a href="http://www.royalpalace.go.kr" target="_blank">www.royalpalace.go.kr</a></td>
+								<th>분류</th> <!-- 카테고리는 공통? 위와 중복이라 뺄수도 -->
+								<td colspan="3" id="category">???</td>
 							</tr>
-							<tr>
-								<th>가는방법</th>
-								<td colspan="3">[Line 3]Gyeongbokgung(경복궁)역 5번 출구. 도보 5분.</td>
-							</tr>
-							<tr>
-								<th>전화번호</th>
-								<td>02-3700-3900</td>
-								<td colspan="2">&nbsp;</td>
-							</tr>
-							<tr>
-								<th>영업시간</th>
-								<td>1월-2월 09:00~17:00 3월-5월 09:00~18:00 6월-8월 09:00~18:30
-									9월-10월 09:00~18:00 11월-12월 09:00~17:00 매주 화요일 휴궁</td>
-								<td colspan="2"></td>
-							</tr>
+							<!-- 이 아래부터는 각각의 정보가 들어갈 것이다. -->
 						</tbody>
 					</table>
 
@@ -222,8 +224,10 @@ $(document).ready(	function() {
 						<tbody>
 							<tr>
 								<td colspan="4">
+								<!--  
 									<div class="btn_spot_edit" onclick="spot_update(6638,'경복궁');">
 										정보수정 업데이트</div>
+								-->
 									<div class="source_txt" id="source_fq" style="display: none;">
 										Powered by Foursquare</div>
 									<div class="source_txt" id="source_vk" style="display: none;">

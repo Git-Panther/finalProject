@@ -1,5 +1,7 @@
 package com.kh.planner.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,6 +31,13 @@ public class MemberDao {
 
 	public int updateMember(Member member) {
 		return sqlSession.update("MemberMapper.updateMember", member);
+	}
+	public List<Member> selectAdminMemberList() {
+		return sqlSession.selectList("MemberMapper.selectAdminMemberList");
+	}
+
+	public int updateReviewYn(Member member) {
+		return sqlSession.insert("MemberMapper.updateReviewYn", member);
 	}
 
 }
