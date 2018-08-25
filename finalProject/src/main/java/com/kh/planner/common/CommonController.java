@@ -33,6 +33,12 @@ public class CommonController { // 공통으로 쓰는 컨트롤러
 		return "common/footer";
 	}
 	
+	@RequestMapping(value = "area_header.do")
+	public String area_header() {
+		return "area/area_header";
+	}
+	
+	
 	// tourApi의 정보 중 하나의 상세 정보 페이지로 이동(축제는 eventstartdate 넘어온 걸로 판별 가능할지도? 보다는 contenttypeid로 판별하자)
 	@RequestMapping("contentDetail.do")
 	public ModelAndView contentDetail(ModelAndView mv,

@@ -36,20 +36,20 @@ public class JsonParser {
 		return resultStr;
 	}
 
-	public static String getSearchStay(String areaCode, String sigunguCode, String arrange, String pageNo) {
+	public static String getSearchStay(String sidoCode, String sigunguCode, String arrange, String pageNo) {
 		String resultJson = "";
 		try {
 			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?serviceKey=";
 			String parameter = "";
 
-			parameter += "&numOfRows=" + 2;
+			parameter += "&numOfRows=" + 15;
 			parameter += "&pageNo=" + pageNo;
 			parameter += "&MobileOS=" + "ETC";
 			parameter += "&MobileApp=" + "AppTest";
 			parameter += "&listYN=" + "Y";
 			parameter += "&arrange=" + arrange;
-			parameter += "&areaCode=" + areaCode;
-			if (Integer.parseInt(sigunguCode) != 0) {
+			parameter += "&areaCode=" + sidoCode;
+			if (!sigunguCode.equals("-1")) {
 				parameter += "&sigunguCode=" + sigunguCode;
 			}
 			parameter += "&_type= " + "json";
