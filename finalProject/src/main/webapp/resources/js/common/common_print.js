@@ -525,8 +525,267 @@ function printHotelIntro(item){
 
 function printShoppingIntro(item){
 	console.log("printShoppingIntro called");
+	var $tbody = $("#spot_info_default").children("tbody");
+	//console.log($tbody);
+	
+	var tr = $("<tr>"); // 한 줄
+	var th = $("<th>"); // 설명의 제목
+	var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
+	
+	if(undefined != item.opendateshopping && "" != item.opendateshopping){
+		th.html("개장일").appendTo(tr);
+		td.html(item.opendateshopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.restdateshopping && "" != item.restdateshopping){
+		th.html("휴일").appendTo(tr);
+		td.html(item.restdateshopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.opentime && "" != item.opentime){
+		th.html("영업시간").appendTo(tr);
+		td.html(item.opentime).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.fairday && "" != item.fairday){
+		th.html("장서는 날").appendTo(tr);
+		td.html(item.fairday).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.parkingshopping && "" != item.parkingshopping){
+		th.html("주차시설").appendTo(tr);
+		td.html(item.parkingshopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.culturecenter && "" != item.culturecenter){
+		th.html("문화센터").appendTo(tr);
+		td.html(item.culturecenter).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.scaleshopping && "" != item.scaleshopping){
+		th.html("규모").appendTo(tr);
+		td.html(item.scaleshopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.restroom && "" != item.restroom){
+		th.html("화장실").appendTo(tr);
+		td.html(item.restroom).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkcreditcardshopping && "" != item.chkcreditcardshopping){
+		th.html("신용카드").appendTo(tr);
+		td.html(item.chkcreditcardshopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkpetshopping && "" != item.chkpetshopping){
+		th.html("반려동물 입장").appendTo(tr);
+		td.html(item.chkpetshopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkbabycarriageshopping && "" != item.chkbabycarriageshopping){
+		th.html("유모차 대여").appendTo(tr);
+		td.html(item.chkbabycarriageshopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.shopguide && "" != item.shopguide){
+		th.html("매장안내").appendTo(tr);
+		td.html(item.shopguide).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.saleitem && "" != item.saleitem){
+		th.html("판매 품목").appendTo(tr);
+		td.html(item.saleitem).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.saleitemcost && "" != item.saleitemcost){
+		th.html("품목별 가격").appendTo(tr);
+		td.html(item.saleitemcost).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.infocentershopping && "" != item.infocentershopping){
+		th.html("문의").appendTo(tr);
+		td.html(item.infocentershopping).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
 }
 
 function printRestaurantIntro(item){
 	console.log("printRestaurantIntro called");
+	var $tbody = $("#spot_info_default").children("tbody");
+	//console.log($tbody);
+	
+	var tr = $("<tr>"); // 한 줄
+	var th = $("<th>"); // 설명의 제목
+	var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
+	
+	if(undefined != item.opendatefood && "" != item.opendatefood){
+		th.html("개업일").appendTo(tr);
+		td.html(item.opendatefood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.opentimefood && "" != item.opentimefood){
+		th.html("영업 시간").appendTo(tr);
+		td.html(item.opentimefood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.restdatefood && "" != item.restdatefood){
+		th.html("휴일").appendTo(tr);
+		td.html(item.restdatefood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.treatmenu && "" != item.treatmenu){
+		th.html("취급 메뉴").appendTo(tr);
+		td.html(item.treatmenu).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.firstmenu && "" != item.firstmenu){
+		th.html("대표 메뉴").appendTo(tr);
+		td.html(item.firstmenu).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.scalefood && "" != item.scalefood){
+		th.html("규모").appendTo(tr);
+		td.html(item.scalefood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.seat && "" != item.seat){
+		th.html("좌석수").appendTo(tr);
+		td.html(item.seat).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.packing && "" != item.packing){
+		th.html("포장").appendTo(tr);
+		td.html(item.packing).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.reservationfood && "" != item.reservationfood){
+		th.html("예약").appendTo(tr);
+		td.html(item.reservationfood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.parkingfood && "" != item.parkingfood){
+		th.html("주차").appendTo(tr);
+		td.html(item.parkingfood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.discountinfofood && "" != item.discountinfofood){
+		th.html("할인").appendTo(tr);
+		td.html(item.discountinfofood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkcreditcardfood && "" != item.chkcreditcardfood){
+		th.html("신용카드").appendTo(tr);
+		td.html(item.chkcreditcardfood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.smoking && "" != item.smoking){
+		th.html("금연/흡연 여부").appendTo(tr);
+		td.html(item.smoking).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.kidsfacility && "" != item.kidsfacility){
+		th.html("어린이 놀이방").appendTo(tr);
+		td.html(item.kidsfacility).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.infocenterfood && "" != item.infocenterfood){
+		th.html("문의").appendTo(tr);
+		td.html(item.infocenterfood).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+}
+
+function parseYN(message){
+	console.log(message);
+	return ("Y" == message) ? "가능" : "불가";
 }
