@@ -1,5 +1,4 @@
 package com.kh.planner.member.model.service;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,13 @@ public class MemberService {
 			return dao.deleteMember(member);
 		}
 
+		public int updatePassword(Member member) {
+			return dao.updatePassword(member);
+		}
+
+		public int updateMember(Member member) {
+			return dao.updateMember(member);
+		}
 		public List<Member> selectAdminMemberList() {
 			return dao.selectAdminMemberList();
 		}

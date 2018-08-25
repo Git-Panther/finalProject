@@ -14,11 +14,12 @@
 	</insert>
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
-		SET EMAIL = #{email}, BIRTHDAY = TO_DATE(#{birthday}, 'YYYY/MM/DD'), EMAIL = #{email}, PROFILEPIC = #{newProfilePic}
+		SET EMAIL = #{email}, BIRTHDAY = TO_DATE(#{birthday}, 'YYYY/MM/DD'), PROFILEPIC = #{profilePic}
 		WHERE USERID = #{userId}
 	</update>
 	<update id="updatePassword" parameterType="Member" >
-		UPDATE MEMBERSET PASSWORD = #{newPassword}
+		UPDATE MEMBER
+		SET PASSWORD = #{password}
 		WHERE USERID = #{userId}
 	</update>
 	<delete id="deleteMember" parameterType="Member">
