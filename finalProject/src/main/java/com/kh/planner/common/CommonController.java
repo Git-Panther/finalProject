@@ -2,10 +2,12 @@ package com.kh.planner.common;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,9 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.planner.festival.controller.FestivalController;
+import com.kh.planner.review.model.service.ReviewService;
+import com.kh.planner.review.model.vo.Review;
 
 @Controller
-public class CommonController { // 공통으로 쓰는 컨트롤러
+public class CommonController { 
+	@Autowired
+	private ReviewService rs;
+	// 공통으로 쓰는 컨트롤러
 	//private static final String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
 	private static final String tourapikey = "?ServiceKey=EuYOKtjgM9QR9GFYmz2fS0z%2FHXF3%2B80PelXkPL7lRVc2nzcw4dg8OwalAxk2OZu%2F%2BNOmxyqSRqKFXnUg2pGeBg%3D%3D";
 	private static final String forecastkey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
@@ -61,10 +68,14 @@ public class CommonController { // 공통으로 쓰는 컨트롤러
 		mv.addObject("contenttypeid", contenttypeid);
 		mv.addObject("contentid", contentid);
 		if(-1 != eventstartdate) mv.addObject("eventstartdate", eventstartdate);
-		if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);	
+		if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);
+		
+		List<Review> list = rs.selectReviewAll(new Review(contentid));
+		mv.addObject("rlist", list);
+		
 		mv.addObject("title", title);
 		mv.setViewName("area/contentDetail");
-		
+				
 		logger.info("contentDetail.do : " + mv.toString());
 		return mv;
 	}

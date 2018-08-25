@@ -22,7 +22,7 @@
 	
 	<update id="updateReview" parameterType="Review">
 		UPDATE REVIEW
-		SET CONTENT = #{content}
+		SET CONTENT = #{content}, grade = #{grade}
 		WHERE CNO = #{cno}
 	</update>
 </mapper>

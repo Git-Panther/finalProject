@@ -45,7 +45,7 @@ th {
 <div class="jumbotron text-center">
   <h1>Admin page</h1> 
   <p>Member Management, Review Management</p> 
-</div>
+
 <!-- <h2>관리자 페이지</h2>
   <p>회원 관리</p>   -->          
 	<table class="table table-bordered">
@@ -93,6 +93,7 @@ th {
 		</c:forEach>
 		
 	</table>
+</div>
 </div>		
 <c:import url="/footer.do"/>	
 </body>
