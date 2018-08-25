@@ -60,7 +60,6 @@
                   $("#checkPwdDiv").html("");
                } else if($("#password").val() != $("#password2").val()) {
                   $("#checkPwdDiv").html("비밀번호가 일치하지 않습니다");
-                  $("#joinBtn").attr(alert('비밀번호를 확인해주세요'));
                }
             });    
    });

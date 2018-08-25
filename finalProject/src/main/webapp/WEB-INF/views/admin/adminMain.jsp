@@ -42,6 +42,14 @@
       margin: 25px 0;
     }
   }
+    .use {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #ff9320;
+    text-decoration: underline;
   </style>
 </head>
 <body>
@@ -60,13 +68,13 @@
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-off logo-small"></span>
       <!-- <h4>POWER</h4> -->
-      <a href="adminreview.do">회원</a>
+      <a class="use"; href="adminreview.do">회원</a>
       <!-- <p>Lorem ipsum dolor sit amet..</p> -->
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-heart logo-small"></span>
       <!-- <h4>LOVE</h4> -->
-      <a href="adminmember.do">리뷰</a>
+      <a class="use"; href="adminmember.do">리뷰</a>
       <!-- <p>Lorem ipsum dolor sit amet..</p> -->
     </div>
     <div class="col-sm-4">
