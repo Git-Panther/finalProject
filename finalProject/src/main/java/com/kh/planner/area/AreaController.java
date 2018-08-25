@@ -75,7 +75,7 @@ public class AreaController {
 		json.put("data", result);
 	}
 
-	@RequestMapping(value = "popList.do", method = RequestMethod.GET)
+	@RequestMapping(value = "popList.do")
 	public void popList(HttpServletRequest request, HttpServletResponse response, 
 			@RequestParam(defaultValue = "-1") String sidoCode,
 			@RequestParam(defaultValue = "-1") String sigunguCode, 

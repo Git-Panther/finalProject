@@ -21,7 +21,7 @@ var sigunguCode = '${sigunguCode}';
 var contenttypeid = '${contenttypeid}';
 
 $(document).ready(function(){
-	get_city();
+	//get_city();
 	popList(15);
 	$(document).on('click','.travel_city',function(){
 		var _this_show = $(this).attr('data-show');
