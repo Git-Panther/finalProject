@@ -14,6 +14,83 @@ $(document).ready(	function() {
 	});
 });
 
+function popList(contenttypeid) {
+	$.ajax({
+				type : 'post',
+				url : 'popList.do',
+				dataType : 'json',
+				data : {
+					contenttypeid : contenttypeid
+				},
+				success : function(data) {
+					var items = data.response.body.items;
+					var object = data.response.body.items.item;
+					_html = "";
+					if (data.response.body.totalCount == 1) {
+						object = items;
+					} else if (data.response.body.totalCount == 0) {
+						_html = "<h2>조회 결과가 없습니다.</h2>";
+					} else {
+						$
+								.each(
+										object,
+										function(index, item) {
+											_html += '<a class="pospot"';
+											if (15 === object[index].contenttypeid) {// 링크는 축제 한정으로 옮긴다..
+												_html += 'href="javascript:festivalDetail('
+														+ object[index].contentid
+														+ ', '
+														+ object[index].eventstartdate
+														+ ', '
+														+ object[index].eventenddate
+														+ ', '
+														+ "'.wrap'"
+														+ ');"';
+											} else {
+												_html += 'href="javascript:moveContent('
+														+ object[index].contenttypeid
+														+ ", "
+														+ object[index].contentid
+														+ ", '"
+														+ object[index].title
+														+ "')" + '"';
+											}
+											if (index == 3 || index == 7) {
+												_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
+											} else {
+												_html += 'target="_blank"><div class="po_img_box">';
+											}
+											_html += '<img ';
+											if (object[index].firstimage == undefined) {
+												_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
+											} else {
+												_html += 'src="'
+														+ object[index].firstimage
+														+ '"';
+											}
+											_html += 'alt="" class="po_img">';
+											_html += '</div>';
+											_html += '<div class="po_name">'
+													+ object[index].title
+													+ '</div>';
+											_html += '<div class="po_bottom">';
+											_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
+											_html += '<div class="po_cnt">'
+													+ object[index].readcount
+													+ '</div>';
+											_html += '<div class="po_tag">유명한거리/지역</div>';
+											_html += '</div></a>';
+
+										});
+					}
+					$(".pospot_content").html(_html);
+					$(".pospot_content")
+							.append('<div class="clear"></div>');
+				}
+			});
+};
+
+
 function moveAreaMain(sidoName, sidoCode){ // 함수 오버로딩
 	var form = $("<form>");
 	form.attr("id", "areaMain");
@@ -43,7 +120,7 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 
 function moveContent(sidoName, sidoCode, 
 		sigunguName, sigunguCode, 
-		contenttypeid, contentid, title, eventstartdate, eventenddate){
+		contentTypeId, contentid, title, eventstartdate, eventenddate){
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -51,7 +128,7 @@ function moveContent(sidoName, sidoCode,
 	form.attr("method", "post");
 	form.attr("action", "/planner/contentDetail.do");
 	
-	switch(contenttypeid) {
+	switch(contentTypeId) {
 	case 15 :
 		contenttypename = '축제/행사';
 		$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
@@ -77,7 +154,7 @@ function moveContent(sidoName, sidoCode,
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contentTypeId").val(contentTypeId).appendTo(form);
 	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
 	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
@@ -96,7 +173,7 @@ function areaMenu(menu) {
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contentTypeId").val(contentTypeId).appendTo(form);
 	$("<input type='hidden'>").attr("name", "menu").val(menu).appendTo(form);
 	
 	form.appendTo($("#header"));
@@ -104,7 +181,7 @@ function areaMenu(menu) {
 }
 
 
-function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage) {
+function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage) {
 	$(function() {
 		  $.ajax({
 			url : 'getList.do',
@@ -112,14 +189,15 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 			data : {
 				sidoCode : sidoCode,
 				sigunguCode : sigunguCode,
-				contenttypeid : contenttypeid,
+				contentTypeId : contentTypeId,
 				arrange : arrange,
 				pageNo : pageNo
 			}, //contentid, contentTypeid 서버로 전송
 			dataType : 'json',
 			success : function(data) {
-				console.log(data.response.body.totalCount);
-				console.log(data.response.body.items.item);
+				console.log("getList::contentTypeId: ", contentTypeId);
+				console.log("getList::totalCount: ", data.response.body.totalCount);
+				console.log("getList::item: ", data.response.body.items.item);
 				total = data.response.body.totalCount;
 				if(total != 1) {
 					var item = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
@@ -128,7 +206,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 				}
 				var output = '';
 				
-				$(".list_cnt").html("총 " + total + "개의 호텔");
+				$(".list_cnt").html("총 " + total + "개");
 
 				for (var i = 0; i < (item.length); i++) {
 					if(item[i].firstimage == undefined) {
@@ -138,7 +216,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img ';
 					output += 'src="' + item[i].firstimage + '"';
 					output += 'alt="" class="ht_img"';
-					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '" ';
+					output += 'onclick="javascript:moveContent(' + item[i].contentTypeId + ", " + item[i].contentTypeId + ",'" + item[i].title + "') " + '" ';
 					output += 'data-srl="' + item[i].contentid + '">';
 					output += '<div class="box_right">';
 					output += '<div class="btn_clip" data-yn="n" data-srl="' + item[i].contentid + '"'; 
@@ -150,7 +228,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img src="/planner/resources/images/city/spot_list/addplan_ico.png" alt="">';
 					output += '</div>';
 					output += '<a ';
-					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '"';
+					output += 'href="javascript:moveContent(' + item[i].contentTypeId + ", " + item[i].contentTypeId + ",'" + item[i].title + "') " + '"';
 					output += 'class="ht_title">' + item[i].title + '</a>';
 					output += '<div class="ht_info">';
 					output += '&nbsp;' + '<span>0개의 리뷰가 있습니다.</span>';
@@ -166,8 +244,8 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<div class="ht_bottom">';
 					output += '<a class="ht_view"';
 					output += 'href="javascript:moveContent('
-							+ item[i].contenttypeid + ", "
-							+ item[i].contenttypeid + ",'"
+							+ item[i].contentTypeId + ", "
+							+ item[i].contentTypeId + ",'"
 							+ item[i].title + "') " + '"'
 							+ '>자세히보기</a>';
 							output += '</div>';
@@ -190,7 +268,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 function moveListPage(pageNo) {
 	curPage = pageNo;
 	pageNo = pageNo;
-	getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage);
+	getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage);
 }
 
 // 페이징 생성

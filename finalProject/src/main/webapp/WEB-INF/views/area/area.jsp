@@ -18,7 +18,7 @@ var sidoName = '${sidoName}';
 var sidoCode = '${sidoCode}';
 var sigunguName = '${sigunguName}';
 var sigunguCode = '${sigunguCode}';
-
+var contenttypeid = '${contenttypeid}';
 
 $(document).ready(function(){
 	get_city();
@@ -195,83 +195,6 @@ function get_city() {
 					}
 				});
 	} */
-
-	function popList(contentTypeId) {
-		$.ajax({
-					type : 'GET',
-					url : 'popList.do',
-					dataType : 'json',
-					data : {
-						contentTypeId : contentTypeId
-					},
-					success : function(data) {
-						var items = data.response.body.items;
-						var object = data.response.body.items.item;
-						_html = "";
-						if (data.response.body.totalCount == 1) {
-							object = items;
-						} else if (data.response.body.totalCount == 0) {
-							_html = "<h2>조회 결과가 없습니다.</h2>";
-						} else {
-							$
-									.each(
-											object,
-											function(index, item) {
-												_html += '<a class="pospot"';
-												if (15 === object[index].contenttypeid) {// 링크는 축제 한정으로 옮긴다..
-													_html += 'href="javascript:festivalDetail('
-															+ object[index].contentid
-															+ ', '
-															+ object[index].eventstartdate
-															+ ', '
-															+ object[index].eventenddate
-															+ ', '
-															+ "'.wrap'"
-															+ ');"';
-												} else {
-													_html += 'href="javascript:moveContent('
-															+ object[index].contenttypeid
-															+ ", "
-															+ object[index].contentid
-															+ ", '"
-															+ object[index].title
-															+ "')" + '"';
-												}
-												if (index == 3 || index == 7) {
-													_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
-												} else {
-													_html += 'target="_blank"><div class="po_img_box">';
-												}
-												_html += '<img ';
-												if (object[index].firstimage == undefined) {
-													_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
-												} else {
-													_html += 'src="'
-															+ object[index].firstimage
-															+ '"';
-												}
-												_html += 'alt="" class="po_img">';
-												_html += '</div>';
-												_html += '<div class="po_name">'
-														+ object[index].title
-														+ '</div>';
-												_html += '<div class="po_bottom">';
-												_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
-												_html += '<div class="po_cnt">'
-														+ object[index].readcount
-														+ '</div>';
-												_html += '<div class="po_tag">유명한거리/지역</div>';
-												_html += '</div></a>';
-
-											});
-						}
-						$(".pospot_content").html(_html);
-						$(".pospot_content")
-								.append('<div class="clear"></div>');
-					}
-				});
-	};
-	
 
 	function moveContent(contenttypeid, contentid, title) {
 		<c:url var="contents" value="/contentDetail.do"></c:url>
