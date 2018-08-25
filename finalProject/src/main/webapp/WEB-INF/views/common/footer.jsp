@@ -13,13 +13,13 @@
 <div id="footer">
 	<div class="wrap">
 		<div class="footer_col fl">
-			<div class="footer_title">어스토리</div>
-			<a href="/ko/area">여행지</a>
-			<a href="/ko/plan">일정만들기</a>
+			<div class="footer_title">플래너</div>
+			<a href="area.do">여행지</a>
+			<a href="plan.do">일정만들기</a>
 			<a href="/ko/hotel">호텔</a>
-						<a href="/ko/community/qa">Q&amp;A</a>
+						<!-- <a href="/ko/community/qa">Q&amp;A</a> -->
 			<a href="/ko/community/tips">여행TIP</a>
-						<a href="/ko/mobile">모바일</a><!--모바일-->
+						<!-- <a href="/ko/mobile">모바일</a> --><!--모바일-->
 		</div>
 
 		<div class="footer_col fl">
@@ -75,7 +75,7 @@
 			</script>
 
 			<!-- 번역 기능 알아보는 중 -->
-			<div class="fl footer_lang_box" id="footer_lang_sel_box" data-is_open="0" data-h="ko/ko">
+			 <div class="fl footer_lang_box" id="footer_lang_sel_box" data-is_open="0" data-h="ko/ko">
 									한국어
 							</div>
 			<div id="lang_chage_item_box">
@@ -84,7 +84,7 @@
 				<a href="/" class="prevent_href lang_change_item" data="en">English</a>
 			</div>
 			<div class="clear" style="padding-bottom:20px"></div>
-
+ 
 			<!-- 소셜 기능 -->
 			<!-- <div class="fl footer_sns_icon"><a href="https://www.facebook.com/Earthtory" target="_blank"><img src="/res/img/common/footer/ft_fb_icon.png" alt="어스토리 페이스북"></a></div>
 			<div class="fl footer_sns_icon"><a href="http://blog.earthtory.com/" target="_blank"><img src="/res/img/common/footer/ft_blog_icon.png" alt="어스토리 트위터"></a></div> -->
@@ -95,7 +95,7 @@
 
 	<div class="footer_bottom">
 		<div class="wrap">
-			Copyright ⓒ 2018 Earthtory.com, All Rights Reserved.
+			Copyright ⓒ 2018 Planner.com, All Rights Reserved.
 						<div style="float:right;">문의사항: @ | </div><div class="clear"></div>
 		</div>
 	</div>

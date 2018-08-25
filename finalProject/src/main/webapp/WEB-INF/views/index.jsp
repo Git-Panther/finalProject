@@ -53,7 +53,7 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-			<a href="/intro" class="intro_link"> 사용방법이 궁금하신가요? </a>
+			<a href="use.do" class="intro_link"> 사용방법이 궁금하신가요? </a>
 		</div>
 	</div>
 	<div class="page silver" style="padding-top: 30px;">
