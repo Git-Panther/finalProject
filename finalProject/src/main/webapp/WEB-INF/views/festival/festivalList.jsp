@@ -282,7 +282,8 @@
     	if("${sigunguCode}" != "") $("<input type='hidden'>").attr("name", "sigunguCode").val("${sigunguCode}").appendTo(form);
     	if("${eventStartDate}" != "") $("<input type='hidden'>").attr("name", "eventStartDate").val("${eventStartDate}").appendTo(form);
     	if("${eventEndDate}" != "") $("<input type='hidden'>").attr("name", "eventEndDate").val("${eventEndDate}").appendTo(form);
-		form.appendTo($("#pageList"));
+    	$("<input type='hidden'>").attr("name", "contenttypeid").val(15).appendTo(form);
+    	form.appendTo($("#pageList"));
     	//console.log(form);
 		form.submit(); // 이렇게 해야 url 노출을 막을 수 있다.
     }

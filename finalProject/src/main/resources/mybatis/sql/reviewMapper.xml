@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMapper">
 	<select id="selectReviewAll" parameterType="Review" resultType="Review">
-		SELECT CNO, CONTENT_ID, CONTENT, WRITER, REG_DATE, USERNAME as writerNM,
+		SELECT CNO, CONTENTID, CONTENT, WRITER, REG_DATE, USERNAME as writerNM,
 			 nvl((select count(*) from review r where r.WRITER = m.userno),0) as "reviewCnt", PROFILEPIC, GRADE
 		FROM REVIEW
 		JOIN MEMBER M ON (WRITER = USERNO)

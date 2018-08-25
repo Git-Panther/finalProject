@@ -240,24 +240,32 @@
 	});
 	
     function writeComment(){
-    	$.ajax({        
-	        url: 'writeReview.do',
-	        type: 'post',
-	        data: { contenttypeid : contenttypeid, contentid : ${contentid}, content : $("#content").val(), writer:${user.userNo}, grade:$(".rate_btn.on").data("val") },
-	        success: function(data){
-	        	console.log(data);
-	        	//1. 댓글 작성 성공 여부 화면 출력
-	        	if(data.result == 1){
-	        		alert("댓글 작성 성공 하였습니다.");
-	        	}else{
-	        		alert("댓글 작성 실패 하였습니다.");
-	        	}
-	        	//2. 댓글 리스트 화면에 출력
-	        	setReviewList(data.list);
-	        }, error: function(XMLHttpRequest, textStatus, errorThrown) { 
-	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-	    	} 
-	    });	
+    	var writer = 0;
+    	<c:if test="${!empty sessionScope.user}">
+    		writer = <c:out value="${sessionScope.user.userNo}"/>;
+    	</c:if>
+    	if(0 != writer){
+    		$.ajax({        
+    	        url: 'writeReview.do',
+    	        type: 'post',
+    	        data: { contenttypeid : ${contenttypeid}, contentid : ${contentid}, content : $("#content").val(), writer:writer, grade:$(".rate_btn.on").data("val") },
+    	        success: function(data){
+    	        	console.log(data);
+    	        	//1. 댓글 작성 성공 여부 화면 출력
+    	        	if(data.result == 1){
+    	        		alert("댓글 작성 성공 하였습니다.");
+    	        	}else{
+    	        		alert("댓글 작성 실패 하였습니다.");
+    	        	}
+    	        	//2. 댓글 리스트 화면에 출력
+    	        	setReviewList(data.list);
+    	        }, error: function(XMLHttpRequest, textStatus, errorThrown) { 
+    	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+    	    	} 
+    	    });	
+    	}else{
+    		alert("로그인 후 이용하세요!");	
+    	}
     }
     
     function slideDownComment(){
