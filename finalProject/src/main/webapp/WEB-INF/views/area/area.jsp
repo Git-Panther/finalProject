@@ -14,10 +14,10 @@
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
 <script>
-var sidoName = ${sidoName};
-var sidoCode = ${sidoCode};
-var sigunguName = ${sigunguName};
-var sigunguCode = ${sigunguCode};
+var sidoName = '${sidoName}';
+var sidoCode = '${sidoCode}';
+var sigunguName = '${sigunguName}';
+var sigunguCode = '${sigunguCode}';
 
 
 $(document).ready(function(){

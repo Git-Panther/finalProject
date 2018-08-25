@@ -22,8 +22,13 @@ public class AreaController {
 	private static final Logger logger = LoggerFactory.getLogger(AreaController.class);
 
 	@RequestMapping(value = "area.do", method = RequestMethod.GET)
-	public String area() {
-		return "area/area";
+	public ModelAndView area(ModelAndView mv) {
+		mv.addObject("sidoName", "-1");
+		mv.addObject("sidoCode", "-1");
+		mv.addObject("sigunguName", "-1");
+		mv.addObject("sigunguCode", "-1");
+		mv.setViewName("area/area");
+		return mv;
 	}
 
 	@RequestMapping(value = "areaList.do", method = RequestMethod.GET)
@@ -37,7 +42,7 @@ public class AreaController {
 		out.println(result);
 		JSONObject json = new JSONObject();
 		json.put("data", result);
-	}//dddddddd
+	}
 
 	@RequestMapping(value = "sigunguCount.do", method = RequestMethod.GET)
 	public void sigunguCount(HttpServletRequest request, HttpServletResponse response, 
@@ -144,4 +149,41 @@ public class AreaController {
 		return mv;
 	}
 	*/
+	
+	@RequestMapping(value = "areaMenu.do", method = RequestMethod.POST)
+	public ModelAndView areaMenu(ModelAndView mv,
+			@RequestParam(defaultValue = "-1") String sidoName,
+			@RequestParam(defaultValue = "-1") String sidoCode,
+			@RequestParam(defaultValue = "-1") String sigunguName,
+			@RequestParam(defaultValue = "-1") String sigunguCode,
+			@RequestParam(defaultValue = "home") String menu
+			) throws Exception{
+		
+		mv.addObject("sidoName", sidoName);
+		mv.addObject("sidoCode", sidoCode);
+		mv.addObject("sigunguName", sigunguName);
+		mv.addObject("sigunguCode", sigunguCode);
+		mv.addObject("menu", menu);
+
+		mv.setViewName("area/area_" + menu);
+		return mv;
+	}
+	
+	
+	@RequestMapping("hotelList.do")
+	public void selectHotelList(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(defaultValue = "-1") String sidoCode,
+			@RequestParam(defaultValue = "-1") String sigunguCode,
+			@RequestParam(defaultValue = "B") String arrange,
+			@RequestParam(defaultValue = "1") String pageNo) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+
+		String result = JsonParser.getSearchStay(sidoCode, sigunguCode, arrange, pageNo);
+
+		PrintWriter out = response.getWriter();
+		out.println(result);
+		JSONObject json = new JSONObject();
+		json.put("data", result);
+	}
 }
