@@ -78,7 +78,8 @@ $(function(){
 				<a href="${festivalList}" class="fl"><li>축제/행사</li></a>
 				<c:url var="area" value="/area.do"></c:url>
 				<a href="${area}" class="fl"><li>여행지</li></a>
-				<a href="/plan.do" class="fl"><li>일정만들기</li></a>
+				<c:url var="plan" value="/plan.do"></c:url>
+				<a href="${plan}" class="fl"><li>일정만들기</li></a>
 				<a href="/hotel.do" class="fl"><li>호텔</li></a>
 				<a href="/intro.do" class="fl"><li>이용방법</li></a>
 			</ul>

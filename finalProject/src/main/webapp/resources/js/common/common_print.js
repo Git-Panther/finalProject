@@ -1,14 +1,30 @@
 /**
  * 디테일한 정보를 출력할 때, 여기서 한 번 필터링을 거친 다음에 출력한다.
  */
-function printCommon(item){ // 공통정보 출력
+function printCommon(item){ // 공통정보 출력	
 	console.log("printCommon called");
-	$(".spot_addr").html(item.addr1);
-	if(15 === item.contenttypeid) $(".spot_addr").append("$");  
+	
+	$(".spot_addr").html(item.addr1);	
+	if(15 === item.contenttypeid) {
+		$(".spot_addr").append("$");  
+	}
 	$(".spot_addr").append(" (" + item.zipcode + ")");
-	if(undefined != item.hompage) $(".spot_homepage").html(item.hompage);
-	else $(".spot_homepage").remove();
-	$(".spot_tel").html(item.telname + " : " + item.tel);
+	
+	if(undefined === item.homepage) {
+		console.log("homepage removed");
+		$(".spot_homepage").remove();	
+	} else {
+		console.log("homepage added");
+		$(".spot_homepage").html(item.homepage);
+	}
+	
+	if(undefined === item.tel) {
+		console.log("tel removed");
+		$(".spot_tel").remove();
+	} else {
+		console.log("tel added");
+		$(".spot_tel").html(item.telname + " : " + item.tel);
+	}
 }
 
 function printIntro(item){ // 상세정보 출력
@@ -24,6 +40,7 @@ function printIntro(item){ // 상세정보 출력
 		printFestivalIntro(item);
 		break;
 	case 32:
+		//checkFavorite(item); // 찜 여부 체크
 		printHotelIntro(item);
 		break;
 	case 38:
@@ -37,42 +54,32 @@ function printIntro(item){ // 상세정보 출력
 
 function printInfo(item){ // 반복정보 출력. 반복 정보는 다 다르지만 배열화하여 각각의 개별 정보가 나오니까 통일 가능할지도?
 	console.log("printInfo called.");
-	
-	if(undefined === item.length) item = [item];
-	/*
-	switch(item[0].contenttypeid){
-	case 15:
-		printFestivalInfo(item);
-		break;
-	case 32:
-		break;
-	case 39:
-		break;
-	}*/
-	var $tbody = $("#spot_info_default").children("tbody");
-	//console.log($tbody);
-	
-	var tr = $("<tr>"); // 한 줄
-	var th = $("<th>"); // 설명의 제목
-	var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
-	
-	if(undefined === item.length) item = [item];
-	
-	item.forEach(function(v, i){
-		tr = $("<tr>");
-		th = $("<th>");
-		td = $("<td colspan='3'>");
+	if(undefined != item){ // 있으면 한다.
+		if(undefined === item.length) item = [item]; // 반복정보 있으나 1개이면
+		var $tbody = $("#spot_info_default").children("tbody");
+		//console.log($tbody);
 		
-		th.html(v.infoname).appendTo(tr);
-		td.html(v.infotext).appendTo(tr);
-		tr.appendTo($tbody);
-	});
+		var tr = $("<tr>"); // 한 줄
+		var th = $("<th>"); // 설명의 제목
+		var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
+		
+		if(undefined === item.length) item = [item];
+		
+		item.forEach(function(v, i){
+			tr = $("<tr>");
+			th = $("<th>");
+			td = $("<td colspan='3'>");
+			
+			th.html(v.infoname).appendTo(tr);
+			td.html(v.infotext).appendTo(tr);
+			tr.appendTo($tbody);
+		});
+	}
 }
 
 function printImage(item){ // 이미지 정보 출력 : 이것은 공통이다
 	console.log("printImage called");
 	var categoryText = $(".nav_box").text();
-	$("#category").html(categoryText.split(">")[0] + ">" + categoryText.split(">")[1] + ">" + categoryText.split(">")[2]);
 }
 
 // 여기서부터 각 관광별로 표시가 다름
@@ -86,14 +93,226 @@ function printFestivalCommon(item){
 }
 
 function printAttractionIntro(item){
+	console.log("printAttractionIntro called");
+	var $tbody = $("#spot_info_default").children("tbody");
+	//console.log($tbody);
 	
+	var tr = $("<tr>"); // 한 줄
+	var th = $("<th>"); // 설명의 제목
+	var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
+	
+	if(undefined != item.opendate && "" != item.opendate){
+		th.html("개장일").appendTo(tr);
+		td.html(item.opendate).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.restdate && "" != item.restdate){
+		th.html("휴일").appendTo(tr);
+		td.html(item.restdate).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.useseason && "" != item.useseason){
+		th.html("이용시기").appendTo(tr);
+		td.html(item.useseason).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.usetime && "" != item.usetime){
+		th.html("이용시간").appendTo(tr);
+		td.html(item.usetime).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.accomcount && "" != item.accomcount){
+		th.html("수용인원").appendTo(tr);
+		td.html(item.accomcount).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.expagerange && "" != item.expagerange){
+		th.html("체험가능 연령").appendTo(tr);
+		td.html(item.expagerange).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.parking && "" != item.parking){
+		th.html("주차시설").appendTo(tr);
+		td.html(item.parking).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkcreditcard && "" != item.chkcreditcard){
+		th.html("신용카드").appendTo(tr);
+		td.html(item.chkcreditcard).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkpet && "" != item.chkpet){
+		th.html("반려동물 입장").appendTo(tr);
+		td.html(item.chkpet).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkbabycarriage && "" != item.chkbabycarriage){
+		th.html("유모차 대여").appendTo(tr);
+		td.html(item.chkbabycarriage).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.expguide && "" != item.expguide){
+		th.html("체험안내").appendTo(tr);
+		td.html(item.expguide).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.infocenter && "" != item.infocenter){
+		th.html("문의").appendTo(tr);
+		td.html(item.infocenter).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
 }
 
 function printCultureIntro(item){
+	console.log("printCultureIntro called");
+	var $tbody = $("#spot_info_default").children("tbody");
+	//console.log($tbody);
 	
+	var tr = $("<tr>"); // 한 줄
+	var th = $("<th>"); // 설명의 제목
+	var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
+	
+	if(undefined != item.restdateculture && "" != item.restdateculture){
+		th.html("휴일").appendTo(tr);
+		td.html(item.restdateculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.scale && "" != item.scale){
+		th.html("규모").appendTo(tr);
+		td.html(item.scale).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.usetimeculture && "" != item.usetimeculture){
+		th.html("이용시간").appendTo(tr);
+		td.html(item.usetimeculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.spendtime && "" != item.spendtime){
+		th.html("소요시간").appendTo(tr);
+		td.html(item.spendtime).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.accomcountculture && "" != item.accomcountculture){
+		th.html("수용인원").appendTo(tr);
+		td.html(item.accomcountculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.usefee && "" != item.usefee){
+		th.html("이용요금").appendTo(tr);
+		td.html(item.usefee).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.discountinfo && "" != item.discountinfo){
+		th.html("할인정보").appendTo(tr);
+		td.html(item.discountinfo).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.parkingculture && "" != item.parkingculture){
+		th.html("주차시설").appendTo(tr);
+		td.html(item.parkingculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.parkingfee && "" != item.parkingfee){
+		th.html("주차요금").appendTo(tr);
+		td.html(item.parkingfee).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkcreditcardculture && "" != item.chkcreditcardculture){
+		th.html("신용카드").appendTo(tr);
+		td.html(item.chkcreditcardculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkpetculture && "" != item.chkpetculture){
+		th.html("반려동물 입장").appendTo(tr);
+		td.html(item.chkpetculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkbabycarriageculture && "" != item.chkbabycarriageculture){
+		th.html("유모차 대여").appendTo(tr);
+		td.html(item.chkbabycarriageculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.infocenterculture && "" != item.infocenterculture){
+		th.html("문의").appendTo(tr);
+		td.html(item.infocenterculture).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
 }
-
-function print
 
 function printFestivalIntro(item){
 	console.log("printFestivalIntro called");
@@ -107,84 +326,86 @@ function printFestivalIntro(item){
 	var th = $("<th>"); // 설명의 제목
 	var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
 	
+	if(undefined != item.festivalgrade && "" != item.festivalgrade){
+		th.html("축제 등급 ").appendTo(tr);
+		td.html(item.festivalgrade).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}	
 	if(undefined != item.placeinfo && "" != item.placeinfo){
 		th.html("추천 경로").appendTo(tr);
 		td.html(item.placeinfo).appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	
 	if(undefined != item.playtime && "" != item.playtime){
 		th.html("기간").appendTo(tr);
 		td.html(item.playtime).appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-
 	if(undefined != item.agelimit && "" != item.agelimit){
 		th.html("연령 제한").appendTo(tr);
 		td.html(item.agelimit).appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	
-	
+	if(undefined != item.bookingplace && "" != item.bookingplace){
+		th.html("예매처").appendTo(tr);
+		td.html(item.bookingplace).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
 	if(undefined != item.spendtimefestival && "" != item.spendtimefestival){
 		th.html("이용 시간").appendTo(tr);
 		td.html(item.spendtimefestival).appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	
 	if(undefined != item.usetimefestival && "" != item.usetimefestival){
 		th.html("비용").appendTo(tr);
 		td.html(item.usetimefestival).appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	
+	if(undefined != item.discountinfofestival && "" != item.discountinfofestival){
+		th.html("할인 정보").appendTo(tr);
+		td.html(item.discountinfofestival).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
 	if(undefined != item.program && "" != item.program){
 		th.html("프로그램").appendTo(tr);
 		td.html(item.program).appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	
 	if(undefined != item.subevent && "" != item.subevent){
 		th.html("이벤트").appendTo(tr);
 		td.html(item.subevent).appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	
 	if(undefined != item.sponsor1 && "" != item.sponsor1){
 		th.html("문의전화").appendTo(tr);
 		td.html(item.sponsor1 + " : " + item.sponsor1tel);
@@ -193,10 +414,119 @@ function printFestivalIntro(item){
 		}
 		td.appendTo(tr);
 		tr.appendTo($tbody);
-		
-		// 초기화
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
+}
+
+function printHotelIntro(item){
+	console.log("printHotelIntro called");
+	var $tbody = $("#spot_info_default").children("tbody");
+	//console.log($tbody);
+	
+	var tr = $("<tr>"); // 한 줄
+	var th = $("<th>"); // 설명의 제목
+	var td = $("<td colspan='3'>"); // 자세한 설명 또는 공백 채우기용?
+	
+	if(undefined != item.reservationlodging && "" != item.reservationlodging){
+		th.html("예약안내").appendTo(tr);
+		td.html(item.reservationlodging);
+		if(undefined != item.reservationurl && "" != item.reservationurl){
+			td.append(" " + item.reservationurl);
+		}	
+		td.appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}	
+	if(undefined != item.roomcount && "" != item.roomcount){
+		th.html("객실 수").appendTo(tr);
+		td.html(item.roomcount).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}	
+	if(undefined != item.roomtype && "" != item.roomtype){
+		th.html("유형").appendTo(tr);
+		td.html(item.roomtype).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}	
+	if(undefined != item.scalelodging && "" != item.scalelodging){
+		th.html("규모").appendTo(tr);
+		td.html(item.scalelodging).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}	
+	if(undefined != item.accomcountlodging && "" != item.accomcountlodging){
+		th.html("수용 인원").appendTo(tr);
+		td.html(item.accomcountlodging).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.checkintime && "" != item.checkintime){
+		th.html("입실").appendTo(tr);
+		td.html(item.checkintime).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.checkouttime && "" != item.checkouttime){
+		th.html("퇴실").appendTo(tr);
+		td.html(item.checkouttime).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.chkcooking && "" != item.chkcooking){
+		th.html("객실 내 취사").appendTo(tr);
+		td.html(item.chkcooking).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.pickup && "" != item.pickup){
+		th.html("픽업 서비스").appendTo(tr);
+		td.html(item.pickup).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.parkinglodging && "" != item.parkinglodging){
+		th.html("주차시설").appendTo(tr);
+		td.html(item.parkinglodging).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+	if(undefined != item.infocenterlodging && "" != item.infocenterlodging){
+		th.html("문의").appendTo(tr);
+		td.html(item.infocenterlodging).appendTo(tr);
+		tr.appendTo($tbody);
+		tr = $("<tr>");
+		th = $("<th>");
+		td = $("<td colspan='3'>");
+	}
+}
+
+function printShoppingIntro(item){
+	console.log("printShoppingIntro called");
+}
+
+function printRestaurantIntro(item){
+	console.log("printRestaurantIntro called");
 }
