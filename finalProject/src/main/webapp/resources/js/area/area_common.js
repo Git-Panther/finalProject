@@ -1,10 +1,4 @@
 $(document).ready(	function() {
-	var festival = 15;
-	var attraction = 12;
-	var culture = 14;
-	var hotel = 32;
-	var shopping = 38;
-	var restaurant = 39;
 
 	$(document).on('click', '.pospot_tab', function() {
 		var _this_cate = $(this).attr('data-cate');
@@ -24,7 +18,7 @@ function moveAreaMain(sidoName, sidoCode){ // 함수 오버로딩
 	var form = $("<form>");
 	form.attr("id", "areaMain");
 	form.attr("method", "post");
-	form.attr("action", "/planner/areaMain.do");
+	form.attr("action", "/planner/areaMenu.do");
 	
 	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
@@ -37,7 +31,7 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	var form = $("<form>");
 	form.attr("id", "areaMain");
 	form.attr("method", "post");
-	form.attr("action", "/planner/areaMain.do");
+	form.attr("action", "/planner/areaMenu.do");
 	
 	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
@@ -92,31 +86,18 @@ function moveContent(sidoName, sidoCode,
 	form.submit();
 }
 
-/*
-function moveAreaMain(sidoName, sidoCode){ // 함수 오버로딩
+function areaMenu(menu) {
 	var form = $("<form>");
-	form.attr("id", "areaMain");
+	form.attr("id", "areaMenu");
 	form.attr("method", "post");
-	form.attr("action", "/planner/areaMain.do");
-	
-	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
-	form.appendTo($("#header"));
-	form.submit();
-}
-
-function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
-																		// 오버로딩
-	var form = $("<form>");
-	form.attr("id", "areaMain");
-	form.attr("method", "post");
-	form.attr("action", "/planner/areaMain.do");
+	form.attr("action", "/planner/areaMenu.do");
 	
 	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "menu").val(menu).appendTo(form);
+	
 	form.appendTo($("#header"));
 	form.submit();
 }
-*/

@@ -9,8 +9,110 @@
 <title>Festival Detail</title>
 <link href="resources/css/festival/festivalDetail.css" rel="stylesheet">
 <link href="resources/css/festival/festivalMap.css" rel="stylesheet">
+<link href="resources/css/review.css" rel="stylesheet">
 </head>
 <body>
+				<!--  댓글  -->
+   		<div class="spot_info_box community" style="width : 760px;">
+				<div class="community_tab on line" data-id="review">리뷰</div>
+				<div class="community_tab" data-id="qa"></div>
+				<div class="clear"></div>
+
+				<div class="cmmt_tab_content review">
+				<c:forEach items="${rlist }" var="review">
+				
+					<div class="cmmt_content_box">
+						<a class="cmmt_c_user"
+							href="내정보보기 호출 url" style= "width: 750px;">
+							<img
+							<c:if test="${empty user.profilePic}">
+								src="/planner/resources/images/common/profile/img_profile.png"
+							</c:if>
+							<c:if test="${!empty user.profilePic}">
+								src="/planner/resources/images/common/profile/${user.profilePic}"
+							</c:if>
+							class="cmmt_content_uimg"
+							onerror="this.src='/planner/resources/images/common/profile/img_profile.png';">
+							</a>
+							<div class="review_opbtn">
+							<div class="rv_op_btn rop_delete" data-srl="5353" onclick="reviewDelete(${review.cno})">삭제</div>
+							<div class="rv_op_btn line rop_edit" onclick="slideDownComment();">수정</div>
+							<div class="rv_op_btn line rop_cancel" onclick="slideUpComment();">취소</div></div>
+						<div class="cmmt_c_user_txt">
+								<div class="cmmt_c_user_name">
+									${review.writerNm }<span>&nbsp;&nbsp;${review.reg_date}</span>
+									<div class="clear"></div>
+								</div>
+								<div class="cmmt_c_user_level">
+									<div class="rv_cnt" style="margin-left: 1px;">${review.reviewCnt}개의 평가</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						<div class="clear"></div>
+						<div class="cmmt_content" style="padding-left :13px;">
+							<div class="cmmt_content_info">
+								<span>
+									<c:choose>
+										<c:when test="${review.grade eq 1 }">
+											별로에요!
+										</c:when>
+										<c:when test="${review.grade eq 3 }">
+											괜찮아요!
+										</c:when>
+										<c:otherwise>
+											좋아요!
+										</c:otherwise>
+									</c:choose>
+								</span>
+							</div>
+							${review.content}
+						
+						</div>
+					</div>
+				</c:forEach>
+				</div>
+			
+
+				<div class="page review" style="display: none;"></div>
+				<div class="page qa" id="paging"></div>
+
+				<div class="write_area">
+				
+					<div class="write_review">
+						<div class="write_title r">
+							<span>경복궁</span> 리뷰 남기기
+						</div>
+
+						<div class="review_box">
+							<!-- <div class="write_left">
+																						  <img src="/planner/resources/images/common/mobile/img_profile.png" onerror="this.src='/planner/resources/images/common/mobile/img_profile.png';" class="cmmt_content_uimg">
+														<div class="clear"></div>
+						</div> -->
+							<div class="write_center">
+								<div class="rate_box">
+									<div class="rate_btn bad" data-val="1" data="1">별로에요!</div>
+									<div class="rate_btn normal" data-val="3" data="3">괜찮아요!
+									</div>
+									<div class="rate_btn good on" data-val="5" data="5">좋아요!</div>
+									<div class="clear"></div>
+								</div>
+								<textarea class="review_area" id="content" placeholder="장소에 대한 리뷰를 입력하세요."></textarea>
+							</div>
+							<div class="write_right">
+								<div class="btn_review_write" id="si_review_form_submit" style="margin-top: 155px;"
+									data="new" onclick="writeComment();">등록</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+ 	
+
+
+
+		<!--댓글  -->
 <div class="outer">
 	<div>
 		<table id="festivalTap">
@@ -66,57 +168,6 @@
 		<div id="festivalRestaurants" class="tapGroup2"></div>
 		<br>
 		<!--  <div id="festivalComment">코멘트 부분</div> -->
-				<!--  댓글  -->
-    <div class="container">
-        <label for="content">comment</label>
-        <div class="input-group">
-           <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
-           <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="commentInsertBtn">등록</button>
-           </span>
-        </div>
-        <div class="container">
-        	<div class="commentList">
-        		<table>
-        			<thead>
-	        			<tr>
-	        				<th>작성자</th>
-	        				<th>작성일</th>
-	        				<th>내용</th>
-	        				<th></th>
-	        			</tr>
-        			</thead>
-        			<tbody id="reviewContent">
-	        			<c:if test="${list.size() eq 0 }">
-	        				<tr>
-	        					<td colspan="4">작성 된 댓글이 없습니다.</td>
-	        				</tr>
-	        			</c:if>
-		        		<c:forEach items="${list }" var="review">
-	        				<tr>
-	        					<td>${review.writerNm}</td>
-	        					<td>${review.reg_date}</td>
-								<td>${review.content}</td>
-								<c:if test="${review.writer eq 123}">
-									<td>
-										<span class="btnDiv">
-											<button onclick="reviewModify(${review.cno}, this, '${review.content}');">수정</button>
-											<button onclick="reviewDelete(${review.cno});">삭제</button>
-										</span>
-									</td>       			
-								</c:if>
-	        				</tr>
-		        		</c:forEach>
-        			</tbody>
-        		</table>
-        	</div>
-    	</div>
-    </div>
-			
-		</div>
-	</div>	
-</div>
-		<!--댓글  -->
 	</div>	
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
@@ -164,29 +215,55 @@
 	});
     
     /*댓글  */
-    	$(function(){
-		$("#commentInsertBtn").click(function(){
-			$.ajax({        
-		        url: 'writeReview.do',
-		        type: 'post',
-		        data: { content_id : ${contentid}, content : $("#content").val(), writer:123 },
-		        success: function(data){
-		        	console.log(data);
-		        	//1. 댓글 작성 성공 여부 화면 출력
-		        	if(data.result == 1){
-		        		alert("댓글 작성 성공 하였습니다.");
-		        	}else{
-		        		alert("댓글 작성 실패 하였습니다.");
-		        	}
-		        	//2. 댓글 리스트 화면에 출력
-		        	setReviewList(data.list);
-		        }, error: function(XMLHttpRequest, textStatus, errorThrown) { 
-		        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-		    	} 
-		    });				
+    $(function(){
+    	//$(".write_area").hide();	
+    	//$(".rv_op_btn.rop_cancel").hide();
+    	
+		$(".rate_btn").click(function(){
+			var clickBtn = $(this).data("val");
+			$(".rate_btn").each(function(index){
+				var forBtn = $(this).data("val");
+				if(clickBtn  == forBtn){
+					$(this).addClass("on");
+				}else{
+					$(this).removeClass("on");
+				}
+				
+			});
 		});
 	});
 	
+    function writeComment(){
+    	$.ajax({        
+	        url: 'writeReview.do',
+	        type: 'post',
+	        data: { content_id : ${contentid}, content : $("#content").val(), writer:${user.userNo}, grade:$(".rate_btn.on").data("val") },
+	        success: function(data){
+	        	console.log(data);
+	        	//1. 댓글 작성 성공 여부 화면 출력
+	        	if(data.result == 1){
+	        		alert("댓글 작성 성공 하였습니다.");
+	        	}else{
+	        		alert("댓글 작성 실패 하였습니다.");
+	        	}
+	        	//2. 댓글 리스트 화면에 출력
+	        	setReviewList(data.list);
+	        }, error: function(XMLHttpRequest, textStatus, errorThrown) { 
+	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+	    	} 
+	    });	
+    }
+    
+    function slideDownComment(){
+		$(".rv_op_btn.rop_cancel").show();
+		$(".write_area").slideDown(500);
+	}
+
+	function slideUpComment(){
+		$(".rv_op_btn.rop_cancel").hide();
+		$(".write_area").slideUp(500);
+	}
+    
 	function setReviewList(list){
 		function pad(num) {
 		        num = num + '';

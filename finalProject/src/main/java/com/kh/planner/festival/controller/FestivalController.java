@@ -1,7 +1,10 @@
 package com.kh.planner.festival.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,12 +13,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.planner.common.JsonManager;
+import com.kh.planner.review.model.service.ReviewService;
+import com.kh.planner.review.model.vo.Review;
 
 @Controller
 public class FestivalController {
 	private String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
 	//private String forecastkey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
 	private String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
+	
+	@Autowired
+	private ReviewService rs;
 	
 	private static final Logger logger = LoggerFactory.getLogger(FestivalController.class);
 	
@@ -81,7 +89,11 @@ public class FestivalController {
 			, @RequestParam(value="eventenddate", defaultValue="0") int eventenddate) {
 		mv.addObject("contentid", contentid);
 		mv.addObject("eventstartdate", eventstartdate);
-		mv.addObject("eventenddate", eventenddate);	
+		mv.addObject("eventenddate", eventenddate);
+		//System.out.println(contentid);
+		List<Review> list = rs.selectReviewAll(new Review(contentid));
+		mv.addObject("rlist", list);
+		
 		mv.setViewName("festival/festivalDetail");
 		return mv;
 	}

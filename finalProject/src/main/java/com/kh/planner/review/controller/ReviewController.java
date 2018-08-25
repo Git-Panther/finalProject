@@ -33,6 +33,7 @@ public class ReviewController {
 	public @ResponseBody Map<String, Object> writeReview(Review review){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
+		System.out.println(review);
 		int result = service.insertReview(review);
 		
 		List<Review> list = service.selectReviewAll(review);

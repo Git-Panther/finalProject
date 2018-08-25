@@ -1,5 +1,7 @@
 package com.kh.planner.member.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,9 @@ public class MemberService {
 
 		public int deleteMember(Member member) {
 			return dao.deleteMember(member);
+		}
+
+		public List<Member> selectAdminMemberList() {
+			return dao.selectAdminMemberList();
 		}
 }

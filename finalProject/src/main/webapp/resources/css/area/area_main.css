@@ -759,3 +759,13 @@
 .img_info:hover span{
 	display:block;
 }
+
+#SearchBox {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: -1;
+	display: none;
+	width: 1px;
+	height: 1px;
+}
