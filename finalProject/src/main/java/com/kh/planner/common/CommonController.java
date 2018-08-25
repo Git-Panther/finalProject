@@ -17,9 +17,10 @@ import com.kh.planner.festival.controller.FestivalController;
 
 @Controller
 public class CommonController { // 공통으로 쓰는 컨트롤러
-	private String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	private String forecastkey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	private String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
+	private static final String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	//private static final String tourapikey = "?ServiceKey=EuYOKtjgM9QR9GFYmz2fS0z%2FHXF3%2B80PelXkPL7lRVc2nzcw4dg8OwalAxk2OZu%2F%2BNOmxyqSRqKFXnUg2pGeBg%3D%3D";
+	private static final String forecastkey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	private static final String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
 	
 	private static final Logger logger = LoggerFactory.getLogger(FestivalController.class);
 	
@@ -37,7 +38,6 @@ public class CommonController { // 공통으로 쓰는 컨트롤러
 	public String area_header() {
 		return "area/area_header";
 	}
-	
 	
 	// tourApi의 정보 중 하나의 상세 정보 페이지로 이동(축제는 eventstartdate 넘어온 걸로 판별 가능할지도? 보다는 contenttypeid로 판별하자)
 	@RequestMapping("contentDetail.do")
