@@ -17,7 +17,7 @@ public class FavoriteDao {
 		return sqlSession.selectOne("FavoriteMapper.checkFavorite", params);
 	}
 
-	public int insertFavorite(Map<String, Integer> params) {
+	public int insertFavorite(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("FavoriteMapper.insertFavorite", params);
 	}

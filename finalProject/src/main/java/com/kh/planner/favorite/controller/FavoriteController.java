@@ -38,12 +38,18 @@ public class FavoriteController {
 	// 찜 추가
 	@RequestMapping(value = "insertFavorite.do", method = RequestMethod.POST)
 	public @ResponseBody boolean insertFavorite(int userno, int contenttypeid, int contentid, int eventstartdate, int eventenddate){	
-		Map<String, Integer> params = new HashMap<String, Integer>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userno", userno);
 		params.put("contenttypeid", contenttypeid);
 		params.put("contentid", contentid);
-		params.put("eventstartdate", eventstartdate);
-		params.put("eventenddate", eventenddate);
+		
+		String startdate = String.valueOf(eventstartdate);
+		startdate = startdate.substring(0, 4) + "-" + startdate.substring(4, 6) + "-" + startdate.substring(6);
+		String enddate = String.valueOf(eventenddate);
+		enddate = enddate.substring(0, 4) + "-" + enddate.substring(4, 6) + "-" + enddate.substring(6);
+		
+		params.put("eventstartdate", startdate);
+		params.put("eventenddate", enddate);
 		int response = service.insertFavorite(params);
 		boolean result = false;
 		if(response > 0) result = true;

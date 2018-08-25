@@ -18,7 +18,7 @@ public class FavoriteService {
 		return dao.checkFavorite(params);
 	}
 
-	public int insertFavorite(Map<String, Integer> params) {
+	public int insertFavorite(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return dao.insertFavorite(params);
 	}
