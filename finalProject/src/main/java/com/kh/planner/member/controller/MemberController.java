@@ -128,16 +128,12 @@ public class MemberController {
 	@RequestMapping(value = "changePwd.do", method = RequestMethod.POST)
 	public String changePassword(Member member, @RequestParam(value = "oldPassword", required = true) String oldPwd,
 			@RequestParam(value = "password", required = true) String password, HttpSession session) {
-		System.out.println("controller호출");
 		Member user = (Member) session.getAttribute("user");
 		String orgPwd = (String) user.getPassword();
 		String result = "";
-		System.out.println(oldPwd);
-		System.out.println(orgPwd);
 		if (oldPwd.equals(orgPwd)) {
 			user.setPassword(password);
 			int res = memberService.updatePassword(user);
-			System.out.println(res);
 			if (res != 0) {
 				result = "redirect:memberInfo.do";
 			}
@@ -148,10 +144,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "updateMember.do")
-	public String updateMember(Member member,
-			@RequestParam(value = "newProfilePic", required = false) MultipartFile file, HttpServletRequest request) {
+	public String updateMember(Member member, HttpSession session, String birthday, String email,
+			@RequestParam(value = "newProfilePic", required=false) MultipartFile file, HttpServletRequest request) {
+		Member user = (Member) session.getAttribute("user");
 		if (file.getOriginalFilename().equals("") || file == null) {
-			member.setProfilePic("default-profile.png");
+			user.setProfilePic(user.getProfilePic());
 		} else {
 			String root = request.getSession().getServletContext().getRealPath("resources");
 
@@ -167,12 +164,13 @@ public class MemberController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			member.setProfilePic(file.getOriginalFilename());
+			user.setProfilePic(file.getOriginalFilename());
+			user.setBirthday(birthday);
+			user.setEmail(email);
 		}
 		String view = "member/memberInfoPage";
 		try {
-			memberService.updateMember(member);
+			memberService.updateMember(user);
 		} catch (Exception e) {
 			System.out.println("실패");
 			System.out.println(e);

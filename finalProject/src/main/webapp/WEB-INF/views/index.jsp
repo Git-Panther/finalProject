@@ -14,7 +14,7 @@
 	<div class="main_top"
 		style="background: url('/planner/resources/images/key_bg_1.jpg') no-repeat; background-size: cover;">
 		<div class="wrap">
-			<div class="main_top_title">나만의 여행 플래너 어스토리!</div>
+			<div class="main_top_title">나만의 행사 플래너!</div>
 			<div class="main_top_desc">쉽고 빠르게 축제를 찾아보세요.</div>
 			<div class="search_area">
 				<input class="search_input" id="city_search"
@@ -33,7 +33,7 @@
 	</div>
 	<div class="page white">
 		<div class="wrap">
-			<div class="page_title">어스토리에서 축제를 찾아보세요!</div>
+			<div class="page_title">플래너에서 축제를 찾아보세요!</div>
 			<div class="clear"></div>
 			<div class="intro_list">
 				<div class="intro_box" onclick="location.href='/ko/area';">

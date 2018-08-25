@@ -17,52 +17,53 @@
    $(function(){
          var idChk= /^[A-Za-z0-9]{4,20}$/;
 
-          $("#userId").on('keyup', function() {
-             var id = $(this).val();
-             var chk = idChk.test(id);
-                  if(chk) {
-                     $("#checkDiv").html("");
-                  } else {
-                     $("#checkDiv").html("4~20자의 영문 소문자 및 숫자만 가능합니다");
-                     return;
-                  }
-                  
-                $.ajax({
-                  url:"userIdCheck.do",
-                  type:"post",
-                  data:{id:$("#userId").val()},
-                  success:function(result){
-                    console.log(result);
-                    if(result=="available"){
-                        $("#checkDiv").html("사용 가능한 아이디입니다");
-                    }else{
-                      $("#checkDiv").html("이미 사용중인 아이디입니다");
-                    }
-                  },error:function(e){
-                  console.log(e);
-                  }
-                });  
-                  
-             });
-          
-          $("#password").on('keyup', function() {
-             var id = $(this).val();
-             var chk = idChk.test(id);
-                  if(chk) {
-                     $("#checkDiv2").html("");
-                  } else {
-                     $("#checkDiv2").html("4~20자의 영문 소문자 및 숫자만 가능합니다");
-                  }
-               });    
-         $("#password2").on('keyup', function() {
-                  if($("#password").val() == $("#password2").val()) {
-                     $("#checkPwdDiv").html("");
-                  } else {
-                     $("#checkPwdDiv").html("비밀번호가 일치하지 않습니다");
-                  }
-               });    
-      });
-   
+       $("#userId").on('keyup', function() {
+          var id = $(this).val();
+          var chk = idChk.test(id);
+               if(chk) {
+                  $("#checkDiv").html("");
+               } else {
+                  $("#checkDiv").html("4~20자의 영문 소문자 및 숫자만 가능합니다");
+                  return;
+               }
+               
+             $.ajax({
+               url:"userIdCheck.do",
+               type:"post",
+               data:{id:$("#userId").val()},
+               success:function(result){
+            	  console.log(result);
+            	  if(result=="available"){
+                  	$("#checkDiv").html("사용 가능한 아이디입니다");
+            	  }else{
+	                $("#checkDiv").html("이미 사용중인 아이디입니다");
+	                $("#joinBtn").attr("onclick", "alert('아이디를 확인해주세요')");
+            	  }
+               },error:function(e){
+					console.log(e);
+               }
+             });  
+               
+          });
+       
+       $("#password").on('keyup', function() {
+          var id = $(this).val();
+          var chk = idChk.test(id);
+               if(chk) {
+                  $("#checkDiv2").html("");
+               } else {
+                  $("#checkDiv2").html("4~20자의 영문 소문자 및 숫자만 가능합니다");
+               }
+            });    
+		$("#password2").on('keyup', function() {
+               if($("#password").val() == $("#password2").val()) {
+                  $("#checkPwdDiv").html("");
+               } else if($("#password").val() != $("#password2").val()) {
+                  $("#checkPwdDiv").html("비밀번호가 일치하지 않습니다");
+                  $("#joinBtn").attr(alert('비밀번호를 확인해주세요'));
+               }
+            });    
+   });
 </script>
 <title>회원가입</title>
 <style>

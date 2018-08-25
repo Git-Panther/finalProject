@@ -24,6 +24,7 @@
 	width:37px;
 	border-radius:50%;
 }
+
 .header_profile img{
 	max-height:37px;
 	max-width:37px;
@@ -69,9 +70,9 @@ $(function(){
 <body>
 	<div id="header">
 		<div class="wrap">
-			<h1 class="logo fl" alt="여행의 시작! 어스토리">
+			<h1 class="logo fl" alt="행사의 시작! 플래너">
 				<a href="/planner/index.do"><img
-					src="/planner/resources/images/common/gnb/logo.jpg" alt="여행의 시작! 어스토리" style="width: 200px;"></a>
+					src="/planner/resources/images/common/gnb/logo.jpg" alt="행사의 시작! 플래너" style="width: 200px;"></a>
 			</h1>
 			<ul class="gnb fl">
 				<c:url var="festivalList" value="/festivalList.do"></c:url>
@@ -81,7 +82,8 @@ $(function(){
 				<c:url var="plan" value="/plan.do"></c:url>
 				<a href="${plan}" class="fl"><li>일정만들기</li></a>
 				<a href="/hotel.do" class="fl"><li>호텔</li></a>
-				<a href="/intro.do" class="fl"><li>이용방법</li></a>
+				<a href="use.do" class="fl"><li>이용방법</li></a>
+<!-- 				<a href="/adminMain.do" class="fl"><li>a</li></a> -->
 			</ul>
 
 			<div class="fr gnb_box">
@@ -104,6 +106,9 @@ $(function(){
 							<a href="" class="item">찜 목록</a><br/>
 							<a href="" class="item">내 일정</a><br/>
 							<a href="" class="item">리뷰</a><br/>
+							<c:if test="${user.userNo eq 1}">
+								<a href="adminMain.do" class="item">관리자 페이지</a><br/>
+							</c:if>
 							<a href="/planner/memberInfo.do" class="item">내 정보</a><br/>
 							<a href="/planner/logout.do" class="item">로그아웃</a>
 						</div>

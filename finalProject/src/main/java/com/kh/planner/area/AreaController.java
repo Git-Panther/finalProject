@@ -106,56 +106,6 @@ public class AreaController {
 			@RequestParam(defaultValue = "-1") String sigunguCode,
 			@RequestParam(defaultValue = "-1") String contenttypeid,
 			@RequestParam(defaultValue = "-1") String contenttypename,
-			@RequestParam(defaultValue = "-1") String contentid,
-			@RequestParam(defaultValue = "-1") String title
-			) throws Exception{
-		
-		mv.addObject("sidoName", sidoName);
-		mv.addObject("sidoCode", sidoCode);
-		mv.addObject("sigunguName", sigunguName);
-		mv.addObject("sigunguCode", sigunguCode);
-		mv.addObject("contenttypeid", contenttypeid);
-		mv.addObject("contenttypename", contenttypename);
-		mv.addObject("contentid", contentid);
-		mv.addObject("title", title);
-
-		mv.setViewName("area/areaMain");
-		return mv;
-	}
-	
-	/*
-	@RequestMapping(value = "contentDetail.do")
-	public ModelAndView areaDetail(ModelAndView mv,
-			@RequestParam(defaultValue = "-1") String sidoName,
-			@RequestParam(defaultValue = "-1") String sidoCode,
-			@RequestParam(defaultValue = "-1") String sigunguName,
-			@RequestParam(defaultValue = "-1") String sigunguCode,
-			@RequestParam(defaultValue = "-1") String contenttypeid,
-			@RequestParam(defaultValue = "-1") String contenttypename,
-			@RequestParam(defaultValue = "-1") String contentid,
-			@RequestParam(defaultValue = "-1") String title
-			) throws Exception{
-		
-		mv.addObject("sidoName", sidoName);
-		mv.addObject("sidoCode", sidoCode);
-		mv.addObject("sigunguName", sigunguName);
-		mv.addObject("sigunguCode", sigunguCode);
-		mv.addObject("contenttypeid", contenttypeid);
-		mv.addObject("contenttypename", contenttypename);
-		mv.addObject("contentid", contentid);
-		mv.addObject("title", title);
-		
-		mv.setViewName("area/contentDetail");
-		return mv;
-	}
-	*/
-	
-	@RequestMapping(value = "areaMenu.do", method = RequestMethod.POST)
-	public ModelAndView areaMenu(ModelAndView mv,
-			@RequestParam(defaultValue = "-1") String sidoName,
-			@RequestParam(defaultValue = "-1") String sidoCode,
-			@RequestParam(defaultValue = "-1") String sigunguName,
-			@RequestParam(defaultValue = "-1") String sigunguCode,
 			@RequestParam(defaultValue = "home") String menu
 			) throws Exception{
 		
@@ -163,6 +113,41 @@ public class AreaController {
 		mv.addObject("sidoCode", sidoCode);
 		mv.addObject("sigunguName", sigunguName);
 		mv.addObject("sigunguCode", sigunguCode);
+		mv.addObject("contenttypeid", contenttypeid);
+		mv.addObject("contenttypename", contenttypename);
+		mv.addObject("menu", menu);
+
+		mv.setViewName("area/area_" + menu);
+		return mv;
+	}
+	
+	@RequestMapping(value = "areaMenu.do", method = RequestMethod.POST)
+	public ModelAndView areaMenu(ModelAndView mv,
+			@RequestParam(defaultValue = "-1") String sidoName,
+			@RequestParam(defaultValue = "-1") String sidoCode,
+			@RequestParam(defaultValue = "-1") String sigunguName,
+			@RequestParam(defaultValue = "-1") String sigunguCode,
+			@RequestParam(defaultValue = "-1") String contenttypeid,
+			@RequestParam(defaultValue = "-1") String contenttypename,
+			@RequestParam(defaultValue = "home") String menu
+			) throws Exception{
+		mv.addObject("sidoName", sidoName);
+		mv.addObject("sidoCode", sidoCode);
+		mv.addObject("sigunguName", sigunguName);
+		mv.addObject("sigunguCode", sigunguCode);
+		if(menu.equals("attraction")) {
+			contenttypeid = "12";
+		} else if(menu.equals("culture")) {
+			contenttypeid = "14";
+		} else if(menu.equals("hotel")) {
+			contenttypeid = "32";
+		} else if(menu.equals("shopping")) {
+			contenttypeid = "38";
+		} else if(menu.equals("restaurant")) {
+			contenttypeid = "39";
+		}
+		mv.addObject("contenttypeid", contenttypeid);
+		mv.addObject("contenttypename", contenttypename);
 		mv.addObject("menu", menu);
 
 		mv.setViewName("area/area_" + menu);
@@ -170,20 +155,22 @@ public class AreaController {
 	}
 	
 	
-	@RequestMapping("hotelList.do")
+	@RequestMapping("getList.do")
 	public void selectHotelList(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(defaultValue = "-1") String sidoCode,
 			@RequestParam(defaultValue = "-1") String sigunguCode,
+			@RequestParam(defaultValue = "-1") String contenttypeid,
 			@RequestParam(defaultValue = "B") String arrange,
 			@RequestParam(defaultValue = "1") String pageNo) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 
-		String result = JsonParser.getSearchStay(sidoCode, sigunguCode, arrange, pageNo);
+		String result = JsonParser.getContentList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo);
 
 		PrintWriter out = response.getWriter();
 		out.println(result);
 		JSONObject json = new JSONObject();
 		json.put("data", result);
 	}
+	
 }
