@@ -18,8 +18,7 @@ public class Member {
 	private int cnt1;
 	private int cnt3;
 	private int cnt5;
-	
-	
+	private String reviewyn;
 	
 	public Member(){}
 
@@ -130,6 +129,14 @@ public class Member {
 
 	public void setCnt5(int cnt5) {
 		this.cnt5 = cnt5;
+	}
+
+	public String getReviewyn() {
+		return reviewyn;
+	}
+
+	public void setReviewyn(String reviewyn) {
+		this.reviewyn = reviewyn;
 	}
 
 	@Override

@@ -29,6 +29,20 @@ public class AdminController {
 		mv.setViewName("admin/adminMember");
 		return mv;
 	}
+
+	@RequestMapping("updateReviewYn.do")
+	public String updateReviewYn(Member member){
+		
+		int result = memberService.updateReviewYn(member); 
+		return "redirect:adminreview.do";
+	}
+
+	@RequestMapping("deleteMember.do")
+	public String deleteMember(Member member){
+		
+		int result = memberService.deleteMember(member); 
+		return "redirect:adminreview.do";
+	}
 	
 	
 }
