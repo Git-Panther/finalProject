@@ -5,9 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script>
 	function updateReviewYn(userno, reviewyn){
@@ -20,17 +17,9 @@
 		location.href="deleteMember.do?userId=" + userId;
 	}
 </script>
-<style>
-.th {
-	text-align center;
-}
-</style>
 </head>
 <body>
-<div class="container">
-<h2>관리자 페이지</h2>
-  <p>회원 관리</p>            
-	<table class="table table-bordered">
+	<table>
 		<tr>
 			<th>이름</th>
 			<th>성별</th>
@@ -75,7 +64,7 @@
 		</c:forEach>
 		
 	</table>
-</div>	
+	
 	
 	
 </body>
