@@ -37,6 +37,7 @@
 	                  	$("#checkDiv").html("사용 가능한 아이디입니다");
 	            	  }else{
 		                $("#checkDiv").html("이미 사용중인 아이디입니다");
+		                $("#joinBtn").attr("onclick", "alert('아이디를 확인해주세요')");
 	            	  }
 	               },error:function(e){
 						console.log(e);
@@ -57,8 +58,9 @@
 			$("#password2").on('keyup', function() {
 	               if($("#password").val() == $("#password2").val()) {
 	                  $("#checkPwdDiv").html("");
-	               } else {
+	               } else if($("#password").val() != $("#password2").val()) {
 	                  $("#checkPwdDiv").html("비밀번호가 일치하지 않습니다");
+	                  $("#joinBtn").attr(alert('비밀번호를 확인해주세요'));
 	               }
 	            });    
 	   });

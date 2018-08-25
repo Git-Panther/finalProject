@@ -63,6 +63,13 @@ td {
 	function mainPage() {
 		location.href = "index.do";
 	}
+
+	$('#userId').keypress(function(event) {
+		if (event.keyCode == 13 || event.which == 13) {
+			$('#password').focus();
+			event.preventDefault();
+		}
+	});
 </script>
 <head>
 <body>
@@ -79,6 +86,7 @@ td {
 				<td><input type="password" name="password" placeholder="비밀번호" class="infoInput" required/></td>
 			</tr>
 		</table>
+		<input type="submit" style="display: none" />
 	</form>
 	<div class="btns">
 		<div id="loginBtn" onclick="login();">로그인</div><div id="loginMainBtn" onclick="mainPage();">취소</div>
