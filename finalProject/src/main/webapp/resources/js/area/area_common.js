@@ -9,18 +9,23 @@ $(document).ready(	function() {
 			console.log("class가 off이므로 데이터를 받아옴");
 			$('.pospot_tab').removeClass('on');
 			$(this).addClass('on');
-			popList(_this_cate);
+			popList(sidoCode, sigunguCode, _this_cate);
 		}
 	});
 });
 
-function popList(contenttypeid) {
+function popList(sidoCode, sigunguCode, contenttypeid) {
+	console.log("popList::sidoCode: ", sidoCode);
+	console.log("popList::sigunguCode: ", sigunguCode);
+	console.log("popList::contenttypeid: ", contenttypeid);
 	$.ajax({
 				type : 'post',
 				url : 'popList.do',
 				dataType : 'json',
 				data : {
-					contenttypeid : contenttypeid
+					sidoCode: sidoCode,
+					sigunguCode: sigunguCode, 
+					contenttypeid: contenttypeid
 				},
 				success : function(data) {
 					var items = data.response.body.items;
@@ -120,7 +125,7 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 
 function moveContent(sidoName, sidoCode, 
 		sigunguName, sigunguCode, 
-		contentTypeId, contentid, title, eventstartdate, eventenddate){
+		contenttypeid, contentid, title, eventstartdate, eventenddate){
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -128,7 +133,7 @@ function moveContent(sidoName, sidoCode,
 	form.attr("method", "post");
 	form.attr("action", "/planner/contentDetail.do");
 	
-	switch(contentTypeId) {
+	switch(contenttypeid) {
 	case 15 :
 		contenttypename = '축제/행사';
 		$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
@@ -154,7 +159,7 @@ function moveContent(sidoName, sidoCode,
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contentTypeId").val(contentTypeId).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
 	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
@@ -173,7 +178,7 @@ function areaMenu(menu) {
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contentTypeId").val(contentTypeId).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
 	$("<input type='hidden'>").attr("name", "menu").val(menu).appendTo(form);
 	
 	form.appendTo($("#header"));
@@ -181,7 +186,7 @@ function areaMenu(menu) {
 }
 
 
-function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage) {
+function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage) {
 	$(function() {
 		  $.ajax({
 			url : 'getList.do',
@@ -189,13 +194,13 @@ function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage)
 			data : {
 				sidoCode : sidoCode,
 				sigunguCode : sigunguCode,
-				contentTypeId : contentTypeId,
+				contenttypeid : contenttypeid,
 				arrange : arrange,
 				pageNo : pageNo
 			}, //contentid, contentTypeid 서버로 전송
 			dataType : 'json',
 			success : function(data) {
-				console.log("getList::contentTypeId: ", contentTypeId);
+				console.log("getList::contenttypeid: ", contenttypeid);
 				console.log("getList::totalCount: ", data.response.body.totalCount);
 				console.log("getList::item: ", data.response.body.items.item);
 				total = data.response.body.totalCount;
@@ -216,7 +221,7 @@ function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage)
 					output += '<img ';
 					output += 'src="' + item[i].firstimage + '"';
 					output += 'alt="" class="ht_img"';
-					output += 'onclick="javascript:moveContent(' + item[i].contentTypeId + ", " + item[i].contentTypeId + ",'" + item[i].title + "') " + '" ';
+					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '" ';
 					output += 'data-srl="' + item[i].contentid + '">';
 					output += '<div class="box_right">';
 					output += '<div class="btn_clip" data-yn="n" data-srl="' + item[i].contentid + '"'; 
@@ -228,7 +233,7 @@ function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage)
 					output += '<img src="/planner/resources/images/city/spot_list/addplan_ico.png" alt="">';
 					output += '</div>';
 					output += '<a ';
-					output += 'href="javascript:moveContent(' + item[i].contentTypeId + ", " + item[i].contentTypeId + ",'" + item[i].title + "') " + '"';
+					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '"';
 					output += 'class="ht_title">' + item[i].title + '</a>';
 					output += '<div class="ht_info">';
 					output += '&nbsp;' + '<span>0개의 리뷰가 있습니다.</span>';
@@ -244,8 +249,8 @@ function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage)
 					output += '<div class="ht_bottom">';
 					output += '<a class="ht_view"';
 					output += 'href="javascript:moveContent('
-							+ item[i].contentTypeId + ", "
-							+ item[i].contentTypeId + ",'"
+							+ item[i].contenttypeid + ", "
+							+ item[i].contenttypeid + ",'"
 							+ item[i].title + "') " + '"'
 							+ '>자세히보기</a>';
 							output += '</div>';
@@ -258,8 +263,7 @@ function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage)
 				makePaging(total, curPage);
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("Status: " + textStatus);
-				alert("Error: " + errorThrown);
+				alert("Error: " + "목록 불러오기를 실패했습니다.");
 			}
 		});  
 	}); 
@@ -268,7 +272,7 @@ function getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage)
 function moveListPage(pageNo) {
 	curPage = pageNo;
 	pageNo = pageNo;
-	getList(sidoCode, sigunguCode, contentTypeId, arrange, pageNo, curPage);
+	getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage);
 }
 
 // 페이징 생성
@@ -289,10 +293,10 @@ function makePaging(total, curPage){
 	// 페이징 생성
 	var paging ='<span class="nv">';
 	if(curPage > 1){
-		paging += '<button type="button" class="pgn-pv1" onclick="moveListPage'+'(1)">처음으로</button>';
+		paging += '<button type="button" class="pgn-pv1" onclick="moveListPage' + '(1)">처음으로</button>';
 	}
 	if(startPage > viewPage && curPage > 1){
-		paging += '<button type="button" class="pgn-pv2" onclick="moveListPage'+'('(startPage-viewPage)+')">이전</button>';
+		paging += '<button type="button" class="pgn-pv2" onclick="moveListPage' + '(' + (startPage-viewPage) + ')">이전</button>';
 	}
 
 	paging += '</span>';

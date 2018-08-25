@@ -91,37 +91,6 @@ public class AreaController {
 		json.put("data", result);
 	}
 	
-	/*$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
-	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);*/
-	
-	@RequestMapping(value = "areaMain.do", method = RequestMethod.POST)
-	public ModelAndView areaMain(ModelAndView mv,
-			@RequestParam(defaultValue = "-1") String sidoName,
-			@RequestParam(defaultValue = "-1") String sidoCode,
-			@RequestParam(defaultValue = "-1") String sigunguName,
-			@RequestParam(defaultValue = "-1") String sigunguCode,
-			@RequestParam(defaultValue = "-1") String contenttypeid,
-			@RequestParam(defaultValue = "-1") String contenttypename,
-			@RequestParam(defaultValue = "home") String menu
-			) throws Exception{
-		
-		mv.addObject("sidoName", sidoName);
-		mv.addObject("sidoCode", sidoCode);
-		mv.addObject("sigunguName", sigunguName);
-		mv.addObject("sigunguCode", sigunguCode);
-		mv.addObject("contenttypeid", contenttypeid);
-		mv.addObject("contenttypename", contenttypename);
-		mv.addObject("menu", menu);
-
-		mv.setViewName("area/area_" + menu);
-		return mv;
-	}
-	
 	@RequestMapping(value = "areaMenu.do", method = RequestMethod.POST)
 	public ModelAndView areaMenu(ModelAndView mv,
 			@RequestParam(defaultValue = "-1") String sidoName,

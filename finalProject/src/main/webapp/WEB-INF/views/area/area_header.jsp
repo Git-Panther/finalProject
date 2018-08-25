@@ -4,6 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- common -->
+<script type="text/javascript" src="resources/js/common/component.js"></script>
+<script type="text/javascript"
+	src="resources/js/common/common_script.js"></script>
+<script type="text/javascript"
+	src="resources/js/area/area_common.js"></script>
+<script type="text/javascript"
+	src="resources/js/owl_carousel/owl.carousel2.js"></script>
+			<script type="text/javascript" src="resources/js/web/jui/jquery-ui.js"></script>
+<!-- /common -->
+
+<!-- css -->
+<link href="resources/css/city/main.css" rel="stylesheet" />
+<link href="resources/css/city/header_v2.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="resources/js/owl_carousel/owl.carousel2.css">
+<link href="resources/css/hotelList.css" rel="stylesheet">
+<!-- /css -->
+
+<style>
+#map {
+	height: 400px; /* The height is 400 pixels */
+	width: 100%; /* The width is the width of the web page */
+}
+</style>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="resources/js/area/area_map.js"></script>
+
+
 <script>
 	var sidoCode = ${sidoCode};
 	var sidoName = '${sidoName}';
