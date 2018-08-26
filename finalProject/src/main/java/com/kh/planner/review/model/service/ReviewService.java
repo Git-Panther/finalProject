@@ -30,4 +30,13 @@ public class ReviewService {
 		return dao.updateReview(review);
 	}
 
+	public List<Review> selectMyReview(Review review) {
+		return dao.selectMyReview(review);
+	}
+
+	public List<Review> selectAdminReviewList(String userNo) {
+		// TODO Auto-generated method stub
+		return dao.selectAdminReviewList(userNo);
+	}
+
 }

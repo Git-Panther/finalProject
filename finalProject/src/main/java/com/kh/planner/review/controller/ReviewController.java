@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.planner.review.model.service.ReviewService;
 import com.kh.planner.review.model.vo.Review;
@@ -70,6 +72,24 @@ public class ReviewController {
 		resultMap.put("list", list);
 		
 		return resultMap;
+	}
+
+	@RequestMapping("myReviewList.do")
+	public ModelAndView selectMyReview(ModelAndView mv, Review review){
+		List<Review> list = service.selectMyReview(review);
+		mv.addObject("list", list);
+		mv.setViewName("member/myReviewList");
+		return mv;
+	}
+	
+	@RequestMapping("adminReviewList.do")
+	public ModelAndView adminReviewList(ModelAndView mv, 
+			@RequestParam String userNo) {
+		List<Review> rList = service.selectAdminReviewList(userNo);
+		
+		mv.addObject("rList", rList);
+		mv.setViewName("admin/adminReviewList");
+		return mv;
 	}
 	
 }

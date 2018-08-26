@@ -22,7 +22,24 @@
 	
 	<update id="updateReview" parameterType="Review">
 		UPDATE REVIEW
-		SET CONTENT = #{content}
+		SET CONTENT = #{content}, grade = #{grade}
 		WHERE CNO = #{cno}
 	</update>
+	
+	<select id="selectMyReview" parameterType="Review" resultType="Review">
+		SELECT CNO, CONTENTID, CONTENT, WRITER, REG_DATE, USERNAME as writerNM, PROFILEPIC, GRADE, CONTENTTYPEID
+		FROM REVIEW
+		JOIN MEMBER M ON (WRITER = USERNO)
+		WHERE WRITER = #{writer}
+		ORDER BY CNO DESC
+	</select>
+	
+	<select id="selectAdminReviewList" parameterType="String" resultType="Review">
+		SELECT CNO, CONTENTID, CONTENT, WRITER, REG_DATE, USERNAME as writerNM, PROFILEPIC, GRADE, CONTENTTYPEID
+		FROM REVIEW
+		JOIN MEMBER M ON (WRITER = USERNO)
+		WHERE WRITER = #{userNo}
+		ORDER BY CNO DESC
+	</select>
+	
 </mapper>

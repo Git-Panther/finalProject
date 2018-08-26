@@ -57,7 +57,6 @@
 <div class="jumbotron text-center">
   <h1>Admin page</h1> 
   <p>Member Management, Review Management</p> 
-  
 </div>
 <!-- Container (Services Section) -->
 <div class="container-fluid text-center">
