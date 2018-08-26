@@ -51,7 +51,7 @@ th, td {
 			<th>작성일</th>
 			<th>등급</th>
 		</tr>
-		<c:forEach items="${list }" var="review" varStatus="status">
+		<c:forEach items="${rList}" var="review" varStatus="status">
 			<tr onclick="contentDetailPage(${review.contentid}, ${review.contenttypeid});">
 				<td>${status.count }</td>
 				<td>${review.content }</td>

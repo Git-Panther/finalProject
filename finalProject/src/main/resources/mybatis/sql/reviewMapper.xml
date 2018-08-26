@@ -34,4 +34,12 @@
 		ORDER BY CNO DESC
 	</select>
 	
+	<select id="selectAdminReviewList" parameterType="String" resultType="Review">
+		SELECT CNO, CONTENTID, CONTENT, WRITER, REG_DATE, USERNAME as writerNM, PROFILEPIC, GRADE, CONTENTTYPEID
+		FROM REVIEW
+		JOIN MEMBER M ON (WRITER = USERNO)
+		WHERE WRITER = #{userNo}
+		ORDER BY CNO DESC
+	</select>
+	
 </mapper>

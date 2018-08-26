@@ -33,4 +33,8 @@ public class ReviewDao {
 		return sqlSession.selectList("ReviewMapper.selectMyReview", review);
 	}
 
+	public List<Review> selectAdminReviewList(String userNo) {
+		return sqlSession.selectList("ReviewMapper.selectAdminReviewList", userNo);
+	}
+
 }
