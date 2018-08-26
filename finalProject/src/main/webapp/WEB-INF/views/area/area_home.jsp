@@ -6,9 +6,7 @@
 <html>
 <head>
 <script>
-var sidoName = '${sidoName}';
 var sidoCode = '${sidoCode}';
-var sigunguName = '${sigunguName}';
 var sigunguCode = '${sigunguCode}';
 var contenttypeid = '${contenttypeid}';
 var arrange = "B";
@@ -16,7 +14,7 @@ var pageNo = 1;
 var total = 0;
 var curPage = 1;
 	$(document).ready(function() {
-		popList(sidoCode, sigunguCode, 12);
+		popList(sidoCode, sigunguCode, 15);
 	});
 </script>
 <meta charset="UTF-8">
@@ -158,8 +156,8 @@ var curPage = 1;
 			</div>
 
 			<div class="pospot_tab_box">
-				<div class="pospot_tab on" data-cate="12">관광지</div>
-				<div class="pospot_tab" data-cate="15">축제/공연</div>
+				<div class="pospot_tab on" data-cate="15">축제/공연</div>
+				<div class="pospot_tab" data-cate="12">관광지</div>
 				<div class="pospot_tab" data-cate="14">문화시설</div>
 				<div class="pospot_tab" data-cate="32">숙박</div>
 				<div class="pospot_tab" data-cate="38">쇼핑</div>
