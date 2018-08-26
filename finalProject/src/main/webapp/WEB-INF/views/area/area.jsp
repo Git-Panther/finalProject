@@ -22,7 +22,7 @@ var contenttypeid = '${contenttypeid}';
 
 $(document).ready(function(){
 	get_city();
-	popList(sidoCode, sigunguCode, 12);
+	popList(sidoCode, sigunguCode, 15);
 	$(document).on('click','.travel_city',function(){
 		var _this_show = $(this).attr('data-show');
 		var _this_code = $(this).attr('code');
@@ -282,8 +282,8 @@ function get_city() {
 			<div class="area_bg line spot_list silver">
 				<div class="wrap">
 					<div class="pospot_tab_box">
-						<div class="pospot_tab on" data-cate="12">관광지</div>
-						<div class="pospot_tab" data-cate="15">축제/공연</div>
+						<div class="pospot_tab on" data-cate="15">축제/공연</div>
+						<div class="pospot_tab" data-cate="12">관광지</div>
 						<div class="pospot_tab" data-cate="14">문화시설</div>
 						<div class="pospot_tab" data-cate="32">숙박</div>
 						<div class="pospot_tab" data-cate="38">쇼핑</div>

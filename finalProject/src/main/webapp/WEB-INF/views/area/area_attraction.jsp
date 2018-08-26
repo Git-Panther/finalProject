@@ -6,9 +6,7 @@
 <html>
 <head>
 <script>
-	var sidoName = '${sidoName}';
 	var sidoCode = '${sidoCode}';
-	var sigunguName = '${sigunguName}';
 	var sigunguCode = '${sigunguCode}';
 	var contenttypeid = '${contenttypeid}';
 	var arrange = "B";
@@ -66,18 +64,8 @@ function headerClassOn(){
 				<div class="list_right">
 					<div class="scroll_area" style="">
 						<div class="right_box">
-							<div class="right_title">
-								지도에서 보기
-								<div id="map"></div>
-								<script type="text/javascript"
-									src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
-								<script type="text/javascript"
-									src="resources/js/area/area_map.js"></script>
-								<script>
-									getAreaAddr('<c:if test="${sidoName ne '-1'}">${sidoName }<c:if test="${sigunguName ne '-1'}"> ${sigunguName }</c:if></c:if>');
-									</script>
-
-							</div>
+							<div class="right_title">지도에서 보기</div>
+							<div id="map"></div>
 						</div>
 					</div>
 				</div>
