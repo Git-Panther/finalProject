@@ -13,7 +13,10 @@
 <script>
 	var area = '<c:out value="${areaCode}"/>'; // 이름 중복 막으려고 줄임
 	var sigungu = '<c:out value="${sigunguCode}"/>'; // 여기에 원래 선택한 area, sigungu 저장하고 반영 후에 날림
-
+	
+	// 여기서부터는 contentDetail.do 이동을 위한 변수
+	var sidoName, sidoCode, sigunguName, sigunguCode; 
+	
 	function printAreaList(list){
 		var $select = $("#areaSelect");
 		var option = $("<option>");
@@ -30,6 +33,8 @@
 				option.prop("selected", true);
 				sigunguCodeList(option.val());
 				area = "";
+				sidoCode = v.code;
+				sidoName = v.name;
 			}
 			//console.log(option);
 			$select.append(option);
@@ -66,6 +71,8 @@
 				if(/*$("#areaSelect").val() == area && */option.val() == sigungu) {
 					option.prop("selected", true);
 					sigungu = "";
+					sigunguCode = v.code;
+					sigunguName = v.name;
 				}
 				//console.log(option);
 				$select.append(option);
@@ -88,6 +95,29 @@
 		$("#eventStartDate").val("${eventStartDate}");
 		$("#eventEndDate").val("${eventEndDate}");
 	}
+	
+	function setSelectEvent(){
+		$("#areaSelect").on("change", function(){
+			if("" == $(this).children("option:selected").val()){
+				sidoCode = undefined;
+    			sidoName = undefined;
+			}else{
+				sidoCode = Number($(this).children("option:selected").val());
+				sidoName = $(this).children("option:selected").text();
+			}
+			sigunguCode = undefined;
+			sigunguName = undefined;
+    	});
+		$("#sigunguSelect").on("change", function(){
+			if("" == $(this).children("option:selected").val()){
+				sigunguCode = undefined;
+    			sigunguName = undefined;
+			}else{
+				sigunguCode = Number($(this).children("option:selected").val());
+				sigunguName = $(this).children("option:selected").text();
+			}
+    	});
+    }
 </script>
 </head>
 <body>
@@ -165,6 +195,7 @@
 		*/
 		printArrange(); // 정렬순 선택 여부 추가
 		printDate(); // 기간 반영
+		setSelectEvent();
 	});
 </script>
 </body>

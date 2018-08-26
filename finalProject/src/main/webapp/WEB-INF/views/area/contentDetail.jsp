@@ -164,7 +164,7 @@
 							</tr>
 							<tr>
 								<th>분류</th> <!-- 카테고리는 공통? 위와 중복이라 뺄수도 -->
-								<td colspan="3" id="category">여행지 > <c:out value="${contenttypename}"></c:out></td>
+								<td colspan="3" id="category"><c:out value="${contenttypename}"></c:out></td>
 							</tr>
 							<!-- 이 아래부터는 각각의 정보가 들어갈 것이다. -->
 						</tbody>
