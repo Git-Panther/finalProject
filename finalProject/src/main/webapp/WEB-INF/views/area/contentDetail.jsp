@@ -495,10 +495,13 @@ function writeComment(){
           } 
        });   
    }else{
-      alert("로그인 후 이용하세요!");   
+	   swal({
+      	 text: "로그인 후 이용하세요!",
+      	 icon: "error",
+      	 button: "확인"
+       })
    }
 }
-
 function slideDownComment(){
   $(".rv_op_btn.rop_cancel").show();
   $(".write_area").slideDown(500);

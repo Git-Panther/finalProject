@@ -36,17 +36,17 @@
 			<div class="page_title">플래너에서 축제를 찾아보세요!</div>
 			<div class="clear"></div>
 			<div class="intro_list">
-				<div class="intro_box" onclick="location.href='/ko/area';">
+				<div class="intro_box" onclick="location.href='area.do';">
 					<img src="/planner/resources/images/main/intro/intro_1.jpg" alt="">
 					<div class="intro_title">여행정보</div>
 					<div class="intro_desc">전국의 축제/행사, 관광명소, 호텔, 음식점 정보를 확인하세요.</div>
 				</div>
-				<div class="intro_box" onclick="location.href='/ko/plan';">
+				<div class="intro_box" onclick="location.href='festivalList.do';">
 					<img src="/planner/resources/images/main/intro/intro_2.jpg" alt="">
 					<div class="intro_title">축제일정</div>
 					<div class="intro_desc">지금 하고있는 축제들을 확인하고 나만의 일정을 계획해 보세요.</div>
 				</div>
-				<div class="intro_box" onclick="location.href='/ko/community/qa';">
+				<div class="intro_box">
 					<img src="/planner/resources/images/main/intro/intro_3.jpg" alt="">
 					<div class="intro_title">커뮤니티</div>
 					<div class="intro_desc">사람들과 정보를 공유하고, 궁금한 것은 언제든 물어보세요.</div>
