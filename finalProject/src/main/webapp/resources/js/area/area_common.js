@@ -1,3 +1,4 @@
+
 $(document).ready(	function() {
 
 	$(document).on('click', '.pospot_tab', function() {
@@ -140,7 +141,6 @@ function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventend
 		contenttypename = '음식';
 	}
 	
-	// sido, sigungu는 area_header.jsp에 정의되어 있음
 	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
@@ -171,6 +171,7 @@ function areaMenu(menu) {
 	form.submit();
 }
 
+
 function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage) {
 	$(function() {
 		  $.ajax({
@@ -185,20 +186,28 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 			}, //contentid, contentTypeid 서버로 전송
 			dataType : 'json',
 			success : function(data) {
+				initMarker();
 				console.log("getList::contenttypeid: ", contenttypeid);
 				console.log("getList::totalCount: ", data.response.body.totalCount);
+				console.log("getList::items: ", data.response.body.items);
 				console.log("getList::item: ", data.response.body.items.item);
 				total = data.response.body.totalCount;
-				if(total != 1) {
+				if(total > 1) {
 					var item = data.response.body.items.item; //이 경로 내부에 데이터가 들어있음
 				} else {
-					var item = data.response.body.items;
+					var item = data.response.body;
 				}
 				var output = '';
 				
 				$(".list_cnt").html("총 " + total + "개");
-
+				if(total < 2) {
+					$(".list_cnt").html("총 " + "0" + "개");
+					output += "조회 결과가 없습니다."
+				} else {
+				
 				for (var i = 0; i < (item.length); i++) {
+					addMarker(item[i].title, item[i].mapy, item[i].mapx);
+					console.log("getList::addMarker: ", item[i].title, item[i].mapy, item[i].mapx);
 					if(item[i].firstimage == undefined) {
 						item[i].firstimage = "/planner/resources/images/common/no_img/hotel55.png";
 					}
@@ -206,10 +215,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img ';
 					output += 'src="' + item[i].firstimage + '"';
 					output += 'alt="" class="ht_img"';
-					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid
-						+ ", " + item[i].contentid
-						+ ",'" + item[i].title + "'";
-					output += ") " + '" ';
+					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '" ';
 					output += 'data-srl="' + item[i].contentid + '">';
 					output += '<div class="box_right">';
 					output += '<div class="btn_clip" data-yn="n" data-srl="' + item[i].contentid + '"'; 
@@ -221,7 +227,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img src="/planner/resources/images/city/spot_list/addplan_ico.png" alt="">';
 					output += '</div>';
 					output += '<a ';
-					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contentid + ",'" + item[i].title + "') " + '"';
+					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '"';
 					output += 'class="ht_title">' + item[i].title + '</a>';
 					output += '<div class="ht_info">';
 					output += '&nbsp;' + '<span>0개의 리뷰가 있습니다.</span>';
@@ -246,8 +252,10 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 							output += '<div class="clear"></div>';
 							output += '</div>';
 				}
+				}
 
 				$(".list").html(output);
+				setMarkers(markers);
 				makePaging(total, curPage);
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {

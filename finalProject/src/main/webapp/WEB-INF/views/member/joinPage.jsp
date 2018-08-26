@@ -124,34 +124,40 @@ span {
 </style>
 </head>
 <body>
-   <div id="joinFormDiv" align="center">
+   <div id="joinFormDiv" align="center" 
+   style
+    ="margin-top: 150px;
+      margin-bottom: 150px;
+      padding-right: 20px;
+      padding-left: 20px;
+      border-bottom-width: 5px;">
       <h2 id="joinFormDivTitle">회원가입</h2>
       <form id="joinForm" method="post" action="join.do" enctype="multipart/form-data">
          <table>
             <tr>
-               <td colspan="2"><input type="text" name="userId" id="userId" placeholder="아이디 " class="infoInput" required/>
+               <td colspan="2"><input type="text" name="userId" id="userId" placeholder="아이디 " style="height: 46px; margin-bottom: 4px;" class="infoInput" required/>
                <div id="checkDiv"></div></td>
             </tr>
             <tr>
-               <td colspan="2"><input type="password" name="password" id="password" placeholder="비밀번호" class="infoInput" required/>
+               <td colspan="2"><input type="password" name="password" id="password" placeholder="비밀번호" style="height: 46px; margin-bottom: 4px;" class="infoInput" required/>
                <div id="checkDiv2"></div></td>
             </tr>
             <tr>
-               <td colspan="2"><input type="password" name="password2" id="password2" placeholder="비밀번호 확인" class="infoInput" required/>
+               <td colspan="2"><input type="password" name="password2" id="password2" placeholder="비밀번호 확인" style="height: 46px; margin-bottom: 4px;" class="infoInput" required/>
                <div id="checkPwdDiv"></div></td>
             </tr>
             <tr>
-               <td colspan="2"><input type="text" name="userName" placeholder="성명" class="infoInput" required/></td>
+               <td colspan="2"><input type="text" name="userName" placeholder="성명"  style="height: 46px; margin-bottom: 4px;" class="infoInput" required/></td>
             </tr>
             <tr>
                <td><input type="radio" name="gender" value="F" checked />여 <input
                   type="radio" name="gender" value="M" />남</td>
             </tr>
             <tr>
-               <td colspan="2"><input type="email" name="email" placeholder="이메일 주소" class="infoInput" required/></td>
+               <td colspan="2"><input type="email" name="email" placeholder="이메일 주소" style="height: 46px; margin-bottom: 4px;" class="infoInput" required/></td>
             </tr>
             <tr>
-               <td colspan="2"><input type="text" name="birthday" placeholder="생일 YYYY/MM/DD 예)1982/02/17" class="infoInput" required/></td>
+               <td colspan="2"><input type="text" name="birthday" placeholder="생일 YYYY/MM/DD 예)1982/02/17" style="height: 46px; margin-bottom: 4px;" class="infoInput" required/></td>
             </tr>
             <tr>
                <td><span><b>프로필 사진</b></span> <input type="file" accept="image/*" name="profilePic1" /></td>

@@ -4,8 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript" src="resources/js/area/area_map.js"></script>
+
 <!-- common -->
 <script type="text/javascript" src="resources/js/common/component.js"></script>
 <script type="text/javascript"
@@ -15,6 +14,7 @@
 <script type="text/javascript"
 	src="resources/js/owl_carousel/owl.carousel2.js"></script>
 			<script type="text/javascript" src="resources/js/web/jui/jquery-ui.js"></script>
+			
 <!-- /common -->
 
 <!-- css -->
@@ -23,7 +23,6 @@
 <link href="resources/css/city/header_v2.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="resources/js/owl_carousel/owl.carousel2.css">
-<link href="resources/css/hotelList.css" rel="stylesheet">
 <!-- /css -->
 
 <style>
@@ -83,8 +82,7 @@
 					href="javascript:areaMenu('culture')" id="culture"> 문화시설 </a> <a
 					href="javascript:areaMenu('hotel')" id="hotel"> 숙박 </a> <a
 					href="javascript:areaMenu('shopping')" id="shopping"> 쇼핑 </a> <a
-					href="javascript:areaMenu('restaurant')" id="restaurant"> 음식점 </a> <a
-					href="/#"> 지도보기 </a>
+					href="javascript:areaMenu('restaurant')" id="restaurant"> 음식점 </a>
 				<div class="clear"></div>
 			</div>
 		</div>

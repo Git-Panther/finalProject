@@ -467,8 +467,9 @@
 		<div class="clear"></div>
 	</div>
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+
  /*댓글  */
 $(function(){
    //$(".write_area").hide();   
@@ -511,9 +512,19 @@ function writeComment(){
               console.log(data);
               //1. 댓글 작성 성공 여부 화면 출력
               if(data.result == 1){
-                 alert("댓글 작성 성공 하였습니다.");
+//                 alert("댓글 작성 성공 하였습니다.");
+                 swal({
+                	 text: "댓글 작성 성공 하였습나다.",
+                	 icon: "success",
+                	 button: "확인"
+                 })
               }else{
-                 alert("댓글 작성 실패 하였습니다.");
+                 /* alert("댓글 작성 실패 하였습니다."); */
+                 swal({
+                	 text: "댓글 작성 실패 하였습니다..",
+                	 icon: "error",
+                	 button: "확인"
+                 })
               }
               //2. 댓글 리스트 화면에 출력
               setReviewList(data.list);
@@ -522,10 +533,13 @@ function writeComment(){
           } 
        });   
    }else{
-      alert("로그인 후 이용하세요!");   
+	   swal({
+      	 text: "로그인 후 이용하세요!",
+      	 icon: "error",
+      	 button: "확인"
+       })
    }
 }
-
 function slideDownComment(){
   $(".rv_op_btn.rop_cancel").show();
   $(".write_area").slideDown(500);
@@ -662,9 +676,17 @@ function reviewDelete(cno){
           console.log(data);
           //1. 댓글 작성 성공 여부 화면 출력
           if(data.result == 1){
-             alert("댓글을 삭제 하였습니다.");
+        	  swal({
+              	 text: "댓글 삭제 성공 하였습니다.",
+              	 icon: "success",
+              	 button: "확인"
+               })
           }else{
-             alert("댓글 삭제에 실패 하였습니다.");
+        	  swal({
+             	 text: "댓글 삭제 실패 하였습니다.",
+             	 icon: "error",
+             	 button: "확인"
+              })
           }
           //2. 댓글 리스트 화면에 출력
           setReviewList(data.list);
@@ -687,9 +709,17 @@ function updateReview(cno){
           console.log(data);
           //1. 댓글 작성 성공 여부 화면 출력
           if(data.result == 1){
-             alert("댓글을 수정 하였습니다.");
+        	  swal({
+               	 text: "댓글을 수정 하였습니다.",
+               	 icon: "success",
+               	 button: "확인"
+                })
           }else{
-             alert("댓글 수정에 실패 하였습니다.");
+             swal({
+             	 text: "댓글 수정 실패 하였습니다.",
+             	 icon: "error",
+             	 button: "확인"
+              })
           }
           //2. 댓글 리스트 화면에 출력
           setReviewList(data.list);
