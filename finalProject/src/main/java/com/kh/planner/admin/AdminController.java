@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.planner.member.model.service.MemberService;
 import com.kh.planner.member.model.vo.Member;
+import com.kh.planner.review.model.service.ReviewService;
 
 @Controller
 public class AdminController {
@@ -29,7 +30,18 @@ public class AdminController {
 		mv.setViewName("admin/adminMember");
 		return mv;
 	}
+	
+	@RequestMapping("adminmember.do")
+	public ModelAndView adminMainPage1(ModelAndView mv){
+		
+		List<Member> mlist = memberService.selectAdminMemberList(); 
+		System.out.println(mlist);
+		mv.addObject("mlist", mlist);
+		mv.setViewName("admin/adminReview");
+		return mv;
+	}
 
+	
 	@RequestMapping("updateReviewYn.do")
 	public String updateReviewYn(Member member){
 		
@@ -43,6 +55,7 @@ public class AdminController {
 		int result = memberService.deleteMember(member); 
 		return "redirect:adminreview.do";
 	}
+	
 	
 	
 }
