@@ -73,6 +73,7 @@ th, td {
 						여
 					</c:if>
 				</td>
+				
 				<td>${member.email }</td>
 				<td>${member.birthday }</td>
 				<td>${member.cnt1 }</td>

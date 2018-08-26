@@ -81,7 +81,7 @@
 			</div>
 			<div class="header_right">
 				<div class="header_btn btn_review" onclick="go_review();">
-					<div class="header_btn_icon">
+					<div class="header_btn_icon" >
 						<img
 							src="/planner/resources/images/city/spot_info/spot_review_btn.png"
 							alt="">
@@ -260,7 +260,11 @@
                      class="cmmt_content_uimg"
                      onerror="this.src='/planner/resources/images/common/profile/img_profile.png';"/>
                      </a>
-                     <div class="review_opbtn">
+                     <div class="review_opbtn" 
+                     <c:if test="${review.writer ne user.userNo }">
+                     	style="display:none"
+                     </c:if>
+                     >
                      <div class="rv_op_btn rop_delete" data-srl="5353" onclick="reviewDelete(${review.cno})">삭제</div>
                      <div class="rv_op_btn line rop_edit" onclick="reviewModify(${review.cno}, this, '${review.content}', ${review.grade});">수정</div>
                      <div class="rv_op_btn line rop_cancel" onclick="cancelReview();">취소</div></div>
@@ -495,6 +499,11 @@ function slideUpComment(){
 }
 
 function setReviewList(list){
+	var writer = 0;
+    <c:if test="${!empty sessionScope.user}">
+      writer = <c:out value="${sessionScope.user.userNo}"/>;
+    </c:if>
+	
   function pad(num) {
           num = num + '';
           return num.length < 2 ? '0' + num : num;
@@ -516,7 +525,11 @@ function setReviewList(list){
      }
      reviewHtml +=       'class="cmmt_content_uimg" onerror="this.src=\'/planner/resources/images/common/profile/img_profile.png\';">';
      reviewHtml +=    '</a>';
-     reviewHtml +=   '<div class="review_opbtn">';
+     reviewHtml +=   '<div class="review_opbtn" ';
+     if(list[i].writer != writer){
+	     reviewHtml +=   'style="display:none;" ';
+     }
+     reviewHtml +=   '>';
      reviewHtml +=   '<div class="rv_op_btn rop_delete" data-srl="5353" onclick="reviewDelete(' + list[i].cno+ ')">삭제</div>';
      reviewHtml +=   '<div class="rv_op_btn line rop_edit" onclick="reviewModify('+list[i].cno+', this, \''+list[i].content+'\', ' + list[i].grade + ');">수정</div>';
      reviewHtml +=   '<div class="rv_op_btn line rop_cancel" onclick="cancelReview();">취소</div></div>';
@@ -661,6 +674,9 @@ function cancelReview(){
    });
 }
 
+function go_review(){
+	$("#content").focus();
+}
 </script>
 </body>
 <c:import url="/footer.do"></c:import>
