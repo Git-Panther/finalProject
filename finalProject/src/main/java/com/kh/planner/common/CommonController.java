@@ -2,6 +2,7 @@ package com.kh.planner.common;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -67,7 +68,11 @@ public class CommonController {
 		mv.addObject("contenttypeid", contenttypeid);
 		mv.addObject("contentid", contentid);
 		if(-1 != eventstartdate) mv.addObject("eventstartdate", eventstartdate);
-		if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);	
+		if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);
+		
+		List<Review> list = rs.selectReviewAll(new Review(contentid));
+		mv.addObject("rlist", list);
+		
 		mv.addObject("title", title);
 		mv.setViewName("area/contentDetail");
 				

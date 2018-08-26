@@ -18,8 +18,9 @@
     <script type="text/javascript" src="resources/js/gcal.js"></script>
     <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <style>
+   <style>
         body {
+            background-color: #F5FDFD;
             margin-top: 40px;
             text-align: center;
             font-size: 14px;
@@ -64,6 +65,12 @@
         #calendar {
             float: right;
             width: 900px;
+        }
+        .fc-sun {
+            color: red;
+        }
+        .fc-sat {
+            color: blue;
         }
 
     </style>
@@ -224,9 +231,53 @@
     </script>
 
     <style>
-        .btn{
-            float: left;
+        .fc-state-default{
+            background-color: #fff;
         }
+
+        .fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead{
+            border-color: #1ec0ff;
+        }
+        .btn{
+            display: inline-block;
+            text-decoration: none;
+            border: 1px solid #49b2e9;
+            color: #ffffff;
+            text-align: center;
+            line-height: 38px;
+            border-radius: 100px;
+            padding: 0 22px;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            background: #49b2e9;
+            width: 120px;
+            margin-right: 40px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            box-shadow: 0 2px 4px #49b2e9;
+        }
+
+        #external-events{
+            margin-top: 200px;
+            background-color: #F5FDFD;
+            border-color: #1ec0ff;
+        }
+        .fc-toolbar h2{
+            font-size: 30px;
+        }
+        .fc-event, .fc-event-dot{
+            background-color: #ffffff;
+        }
+        .fc-event, .fc-event:hover{
+            color: #ffffff;
+        }
+        .fc-event{
+            border: 1px solid #f9a11b;
+            background-color: #f9a11b;
+        }
+
     </style>
 </head>
 <body>

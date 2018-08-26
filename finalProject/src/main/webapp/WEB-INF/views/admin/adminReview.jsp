@@ -15,12 +15,6 @@
 	function updateReviewYn(userno, reviewyn){
 		location.href="updateReviewYn.do?userNo=" + userno + "&reviewyn=" + reviewyn;
 	}
-	function deleteMember(userId){
-		if(!confirm("회원 탈퇴 진행하시겠습니까?")){
-			return;
-		}
-		location.href="deleteMember.do?userId=" + userId;
-	}
 </script>
 <style>
 th, td {
@@ -38,13 +32,19 @@ th, td {
   }
   
 </style>
+<script>
+function moveReviewList(userNo) {
+	location.href="/planner/adminReviewList.do?userNo=" + userNo;
+		
+}
+</script>
 </head>
 <body>
 
 <div class="container">
 <div class="jumbotron text-center">
-  <h1>Admin page</h1> 
-  <p>Member Management</p> 
+  <h1>Review page</h1> 
+  <p>Review Management</p> 
 </div>
 <!-- <h2>관리자 페이지</h2>
   <p>회원 관리</p>   -->          
@@ -55,14 +55,9 @@ th, td {
 			<th>성별</th>
 			<th>이메일</th>
 			<th>생일</th>
-			<th>별로에요</th>
-			<th>괜찮아요</th>
-			<th>좋아요</th>
-			<th>댓글 작성<br>가능 여부</th>
-			<th>탈퇴</th>
 		</tr>
 		<c:forEach items="${mlist }" var="member" varStatus="status">
-			<tr>
+			<tr onclick="javascript:moveReviewList(${member.userNo})">
 				<td>${status.count }</td>
 				<td>${member.userName }</td>
 				<td>
@@ -73,28 +68,12 @@ th, td {
 						여
 					</c:if>
 				</td>
-				
+
 				<td>${member.email }</td>
 				<td>${member.birthday }</td>
-				<td>${member.cnt1 }</td>
-				<td>${member.cnt3 }</td>
-				<td>${member.cnt5 }</td>
-				<td>
-					<c:if test="${member.reviewyn eq 'Y'}">
-						<input type="button" style="color: black;" onclick="updateReviewYn(${member.userNo}, 'N');" value="가능"/>
-					</c:if>
-					<c:if test="${member.reviewyn ne 'Y'}">
-						<input type="button" style="color: black;" onclick="updateReviewYn(${member.userNo}, 'Y');" value="불가능"/>
-					</c:if>
-				</td>
-				<td>
-					<input type="button" style="color: black;" onclick="deleteMember('${member.userId}');" value="탈퇴"/>
-				</td>
 				
 			</tr>
-			
 		</c:forEach>
-		
 	</table>
 </div>
 <c:import url="/footer.do"/>	

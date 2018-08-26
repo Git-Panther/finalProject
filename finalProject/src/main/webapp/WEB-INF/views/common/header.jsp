@@ -103,13 +103,13 @@ $(function(){
 				<c:if test="${!empty sessionScope.user}">
 					<div class="header_profile fr"><img src="resources/upload/${user.getProfilePic()}"/>
 						<div class="gnb_mn_drop" style="display:none;">
-							<a href="" class="item">찜 목록</a><br/>
-							<a href="" class="item">내 일정</a><br/>
-							<a href="" class="item">리뷰</a><br/>
+							<!-- <a href="" class="item">찜 목록</a><br/> -->
+							<a href="/planner/memberInfo.do" class="item">내 정보</a><br/>
+							<a href="${plan}" class="item">내 일정</a><br/>
+							<a href="myReviewList.do?writer=${user.userNo}" class="item">내 리뷰</a><br/>
 							<c:if test="${user.userNo eq 1}">
 								<a href="adminMain.do" class="item">관리자 페이지</a><br/>
 							</c:if>
-							<a href="/planner/memberInfo.do" class="item">내 정보</a><br/>
 							<a href="/planner/logout.do" class="item">로그아웃</a>
 						</div>
 					</div>

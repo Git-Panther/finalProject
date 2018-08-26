@@ -301,5 +301,5 @@
 	<div class="pageList" id="pageList"></div>
 </div>
 </body>
-<%-- <c:import url="/footer.do"/> --%>
+<c:import url="/footer.do"/>
 </html>
