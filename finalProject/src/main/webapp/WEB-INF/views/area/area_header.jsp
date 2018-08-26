@@ -4,8 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript" src="resources/js/area/area_map.js"></script>
+
 <!-- common -->
 <script type="text/javascript" src="resources/js/common/component.js"></script>
 <script type="text/javascript"
