@@ -36,42 +36,57 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 					} else if (data.response.body.totalCount == 0) {
 						_html = "<h2>조회 결과가 없습니다.</h2>";
 					} else {
-						$.each(object, function(index, item) {
-							_html += '<a class="pospot"';
-							_html += 'href="javascript:moveContent('+ object[index].contenttypeid
-								+ ", " + object[index].contentid
-								+ ", '" + object[index].title + "'";
-							if (15 === contenttypeid) {// 링크는 축제 한정으로 옮긴다..
-								_html += ', ' + object[index].eventstartdate + ', ' + object[index].eventenddate;
-							}
-							_html += ')"';
-							if (index == 3 || index == 7) {
-								_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
-							} else {
-								_html += 'target="_blank"><div class="po_img_box">';
-							}
-							_html += '<img ';
-							if (object[index].firstimage == undefined) {
-								_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
-							} else {
-								_html += 'src="'
-										+ object[index].firstimage
-										+ '"';
-							}
-							_html += 'alt="" class="po_img">';
-							_html += '</div>';
-							_html += '<div class="po_name">'
-									+ object[index].title
-									+ '</div>';
-							_html += '<div class="po_bottom">';
-							_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
-							_html += '<div class="po_cnt">'
-									+ object[index].readcount
-									+ '</div>';
-							_html += '<div class="po_tag">유명한거리/지역</div>';
-							_html += '</div></a>';
-	
-						});
+						$
+								.each(
+										object,
+										function(index, item) {
+											_html += '<a class="pospot"';
+											if (15 === object[index].contenttypeid) {// 링크는 축제 한정으로 옮긴다..
+												_html += 'href="javascript:festivalDetail('
+														+ object[index].contentid
+														+ ', '
+														+ object[index].eventstartdate
+														+ ', '
+														+ object[index].eventenddate
+														+ ', '
+														+ "'.wrap'"
+														+ ');"';
+											} else {
+												_html += 'href="javascript:moveContent('
+														+ object[index].contenttypeid
+														+ ", "
+														+ object[index].contentid
+														+ ", '"
+														+ object[index].title
+														+ "')" + '"';
+											}
+											if (index == 3 || index == 7) {
+												_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
+											} else {
+												_html += 'target="_blank"><div class="po_img_box">';
+											}
+											_html += '<img ';
+											if (object[index].firstimage == undefined) {
+												_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
+											} else {
+												_html += 'src="'
+														+ object[index].firstimage
+														+ '"';
+											}
+											_html += 'alt="" class="po_img">';
+											_html += '</div>';
+											_html += '<div class="po_name">'
+													+ object[index].title
+													+ '</div>';
+											_html += '<div class="po_bottom">';
+											_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
+											_html += '<div class="po_cnt">'
+													+ object[index].readcount
+													+ '</div>';
+											_html += '<div class="po_tag">유명한거리/지역</div>';
+											_html += '</div></a>';
+
+										});
 					}
 					$(".pospot_content").html(_html);
 					$(".pospot_content")
@@ -108,11 +123,9 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	form.submit();
 }
 
-<<<<<<< HEAD
-function moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate){
-=======
-function moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate){
->>>>>>> branch 'master' of https://github.com/uik7300/finalProject
+function moveContent(sidoName, sidoCode, 
+		sigunguName, sigunguCode, 
+		contenttypeid, contentid, title, eventstartdate, eventenddate){
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -142,7 +155,6 @@ function moveContent(contenttypeid, contentid, title, eventstartdate, eventendda
 		contenttypename = '음식';
 	}
 	
-	// sido, sigungu는 area_header.jsp에 정의되어 있음
 	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
 	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
@@ -172,6 +184,7 @@ function areaMenu(menu) {
 	form.appendTo($("#header"));
 	form.submit();
 }
+
 
 function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage) {
 	$(function() {
@@ -208,10 +221,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img ';
 					output += 'src="' + item[i].firstimage + '"';
 					output += 'alt="" class="ht_img"';
-					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid
-						+ ", " + item[i].contentid
-						+ ",'" + item[i].title + "'";
-					output += ") " + '" ';
+					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '" ';
 					output += 'data-srl="' + item[i].contentid + '">';
 					output += '<div class="box_right">';
 					output += '<div class="btn_clip" data-yn="n" data-srl="' + item[i].contentid + '"'; 
@@ -223,7 +233,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img src="/planner/resources/images/city/spot_list/addplan_ico.png" alt="">';
 					output += '</div>';
 					output += '<a ';
-					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contentid + ",'" + item[i].title + "') " + '"';
+					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '"';
 					output += 'class="ht_title">' + item[i].title + '</a>';
 					output += '<div class="ht_info">';
 					output += '&nbsp;' + '<span>0개의 리뷰가 있습니다.</span>';
