@@ -18,62 +18,136 @@
     <script type="text/javascript" src="resources/js/gcal.js"></script>
     <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-   <style>
-        body {
-            background-color: #F5FDFD;
-            margin-top: 40px;
-            text-align: center;
-            font-size: 14px;
-            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-        }
+	<style>
+	body {
+   background-color: #ffffff;
+   margin-top: 40px;
+   text-align: center;
+   font-size: 14px;
+   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
 
-        #wrap {
-            width: 1100px;
-            margin: 0 auto;
-        }
+#wrap {
+   width: 100%;
+   margin: 0 auto;
+}
 
-        #external-events {
-            width: 150px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            background: #eee;
-            text-align: left;
-        }
+#external-events {
+   width: 100%;
+   padding: 0 10px;
+   border: 1px solid #ccc;
+   background: #ffffff;
+   text-align: left;
+   margin-left: 120px;
+}
 
-        #external-events h4 {
-            font-size: 16px;
-            margin-top: 0;
-            padding-top: 1em;
-        }
+#external-events h4 {
+   font-size: 16px;
+   margin-top: 0;
+   padding-top: 1em;
+}
 
-        #external-events .fc-event {
-            margin: 10px 0;
-            cursor: pointer;
-        }
+#external-events .fc-event {
+   margin: 20px 0;
+   cursor: pointer;
+}
 
-        #external-events p {
-            margin: 1.5em 0;
-            font-size: 11px;
-            color: #666;
-        }
+#external-events p {
+   margin: 1.5em 0;
+   font-size: 11px;
+   color: #666;
+}
 
-        #external-events p input {
-            margin: 0;
-            vertical-align: middle;
-        }
+#external-events p input {
+   margin: 0;
+   vertical-align: middle;
+}
 
-        #calendar {
-            float: right;
-            width: 900px;
-        }
-        .fc-sun {
-            color: red;
-        }
-        .fc-sat {
-            color: blue;
-        }
+#calendar {
+   margin-left: 200px;
+   margin-top: 50px;
+   float: left;
+   width: 900px;
+}
+.fc-sun {
+   color: red;
+}
+.fc-sat {
+   color: blue;
+}
 
-    </style>
+.fc-state-default{
+   background-color: #fff;
+}
+
+.fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead{
+   border-color: #1ec0ff;
+}
+.btn{
+   margin-top: 10px;
+   margin-bottom: 100px;
+   display: inline-block;
+   text-decoration: none;
+   border: 1px solid #49b2e9;
+   color: #ffffff;
+   text-align: center;
+   line-height: 38px;
+   border-radius: 100px;
+   padding: 0 22px;
+   -webkit-transition: all 0.3s;
+   transition: all 0.3s;
+   background: #49b2e9;
+   width: 120px;
+   margin-right: 40px;
+   cursor: pointer;
+}
+
+.btn:hover {
+   box-shadow: 0 2px 4px #49b2e9;
+}
+
+#external-events{
+   margin-top: 200px;
+   background-color: #ffffff;
+   border-color: #1ec0ff;
+}
+.fc-toolbar h2{
+   font-size: 30px;
+}
+.fc-event, .fc-event-dot{
+   background-color: #ffffff;
+}
+.fc-event, .fc-event:hover{
+   color: #ffffff;
+}
+.fc-event{
+   border: 1px solid #f9a11b;
+   background-color: #f9a11b;
+}
+
+#btn1{
+   float: left;
+}
+#btn2{
+   float: right;
+}
+
+#outDiv{
+   margin-left: 110px;
+   width: 100%;
+   text-align: center;
+}
+#inDiv{
+   display: inline-block;
+   width: 950px;
+   height: auto;
+}
+#blank{
+   color: #49b2e9;
+   font-size: 40px;
+   text-align: center;
+}
+	</style>
     <script type="text/javascript">
 
         /* IMPORTANT: Put script after tooltip div or
@@ -229,58 +303,10 @@
         document.write('<div id="tipDiv" style="position:absolute; visibility:hidden; z-index:100"></div>')
 
     </script>
-
-    <style>
-        .fc-state-default{
-            background-color: #fff;
-        }
-
-        .fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead{
-            border-color: #1ec0ff;
-        }
-        .btn{
-            display: inline-block;
-            text-decoration: none;
-            border: 1px solid #49b2e9;
-            color: #ffffff;
-            text-align: center;
-            line-height: 38px;
-            border-radius: 100px;
-            padding: 0 22px;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-            background: #49b2e9;
-            width: 120px;
-            margin-right: 40px;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            box-shadow: 0 2px 4px #49b2e9;
-        }
-
-        #external-events{
-            margin-top: 200px;
-            background-color: #F5FDFD;
-            border-color: #1ec0ff;
-        }
-        .fc-toolbar h2{
-            font-size: 30px;
-        }
-        .fc-event, .fc-event-dot{
-            background-color: #ffffff;
-        }
-        .fc-event, .fc-event:hover{
-            color: #ffffff;
-        }
-        .fc-event{
-            border: 1px solid #f9a11b;
-            background-color: #f9a11b;
-        }
-
-    </style>
-</head>
 <body>
+<div id="blank" style="width: 100%; height: 110px">
+    자신만의 일정을 만들어보세요~!~!
+</div>
 <div id='wrap'>
     <div style="float: left; width: 200px">
         <div id='external-events'>
@@ -289,17 +315,18 @@
                 </div>
         </div>
         <br/>
-        <form><input class="btn" type="button" value="다시 만들기" onClick="window.location.reload()"></form>
-        <br/>
-        <br/>
-        <button class="btn">저장</button>
-
     </div>
 
     <div id='calendar'></div>
 
     <div style='clear:both'></div>
 
+</div>
+<div id="outDiv">
+    <div id="inDiv">
+    <input class="btn" id="btn1" type="button" value="다시 만들기" onClick="window.location.reload()">
+    <input class="btn"  id="btn2" type="button" value="저장">
+    </div>
 </div>
 <c:import url="/footer.do"/>
 </body>
