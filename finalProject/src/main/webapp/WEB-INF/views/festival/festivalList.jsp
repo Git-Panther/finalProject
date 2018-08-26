@@ -8,16 +8,18 @@
 <meta charset="UTF-8">
 <title>Festival List</title>
 <link href="resources/css/festival/festivalList.css" rel="stylesheet">
+<script type="text/javascript" src="resources/js/area/area_common.js"></script>
 <script>
+	var params = {
+		pageNo : "${pageNo}".length != 0 ? "${pageNo}" : undefined,
+		arrange : "${arrange}".length != 0 ? "${arrange}" : undefined,
+		areaCode : "${areaCode}".length != 0 ? "${areaCode}" : undefined,
+		sigunguCode : "${sigunguCode}".length != 0 ? "${sigunguCode}" : undefined,
+		eventStartDate : "${eventStartDate}".length != 0 ? "${eventStartDate}" : undefined,
+		eventEndDate : "${eventEndDate}".length != 0 ? "${eventEndDate}" : undefined
+	};
+
 	$(function(){
-		var params = {
-			pageNo : "${pageNo}".length != 0 ? "${pageNo}" : undefined,
-			arrange : "${arrange}".length != 0 ? "${arrange}" : undefined,
-			areaCode : "${areaCode}".length != 0 ? "${areaCode}" : undefined,
-			sigunguCode : "${sigunguCode}".length != 0 ? "${sigunguCode}" : undefined,
-			eventStartDate : "${eventStartDate}".length != 0 ? "${eventStartDate}" : undefined,
-			eventEndDate : "${eventEndDate}".length != 0 ? "${eventEndDate}" : undefined
-		};
 		selectFestivalList(params);
 	});
 	
@@ -59,12 +61,20 @@
         	
         	maintd = $("<td>");
         	subTable = $("<table class='festivalInfo link'>");
+        	/*
         	onclick = "festivalDetail(" + myItem[i].contentid
     			+ ", " + myItem[i].eventstartdate
     			+ ", " + myItem[i].eventenddate
     			+ ", " + "'#festivals'" + ")";
         	subTable.attr("onclick", onclick);
         	//subTable = $("<table class='festivalInfo link'>");
+        	*/
+        	onclick = "contentDetail(" + myItem[i].contenttypeid
+        			+ ", " + myItem[i].contentid
+        			+ ", '" + myItem[i].title + "'"
+        			+ ", " + myItem[i].eventstartdate
+        			+ ", " + myItem[i].eventenddate + ")";
+        	subTable.attr("onclick", onclick);
         	
         	tr = $("<tr>");
         	//th = $("<th>");
@@ -291,6 +301,12 @@
     function dateFormat(date){
     	var dateStr = date.toString();
     	return dateStr.substr(0, 4) + "년 " + dateStr.substr(4, 2) + "월 " + dateStr.substr(6, 2) + "일"
+    }
+    
+    function contentDetail(contenttypeid, contentid, title, eventstartdate, eventenddate){
+    	sidoCode = sigunguCode = sidoName = sigunguName = undefined; // 축제/행사 페이지에서 이동하면 장소는 안보여주는걸로...
+    	//console.log(sidoCode, sidoName, sigunguCode, sigunguName);
+    	moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate);
     }
 </script>
 </head>

@@ -23,7 +23,7 @@ function printCommon(item){ // 공통정보 출력
 		$(".spot_tel").remove();
 	} else {
 		console.log("tel added");
-		$(".spot_tel").html(item.telname + " : " + item.tel);
+		$(".spot_tel").html(item.tel);
 	}
 }
 
