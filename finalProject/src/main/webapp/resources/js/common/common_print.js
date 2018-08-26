@@ -8,7 +8,8 @@ function printCommon(item){ // 공통정보 출력
 	if(15 === item.contenttypeid) {
 		$(".spot_addr").append("$");  
 	}
-	$(".spot_addr").append(" (" + item.zipcode + ")");
+	
+	if(undefined != item.zipcode) $(".spot_addr").append(" (" + item.zipcode + ")");
 	
 	if(undefined === item.homepage) {
 		console.log("homepage removed");

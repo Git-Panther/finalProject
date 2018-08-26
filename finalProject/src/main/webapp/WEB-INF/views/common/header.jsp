@@ -46,7 +46,7 @@
 	border:1px grey solid;
 }
 </style>
-<title>Header</title>
+<title>Planner®</title>
 <script>
 
 function joinPage(){
