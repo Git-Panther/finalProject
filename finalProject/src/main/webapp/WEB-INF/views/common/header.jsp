@@ -9,8 +9,13 @@
 <head>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/area/area_common.js"></script>
 <script type="text/javascript" src="resources/js/common/common_festival.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
+
+<script>
+popList('-1', '-1', '15');
+</script>
 <meta charset="UTF-8">
 <style>
 .gnb_mn_drop a{
