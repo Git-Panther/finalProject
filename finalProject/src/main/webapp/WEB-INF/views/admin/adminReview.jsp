@@ -12,6 +12,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script>
+	function updateReviewYn(userno, reviewyn){
+		location.href="updateReviewYn.do?userNo=" + userno + "&reviewyn=" + reviewyn;
+	}
 </script>
 <style>
 th, td {
@@ -30,47 +33,45 @@ th, td {
   
 </style>
 <script>
-	function contentDetailPage(contentid, contenttypeid){
-		location.href="contentDetail.do?contentid=" + contentid + "&contenttypeid=" + contenttypeid;
-	}
-
+function moveReviewList(userNo) {
+	location.href="/planner/adminReviewList.do?userNo=" + userNo;
+		
+}
 </script>
-
 </head>
 <body>
 
 <div class="container">
 <div class="jumbotron text-center">
-  <h1>MyReview page</h1> 
-  <p>Review</p> 
+  <h1>Review page</h1> 
+  <p>Review Management</p> 
 </div>
+<!-- <h2>관리자 페이지</h2>
+  <p>회원 관리</p>   -->          
 	<table class="table table-bordered">
 		<tr>
 		    <th>No</th>
-			<th>내용</th>
-			<th>작성일</th>
-			<th>등급</th>
+			<th>이름</th>
+			<th>성별</th>
+			<th>이메일</th>
+			<th>생일</th>
 		</tr>
-		<c:forEach items="${list }" var="review" varStatus="status">
-			<tr onclick="contentDetailPage(${review.contentid}, ${review.contenttypeid});">
+		<c:forEach items="${mlist }" var="member" varStatus="status">
+			<tr onclick="javascript:moveReviewList(${member.userNo})">
 				<td>${status.count }</td>
-				<td>${review.content }</td>
+				<td>${member.userName }</td>
 				<td>
-					${review.reg_date }
+					<c:if test="${member.gender eq 'M'}">
+						남
+					</c:if>
+					<c:if test="${member.gender ne 'M'}">
+						여
+					</c:if>
 				</td>
-				<td>
-	               <c:choose>
-                       <c:when test="${review.grade eq 1 }">
-                         	 별로에요!
-                       </c:when>
-                       <c:when test="${review.grade eq 3 }">
-                      		 괜찮아요!
-                       </c:when>
-                       <c:otherwise>
-                         	 좋아요!
-                       </c:otherwise>
-                    </c:choose>
-				</td>
+
+				<td>${member.email }</td>
+				<td>${member.birthday }</td>
+				
 			</tr>
 		</c:forEach>
 	</table>
