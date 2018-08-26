@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.2.4/email.min.js"></script>
   <style>
   .jumbotron {
       background-color: #538ce8;
@@ -51,6 +52,30 @@
     color: #ff9320;
     text-decoration: underline;
   </style>
+  <script type="text/javascript">
+  var emailC = {
+			
+	    	email_to : 'onewonchoi2603@gmail.com',
+	        from_name : '안녕하세요 입니다. 임시 비밀번호를 드립니다.',
+	        message_html: 'ㅎㅇ'
+	     	}
+  
+  function sendMail(){
+       emailjs.init("user_H3yutwk4dSFJmaa6dUMMh"); // 바꿀 필요 없습니다. Account 에 User ID 랑 똑같습니다.
+       emailjs.send("one2","template_0oasa6Mg",emailC)
+      .then(function(response) {
+          console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+      }, function(err) {
+          console.log("FAILED. error=", err);
+      });
+
+      /*
+      YOUR SERVICE ID : Email Service 에서 등록한  Service ID
+      YOUR TEMPLATE ID : Email Template 에 들어가면 이미 하나 만들어져 있습니다. 거기 있는 Template ID 등록    
+      then 부터 콜백처리입니다. 성공하면 reponse 실패하면 error
+      */
+  };
+  </script>
 </head>
 <body>
 
@@ -78,8 +103,7 @@
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-lock logo-small"></span>
-      <h4>JOB DONE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <a class="use" href="javascript:sendMail()">JOB DONE</a>
     </div>
   </div>
   <br><br>

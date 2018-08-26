@@ -8,7 +8,8 @@ function printCommon(item){ // 공통정보 출력
 	if(15 === item.contenttypeid) {
 		$(".spot_addr").append("$");  
 	}
-	$(".spot_addr").append(" (" + item.zipcode + ")");
+	
+	if(undefined != item.zipcode) $(".spot_addr").append(" (" + item.zipcode + ")");
 	
 	if(undefined === item.homepage) {
 		console.log("homepage removed");
@@ -23,7 +24,7 @@ function printCommon(item){ // 공통정보 출력
 		$(".spot_tel").remove();
 	} else {
 		console.log("tel added");
-		$(".spot_tel").html(item.telname + " : " + item.tel);
+		$(".spot_tel").html(item.tel);
 	}
 }
 
