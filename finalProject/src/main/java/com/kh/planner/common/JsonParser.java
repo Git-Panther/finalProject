@@ -13,7 +13,11 @@ public class JsonParser {
 	//private static String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 	//private static String serviceKey = "EuYOKtjgM9QR9GFYmz2fS0z%2FHXF3%2B80PelXkPL7lRVc2nzcw4dg8OwalAxk2OZu%2F%2BNOmxyqSRqKFXnUg2pGeBg%3D%3D";
 	private static String serviceKey = "%2FgAvK8XbnjBXWVvObqp8BnTgGHmHYtNCjqwZ6tIrI8hUoSi9EzB%2FGpIgrvS3YRnk%2FOCGhlZBGRtJ8XaOVYsV6w%3D%3D";
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 	public static String getJsonString(String address) {
 		String resultStr = "";
 		try {

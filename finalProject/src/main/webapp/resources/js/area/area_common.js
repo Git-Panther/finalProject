@@ -108,7 +108,11 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	form.submit();
 }
 
+<<<<<<< HEAD
 function moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate){
+=======
+function moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate){
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
