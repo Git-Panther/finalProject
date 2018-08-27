@@ -37,11 +37,9 @@ function printIntro(item){ // 상세정보 출력
 		printCultureIntro(item);
 		break;
 	case 15:
-		//checkFavorite(item); // 찜 여부 체크
 		printFestivalIntro(item);
 		break;
 	case 32:
-		//checkFavorite(item); // 찜 여부 체크
 		printHotelIntro(item);
 		break;
 	case 38:
@@ -329,10 +327,6 @@ function printFestivalIntro(item){
 	console.log("printFestivalIntro called");
 	eventstartdate = item.eventstartdate;
 	eventenddate = item.eventenddate;
-	
-	$("#favoriteBtn").click(function(){
-		console.log(eventstartdate, eventenddate, item.contenttypeid, item.contentid);
-	});
 	
 	var addr = $(".spot_addr").html();
 	$(".spot_addr").html(addr.split("$")[0] + " " + item.eventplace + " " + addr.split("$")[1]); // 주소 재구성

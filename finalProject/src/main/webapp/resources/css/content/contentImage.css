@@ -40,3 +40,7 @@
 	top: 0;
 	z-index: 1000000;
 }
+
+.header_btn_icon.favorite{
+	background:#f2a304 !important;
+}

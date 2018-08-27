@@ -2,6 +2,9 @@
  * 
  */
 
+var imageCount = 1; // 총 이미지 개수
+var imageIndex = 1; // 이미지 인덱스
+
 function printIndicators(size){
 	var $ol = $(".carousel-indicators");
 	$ol.html(""); // 비운다.
