@@ -18,6 +18,7 @@ function printForecast(body){
 			startdate = getDay(0);
 			enddate = getDay(3);
 		}
+		//console.log(startdate, enddate);
 		
 		var forecast = item.filter(function(v){ // 1차 필터링 : 이것들만 표시
 			var dateRange = v.fcstDate >= startdate && v.fcstDate <= enddate;
@@ -41,14 +42,14 @@ function printForecast(body){
 		for(var i = 0; i <= 3; i++){
 			dayCount = i;
 			forecastList.push(forecast.filter(function(v){ // 2차 필터링 : 해당 날짜 기준으로 3일 후까지 조회
-				return v.fcstDate === baseDate + dayCount;
+				return v.fcstDate == baseDate + dayCount;
 			}));
 		}
 		
-		console.log(forecastList);
+		//console.log(forecastList);
 		//console.log(forecast);
 		if(forecast.length === 0)
-			$("<div class='h4 text-primary spot_info_date'>").text("조회된 결과가 없습니다.").appendTo($forecast_info);
+			$("<div class='h3 text-primary spot_info_date'>").text("조회된 결과가 없습니다.").appendTo($forecast_info);
 		else {
 			forecastList.forEach(function(v){
 				if(v.length > 0){
@@ -57,13 +58,13 @@ function printForecast(body){
 			});
 		}
 	}else{
-		$("<div class='h4 text-primary spot_info_date'>").text("조회된 결과가 없습니다.").appendTo($forecast_info);
+		$("<div class='h3 text-primary spot_info_date'>").text("조회된 결과가 없습니다.").appendTo($forecast_info);
 	}
 }
 
 function printEachForecast(list){ // 각각의 날짜에 해당하는 것을 출력
 	var $forecast_info = $("#forecast_info");
-	var dateInfo = $("<div class='h4 text-primary spot_info_date'>");	
+	var dateInfo = $("<div class='h3 text-primary spot_info_date'>");	
 	var table = $('<table class="spot_info_table">');
 	var colgroup = $("<colgroup>");
 	colgroup.append('<col width="135">').append('<col width="251">').append('<col width="135">').append('<col width="251">');
@@ -79,31 +80,42 @@ function printEachForecast(list){ // 각각의 날짜에 해당하는 것을 출
 	timeList.forEach(function(v){
 		var fcstTime = v; // 시간 묶음
 		forecastEachTime.push(list.filter(function(v){
-			return v.fcstTime === fcstTime;
+			return v.fcstTime == fcstTime;
 		}));
 	});
 	
 	//console.log(forecastEachTime);
 	
 	dateInfo.html(parseFcstDate(list[0].fcstDate));
-	forecastEachTime.forEach(function(v, i){
-		if(v.length > 0){
+	forecastEachTime.forEach(function(value, index){
+		//console.log(value);
+		if(value.length > 0){
 			tr = $("<tr>");
 	    	th = $("<th colspan='4'>");
 	    	td = $("<td>");
 	    	
-	    	th.html(parseFcstTime(v[0].fcstTime)).appendTo(tr);
+	    	th.html($("<div class='h4 text-info'>").text(parseFcstTime(value[0].fcstTime))).appendTo(tr);
 	    	tr.appendTo(table);
+	    	tr = $("<tr>"); // 타이틀 달아줬으니 초기화
 	    	
-	    	v.forEach(function(v){
-	    		tr = $("<tr>");
+	    	value.forEach(function(v, i){	
 	    		th = $("<th>");
 	    		td = $("<td>");
+	    		
 	    		fcstObj = parseForecast(v.category, v.fcstValue);
 	    		th.html(fcstObj.category).appendTo(tr);
 	    		td.html(fcstObj.value).appendTo(tr);
-	    		tr.appendTo(table);
+	    		
+	    		tr.append(th).append(td);
+	    		if(1 === i % 2 || value.length - 1 === i){ // 홀수 번째 인덱스(짝수 번째) 또는 마지막 인덱스
+	    			tr.appendTo(table);
+	    			tr = $("<tr>"); // 초기화
+	    		}
 	    	});
+	    	
+	    	td = $("<td colspan='4'>");
+	    	td.text("          ").appendTo(tr);
+	    	tr.appendTo(table);
 		}
 	});
 	$forecast_info.append(dateInfo).append(table);

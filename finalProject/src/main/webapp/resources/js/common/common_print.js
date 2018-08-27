@@ -93,3 +93,76 @@ function printImage(item){ // 이미지 정보 출력 : 이것은 공통이다
 	}
 	printInner(item);
 }
+
+function printNearInfo(body, type){ // 각 정보별로 표시
+	var $near;
+	var $marker;
+	var $nearContents;
+	
+	switch(type){
+	case 12:
+		$near = $("#nearAttraction");
+		$marker = $("#attractionMarkers");
+		$nearContents = $(".near_attr");
+		break;
+	case 32:
+		$near = $("#nearHotel");
+		$marker = $("#hotelMarkers");
+		$nearContents = $(".near_ht");
+		break;
+	case 39:
+		$near = $("#nearRestaurant");
+		$marker = $("#restaurantMarkers");
+		$nearContents = $(".near_food");
+		break;
+	}
+	
+	if(body.totalCount == 0){ // 결과가 하나도 없으면
+		$near.hide();
+		$marker.hide();
+	}else{ // 하나라도 있으면
+		var item = body.items.item;
+		if(undefined === item.length) item = [item]; // 배열이 아니면 배열로 만듬(결과가 1개이면)
+		
+		var img = $('<img class="ri_img">');
+		var ri_right = $('<div class="ri_right">');
+		var ri_bottom = $('<div class="ri_bottom">');
+		
+		var div = $("<div>");
+		
+		item.forEach(function(v, i){
+			img = $('<img class="ri_img">');
+			ri_right = $('<div class="ri_right">');
+			ri_bottom = $('<div class="ri_bottom">');
+			
+			if(undefined != v.firstimage && "" != v.firstimage){
+				img.attr("src", v.firstimage);
+			}else{
+				img.attr("src", "/planner/resources/images/festival/no_image.png");
+			}
+			$nearContents.append(img);
+			
+			div = $("<div>");	
+			div.addClass("ri_title").html(v.title);
+			ri_right.append(div);
+			
+			div = $("<div>");	
+			div.addClass("ri_price").html(v.addr1 + v.addr2);
+			ri_right.append(div).appendTo($nearContents);
+			
+			div = $("<div>");	
+			div.addClass("ri_distance").html(v.dist + "m");
+			ri_bottom.append(div);
+			
+			div = $("<div>");	
+			div.addClass("ri_rate").html("조회수 : " + v.readcount);
+			ri_bottom.append(div);
+			
+			div = $("<div>");	
+			div.addClass("clear");
+			ri_bottom.append(div).appendTo($nearContents);
+			
+			printMark(new daum.maps.LatLng(v.mapy, v.mapx), v.title, type);
+		});
+	}
+}

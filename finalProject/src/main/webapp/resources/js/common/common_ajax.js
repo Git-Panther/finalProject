@@ -14,6 +14,11 @@ function detailCommon(contenttypeid, contentid){ // 해당 정보의 공통정�
         	detailIntro(contenttypeid, contentid); // 공통정보 출력이 끝나면 상세정보를 조회
         	// 지도 조회
         	forecast(item.mapx, item.mapy); // 기상청 조회
+        	locationBasedList(item.mapx, item.mapy, 32);
+        	locationBasedList(item.mapx, item.mapy, 39);
+        	locationBasedList(item.mapx, item.mapy, 12);
+        	printMark(new daum.maps.LatLng(item.mapy, item.mapx), item.title, 0); // 자기 자신 마커 출력
+        	changeMarker("allMarkers"); // 전체 먼저 누르기
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -28,7 +33,7 @@ function detailIntro(contenttypeid, contentid){ // 해당 정보의 상세정보
         data: { contenttypeid : contenttypeid, contentid : contentid },
         dataType: 'json',
         success: function(data){
-        	console.log(data);
+        	//console.log(data);
         	printIntro(data.response.body.items.item); // 상세정보 출력
         	detailInfo(contenttypeid, contentid); // 상세정보 출력이 끝나면 반복 정보를 조회
         }
@@ -45,7 +50,7 @@ function detailInfo(contenttypeid, contentid){ // 해당 정보의 반복정보
         data: { contenttypeid : contenttypeid, contentid : contentid },
         dataType: 'json',
         success: function(data){
-        	console.log(data);
+        	//console.log(data);
         	printInfo(data.response.body.items.item); // 반복정보 출력
         	detailImage(contentid); // 반복정보 출력이 끝나면 이미지 정보를 조회
         }
@@ -62,7 +67,7 @@ function detailImage(contentid){ // 해당 정보의 반복정보
         data: { contentid : contentid },
         dataType: 'json',
         success: function(data){
-        	console.log(data);
+        	//console.log(data);
         	printImage(data.response.body.items.item);
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -79,7 +84,7 @@ function locationBasedList(mapx, mapy, contenttypeid){ // 축제 한정으로만
         dataType: 'json',
         success: function(data){
         	console.log(data);
-        	//printNearInfo(data.response.body.items.item, contenttypeid); // 공통 정보만 뽑았다.
+        	printNearInfo(data.response.body, contenttypeid); // 공통 정보만 뽑았다.
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -94,7 +99,7 @@ function forecast(mapx, mapy){ // 축제가 아니어도 기상청 정보는 쓴
         data: { mapx : mapy, mapy : mapx }, // 발표일은 controller에서 처리. 둘이 자리 바뀐 이유는 mapx 쪽이 세자리 나옴(...)
         dataType: 'json',
         success: function(data){
-        	console.log(data);
+        	//console.log(data);
         	printForecast(data.response.body);
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 

@@ -6,9 +6,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="resources/css/content/contentImage.css" rel="stylesheet">
 <link href="resources/css/city/spot_info.css" rel="stylesheet">
 <link href="resources/css/review.css" rel="stylesheet">
+<link href="resources/css/content/contentDetail.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>상세정보</title>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -25,17 +25,12 @@
 	var contenttypeid = <c:out value="${contenttypeid}"/>;
 	var isUser = false; // 로그인 중인가?
 	var userNo = undefined;
+	//var sidoCode, sigunguCode;
+	
 	<c:if test="${!empty sessionScope.user}">
 		isUser = true;
 		userNo = <c:out value="${sessionScope.user.userNo}"/>;
-	</c:if>			
-	$(function(){
-		//console.log(contentid, contenttypeid);
-		setTapEvent();
-		detailCommon(contenttypeid, contentid); // 기본 정보 조회. 이후 순서대로 조회될 것이다.
-		setCarouselEvent();
-		setFavoriteEvent();
-	});
+	</c:if>	
 </script>
 </head>
 <body>
@@ -68,7 +63,8 @@
 			<div class="header_left">
 				<div class="spot_name">
 					<c:choose>
-						<c:when test="${title ne '-1'}"> &gt; 
+						<c:when test="${title ne '-1'}">
+							<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
 							<c:out value="${title}"/>
 						</c:when>
 						<c:otherwise>
@@ -213,6 +209,29 @@
 								<col width="251">
 							</colgroup>
 							<tbody></tbody>
+							<tr>
+								<td colspan="4" id="festivalMap">
+									<div id="map"></div>
+									<div class="markerCategory">
+									 	<div id="allMarkers" class="markerMenu">
+									 		<img class="ico_comm ico_all"></img>
+											전체
+									 	</div>
+									 	<div id="hotelMarkers" class="markerMenu">
+									 		<img class="ico_comm ico_hotels"></img>
+											숙박
+									 	</div>
+									 	<div id="restaurantMarkers" class="markerMenu">
+									 		<img class="ico_comm ico_restaurants"></img>
+											식당
+									 	</div>
+									 	<div id="attractionMarkers" class="markerMenu">
+									 		<img class="ico_comm ico_attractions"></img>
+											관광지
+									 	</div>
+							    	</div>
+								</td>
+							</tr>
 						</table>
 					</div>
 				</div>
@@ -340,28 +359,44 @@
 			</div> <!-- end of content-wrap -->
 		</div>
 		<div class="content_right">
-			<div class="right_inner hotel">
+			<div class="right_inner" id="nearHotel">
 				<div class="r_inner_title">
-					인근의 호텔 <a
+					1km 이내 호텔
+					<!-- 
+						<img src="" alt="" class="ri_img" onerror="this.src='/res/img/common/no_img/hotel55.jpg';">
+					 	<div class="ri_right">
+					 		<div class="ri_title">그랜드 모텔</div>
+					 		<div class="ri_price">￦74,708</div>
+					 		<div class="ri_bottom">
+					 			<div class="ri_distance">거리 25.86km</div>
+					 			<div class="ri_rate">강력추천 <span>9.9</span></div>
+					 			<div class="clear"></div>
+					 		</div>
+					 	</div>
+					 	<div class="clear"></div>
+					 -->
+					<!--  
+					 <a
 						href="/ko/city/seoul_310/hotel?from_lat=37.57736200&amp;from_lng=126.97668500&amp;ht_name=경복궁"
 						class="ri_more ht"> 더보기 &gt; </a>
 					<div class="clear"></div>
+					-->
 				</div>
 				<div class="near_ht"></div>
 			</div>
 
-			<div class="right_inner">
+			<div class="right_inner" id="nearRestaurant">
 				<div class="r_inner_title">
-					인근의 음식점 <a class="ri_more food"
-						href="/ko/city/seoul_310/restaurant"> 더보기 &gt; </a>
+					1km 이내 음식점 <!-- <a class="ri_more food"
+						href="/ko/city/seoul_310/restaurant"> 더보기 &gt; </a>-->
 				</div>
 				<div class="near_food"></div>
 			</div>
 
-			<div class="right_inner">
+			<div class="right_inner" id="nearAttraction">
 				<div class="r_inner_title">
-					인근의 관광지 <a class="ri_more attr"
-						href="/ko/city/seoul_310/attraction"> 더보기 &gt; </a>
+					1km 이내 관광지<!--   <a class="ri_more attr"
+						href="/ko/city/seoul_310/attraction"> 더보기 &gt; </a>-->
 				</div>
 				<div class="near_attr"></div>
 			</div>
@@ -648,6 +683,30 @@ function cancelReview(){
 function go_review(){
 	$("#content").focus();
 }
+</script>
+<script> // Map
+	var attractionMarkers = [], hotelMarkers = [], restaurantMarkers = []; // 메인 컨텐츠는 항상 표시, 인근 것들은.??
+	
+	var container = document.getElementById('map');			
+	var options = {
+		center: new daum.maps.LatLng(33.450701, 126.570667),
+		level: 3
+		// ,marker: markers // 이미지 지도에 표시할 마커 
+	};			
+	var map = new daum.maps.Map(container, options);
+
+	var zoomControl = new daum.maps.ZoomControl();
+	
+	$(function(){
+		//console.log(contentid, contenttypeid);
+		setTapEvent();
+		detailCommon(contenttypeid, contentid); // 기본 정보 조회. 이후 순서대로 조회될 것이다.
+		setCarouselEvent();
+		setFavoriteEvent();
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+		map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);	
+		markerCategoryEvent(); // 마커 표시 이벤트 추가
+	});
 </script>
 </body>
 <c:import url="/footer.do"></c:import>

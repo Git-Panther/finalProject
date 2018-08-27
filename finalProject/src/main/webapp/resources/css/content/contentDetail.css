@@ -81,3 +81,88 @@
 .justify{
 	text-align:justify !important;
 }
+
+#festivalMap{
+	position:relative;
+	overflow:hidden;
+}
+
+#map{
+	width:800px;
+	height:450px;
+}
+
+#map img {
+	max-width: none;
+	height: auto;
+	border: 0;
+}
+
+.markerContent{
+	position:relative;
+	bottom:0px;
+	border-radius:6px;
+	padding:5px;
+	width:auto;
+	height:auto;
+	text-align:center;
+	background-color:white;
+	border: 1px solid #ccc;
+	border-bottom:2px solid #ddd;
+	z-index:1;
+}
+/*
+.markerContent:after {
+	content:'';
+	position:absolute;
+	margin-left:-12px;
+	left:50%;
+	bottom:-12px;
+	width:22px;
+	height:12px;
+	background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+}
+*/
+.markerCategory, .markerCategory *{
+	margin:0;
+	padding:0;
+	color:#000;
+}   
+
+.markerCategory {
+	position:absolute;
+	top:10px;
+	left:550px;
+	width:auto;
+	height:auto;
+	z-index:10;
+	border:1px solid black;
+	font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+	font-size:12px;
+	text-align:center;
+	background-color:#fff;
+}
+
+.markerCategory .menu_selected {
+	background:#2ea0dd;
+	color:#fff;
+	border-left:1px solid black;
+	border-right:1px solid black;
+	margin:0 -1px;
+	height:auto;
+} 
+
+.markerMenu{
+	float:left;
+	width:60px;
+	height:48px;
+	padding-top:5px;
+	cursor:pointer;
+} 
+
+.markerCategory .ico_comm{
+	display:block;
+	margin:0 auto 2px;
+	width:22px;
+	height:26px;
+} 
