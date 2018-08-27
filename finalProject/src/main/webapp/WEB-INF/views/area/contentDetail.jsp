@@ -35,6 +35,7 @@
 		setCarouselEvent();
 		setFavoriteEvent();
 	});
+	
 </script>
 </head>
 <body>
@@ -349,7 +350,7 @@
 
 					<div class="write_review">
 						<div class="write_title r">
-							<span>경복궁</span> 리뷰 남기기
+							<span></span> 리뷰 남기기
 						</div>
 
 						<div class="review_box">

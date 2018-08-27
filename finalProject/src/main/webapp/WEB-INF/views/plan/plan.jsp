@@ -27,6 +27,9 @@
    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 }
 
+#header{
+margin-top:-40px;}
+
 #wrap {
    width: 100%;
    margin: 0 auto;
@@ -158,6 +161,141 @@
 
 }
 	</style>
+	<script>
+	function drawCalendar(){
+		$('#calendar').fullCalendar({
+	        header: {
+	            left: 'prev,next today',
+	            center: 'title',
+	            right: 'month,agendaWeek,agendaDay'
+	        },
+	        lang: 'ko',
+	        //businessHours: true, //토, 일 색 회색으로 변경
+	        googleCalendarApiKey :"AIzaSyCGWuSmpJq73sOY_B8MY4tXQBMgRwmeaes",
+	        editable: true,
+	        draggable: true,
+	        droppable: true, // this allows things to be dropped onto the calendar
+
+	        events: [ //이벤트 등록
+	        	<c:forEach items="${list}" var="plan" varStatus="stat">
+	    	        	{
+	    	                title : '${plan.CONTENT}',
+	    	                start : '${plan.STARTDATE}',
+	    	                end : '${plan.ENDDATE}'
+	    	            }
+	            	<c:if test="${!stat.last}">
+	    	        	,
+	            	</c:if>
+	            </c:forEach>
+	        ],
+	        eventSources : [
+	            // 대한민국의 공휴일
+	            {
+	                googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
+	                , className : "koHolidays"
+	                , color : "#ffffff"
+	                , textColor : "#FF0033"
+	                , editable: false
+	            }],
+	        eventDrop: function(event, delta, revertFunc) { //캘리더에서 캘린더로 드래그시 위치변경 알림
+	            // console.log(event, delta, revertFunc); // 이벤트에 시작일, 종료일 담기 가능?
+	            // alert("날짜를 변경 할 축제이름 : " + event.title + "  변경할 날짜 : " + event.start.format());
+	            console.log(event, delta, revertFunc);
+	            if(!confirm("정말로 삭제 하시겠습니까?")){
+	            	return;
+	            }
+	                var title = event.title;
+	                var startDate = event.start._i;
+	                console.log(title, startDate);
+	            location.href = "deletePlan.do?content=" + title + "&startdate="+startDate;
+// 	                swal({
+// 	                    title: event.title,
+// 	                    text: "변경된 날짜는 : " + event.start.format() + "입니다.",
+// 	                    icon: "success",
+// 	                    button: "일정 변경하기"
+// 	                });
+	        },
+	        drop: function(date, event) {  //찜 목록에서 캘린더로 드래그시 이벤트
+	            //'2018-08-20' -> 실제 축제기간 넣기(switch-case?, ajax?)
+	            console.log(event.target);
+	            var $target = $(event.target);
+	            console.log($target.data());
+	            console.log(123123, $target.data().event.startdate);
+				//var title = $target.data().event.title;
+	            var startdate = $target.data().event.startdate;
+	            var enddate = $target.data().event.enddate;
+	            console.log(date.format());
+	            if (date.format() >= startdate && date.format() <= enddate) {
+	                // alert("입력할 날짜 : " + date.format());// && confirm("축제 기간입니다. 일정을 추가 하시겠습니까?")
+// 	                swal({
+// //	                    text: "입력된 날짜는 : " + startdate ~ endddate + " 입니다.",
+// 	                    text: "입력된 날짜는 : " + startdate + "~" + enddate + " 입니다.",
+// 	                    icon: "success",
+// 	                    button: "일정 추가"
+// 	                });
+	                
+	                var content = prompt("일정 이름 입력");
+	                
+	                //console.log($('#calendar').fullCalendar('clientEvents'));
+	                $("#contentid").val($target.data().event.title);
+	                $("#contenttypeid").val($target.data().event.contenttypeid);
+	                $("#content").val(content);
+	                $("#startdate").val(startdate);
+	                $("#enddate").val(enddate);
+	                
+	                $("#planForm").submit();
+	                
+	            }else {
+	                // alert("축제 기간이 아닙니다. 축제 기간은 : " + startdate + " ~ " + endddate + " 입니다.");
+	                swal({
+	                    text: "축제 기간이 아닙니다." +"\n"+ "축제 기간은 : " + startdate + " ~ " + enddate + " 입니다.",
+	                    icon: "error",
+	                    button: "축제 기간에 넣어주세요"
+	                });
+	                return false;
+	                //console.log("events ",$('#calendar').fullCalendar('clientEvents'));
+	            }
+
+	            //체크박스 -> 체크후 드래그시 목록 사라짐
+	            // is the "remove after drop" checkbox checked?
+	            if ($('#drop-remove').is(':checked')) {
+	                // if so, remove the element from the "Draggable Events" list
+	                $(this).remove();
+	            }
+	        },
+	        eventDragStop: function (event, jsEvent, ui, view) {
+	            console.log(event, jsEvent, ui, view);
+	        },
+	        eventResize: function(event, delta, revertFunc) {
+
+	            // alert(event.title + " 이 축제의 기간이 " + event.start.format() + " 에서 " +
+	            // event.end.format() + "까지로 변경됩니다.");
+	            swal({
+	                text: event.title + "이 축제의 기간이 " + "\n" + event.start.format() + " 에서 " +
+	                "\n" + event.end.format() + " 으로 변경됩니다.",
+	                icon: "success",
+	                button: "변경하기"
+	            });
+
+	            // if (!confirm("변경 하시겠습니까??")) {
+	            //     revertFunc();
+	            // }
+
+	        }
+
+	        // },
+	        // eventLimit: false,
+	        // events: [
+	        //     {
+	        //         title: 'Festival', //ajax
+	        //         start: '2018-08-20',
+	        //         end: '2018-08-23'
+	        //     }]
+	    });
+		
+	}
+	</script>
+	
     <script type="text/javascript">
 
         /* IMPORTANT: Put script after tooltip div or
@@ -310,8 +448,7 @@
             tipOn = false;
         }
 
-        document.write('<div id="tipDiv" style="position:absolute; visibility:hidden; z-index:100"></div>')
-
+        document.write('<div id="tipDiv" style="position:absolute; visibility:hidden; z-index:100"></div>');
     </script>
 <body>
 <div id="blank" style="width: 115%; height: 110px; text-align: center; padding-top: 40px;">
@@ -321,7 +458,7 @@
     <div style="float: left; width: 240px">
         <div id='external-events'>
             <h4 >Drag Festival</h4>
-                <div id="favoriteFestivals" onmouseover="doTooltip(event,0)" onmouseout="hideTip()">
+                <div id="favoriteFestivals">
                 </div>
         </div>
         <br/>
@@ -338,6 +475,15 @@
     <input class="btn"  id="btn2" type="button" value="저장">
     </div>
 </div>
+
+<form action="insertPlan.do" id="planForm">
+	<input type="hidden" name="contentid" id="contentid"/>
+	<input type="hidden" name="content" id="content"/>
+	<input type="hidden" name="contenttypeid" id="contenttypeid"/>
+	<input type="hidden" name="startdate" id="startdate"/>
+	<input type="hidden" name="enddate" id="enddate"/>
+</form>
+
 <c:import url="/footer.do"/>
 </body>
 </html>

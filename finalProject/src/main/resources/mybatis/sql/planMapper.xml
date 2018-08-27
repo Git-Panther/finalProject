@@ -6,4 +6,18 @@
 	<select id="selectFavoriteList" parameterType="map" resultType="hashMap">
 		select * from favorite where userNo = ${userNo} and contentTypeId = ${contentTypeId}
 	</select>
+
+	<select id="selectPlanList" parameterType="Member" resultType="hashmap">
+		select PLANNO, USERNO, CALENDARNO, CONTENT, to_char(to_date(STARTDATE, 'yy/mm/dd'), 'yyyy-mm-dd') as STARTDATE, to_char(to_date(ENDDATE, 'yy/mm/dd'), 'yyyy-mm-dd') as ENDDATE, CONTENTTYPEID, CONTENTID
+		  from plan WHERE USERNO = #{userNo}
+	</select>
+	
+	<insert id="insertPlan" parameterType="Plan">
+		INSERT INTO PLAN
+		VALUES (SEQ_PLANNO.NEXTVAL, #{userno}, 1, #{content}, #{startdate}, #{enddate}, #{contenttypeid}, #{contentid})
+	</insert>
+	<delete id="deletePlan" parameterType="Plan">
+		DELETE FROM PLAN
+		WHERE USERNO = #{userno} and CONTENT = #{content} and STARTDATE = #{startdate}
+	</delete>
 </mapper>
