@@ -101,3 +101,74 @@ function forecast(mapx, mapy){ // 축제가 아니어도 기상청 정보는 쓴
     	} 
     });	
 }
+
+function checkFavorite(){ // 로그인 상태인데 찜을 해놓고 있냐 아니냐
+	if(isUser){
+		$.ajax({        
+	        url: 'checkFavorite.do',
+	        type: 'post',
+	        // 이미 전역 변수로 userNo, contenttypeid, contentid가 있다. 거기다 el로 값을 정해준다.
+	        data: { userno : userNo, contenttypeid : contenttypeid, contentid : contentid},
+	        success: function(data){
+	        	//console.log(data);
+	        	if(data){ // 있다면 찜하기 등록한 상태로 변경
+	        		$("#favoriteBtn > .header_btn_icon").addClass("favorite");
+	        	}
+	        }
+	        , error: function(XMLHttpRequest, textStatus, errorThrown) { 
+	        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+	    	} 
+	    });	
+	}
+}
+
+function insertFavorite(){ // 찜 등록 : 다섯 개 전부 전역 변수이므로 무관
+	$.ajax({        
+        url: 'insertFavorite.do',
+        type: 'post',
+        data: { userno : userNo, 
+        		contenttypeid : contenttypeid,
+        		contentid : contentid,
+        		eventstartdate : eventstartdate, // contentEvent.js 전역변수
+        		eventenddate : eventenddate // contentEvent.js 전역변수
+        },
+        success: function(data){
+        	//console.log(data);
+        	if(data){ // 성공
+        		$("#favoriteBtn > .header_btn_icon").addClass("favorite");
+        	}else{ // 실패
+        		swal({
+    				title: "찜하기 실패!",
+    				text: "예기치 않은 오류가 발생했습니다.",
+    				icon: "error"
+    			});
+        	}
+        }
+        , error: function(XMLHttpRequest, textStatus, errorThrown) {
+        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+    	} 
+    });		
+}
+
+function deleteFavorite(){ // 찜 삭제
+	$.ajax({        
+        url: 'deleteFavorite.do',
+        type: 'post',
+        data: { userno : userNo, contenttypeid : contenttypeid, contentid : contentid}, 
+        success: function(data){
+        	//console.log(data);
+        	if(data){ // 성공
+        		$("#favoriteBtn > .header_btn_icon").removeClass("favorite");
+        	}else{ // 실패
+        		swal({
+    				title: "찜 해제 실패!",
+    				text: "예기치 않은 오류가 발생했습니다.",
+    				icon: "error"
+    			});
+        	}
+        }
+        , error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+    	} 
+    });	
+}

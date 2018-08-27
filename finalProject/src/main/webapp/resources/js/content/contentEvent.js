@@ -19,8 +19,25 @@ function setCarouselEvent(){
 }
 
 function setFavoriteEvent(){
+	checkFavorite(); // 먼저 검사한다.
 	$("#favoriteBtn").click(function(){
-		console.log(eventstartdate, eventenddate, contenttypeid, contentid);
+		if(isUser){
+			//console.log($("#favoriteBtn > .header_btn_icon"));
+			var isFavorite = $("#favoriteBtn > .header_btn_icon").is(".favorite");
+			//console.log(isFavorite);
+			if(isFavorite){
+				deleteFavorite();
+			}else{
+				insertFavorite();
+			}
+		}else{
+			swal({
+				title: "찜하기 실패!",
+				text: "로그인 후 이용하세요.",
+				icon: "error"
+			});
+		}
+		//console.log(eventstartdate, eventenddate, contenttypeid, contentid);
 	});
 }
 	

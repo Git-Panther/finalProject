@@ -11,6 +11,7 @@
 <link href="resources/css/review.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>상세정보</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="resources/js/common/common_ajax.js"></script>
 <script type="text/javascript" src="resources/js/common/common_print.js"></script>
@@ -19,8 +20,15 @@
 <script type="text/javascript" src="resources/js/content/contentImage.js"></script>
 <script type="text/javascript" src="resources/js/content/contentEvent.js"></script>
 <script>
-	var contentid = ${contentid};
-	var contenttypeid = ${contenttypeid};
+	var contentid = <c:out value="${contentid}"/>;
+	var contenttypeid = <c:out value="${contenttypeid}"/>;
+	var isUser = false; // 로그인 중인가?
+	var userNo = undefined;
+	<c:if test="${!empty sessionScope.user}">
+		isUser = true;
+		userNo = <c:out value="${sessionScope.user.userNo}"/>;
+	</c:if>
+			
 	$(function(){
 		//console.log(contentid, contenttypeid);
 		detailCommon(contenttypeid, contentid); // 기본 정보 조회. 이후 순서대로 조회될 것이다.
