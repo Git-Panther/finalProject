@@ -57,6 +57,7 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 					if (object[index].firstimage == undefined) {
 						_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
 					} else {
+<<<<<<< HEAD
 						$.each(	object,
 										function(index, item) {
 											_html += '<a class="pospot"';
@@ -116,6 +117,24 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 													+ '</div>';
 											_html += '<div class="po_tag">유명한거리/지역</div>';
 											_html += '</div></a>';
+=======
+						_html += 'src="'
+								+ object[index].firstimage
+								+ '"';
+					}
+					_html += 'alt="" class="po_img">';
+					_html += '</div>';
+					_html += '<div class="po_name">'
+							+ object[index].title
+							+ '</div>';
+					_html += '<div class="po_bottom">';
+					_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
+					_html += '<div class="po_cnt">'
+							+ object[index].readcount
+							+ '</div>';
+					_html += '<div class="po_tag">유명한거리/지역</div>';
+					_html += '</div></a>';
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 
 				});
 			}
@@ -153,9 +172,14 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	form.appendTo($("#header"));
 	form.submit();
 }
+<<<<<<< HEAD
 
 function moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate){
 	console.log("dsadsa");
+=======
+
+function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -166,8 +190,8 @@ function moveContent(contenttypeid, contentid, title, eventstartdate, eventendda
 	switch(contenttypeid) {
 	case 15 :
 		contenttypename = '축제/행사';
-		$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
-		$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
+		//$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
+		//$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
 		break;
 	case 12 :
 		contenttypename = '관광지';

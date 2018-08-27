@@ -59,6 +59,7 @@ public class CommonController {
 			//@RequestParam(value="eventstartdate", defaultValue="-1") int eventstartdate,
 			//@RequestParam(value="eventenddate", defaultValue="-1") int eventenddate,
 			@RequestParam(value="title", defaultValue = "-1") String title) {
+		
 		mv.addObject("sidoName", sidoName);
 		mv.addObject("sidoCode", sidoCode);
 		mv.addObject("sigunguName", sigunguName);
