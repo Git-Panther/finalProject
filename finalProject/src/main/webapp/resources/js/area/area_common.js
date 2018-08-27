@@ -56,11 +56,7 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 					_html += '<img ';
 					if (object[index].firstimage == undefined) {
 						_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
-<<<<<<< HEAD
 					} else {
-=======
-					} else {
->>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 						_html += 'src="'
 								+ object[index].firstimage
 								+ '"';
@@ -77,10 +73,6 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 							+ '</div>';
 					_html += '<div class="po_tag">유명한거리/지역</div>';
 					_html += '</div></a>';
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 				});
 			}
 			$(".pospot_content").html(_html);
@@ -116,14 +108,8 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
 	form.appendTo($("#header"));
 	form.submit();
-<<<<<<< HEAD
-}
-
-function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
-=======
 }
 function moveContent(contenttypeid, contentid, title){
->>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -165,51 +151,6 @@ function moveContent(contenttypeid, contentid, title){
 	form.submit();
 }
 
-<<<<<<< HEAD
-
-function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
-	var form = $("<form>");
-	var contenttypename = '-1';
-	
-	form.attr("id", "contentDetail");
-	form.attr("method", "post");
-	form.attr("action", "/planner/contentDetail.do");
-	
-	switch(contenttypeid) {
-	case 15 :
-		contenttypename = '축제/행사';
-		break;
-	case 12 :
-		contenttypename = '관광지';
-		break;
-	case 14 :
-		contenttypename = '문화시설';
-		break;
-	case 32 :
-		contenttypename = '숙박';
-		break;
-	case 38 :
-		contenttypename = '쇼핑';
-		break;
-	case 39 :
-		contenttypename = '음식';
-	}
-	
-	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
-	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
-	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
-	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
-	
-	form.appendTo($("#header"));
-	form.submit();
-}
-
-=======
->>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 function areaMenu(menu) {
 	var form = $("<form>");
 	form.attr("id", "areaMenu");

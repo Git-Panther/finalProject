@@ -35,7 +35,7 @@ function getSearchList(keyword, curPage) {
 							output += 'alt="" class="ht_img"';
 							output += 'onclick="javascript:moveContent('
 									+ object[index].contenttypeid + ", "
-									+ object[index].contenttypeid + ",'"
+									+ object[index].contentid + ",'"
 									+ object[index].title + "') " + '" ';
 							output += 'data-srl="' + object[index].contentid
 									+ '">';

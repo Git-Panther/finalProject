@@ -261,7 +261,4 @@ public class JsonParser {
 		}
 		return resultJson;
 	}
-
-	
-
 }
