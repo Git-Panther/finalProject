@@ -113,6 +113,9 @@ function checkFavorite(){ // 로그인 상태인데 찜을 해놓고 있냐 아�
 	        	//console.log(data);
 	        	if(data){ // 있다면 찜하기 등록한 상태로 변경
 	        		$("#favoriteBtn > .header_btn_icon").addClass("favorite");
+	        		$("#favoriteTxt").html("찜 해제");
+	        	}else{
+	        		$("#favoriteTxt").html("찜하기");
 	        	}
 	        }
 	        , error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -136,6 +139,7 @@ function insertFavorite(){ // 찜 등록 : 다섯 개 전부 전역 변수이므
         	//console.log(data);
         	if(data){ // 성공
         		$("#favoriteBtn > .header_btn_icon").addClass("favorite");
+        		$("#favoriteTxt").html("찜 해제");
         	}else{ // 실패
         		swal({
     				title: "찜하기 실패!",
@@ -159,6 +163,7 @@ function deleteFavorite(){ // 찜 삭제
         	//console.log(data);
         	if(data){ // 성공
         		$("#favoriteBtn > .header_btn_icon").removeClass("favorite");
+        		$("#favoriteTxt").html("찜하기");
         	}else{ // 실패
         		swal({
     				title: "찜 해제 실패!",

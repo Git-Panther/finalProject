@@ -109,7 +109,7 @@
 							src="/planner/resources/images/city/spot_info/spot_clip_btn.png"
 							alt="">
 					</div>
-					<div class="header_btn_txt">찜하기</div>
+					<div class="header_btn_txt" id="favoriteTxt"></div>
 				</div>
 				<div class="header_btn on">
 					<div class="header_btn_icon add_plan"
@@ -154,13 +154,19 @@
 			    </a>
 			  </div>
 			</div>
+			<!--
 			<div class="spot_tip">
 				<img class="spot_info_ico"
 					src="/planner/resources/images/city/spot_info/info_icon.gif">컨텐츠
 				내용
 				<div class="clear"></div>
 			</div>
-
+			-->
+			<div class="btn-group btn-group-lg" role="group" aria-label="contentDetail">
+			  <button type="button" class="btn btn-secondary">상세 정보</button>
+			  <button type="button" class="btn btn-secondary">기상청</button>
+			  <button type="button" class="btn btn-secondary">지도</button>
+			</div>
 			<div class="spot_info_box">
 				<div class="spot_info">
 					<table class="spot_info_table" id="spot_info_default" width="100%">
