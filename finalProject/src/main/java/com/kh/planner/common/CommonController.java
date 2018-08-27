@@ -56,8 +56,8 @@ public class CommonController {
 			@RequestParam(value="contenttypename", defaultValue = "-1") String contenttypename,
 			@RequestParam(value="contenttypeid", defaultValue="-1") int contenttypeid,
 			@RequestParam(value="contentid", defaultValue="-1") int contentid,
-			@RequestParam(value="eventstartdate", defaultValue="-1") int eventstartdate,
-			@RequestParam(value="eventenddate", defaultValue="-1") int eventenddate,
+			//@RequestParam(value="eventstartdate", defaultValue="-1") int eventstartdate,
+			//@RequestParam(value="eventenddate", defaultValue="-1") int eventenddate,
 			@RequestParam(value="title", defaultValue = "-1") String title) {
 		
 		mv.addObject("sidoName", sidoName);
@@ -67,8 +67,8 @@ public class CommonController {
 		mv.addObject("contenttypename", contenttypename);
 		mv.addObject("contenttypeid", contenttypeid);
 		mv.addObject("contentid", contentid);
-		if(-1 != eventstartdate) mv.addObject("eventstartdate", eventstartdate);
-		if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);
+		//if(-1 != eventstartdate) mv.addObject("eventstartdate", eventstartdate);
+		//if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);
 		
 		List<Review> list = rs.selectReviewAll(new Review(contentid));
 		mv.addObject("rlist", list);

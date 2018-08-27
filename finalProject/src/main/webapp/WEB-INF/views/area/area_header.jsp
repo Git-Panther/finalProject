@@ -23,7 +23,6 @@
 <link href="resources/css/city/header_v2.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="resources/js/owl_carousel/owl.carousel2.css">
-<link href="resources/css/hotelList.css" rel="stylesheet">
 <!-- /css -->
 
 <style>
@@ -83,8 +82,7 @@
 					href="javascript:areaMenu('culture')" id="culture"> 문화시설 </a> <a
 					href="javascript:areaMenu('hotel')" id="hotel"> 숙박 </a> <a
 					href="javascript:areaMenu('shopping')" id="shopping"> 쇼핑 </a> <a
-					href="javascript:areaMenu('restaurant')" id="restaurant"> 음식점 </a> <a
-					href="/#"> 지도보기 </a>
+					href="javascript:areaMenu('restaurant')" id="restaurant"> 음식점 </a>
 				<div class="clear"></div>
 			</div>
 		</div>

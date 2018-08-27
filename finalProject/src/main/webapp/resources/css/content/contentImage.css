@@ -1,0 +1,42 @@
+@charset "UTF-8";
+.contentImage, .contentImage img, #myCarousel{
+	width:800px !important;
+	height:450px !important;
+}
+/* 이 아래는 로고 css가 깨져서 다시 넣음 : header.css 일부 긁음*/
+.logo{
+    padding-top: 6px;
+    margin-top: 1px;
+}
+
+.imgContents{
+	margin-bottom:10px;
+}
+
+.contentImage img{
+	cursor:pointer;
+}
+
+.carousel-indicators li{
+	margin-left:10px;
+	margin-right:10px;
+	background-color:#565656;
+	border:1px solid #565656;
+	border-radius: 25%;
+}
+
+.carousel-indicators .active{
+	background-color:#bcbcbc !important;
+	border:1px solid #bcbcbc !important;
+	border-radius: 100% !important;
+}
+
+.carousel-index{
+	background-color:rgb(89, 86, 86, 0.75);
+	color:white;
+	font-size: 16px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+	z-index: 1000000;
+}

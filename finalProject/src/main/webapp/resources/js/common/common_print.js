@@ -80,7 +80,17 @@ function printInfo(item){ // 반복정보 출력. 반복 정보는 다 다르지
 
 function printImage(item){ // 이미지 정보 출력 : 이것은 공통이다
 	console.log("printImage called");
-	var categoryText = $(".nav_box").text();
+	if(undefined === item){ // 없으면 빈 이미지 하나만 만든다.
+		imageCount = 1;
+		printIndicators(1);
+		$(".carousel-index").html("1 / " + "1");
+	}else{ // 있으면 출력
+		if(undefined === item.length) item = [item];
+		imageCount = item.length;
+		printIndicators(item.length);
+		$(".carousel-index").html("1 / " + item.length);
+	}
+	printInner(item);
 }
 
 // 여기서부터 각 관광별로 표시가 다름
@@ -317,6 +327,13 @@ function printCultureIntro(item){
 
 function printFestivalIntro(item){
 	console.log("printFestivalIntro called");
+	eventstartdate = item.eventstartdate;
+	eventenddate = item.eventenddate;
+	
+	$("#favoriteBtn").click(function(){
+		console.log(eventstartdate, eventenddate, item.contenttypeid, item.contentid);
+	});
+	
 	var addr = $(".spot_addr").html();
 	$(".spot_addr").html(addr.split("$")[0] + " " + item.eventplace + " " + addr.split("$")[1]); // 주소 재구성
 	

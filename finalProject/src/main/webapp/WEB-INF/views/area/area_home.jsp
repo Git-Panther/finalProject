@@ -159,7 +159,6 @@ var curPage = 1;
 
 			<div class="pospot_tab_box">
 				<div class="pospot_tab on" data-cate="12">관광지</div>
-				<div class="pospot_tab" data-cate="15">축제/공연</div>
 				<div class="pospot_tab" data-cate="14">문화시설</div>
 				<div class="pospot_tab" data-cate="32">숙박</div>
 				<div class="pospot_tab" data-cate="38">쇼핑</div>

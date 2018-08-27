@@ -6,8 +6,12 @@
 <html>
 <head>
 <link href="resources/css/master.css" rel="stylesheet" />
+<link href="resources/css/city/main.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
+<script>
+	var sidoName, sidoCode, sigunguName, sigunguCode;
+</script>
 </head>
 <body>
 	<div class="clear"></div>
@@ -58,49 +62,12 @@
 	</div>
 	<div class="page silver" style="padding-top: 30px;">
 
-		<!-- 축제/행사 배너 자리 -->
-		<%-- <center style="padding-bottom: 50px;">
-			<a href="/" target="_blank"><img src="/res/1600_210_1.png"
-				style="width: 1000px; height: auto;">축제/행사 배너 자리</a>
-		</center> --%>
-
-		<!--//<center style="padding-bottom:50px;"><a href="/earthtory_agoda" target="_blank"><img src="/res/et_x_agoda/1000X131.jpg" style="width:1000px;height:auto;"></a></center>-->
-			<!--  ㅇ-->	
-	<!-- 	<div class="wrap">
+	 	<div class="wrap">
 			<div class="page_title">인기 축제 일정</div>
 			<div class="page_desc">현재 진행 중인 인기있는 축제를 만나보세요!</div>
-			<div class="plan_list">
-				<a
-					href="/mypage/et_1507190324320668556001437287072?type=plan_sub&amp;gdb_srl=60778"
-					target="_blank" class="box"><div class="plan_bg">
-						<div class="plan_bg_inner">
-							<span>2015-07-31</span><span class="tour_day">4DAYS</span><br>대만여행♡
-						</div>
-					</div>
-					<div class="plan_img_box">
-						<img
-							src="http://img.earthtory.com/img/city_images/92/taipei_1425530262.jpg"
-							alt="" class="plan_img">
-					</div>
-					<div class="plan_bg_inner2">
-						<span>커플 여행</span>
-						<div class="fr pn_list_copy_icon">5</div>
-						<div class="fr pn_list_view_icon">106</div>
-						<div class="fr pn_list_spot_icon">30</div>
-						<div class="clear"></div>
-						<div class="pn_list_city">타이베이</div>
-						<div class="clear"></div>
-						<div class="pn_list_user">Myoung Jin Kim</div>
-					</div></a> foreach사용
-				<div class="clear"></div>
-			</div>
-			<div class="more_btn" onclick="location.href='/ko/plan';">
-				(축제 개수 조회)개의 축제일정 모두 보기
-				api에서 진행중인 축제 개수를 얻어옴
-			</div>
+			<div class="pospot_content"></div>
 		</div>
-	</div> -->
-	<!-- ㅇ -->
+	</div>
 	<c:import url="/footer.do"/>
 </body>
 </html>
