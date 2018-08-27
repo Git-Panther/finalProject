@@ -11,6 +11,7 @@
 <link href="resources/css/review.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>상세정보</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=339906b6f4278bdec7e4ff5ae52df3cc&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript" src="resources/js/common/common_ajax.js"></script>
 <script type="text/javascript" src="resources/js/common/common_print.js"></script>

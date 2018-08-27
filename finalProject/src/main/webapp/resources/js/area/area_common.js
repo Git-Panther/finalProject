@@ -56,7 +56,11 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 					_html += '<img ';
 					if (object[index].firstimage == undefined) {
 						_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
+<<<<<<< HEAD
 					} else {
+=======
+					} else {
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 						_html += 'src="'
 								+ object[index].firstimage
 								+ '"';
@@ -73,7 +77,10 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 							+ '</div>';
 					_html += '<div class="po_tag">유명한거리/지역</div>';
 					_html += '</div></a>';
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 				});
 			}
 			$(".pospot_content").html(_html);
@@ -109,9 +116,14 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
 	form.appendTo($("#header"));
 	form.submit();
+<<<<<<< HEAD
 }
 
 function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
+=======
+}
+function moveContent(contenttypeid, contentid, title){
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -122,8 +134,6 @@ function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventend
 	switch(contenttypeid) {
 	case 15 :
 		contenttypename = '축제/행사';
-		//$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
-		//$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
 		break;
 	case 12 :
 		contenttypename = '관광지';
@@ -155,6 +165,7 @@ function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventend
 	form.submit();
 }
 
+<<<<<<< HEAD
 
 function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
 	var form = $("<form>");
@@ -197,6 +208,8 @@ function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventend
 	form.submit();
 }
 
+=======
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 function areaMenu(menu) {
 	var form = $("<form>");
 	form.attr("id", "areaMenu");
@@ -213,7 +226,6 @@ function areaMenu(menu) {
 	form.appendTo($("#header"));
 	form.submit();
 }
-
 
 function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage) {
 	$(function() {

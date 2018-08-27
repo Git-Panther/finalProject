@@ -26,6 +26,7 @@ var contenttypename = '15';
 			<div class="main_top_desc">쉽고 빠르게 축제를 찾아보세요.</div>
 			<div class="search_area">
 				<input class="search_input" id="city_search"
+<<<<<<< HEAD
 					placeholder="축제명, 도시명으로 검색" onkeypress="if( event.keyCode == 13 ){searchContent();}" />
 					<script>
 					function searchContent() {
@@ -39,6 +40,9 @@ var contenttypename = '15';
 						form.submit();
 					}
 					</script>
+=======
+					placeholder="도시명으로 검색">
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 				<div id="city_autocomplete"></div>
 				<div class="latest_search">
 					추천축제 : <a href="" class="latest_a">축제명</a>
@@ -69,7 +73,7 @@ var contenttypename = '15';
 				<div class="intro_box">
 					<img src="/planner/resources/images/main/intro/intro_3.jpg" alt="">
 					<div class="intro_title">커뮤니티</div>
-					<div class="intro_desc">사람들과 정보를 공유하고, 궁금한 것은 언제든 물어보세요.</div>
+					<div class="intro_desc">사람들과 정보를 공유세요.</div>
 				</div>
 				<div class="clear"></div>
 			</div>

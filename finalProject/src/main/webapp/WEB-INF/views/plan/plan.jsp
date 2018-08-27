@@ -327,7 +327,7 @@
         <br/>
     </div>
 
-    <div id='calendar'></div>
+    <div id='calendar' style="font-size: 12.3pt;"></div>
 
     <div style='clear:both'></div>
 
