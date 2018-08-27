@@ -41,7 +41,7 @@ th, td {
 
 <div class="container">
 <div class="jumbotron text-center">
-  <h1>MyReview page</h1> 
+  <h1>Review page</h1> 
   <p>Review</p> 
 </div>
 	<table class="table table-bordered">

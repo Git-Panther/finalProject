@@ -18,14 +18,16 @@
 }
 
 .carousel-indicators li{
-	margin-left:10px;
-	margin-right:10px;
+	margin-left:5px;
+	margin-right:5px;
 	background-color:#565656;
 	border:1px solid #565656;
 	border-radius: 25%;
 }
 
 .carousel-indicators .active{
+	margin-left:5px !important;
+	margin-right:5px !important;
 	background-color:#bcbcbc !important;
 	border:1px solid #bcbcbc !important;
 	border-radius: 100% !important;
@@ -39,4 +41,23 @@
 	position: absolute;
 	top: 0;
 	z-index: 1000000;
+}
+
+.header_btn_icon.favorite{
+	background:#f2a304 !important;
+}
+
+.no_image{
+	cursor:default !important;
+}
+
+.spot_addr, .spot_homepage, .spot_tel{
+	/*background:url('/planner/resources/images/city/addr_icon.png') no-repeat;*/
+	font-size:13px;
+	color:#808080;
+	padding-left:15px;
+	height:auto;
+	line-height:15px;
+	margin-top:8px;
+	margin-bottom:12px;
 }

@@ -9,6 +9,9 @@
 <title>Search Area</title>
 <link href="resources/css/festival/festivalCommon.css" rel="stylesheet">
 <link href="resources/css/festival/searchArea.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="resources/js/festival/festivalAjax.js"></script>
 <script>
 	var area = '<c:out value="${areaCode}"/>'; // 이름 중복 막으려고 줄임
@@ -126,9 +129,9 @@
 	<form id="searchArea" method="post" action="${searchResult}">
 		<!-- <div id="typeList"></div><br> -->
 		<!-- <div id="serviceList"></div><br> -->
-		<table class="search">
-			<tr class="searchRow">
-				<td class="searchHead">
+		<table class="search table-bordered" >
+			<tr class="searchRow" >
+				<td class="searchHead" style= "text-align: center;" >
 					<label>지역</label>
 				</td>
 				<td>
@@ -144,7 +147,7 @@
 				<td></td>
 			</tr>
 			<tr class="searchRow">
-				<td class="searchHead">
+				<td class="searchHead" style= "text-align: center;">
 					<label>기간</label>
 				</td>
 				<td>
@@ -155,13 +158,13 @@
 					<input type="date" name="eventEndDate" id="eventEndDate"/>
 				</td>
 				<td>
-					<div id="submitSearchBtn" class="button">
+					<div id="submitSearchBtn" class="button" >
 						<span>검색</span>
 					</div>
 				</td>
 			</tr>
 			<tr class="searchRow">
-				<td class="searchHead">
+				<td class="searchHead" style= "text-align: center;">
 					<label>결과</label>
 				</td>
 				<td>

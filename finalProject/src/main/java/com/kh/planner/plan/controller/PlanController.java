@@ -48,5 +48,4 @@ public class PlanController {
         return json;
     }
 
-
 }

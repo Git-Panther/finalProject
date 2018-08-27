@@ -2,6 +2,9 @@
  * 
  */
 
+var imageCount = 1; // 총 이미지 개수
+var imageIndex = 1; // 이미지 인덱스
+
 function printIndicators(size){
 	var $ol = $(".carousel-indicators");
 	$ol.html(""); // 비운다.
@@ -13,14 +16,6 @@ function printIndicators(size){
 	}
 	
 	$ol.children("li").eq(0).addClass("active");
-	/*
-	$ol.children("li").each(function(){
-		$(this).on("click", function(){
-			$("#myCarousel").val($(this).attr("data-slide-to"));
-			printImagePage(Number($(this).attr("data-slide-to") + 1));
-		});
-	});
-	*/
 }
 
 function printInner(item){
@@ -35,6 +30,7 @@ function printInner(item){
 		img = $("<img>");
 		img.attr("src", "/planner/resources/images/festival/no_image.png");
 		img.attr("alt", "no-image");
+		img.addClass("no_image");
 		div.append(img).appendTo($imageList);
 	}else{
 		item.forEach(function(v, i){

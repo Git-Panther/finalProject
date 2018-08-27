@@ -57,67 +57,6 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 					if (object[index].firstimage == undefined) {
 						_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
 					} else {
-<<<<<<< HEAD
-						$.each(	object,
-										function(index, item) {
-											_html += '<a class="pospot"';
-											if (15 == object[index].contenttypeid) {// 링크는 축제 한정으로 옮긴다..
-												_html += 'href="javascript:moveContent('
-													+ ""
-														+ object[index].contenttypeid
-														+ ", "
-														+ object[index].contentid
-														+ ", '"
-														+ object[index].title
-														+ "', "
-														+ object[index].eventstartdate
-														+ ", "
-														+ object[index].eventenddate
-														+ ""
-														+ ');"';
-											} else {
-												_html += 'href="javascript:moveContent('
-														+ sidoName
-														+ ", "
-														+ sidoCode
-														+ ", "
-														+ sigunguName
-														+ ", "
-														+ sigunguCode
-														+ ", '"
-														+ object[index].contenttypeid
-														+ "', '"
-														+ object[index].contentid
-														+ "', '"
-														+ object[index].title
-														+ "')" + '"';
-											}
-											if (index == 3 || index == 7) {
-												_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
-											} else {
-												_html += 'target="_blank"><div class="po_img_box">';
-											}
-											_html += '<img ';
-											if (object[index].firstimage == undefined) {
-												_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
-											} else {
-												_html += 'src="'
-														+ object[index].firstimage
-														+ '"';
-											}
-											_html += 'alt="" class="po_img">';
-											_html += '</div>';
-											_html += '<div class="po_name">'
-													+ object[index].title
-													+ '</div>';
-											_html += '<div class="po_bottom">';
-											_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
-											_html += '<div class="po_cnt">'
-													+ object[index].readcount
-													+ '</div>';
-											_html += '<div class="po_tag">유명한거리/지역</div>';
-											_html += '</div></a>';
-=======
 						_html += 'src="'
 								+ object[index].firstimage
 								+ '"';
@@ -134,7 +73,6 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 							+ '</div>';
 					_html += '<div class="po_tag">유명한거리/지역</div>';
 					_html += '</div></a>';
->>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 
 				});
 			}
@@ -172,14 +110,8 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	form.appendTo($("#header"));
 	form.submit();
 }
-<<<<<<< HEAD
-
-function moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate){
-	console.log("dsadsa");
-=======
 
 function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
->>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -222,10 +154,6 @@ function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventend
 	form.appendTo($("#header"));
 	form.submit();
 }
-
-function moveContent(sidoName, sidoCode, 
-		sigunguName, sigunguCode, 
-		contenttypeid, contentid, title){
 
 
 function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
@@ -330,7 +258,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img ';
 					output += 'src="' + item[i].firstimage + '"';
 					output += 'alt="" class="ht_img"';
-					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '" ';
+					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contentid + ",'" + item[i].title + "') " + '" ';
 					output += 'data-srl="' + item[i].contentid + '">';
 					output += '<div class="box_right">';
 					output += '<div class="btn_clip" data-yn="n" data-srl="' + item[i].contentid + '"'; 
@@ -342,7 +270,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img src="/planner/resources/images/city/spot_list/addplan_ico.png" alt="">';
 					output += '</div>';
 					output += '<a ';
-					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '"';
+					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contentid + ",'" + item[i].title + "') " + '"';
 					output += 'class="ht_title">' + item[i].title + '</a>';
 					output += '<div class="ht_info">';
 					output += '&nbsp;' + '<span>0개의 리뷰가 있습니다.</span>';
@@ -350,7 +278,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '</div>';
 					output += '<div class="ht_addr">';
 					output += item[i].addr1 + " " + item[i].addr2 + '<a class="map_link"';
-					output += 'href="javascript:et_modal(' + "'1144px','816px','1','0','/ko/modal/spot_map?srl=" + item[i].contentId + "&amp;type=2','2','1');" + '">지도보기</a>';
+					output += 'href="javascript:et_modal(' + "'1144px','816px','1','0','/ko/modal/spot_map?srl=" + item[i].contentid + "&amp;type=2','2','1');" + '">지도보기</a>';
 					output += '</div>';
 					output += '<div class="ht_count	">';
 					output += '조회수 : ' + item[i].readcount + '건';
@@ -359,7 +287,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<a class="ht_view"';
 					output += 'href="javascript:moveContent('
 							+ item[i].contenttypeid + ", "
-							+ item[i].contenttypeid + ",'"
+							+ item[i].contentid + ",'"
 							+ item[i].title + "') " + '"'
 							+ '>자세히보기</a>';
 							output += '</div>';
@@ -431,3 +359,4 @@ function makePaging(total, curPage){
 	paging += '</span>';
 		$('#paging').html(paging);
 }
+

@@ -4,8 +4,8 @@
 function printCommon(item){ // 공통정보 출력	
 	console.log("printCommon called");
 	
-	$(".spot_addr").html(item.addr1);	
-	if(15 === item.contenttypeid) {
+	$(".spot_addr").append(item.addr1);	
+	if(15 === item.contenttypeid) { // 축제 한정
 		$(".spot_addr").append("$");  
 	}
 	
@@ -16,7 +16,7 @@ function printCommon(item){ // 공통정보 출력
 		$(".spot_homepage").remove();	
 	} else {
 		console.log("homepage added");
-		$(".spot_homepage").html(item.homepage);
+		$(".spot_homepage").append(item.homepage);
 	}
 	
 	if(undefined === item.tel) {
@@ -24,7 +24,7 @@ function printCommon(item){ // 공통정보 출력
 		$(".spot_tel").remove();
 	} else {
 		console.log("tel added");
-		$(".spot_tel").html(item.tel);
+		$(".spot_tel").append(item.tel);
 	}
 }
 
@@ -37,11 +37,9 @@ function printIntro(item){ // 상세정보 출력
 		printCultureIntro(item);
 		break;
 	case 15:
-		//checkFavorite(item); // 찜 여부 체크
 		printFestivalIntro(item);
 		break;
 	case 32:
-		//checkFavorite(item); // 찜 여부 체크
 		printHotelIntro(item);
 		break;
 	case 38:
@@ -81,9 +79,11 @@ function printInfo(item){ // 반복정보 출력. 반복 정보는 다 다르지
 function printImage(item){ // 이미지 정보 출력 : 이것은 공통이다
 	console.log("printImage called");
 	if(undefined === item){ // 없으면 빈 이미지 하나만 만든다.
-		imageCount = 1;
-		printIndicators(1);
-		$(".carousel-index").html("1 / " + "1");
+		imageCount = 0;
+		printIndicators(0);
+		$(".carousel-index").hide();
+		$(".left.carousel-control").hide();
+		$(".right.carousel-control").hide();
 	}else{ // 있으면 출력
 		if(undefined === item.length) item = [item];
 		imageCount = item.length;
@@ -329,10 +329,6 @@ function printFestivalIntro(item){
 	console.log("printFestivalIntro called");
 	eventstartdate = item.eventstartdate;
 	eventenddate = item.eventenddate;
-	
-	$("#favoriteBtn").click(function(){
-		console.log(eventstartdate, eventenddate, item.contenttypeid, item.contentid);
-	});
 	
 	var addr = $(".spot_addr").html();
 	$(".spot_addr").html(addr.split("$")[0] + " " + item.eventplace + " " + addr.split("$")[1]); // 주소 재구성
@@ -705,17 +701,17 @@ function printRestaurantIntro(item){
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	if(undefined != item.treatmenu && "" != item.treatmenu){
-		th.html("취급 메뉴").appendTo(tr);
-		td.html(item.treatmenu).appendTo(tr);
+	if(undefined != item.firstmenu && "" != item.firstmenu){
+		th.html("대표 메뉴").appendTo(tr);
+		td.html(item.firstmenu).appendTo(tr);
 		tr.appendTo($tbody);
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	if(undefined != item.firstmenu && "" != item.firstmenu){
-		th.html("대표 메뉴").appendTo(tr);
-		td.html(item.firstmenu).appendTo(tr);
+	if(undefined != item.treatmenu && "" != item.treatmenu){
+		th.html("취급 메뉴").appendTo(tr);
+		td.html(item.treatmenu).appendTo(tr);
 		tr.appendTo($tbody);
 		tr = $("<tr>");
 		th = $("<th>");

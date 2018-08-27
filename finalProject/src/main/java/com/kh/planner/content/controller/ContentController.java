@@ -1,15 +1,10 @@
-package com.kh.planner.common;
+package com.kh.planner.content.controller;
 
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.planner.common.GPStoGRIDConverter;
+import com.kh.planner.common.JsonManager;
 import com.kh.planner.festival.controller.FestivalController;
 import com.kh.planner.review.model.service.ReviewService;
 import com.kh.planner.review.model.vo.Review;
 
 @Controller
-public class CommonController { 
+public class ContentController { 
 	@Autowired
 	private ReviewService rs;
 	// 공통으로 쓰는 컨트롤러
@@ -35,21 +32,6 @@ public class CommonController {
 	private static final String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
 	
 	private static final Logger logger = LoggerFactory.getLogger(FestivalController.class);
-	
-	@RequestMapping(value = "header.do")
-	public String header() {
-		return "common/header";
-	}
-	
-	@RequestMapping(value = "footer.do")
-	public String footer() {
-		return "common/footer";
-	}
-	
-	@RequestMapping(value = "area_header.do")
-	public String area_header() {
-		return "area/area_header";
-	}
 	
 	// tourApi의 정보 중 하나의 상세 정보 페이지로 이동(축제는 eventstartdate 넘어온 걸로 판별 가능할지도? 보다는 contenttypeid로 판별하자)
 	@RequestMapping("contentDetail.do")
@@ -61,8 +43,6 @@ public class CommonController {
 			@RequestParam(value="contenttypename", defaultValue = "-1") String contenttypename,
 			@RequestParam(value="contenttypeid", defaultValue="-1") int contenttypeid,
 			@RequestParam(value="contentid", defaultValue="-1") int contentid,
-			//@RequestParam(value="eventstartdate", defaultValue="-1") int eventstartdate,
-			//@RequestParam(value="eventenddate", defaultValue="-1") int eventenddate,
 			@RequestParam(value="title", defaultValue = "-1") String title) {
 		
 		mv.addObject("sidoName", sidoName);
@@ -72,8 +52,6 @@ public class CommonController {
 		mv.addObject("contenttypename", contenttypename);
 		mv.addObject("contenttypeid", contenttypeid);
 		mv.addObject("contentid", contentid);
-		//if(-1 != eventstartdate) mv.addObject("eventstartdate", eventstartdate);
-		//if(-1 != eventenddate) mv.addObject("eventenddate", eventenddate);
 		
 		List<Review> list = rs.selectReviewAll(new Review(contentid));
 		mv.addObject("rlist", list);
@@ -139,7 +117,7 @@ public class CommonController {
 			@RequestParam(value="contentid", defaultValue = "-1") int contentid){	
 		String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage";
 		StringBuilder params = new StringBuilder(tourapikey + tourParams);
-		params.append("&numOfRows=1000");
+		params.append("&numOfRows=16");
 		params.append("&contentId="+contentid); // 컨텐츠 id
 		params.append("&imageYN=Y"); // 컨텐츠 분류 id
 		params.append("&subImageYN=Y"); // 반복정보 조회
@@ -201,32 +179,9 @@ public class CommonController {
 		params.append("&mapX="+mapx); // x 좌표
 		params.append("&mapY="+mapy); // y 좌표
 		params.append("&radius=1000"); // 거리 반경(m)
+		params.append("&numOfRows=4");
 		
 		String result = JsonManager.getJsonString(address + params.toString()); // 바이트 출력 스트림에서 json 문자열을 받을 변수
 		return result;
-	}
-	
-	@RequestMapping(value = "searchContent.do", produces="application/json; charset=UTF-8")	
-	public ModelAndView searchContent(ModelAndView mv,
-			@RequestParam(value="keyword", defaultValue="") String keyword,
-			@RequestParam(value="pageNo", defaultValue="1") String pageNo) {
-		mv.addObject("keyword", keyword);
-		mv.addObject("pageNo", pageNo);
-		mv.setViewName("common/searchResult");
-		return mv;
-	}
-	
-	@RequestMapping( value = "searchList.do", produces="application/json; charset=UTF-8")
-	public void searchContent(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value="keyword", defaultValue = "") String keyword,
-			@RequestParam(value="curPage", defaultValue = "1") String curPage) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		
-		String result = JsonParser.getSearchKeyword(keyword, curPage);
-		PrintWriter out = response.getWriter();
-		out.println(result);
-		JSONObject json = new JSONObject();
-		json.put("data", result);
 	}
 }

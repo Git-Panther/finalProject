@@ -17,38 +17,22 @@
 <script type="text/javascript" src="resources/js/common/common_map.js"></script>
 <script type="text/javascript" src="resources/js/common/forecast.js"></script>
 <script type="text/javascript" src="resources/js/content/contentImage.js"></script>
+<script type="text/javascript" src="resources/js/content/contentEvent.js"></script>
 <script>
-	var contentid = ${contentid};
-	var contenttypeid = ${contenttypeid};
-	var imageCount = 1; // 총 이미지 개수
-	var imageIndex = 1; // 이미지 인덱스
-	var eventstartdate = undefined, eventenddate = undefined;
-	/*
-	<c:if test="15 eq ${contenttypeid}"> // 이걸 하는 이유가, 축제는 좋아요 기능을 넣어햐 하기 때문 + 호텔도
-		var eventstartdate = ${eventstartdate}, eventenddate = ${eventenddate};
-		console.log(eventstartdate, eventenddate);
+	var contentid = <c:out value="${contentid}"/>;
+	var contenttypeid = <c:out value="${contenttypeid}"/>;
+	var isUser = false; // 로그인 중인가?
+	var userNo = undefined;
+	<c:if test="${!empty sessionScope.user}">
+		isUser = true;
+		userNo = <c:out value="${sessionScope.user.userNo}"/>;
 	</c:if>
-	*/
+			
 	$(function(){
 		//console.log(contentid, contenttypeid);
 		detailCommon(contenttypeid, contentid); // 기본 정보 조회. 이후 순서대로 조회될 것이다.
-		$('#myCarousel').on('slid.bs.carousel', function (e) {
-			// do something…
-			var $li = $("#myCarousel .carousel-indicators li");
-			//console.log($li);
-			$li.each(function(i){
-				//console.log(i);
-				if($(this).is(".active")) {
-					//console.log("!");
-					printImagePage(i + 1);
-				}
-			});
-			/*
-			$(this).children(".carousel-indicators li").each(function(){
-				if($(this).is(".active")) console.log(1);
-			});
-			*/
-		});
+		setCarouselEvent();
+		setFavoriteEvent();
 	});
 </script>
 </head>
@@ -59,22 +43,22 @@
 				<a href="/area.do">여행지</a> 
 				<c:choose>
 					<c:when test="${sidoName ne '-1'}"> &gt; 
-					<a href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')" class="nav_btn">${sidoName }</a>
+						<a href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')" class="nav_btn">${sidoName }</a>
 					</c:when>
 				</c:choose>
 				<c:choose>
 					<c:when test="${sigunguName ne '-1'}"> &gt; 
-					<a href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')" class="nav_btn">${sigunguName }</a>
+						<a href="javascript:moveAreaMain('<c:out value="${sidoName }" />', '<c:out value="${sidoCode }" />')" class="nav_btn">${sigunguName }</a>
 					</c:when>
 				</c:choose>
 				<c:choose>
 					<c:when test="${contenttypename ne '-1'}"> &gt; 
-					${contenttypename }
+						<c:out value="${contenttypename}"/>
 					</c:when>
 				</c:choose>
 				<c:choose>
 					<c:when test="${title ne '-1'}"> &gt; 
-					${title }
+						<c:out value="${title}"/>
 					</c:when>
 				</c:choose>
 			</div>
@@ -90,9 +74,15 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<div class="spot_addr">address</div>
-				<div class="spot_homepage">homepage</div>
-				<div class="spot_tel">tel</div>
+				<div class="spot_addr">
+					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+				</div>
+				<div class="spot_homepage">
+					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+				</div>
+				<div class="spot_tel">
+					<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+				</div>
 				<!--  
 				<div class="clip_cnt">477</div>
 				<div class="cnt_line">&nbsp;</div>
@@ -148,24 +138,10 @@
 			<div class="container imgContents">
 			  <div id="myCarousel" class="carousel slide" data-ride="carousel">
 			    <!-- Indicators -->
-			    <div class="carousel-index">1 / 3</div>
-			    <ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>
+			    <div class="carousel-index"></div>
+			    <ol class="carousel-indicators"></ol>
 			    <!-- Wrapper for slides -->
-			    <div class="carousel-inner">
-			      <div class="item active contentImage">
-			        <img src="/planner/resources/images/festival/festival_marker.png" alt="Los Angeles">
-			      </div>	
-			      <div class="item contentImage">
-			        <img src="/planner/resources/images/festival/hotel_marker.png" alt="Chicago">
-			      </div>	    
-			      <div class="item contentImage">
-			        <img src="/planner/resources/images/festival/restaurant_marker.png" alt="New york">
-			      </div>
-			    </div>	
+			    <div class="carousel-inner"></div>	
 			    <!-- Left and right controls -->
 			    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 			      <span class="glyphicon glyphicon-chevron-left"></span>

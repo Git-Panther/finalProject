@@ -16,25 +16,28 @@
 			<div class="footer_title">플래너</div>
 			<a href="area.do">여행지</a>
 			<a href="plan.do">일정만들기</a>
-			<a href="/ko/hotel">호텔</a>
-						<!-- <a href="/ko/community/qa">Q&amp;A</a> -->
-			<a href="/ko/community/tips">여행TIP</a>
-						<!-- <a href="/ko/mobile">모바일</a> --><!--모바일-->
 		</div>
 
 		<div class="footer_col fl">
 			<div class="footer_title">회사이야기</div>
-			<a href="/ko/helpdesk/about">회사소개</a>
+			<a>회사소개</a>
+			<a>이용방법</a>
+			<a>광고 및 제휴</a>
+			<!-- <a href="/ko/helpdesk/about">회사소개</a>
 			<a href="/ko/helpdesk/intro">이용방법</a>
-			<a href="/ko/helpdesk/contact">광고 및 제휴</a>
+			<a href="/ko/helpdesk/contact">광고 및 제휴</a> -->
 		</div>
 
 		<div class="footer_col fl">
 			<div class="footer_title">고객센터</div>
-			<a href="/ko/helpdesk/faq">FAQ</a>
-			<a href="/ko/helpdesk">문의하기</a>
-			<a href="/ko/helpdesk/policy">이용약관</a>
-			<a href="/ko/helpdesk/personal_info">개인정보 처리방침</a>
+			<a>FAQ</a>
+			<a>문의하기</a>
+			<a>이용약관</a>
+			<a>개인정보 처리방침</a>
+			<a>FAQ</a>
+			<a>문의하기</a>
+			<a>이용약관</a>
+			<a>개인정보 처리방침</a>
 		</div>
 		
 				<div class="footer_col fl" style="margin-right:0px;">
