@@ -16,14 +16,6 @@ function printIndicators(size){
 	}
 	
 	$ol.children("li").eq(0).addClass("active");
-	/*
-	$ol.children("li").each(function(){
-		$(this).on("click", function(){
-			$("#myCarousel").val($(this).attr("data-slide-to"));
-			printImagePage(Number($(this).attr("data-slide-to") + 1));
-		});
-	});
-	*/
 }
 
 function printInner(item){
@@ -38,6 +30,7 @@ function printInner(item){
 		img = $("<img>");
 		img.attr("src", "/planner/resources/images/festival/no_image.png");
 		img.attr("alt", "no-image");
+		img.addClass("no_image");
 		div.append(img).appendTo($imageList);
 	}else{
 		item.forEach(function(v, i){

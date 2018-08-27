@@ -79,9 +79,11 @@ function printInfo(item){ // 반복정보 출력. 반복 정보는 다 다르지
 function printImage(item){ // 이미지 정보 출력 : 이것은 공통이다
 	console.log("printImage called");
 	if(undefined === item){ // 없으면 빈 이미지 하나만 만든다.
-		imageCount = 1;
-		printIndicators(1);
-		$(".carousel-index").html("1 / " + "1");
+		imageCount = 0;
+		printIndicators(0);
+		$(".carousel-index").hide();
+		$(".left.carousel-control").hide();
+		$(".right.carousel-control").hide();
 	}else{ // 있으면 출력
 		if(undefined === item.length) item = [item];
 		imageCount = item.length;
@@ -699,17 +701,17 @@ function printRestaurantIntro(item){
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	if(undefined != item.treatmenu && "" != item.treatmenu){
-		th.html("취급 메뉴").appendTo(tr);
-		td.html(item.treatmenu).appendTo(tr);
+	if(undefined != item.firstmenu && "" != item.firstmenu){
+		th.html("대표 메뉴").appendTo(tr);
+		td.html(item.firstmenu).appendTo(tr);
 		tr.appendTo($tbody);
 		tr = $("<tr>");
 		th = $("<th>");
 		td = $("<td colspan='3'>");
 	}
-	if(undefined != item.firstmenu && "" != item.firstmenu){
-		th.html("대표 메뉴").appendTo(tr);
-		td.html(item.firstmenu).appendTo(tr);
+	if(undefined != item.treatmenu && "" != item.treatmenu){
+		th.html("취급 메뉴").appendTo(tr);
+		td.html(item.treatmenu).appendTo(tr);
 		tr.appendTo($tbody);
 		tr = $("<tr>");
 		th = $("<th>");

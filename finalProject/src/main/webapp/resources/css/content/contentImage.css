@@ -18,14 +18,16 @@
 }
 
 .carousel-indicators li{
-	margin-left:10px;
-	margin-right:10px;
+	margin-left:5px;
+	margin-right:5px;
 	background-color:#565656;
 	border:1px solid #565656;
 	border-radius: 25%;
 }
 
 .carousel-indicators .active{
+	margin-left:5px !important;
+	margin-right:5px !important;
 	background-color:#bcbcbc !important;
 	border:1px solid #bcbcbc !important;
 	border-radius: 100% !important;
@@ -43,4 +45,8 @@
 
 .header_btn_icon.favorite{
 	background:#f2a304 !important;
+}
+
+.no_image{
+	cursor:default !important;
 }
