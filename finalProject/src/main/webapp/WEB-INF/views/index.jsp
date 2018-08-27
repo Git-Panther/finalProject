@@ -26,7 +26,7 @@ var contenttypename = '15';
 			<div class="main_top_desc">쉽고 빠르게 축제를 찾아보세요.</div>
 			<div class="search_area">
 				<input class="search_input" id="city_search"
-					placeholder="축제명, 도시명으로 검색" onkeypress="if( event.keyCode == 13 ){searchContent();}" />
+					placeholder="축제명으로 검색" onkeypress="if( event.keyCode == 13 ){searchContent();}" />
 					<script>
 					function searchContent() {
 						var keyword = $("#city_search").val();

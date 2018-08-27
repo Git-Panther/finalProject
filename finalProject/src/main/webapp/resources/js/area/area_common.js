@@ -15,6 +15,17 @@ $(document).ready(	function() {
 	});
 });
 
+function searchContentTop() {
+	var keyword = $("#gnb_search").val();
+	var form = $("<form>");
+	form.attr("id", "searchContent");
+	form.attr("method", "get");
+	form.attr("action", "/planner/searchContent.do?" + keyword);
+	$("<input type='hidden'>").attr("name", "keyword").val(keyword).appendTo(form);
+	form.appendTo($("#header"));
+	form.submit();
+}
+
 function popList(sidoCode, sigunguCode, contenttypeid) {
 	console.log("popList::sidoCode: ", sidoCode);
 	console.log("popList::sigunguCode: ", sigunguCode);

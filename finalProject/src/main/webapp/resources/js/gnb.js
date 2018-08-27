@@ -20,9 +20,6 @@ $(document).ready(function(){
 
  //console.log(et_lang);
   
-
-
-
 var auto_time;
 $("#gnb_search").keyup(function(e){
   var search_value = $('#gnb_search').val();
@@ -115,8 +112,8 @@ if(getKey == UP || getKey == DOWN || getKey == ENTER){
   }
 }else{
     if (search_value != '' && getKey != UP && getKey != DOWN && getKey != ENTER){
-      $('#gnb_search').css('background','url("/res/img/common/input_load.gif") no-repeat');
-        $('#gnb_search').css('background-position','right 5px top 4px');
+      //$('#gnb_search').css('background','url("/res/img/common/input_load.gif") no-repeat');
+      //$('#gnb_search').css('background-position','right 5px top 4px');
         clearTimeout(auto_time);
 		auto_time = setTimeout(function(){
 			var data = 'text='+search_value+'&lang='+lang_uri().replace(/\//,'');
