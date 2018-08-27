@@ -67,7 +67,7 @@
    margin-left: 200px;
    margin-top: 50px;
    float: left;
-   width: 900px;
+   width: 1300px;
 }
 .fc-sun {
    color: red;
@@ -81,7 +81,10 @@
 }
 
 .fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead{
-   border-color: #1ec0ff;
+   border-color: #06bdd1;
+   text-shadow: 3px 3px 3px gray;
+   /* #1ec0ff */
+   
 }
 .btn{
    margin-top: 10px;
@@ -109,10 +112,13 @@
 #external-events{
    margin-top: 200px;
    background-color: #ffffff;
-   border-color: #1ec0ff;
+   border-color: #3bcddd;
+   font-weight: bold;
+   text-shadow: 2px 2px 2px gray;
 }
 .fc-toolbar h2{
-   font-size: 30px;
+   font-size: 30pt;
+   text-shadow: 2px 2px 2px gray;
 }
 .fc-event, .fc-event-dot{
    background-color: #ffffff;
@@ -133,19 +139,23 @@
 }
 
 #outDiv{
-   margin-left: 110px;
+   margin-left: 160px;
    width: 100%;
    text-align: center;
 }
 #inDiv{
    display: inline-block;
-   width: 950px;
+   width: 1340px;
    height: auto;
 }
 #blank{
-   color: #49b2e9;
-   font-size: 40px;
+/* #49b2e9 */
+   color: #474c4c;
    text-align: center;
+   font-size:40pt; 
+   /* font-weight: bold; */
+   text-shadow: 2px 2px 2px gray;
+
 }
 	</style>
     <script type="text/javascript">
@@ -304,20 +314,20 @@
 
     </script>
 <body>
-<div id="blank" style="width: 100%; height: 110px">
-    자신만의 일정을 만들어보세요~!~!
+<div id="blank" style="width: 115%; height: 110px; text-align: center; padding-top: 40px;">
+    자신만의 일정을 만들어보세요!
 </div>
 <div id='wrap'>
-    <div style="float: left; width: 200px">
+    <div style="float: left; width: 240px">
         <div id='external-events'>
-            <h4>Drag Festival</h4>
+            <h4 >Drag Festival</h4>
                 <div id="favoriteFestivals" onmouseover="doTooltip(event,0)" onmouseout="hideTip()">
                 </div>
         </div>
         <br/>
     </div>
 
-    <div id='calendar'></div>
+    <div id='calendar' style="font-size: 12.3pt;"></div>
 
     <div style='clear:both'></div>
 

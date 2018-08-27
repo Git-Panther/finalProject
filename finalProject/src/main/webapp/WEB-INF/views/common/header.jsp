@@ -86,7 +86,7 @@ $(function(){
 				<a href="${area}" class="fl"><li>여행지</li></a>
 				<c:url var="plan" value="/plan.do"></c:url>
 				<a href="${plan}" class="fl"><li>일정만들기</li></a>
-				<a href="/hotel.do" class="fl"><li>호텔</li></a>
+				<!-- <a href="/hotel.do" class="fl"><li>호텔</li></a> -->
 				<a href="use.do" class="fl"><li>이용방법</li></a>
 <!-- 				<a href="/adminMain.do" class="fl"><li>a</li></a> -->
 			</ul>
