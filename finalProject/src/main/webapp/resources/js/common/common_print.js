@@ -4,8 +4,8 @@
 function printCommon(item){ // 공통정보 출력	
 	console.log("printCommon called");
 	
-	$(".spot_addr").html(item.addr1);	
-	if(15 === item.contenttypeid) {
+	$(".spot_addr").append(item.addr1);	
+	if(15 === item.contenttypeid) { // 축제 한정
 		$(".spot_addr").append("$");  
 	}
 	
@@ -16,7 +16,7 @@ function printCommon(item){ // 공통정보 출력
 		$(".spot_homepage").remove();	
 	} else {
 		console.log("homepage added");
-		$(".spot_homepage").html(item.homepage);
+		$(".spot_homepage").append(item.homepage);
 	}
 	
 	if(undefined === item.tel) {
@@ -24,7 +24,7 @@ function printCommon(item){ // 공통정보 출력
 		$(".spot_tel").remove();
 	} else {
 		console.log("tel added");
-		$(".spot_tel").html(item.tel);
+		$(".spot_tel").append(item.tel);
 	}
 }
 

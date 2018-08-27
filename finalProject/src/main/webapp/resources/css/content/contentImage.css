@@ -50,3 +50,14 @@
 .no_image{
 	cursor:default !important;
 }
+
+.spot_addr, .spot_homepage, .spot_tel{
+	/*background:url('/planner/resources/images/city/addr_icon.png') no-repeat;*/
+	font-size:13px;
+	color:#808080;
+	padding-left:15px;
+	height:auto;
+	line-height:15px;
+	margin-top:8px;
+	margin-bottom:12px;
+}

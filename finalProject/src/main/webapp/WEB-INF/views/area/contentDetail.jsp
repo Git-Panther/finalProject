@@ -75,9 +75,15 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<div class="spot_addr">address</div>
-				<div class="spot_homepage">homepage</div>
-				<div class="spot_tel">tel</div>
+				<div class="spot_addr">
+					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+				</div>
+				<div class="spot_homepage">
+					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+				</div>
+				<div class="spot_tel">
+					<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+				</div>
 				<!--  
 				<div class="clip_cnt">477</div>
 				<div class="cnt_line">&nbsp;</div>
