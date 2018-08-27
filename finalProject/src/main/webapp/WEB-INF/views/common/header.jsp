@@ -93,7 +93,7 @@ $(function(){
 
 			<div class="fr gnb_box">
 				<div class="fl gnb_search_box">
-					<input type="text" id="gnb_search" placeholder="축제/도시를 찾아보세요.">
+					<input type="text" id="gnb_search" placeholder="도시를 찾아보세요.">
 					<div class="gnb_search_btn" style="display: none;"></div>
 				</div>
 				<div id="gnb_search_autocomplete"></div>
