@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="resources/css/content/contentImage.css" rel="stylesheet">
 <link href="resources/css/city/spot_info.css" rel="stylesheet">
 <link href="resources/css/review.css" rel="stylesheet">
 <meta charset="UTF-8">
@@ -14,17 +16,39 @@
 <script type="text/javascript" src="resources/js/common/common_print.js"></script>
 <script type="text/javascript" src="resources/js/common/common_map.js"></script>
 <script type="text/javascript" src="resources/js/common/forecast.js"></script>
+<script type="text/javascript" src="resources/js/content/contentImage.js"></script>
 <script>
 	var contentid = ${contentid};
 	var contenttypeid = ${contenttypeid};
+	var imageCount = 1; // 총 이미지 개수
+	var imageIndex = 1; // 이미지 인덱스
+	var eventstartdate = undefined, eventenddate = undefined;
+	/*
 	<c:if test="15 eq ${contenttypeid}"> // 이걸 하는 이유가, 축제는 좋아요 기능을 넣어햐 하기 때문 + 호텔도
 		var eventstartdate = ${eventstartdate}, eventenddate = ${eventenddate};
 		console.log(eventstartdate, eventenddate);
 	</c:if>
-	
+	*/
 	$(function(){
 		//console.log(contentid, contenttypeid);
 		detailCommon(contenttypeid, contentid); // 기본 정보 조회. 이후 순서대로 조회될 것이다.
+		$('#myCarousel').on('slid.bs.carousel', function (e) {
+			// do something…
+			var $li = $("#myCarousel .carousel-indicators li");
+			//console.log($li);
+			$li.each(function(i){
+				//console.log(i);
+				if($(this).is(".active")) {
+					//console.log("!");
+					printImagePage(i + 1);
+				}
+			});
+			/*
+			$(this).children(".carousel-indicators li").each(function(){
+				if($(this).is(".active")) console.log(1);
+			});
+			*/
+		});
 	});
 </script>
 </head>
@@ -88,8 +112,7 @@
 					</div>
 					<div class="header_btn_txt">리뷰쓰기</div>
 				</div>
-				<div class="header_btn btn_clip" data-yn="n" data-srl="6638"
-					onclick="set_clip('6638','1364392','btn_clip');">
+				<div class="header_btn btn_clip" id="favoriteBtn">
 					<div class="header_btn_icon">
 						<img
 							src="/planner/resources/images/city/spot_info/spot_clip_btn.png"
@@ -122,23 +145,38 @@
 
 	<div class="wrap">
 		<div class="content_left">
-			<div class="spot_img_box">
-			<!-- 이미지 알고리즘은 뜯어고칠 예정 : 어스토리의 슬라이드쇼 또는 세미프로젝트 -->
-				<div class="spot_img" onclick="img_slide('0');">
-					<img
-						src="http://img.earthtory.com/img/place_img_user/820668/6645/6645_1415673028.JPG">
-				</div>
-				<div class="spot_img" onclick="img_slide('1');">
-					<img
-						src="http://img.earthtory.com/img/place_img_user/820668/6645/6645_1415673008.JPG">
-				</div>
-				<div class="spot_img last" onclick="img_slide('2');">
-					<div class="img_cnt">+0</div>
-					<img src="http://img.earthtory.com/img/place_img/310/6645_0_et.jpg">
-				</div>
-				<div class="clear"></div>
+			<div class="container imgContents">
+			  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+			    <!-- Indicators -->
+			    <div class="carousel-index">1 / 3</div>
+			    <ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+			    <!-- Wrapper for slides -->
+			    <div class="carousel-inner">
+			      <div class="item active contentImage">
+			        <img src="/planner/resources/images/festival/festival_marker.png" alt="Los Angeles">
+			      </div>	
+			      <div class="item contentImage">
+			        <img src="/planner/resources/images/festival/hotel_marker.png" alt="Chicago">
+			      </div>	    
+			      <div class="item contentImage">
+			        <img src="/planner/resources/images/festival/restaurant_marker.png" alt="New york">
+			      </div>
+			    </div>	
+			    <!-- Left and right controls -->
+			    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			      <span class="glyphicon glyphicon-chevron-left"></span>
+			      <span class="sr-only">Previous</span>
+			    </a>
+			    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+			      <span class="glyphicon glyphicon-chevron-right"></span>
+			      <span class="sr-only">Next</span>
+			    </a>
+			  </div>
 			</div>
-
 			<div class="spot_tip">
 				<img class="spot_info_ico"
 					src="/planner/resources/images/city/spot_info/info_icon.gif">컨텐츠

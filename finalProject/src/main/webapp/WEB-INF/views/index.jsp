@@ -5,10 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+var contenttypename = '15';
+</script>
 <link href="resources/css/master.css" rel="stylesheet" />
 <link href="resources/css/city/main.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>페스티벌 플래너</title>
+<script>
+	var sidoName, sidoCode, sigunguName, sigunguCode;
+</script>
 </head>
 <body>
 	<div class="clear"></div>
