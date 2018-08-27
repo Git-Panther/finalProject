@@ -2,16 +2,25 @@
  */
 
 function printForecast(body){
-	//console.log(body);
-	var $festivalForecast = $("#festivalForecast"); // div
+	console.log("printForecast called");
+	var $forecast_info = $("#forecast_info");
 	//console.log(eventstartdate, eventenddate);
 	// 출력 대상 : 강수확률, 강수형태, 6시간 강수량, 습도, 하늘상태, 6시간 신적설(겨울 한정), 3시간 기온, 풍향, 풍속
 	if(body.totalCount > 0){ // 결과가 하나라도 있으면
 		var item = body.items.item;
 		if(undefined === item.length) item = [item]; // 배열이 아니면 배열로 만듬(결과가 1개이면)
 		var baseDate = item[0].baseDate; // 어차피 baseDate는 다 같다.
+		var startdate, enddate; // 조회 기간 정하기
+		if(15 === contenttypeid){ // 전역변수이므로 가능
+			startdate = eventstartdate;
+			enddate = eventenddate;
+		}else{
+			startdate = getDay(0);
+			enddate = getDay(3);
+		}
+		
 		var forecast = item.filter(function(v){ // 1차 필터링 : 이것들만 표시
-			var dateRange = v.fcstDate >= eventstartdate && v.fcstDate <= eventenddate;
+			var dateRange = v.fcstDate >= startdate && v.fcstDate <= enddate;
 			var isPOP = v.category === "POP";
 			var isPTY = v.category === "PTY";
 			var isR06 = v.category === "R06";
@@ -31,15 +40,15 @@ function printForecast(body){
 		var dayCount = 0;
 		for(var i = 0; i <= 3; i++){
 			dayCount = i;
-			forecastList.push(forecast.filter(function(v){
+			forecastList.push(forecast.filter(function(v){ // 2차 필터링 : 해당 날짜 기준으로 3일 후까지 조회
 				return v.fcstDate === baseDate + dayCount;
 			}));
 		}
 		
-		//console.log(forecastList);
+		console.log(forecastList);
 		//console.log(forecast);
 		if(forecast.length === 0)
-			$("<p>").text("조회된 결과가 없습니다.").appendTo($festivalForecast);
+			$("<div class='h4 text-primary spot_info_date'>").text("조회된 결과가 없습니다.").appendTo($forecast_info);
 		else {
 			forecastList.forEach(function(v){
 				if(v.length > 0){
@@ -48,16 +57,21 @@ function printForecast(body){
 			});
 		}
 	}else{
-		$("<p>").text("조회된 결과가 없습니다.").appendTo($festivalForecast);
+		$("<div class='h4 text-primary spot_info_date'>").text("조회된 결과가 없습니다.").appendTo($forecast_info);
 	}
 }
 
 function printEachForecast(list){ // 각각의 날짜에 해당하는 것을 출력
-	var $festivalForecast = $("#festivalForecast"); // div
-	var table = $("<table class='infoTable'>");
-	var tr = $("<tr>");
-	var th = $("<th>");
-	var td = $("<td>");
+	var $forecast_info = $("#forecast_info");
+	var dateInfo = $("<div class='h4 text-primary spot_info_date'>");	
+	var table = $('<table class="spot_info_table">');
+	var colgroup = $("<colgroup>");
+	colgroup.append('<col width="135">').append('<col width="251">').append('<col width="135">').append('<col width="251">');
+	table.append(colgroup);
+	
+	var tr = $("<tr>"); // 한 줄
+	var th = $("<th>"); // 타이틀
+	var td = $("<td>"); // 내용
 	var fcstObj; // 반환하는 객체 저장용
 	
 	var timeList = ["0000", "0300", "0600", "0900", 1200, 1500, 1800, 2100];
@@ -71,40 +85,28 @@ function printEachForecast(list){ // 각각의 날짜에 해당하는 것을 출
 	
 	//console.log(forecastEachTime);
 	
-	$("<p>").html(parseFcstDate(list[0].fcstDate)).appendTo($festivalForecast);
-	forecastEachTime.forEach(function(v){
+	dateInfo.html(parseFcstDate(list[0].fcstDate));
+	forecastEachTime.forEach(function(v, i){
 		if(v.length > 0){
 			tr = $("<tr>");
-	    	th = $("<th>");
+	    	th = $("<th colspan='4'>");
 	    	td = $("<td>");
 	    	
 	    	th.html(parseFcstTime(v[0].fcstTime)).appendTo(tr);
-	    	v.forEach(function(v){
-	    		fcstObj = parseForecast(v.category, v.fcstValue);
-	    		td.append($("<p>").html(fcstObj.category + " : " +fcstObj.value));
-	    	});
-	    	td.appendTo(tr);
 	    	tr.appendTo(table);
+	    	
+	    	v.forEach(function(v){
+	    		tr = $("<tr>");
+	    		th = $("<th>");
+	    		td = $("<td>");
+	    		fcstObj = parseForecast(v.category, v.fcstValue);
+	    		th.html(fcstObj.category).appendTo(tr);
+	    		td.html(fcstObj.value).appendTo(tr);
+	    		tr.appendTo(table);
+	    	});
 		}
 	});
-	
-	/*
-	list.forEach(function(v) {
-		// 출력
-		// 1. th에는 시간만
-		// 2. td에는 각 항목이름 : 항목값(p 태그)로 구분
-		// 3. 
-		
-		tr = $("<tr>");
-    	th = $("<th>");
-    	td = $("<td>");
-    	fcstObj = parseForecast(v.category, v.fcstValue);
-    	th.html(parseFcstTime(v.fcstTime) + "<br>" + fcstObj.category).appendTo(tr);
-		td.html(fcstObj.value).appendTo(tr);
-    	tr.appendTo(table);
-	});
-	*/
-	table.appendTo($festivalForecast);
+	$forecast_info.append(dateInfo).append(table);
 }
 
 function parseFcstDate(fcstDate){

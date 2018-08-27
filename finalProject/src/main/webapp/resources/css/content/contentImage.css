@@ -61,3 +61,23 @@
 	margin-top:8px;
 	margin-bottom:12px;
 }
+
+.center{
+	text-align:center !important;
+}
+
+.inline_block{
+	display:inline-block !important;
+}
+
+.inline_table{
+	display:inline-table !important;
+}
+
+.content-wrap{
+	margin-left:15px;
+}
+
+.justify{
+	text-align:justify !important;
+}

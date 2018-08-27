@@ -8,11 +8,12 @@ function detailCommon(contenttypeid, contentid){ // 해당 정보의 공통정�
         data: { contenttypeid : contenttypeid, contentid : contentid },
         dataType: 'json',
         success: function(data){
+        	var item = data.response.body.items.item;
         	console.log(data);
-        	printCommon(data.response.body.items.item); // 공통정보 출력
+        	printCommon(item); // 공통정보 출력
         	detailIntro(contenttypeid, contentid); // 공통정보 출력이 끝나면 상세정보를 조회
         	// 지도 조회
-        	// 기상청 조회
+        	forecast(item.mapx, item.mapy); // 기상청 조회
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -94,7 +95,7 @@ function forecast(mapx, mapy){ // 축제가 아니어도 기상청 정보는 쓴
         dataType: 'json',
         success: function(data){
         	console.log(data);
-        	//printForecast(data.response.body);
+        	printForecast(data.response.body);
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -140,6 +141,11 @@ function insertFavorite(){ // 찜 등록 : 다섯 개 전부 전역 변수이므
         	if(data){ // 성공
         		$("#favoriteBtn > .header_btn_icon").addClass("favorite");
         		$("#favoriteTxt").html("찜 해제");
+        		swal({
+    				title: "찜 등록 완료!",
+    				text: "찜 목록에 추가했습니다.",
+    				icon: "success"
+    			});
         	}else{ // 실패
         		swal({
     				title: "찜하기 실패!",
@@ -164,6 +170,11 @@ function deleteFavorite(){ // 찜 삭제
         	if(data){ // 성공
         		$("#favoriteBtn > .header_btn_icon").removeClass("favorite");
         		$("#favoriteTxt").html("찜하기");
+        		swal({
+    				title: "찜 해제 완료!",
+    				text: "찜 목록에서 없앴습니다.",
+    				icon: "success"
+    			});
         	}else{ // 실패
         		swal({
     				title: "찜 해제 실패!",
