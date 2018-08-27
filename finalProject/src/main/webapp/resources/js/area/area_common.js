@@ -57,6 +57,67 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 					if (object[index].firstimage == undefined) {
 						_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
 					} else {
+<<<<<<< HEAD
+						$.each(	object,
+										function(index, item) {
+											_html += '<a class="pospot"';
+											if (15 == object[index].contenttypeid) {// 링크는 축제 한정으로 옮긴다..
+												_html += 'href="javascript:moveContent('
+													+ ""
+														+ object[index].contenttypeid
+														+ ", "
+														+ object[index].contentid
+														+ ", '"
+														+ object[index].title
+														+ "', "
+														+ object[index].eventstartdate
+														+ ", "
+														+ object[index].eventenddate
+														+ ""
+														+ ');"';
+											} else {
+												_html += 'href="javascript:moveContent('
+														+ sidoName
+														+ ", "
+														+ sidoCode
+														+ ", "
+														+ sigunguName
+														+ ", "
+														+ sigunguCode
+														+ ", '"
+														+ object[index].contenttypeid
+														+ "', '"
+														+ object[index].contentid
+														+ "', '"
+														+ object[index].title
+														+ "')" + '"';
+											}
+											if (index == 3 || index == 7) {
+												_html += 'target="_blank" style="margin-right:0px;"><div class="po_img_box">';
+											} else {
+												_html += 'target="_blank"><div class="po_img_box">';
+											}
+											_html += '<img ';
+											if (object[index].firstimage == undefined) {
+												_html += 'src="/planner/resources/images/common/no_img/sight55.png"';
+											} else {
+												_html += 'src="'
+														+ object[index].firstimage
+														+ '"';
+											}
+											_html += 'alt="" class="po_img">';
+											_html += '</div>';
+											_html += '<div class="po_name">'
+													+ object[index].title
+													+ '</div>';
+											_html += '<div class="po_bottom">';
+											_html += '<img src="/planner/resources/images/city/clip_icon.png" alt="" class="po_clip">';
+											_html += '<div class="po_cnt">'
+													+ object[index].readcount
+													+ '</div>';
+											_html += '<div class="po_tag">유명한거리/지역</div>';
+											_html += '</div></a>';
+=======
 						_html += 'src="'
 								+ object[index].firstimage
 								+ '"';
@@ -73,6 +134,7 @@ function popList(sidoCode, sigunguCode, contenttypeid) {
 							+ '</div>';
 					_html += '<div class="po_tag">유명한거리/지역</div>';
 					_html += '</div></a>';
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 
 				});
 			}
@@ -110,8 +172,14 @@ function moveAreaMain(sidoName, sidoCode, sigunguName, sigunguCode){ // 함수
 	form.appendTo($("#header"));
 	form.submit();
 }
+<<<<<<< HEAD
+
+function moveContent(contenttypeid, contentid, title, eventstartdate, eventenddate){
+	console.log("dsadsa");
+=======
 
 function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
+>>>>>>> branch 'master' of https://github.com/uik7300/finalProject
 	var form = $("<form>");
 	var contenttypename = '-1';
 	
@@ -124,6 +192,53 @@ function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventend
 		contenttypename = '축제/행사';
 		//$("<input type='hidden'>").attr("name", "eventstartdate").val(eventstartdate).appendTo(form);
 		//$("<input type='hidden'>").attr("name", "eventenddate").val(eventenddate).appendTo(form);
+		break;
+	case 12 :
+		contenttypename = '관광지';
+		break;
+	case 14 :
+		contenttypename = '문화시설';
+		break;
+	case 32 :
+		contenttypename = '숙박';
+		break;
+	case 38 :
+		contenttypename = '쇼핑';
+		break;
+	case 39 :
+		contenttypename = '음식';
+	}
+	
+	// sido, sigungu는 area_header.jsp에 정의되어 있음
+	$("<input type='hidden'>").attr("name", "sidoName").val(sidoName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sidoCode").val(sidoCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguName").val(sigunguName).appendTo(form);
+	$("<input type='hidden'>").attr("name", "sigunguCode").val(sigunguCode).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypeid").val(contenttypeid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contenttypename").val(contenttypename).appendTo(form);
+	$("<input type='hidden'>").attr("name", "contentid").val(contentid).appendTo(form);
+	$("<input type='hidden'>").attr("name", "title").val(title).appendTo(form);
+	
+	form.appendTo($("#header"));
+	form.submit();
+}
+
+function moveContent(sidoName, sidoCode, 
+		sigunguName, sigunguCode, 
+		contenttypeid, contentid, title){
+
+
+function moveContent(contenttypeid, contentid, title/*, eventstartdate, eventenddate*/){
+	var form = $("<form>");
+	var contenttypename = '-1';
+	
+	form.attr("id", "contentDetail");
+	form.attr("method", "post");
+	form.attr("action", "/planner/contentDetail.do");
+	
+	switch(contenttypeid) {
+	case 15 :
+		contenttypename = '축제/행사';
 		break;
 	case 12 :
 		contenttypename = '관광지';
