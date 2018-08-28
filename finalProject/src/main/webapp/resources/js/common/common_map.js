@@ -2,10 +2,6 @@
  * 지도 표시 알고리즘
  */
 function printMark(position, title, contenttypeid){ // 마커 생성
-	/*
-	 * 만일 중심정보이면 마커를 표시
-	 * 중심정보가 아니면 커스텀 오버레이 표시
-	 */
 	var markerContent = $("<div>").addClass("markerContent");
 	
 	markerContent.append(title);

@@ -74,7 +74,6 @@ function detailImage(contentid){ // 해당 정보의 반복정보
     	} 
     });	
 }
-
 function locationBasedList(mapx, mapy, contenttypeid){ // 축제 한정으로만 쓰임
 	$.ajax({        
         url: 'locationBasedList.do',
@@ -90,7 +89,6 @@ function locationBasedList(mapx, mapy, contenttypeid){ // 축제 한정으로만
     	} 
     });	
 }
-
 function forecast(mapx, mapy){ // 축제가 아니어도 기상청 정보는 쓴다.
 	$.ajax({        
         url: 'forecast.do',

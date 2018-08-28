@@ -58,11 +58,9 @@ public class FestivalController {
 		params.append("&numOfRows=100"); // 모든 주요 도시
 		if(null != areaCode) params.append("&areaCode="+areaCode); // 지역코드가 있으면 그 지역의 시군구, 아니면 주요 도시 전체
 		logger.info(address + params.toString());
-		
 		String result = JsonManager.getJsonString(address + params.toString()); // 바이트 출력 스트림에서 json 문자열을 받을 변수
 		return result;
-	}
-	
+	}	
 	// 축제 리스트 불러오기
 	@RequestMapping(value = "selectFestivalList.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
 	public @ResponseBody String festivalApi(String pageNo, String arrange, String areaCode, String sigunguCode
@@ -75,10 +73,8 @@ public class FestivalController {
 		if(null != areaCode) params.append("&areaCode="+areaCode); // 지역코드 : 전체
 		if(null != sigunguCode) params.append("&sigunguCode="+sigunguCode); // 지역코드 : 시군구 - 안 따짐
 		if(null != eventStartDate) params.append("&eventStartDate="+eventStartDate.replaceAll("-", "")); // 1월 1일부터
-		if(null != eventEndDate) params.append("&eventEndDate="+eventEndDate.replaceAll("-", "")); // 12월 3일까지
-		
-		logger.info(pageNo + ", " + arrange + ", " + areaCode + ", " + sigunguCode + ", " + eventStartDate + ", " + eventEndDate);
-		
+		if(null != eventEndDate) params.append("&eventEndDate="+eventEndDate.replaceAll("-", "")); // 12월 3일까지	
+		logger.info(pageNo + ", " + arrange + ", " + areaCode + ", " + sigunguCode + ", " + eventStartDate + ", " + eventEndDate);	
 		String result = JsonManager.getJsonString(address + params.toString()); // 바이트 출력 스트림에서 json 문자열을 받을 변수
 		return result;
 	}

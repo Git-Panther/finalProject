@@ -16,7 +16,6 @@ function areaCodeList(){
     	} 
     });
 }
-
 function sigunguCodeList(areaCode){
 	$.ajax({        
         url: 'areaCodeList.do',
