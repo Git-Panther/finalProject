@@ -19,9 +19,9 @@ import com.kh.planner.review.model.vo.Review;
 @Controller
 public class FestivalController {
 	//private static final String tourapikey = "?ServiceKey=kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
-	//private static final String tourapikey = "?ServiceKey=EuYOKtjgM9QR9GFYmz2fS0z%2FHXF3%2B80PelXkPL7lRVc2nzcw4dg8OwalAxk2OZu%2F%2BNOmxyqSRqKFXnUg2pGeBg%3D%3D";
+	private static final String tourapikey = "?ServiceKey=EuYOKtjgM9QR9GFYmz2fS0z%2FHXF3%2B80PelXkPL7lRVc2nzcw4dg8OwalAxk2OZu%2F%2BNOmxyqSRqKFXnUg2pGeBg%3D%3D";
 	//private static final String tourapikey = "?ServiceKey=z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
-	private static final String tourapikey = "?ServiceKey=%2FgAvK8XbnjBXWVvObqp8BnTgGHmHYtNCjqwZ6tIrI8hUoSi9EzB%2FGpIgrvS3YRnk%2FOCGhlZBGRtJ8XaOVYsV6w%3D%3D";
+	//private static final String tourapikey = "?ServiceKey=%2FgAvK8XbnjBXWVvObqp8BnTgGHmHYtNCjqwZ6tIrI8hUoSi9EzB%2FGpIgrvS3YRnk%2FOCGhlZBGRtJ8XaOVYsV6w%3D%3D";
 	private static final String tourParams = "&MobileOS=ETC&MobileApp=planner&_type=json";
 	
 	@Autowired

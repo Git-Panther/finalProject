@@ -147,7 +147,8 @@ function printNearInfo(body, type){ // 각 정보별로 표시
 			ri_right.append(div);
 			
 			div = $("<div>");	
-			div.addClass("ri_price").html(v.addr1 + v.addr2);
+			div.addClass("ri_price").html(v.addr1);
+			if(undefined != v.addr2 && "" != v.addr2) div.append(v.addr2);
 			ri_right.append(div).appendTo($nearContents);
 			
 			div = $("<div>");	

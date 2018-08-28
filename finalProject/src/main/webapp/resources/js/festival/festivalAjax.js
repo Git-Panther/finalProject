@@ -24,7 +24,6 @@ function sigunguCodeList(areaCode){
         dataType: 'json',
         success: function(data){
         	//console.log(data);
-        	//console.log(data.response);
         	printSigunguList(areaCode, data.response.body.items.item);
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 

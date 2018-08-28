@@ -211,25 +211,27 @@
 							<tbody></tbody>
 							<tr>
 								<td colspan="4" id="festivalMap">
-									<div id="map"></div>
-									<div class="markerCategory">
-									 	<div id="allMarkers" class="markerMenu">
-									 		<img class="ico_comm ico_all"></img>
-											전체
-									 	</div>
-									 	<div id="hotelMarkers" class="markerMenu">
-									 		<img class="ico_comm ico_hotels"></img>
-											숙박
-									 	</div>
-									 	<div id="restaurantMarkers" class="markerMenu">
-									 		<img class="ico_comm ico_restaurants"></img>
-											식당
-									 	</div>
-									 	<div id="attractionMarkers" class="markerMenu">
-									 		<img class="ico_comm ico_attractions"></img>
-											관광지
-									 	</div>
-							    	</div>
+									<div class="mapWrapper">
+										<div id="map"></div>
+										<div class="markerCategory">
+										 	<div id="allMarkers" class="markerMenu">
+										 		<img class="ico_comm ico_all"></img>
+												전체
+										 	</div>
+										 	<div id="hotelMarkers" class="markerMenu">
+										 		<img class="ico_comm ico_hotels"></img>
+												숙박
+										 	</div>
+										 	<div id="restaurantMarkers" class="markerMenu">
+										 		<img class="ico_comm ico_restaurants"></img>
+												식당
+										 	</div>
+										 	<div id="attractionMarkers" class="markerMenu">
+										 		<img class="ico_comm ico_attractions"></img>
+												관광지
+										 	</div>
+								    	</div>
+								    </div>
 								</td>
 							</tr>
 						</table>

@@ -82,14 +82,14 @@
 	text-align:justify !important;
 }
 
-#festivalMap{
+.mapWrapper{
 	position:relative;
 	overflow:hidden;
 }
 
 #map{
-	width:800px;
-	height:450px;
+	width:777px;
+	height:444px;
 }
 
 #map img {
@@ -132,7 +132,8 @@
 .markerCategory {
 	position:absolute;
 	top:10px;
-	left:550px;
+	float:right;
+	left:75%;
 	width:auto;
 	height:auto;
 	z-index:10;

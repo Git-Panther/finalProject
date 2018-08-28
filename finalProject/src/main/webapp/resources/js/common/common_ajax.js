@@ -74,26 +74,26 @@ function detailImage(contentid){ // 해당 정보의 반복정보
     	} 
     });	
 }
-function locationBasedList(mapx, mapy, contenttypeid){ // 축제 한정으로만 쓰임
+function locationBasedList(mapx, mapy, contenttypeid){
 	$.ajax({        
         url: 'locationBasedList.do',
         type: 'post',
         data: { mapx : mapx, mapy : mapy, contenttypeid : contenttypeid},
         dataType: 'json',
         success: function(data){
-        	console.log(data);
-        	printNearInfo(data.response.body, contenttypeid); // 공통 정보만 뽑았다.
+        	//console.log(data);
+        	printNearInfo(data.response.body, contenttypeid);
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 
     	} 
     });	
 }
-function forecast(mapx, mapy){ // 축제가 아니어도 기상청 정보는 쓴다.
+function forecast(mapx, mapy){
 	$.ajax({        
         url: 'forecast.do',
         type: 'post',
-        data: { mapx : mapy, mapy : mapx }, // 발표일은 controller에서 처리. 둘이 자리 바뀐 이유는 mapx 쪽이 세자리 나옴(...)
+        data: { mapx : mapy, mapy : mapx },
         dataType: 'json',
         success: function(data){
         	//console.log(data);
