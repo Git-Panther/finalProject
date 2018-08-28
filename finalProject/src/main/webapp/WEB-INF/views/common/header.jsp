@@ -86,14 +86,12 @@ $(function(){
 				<a href="${area}" class="fl"><li>여행지</li></a>
 				<c:url var="plan" value="/plan.do"></c:url>
 				<a href="${plan}" class="fl"><li>일정만들기</li></a>
-				<!-- <a href="/hotel.do" class="fl"><li>호텔</li></a> -->
 				<a href="use.do" class="fl"><li>이용방법</li></a>
-<!-- 				<a href="/adminMain.do" class="fl"><li>a</li></a> -->
 			</ul>
 
 			<div class="fr gnb_box">
 				<div class="fl gnb_search_box">
-					<input type="text" id="gnb_search" placeholder="도시를 찾아보세요.">
+					<input type="text" id="gnb_search" placeholder="축제를 찾아보세요." onkeypress="if( event.keyCode == 13 ){searchContentTop();}">
 					<div class="gnb_search_btn" style="display: none;"></div>
 				</div>
 				<div id="gnb_search_autocomplete"></div>

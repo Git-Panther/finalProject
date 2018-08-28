@@ -18,7 +18,6 @@ function detailCommon(contenttypeid, contentid){ // 해당 정보의 공통정�
         	locationBasedList(item.mapx, item.mapy, 39);
         	locationBasedList(item.mapx, item.mapy, 12);
         	printMark(new daum.maps.LatLng(item.mapy, item.mapx), item.title, 0); // 자기 자신 마커 출력
-        	changeMarker("allMarkers"); // 전체 먼저 누르기
         }
         , error: function(XMLHttpRequest, textStatus, errorThrown) { 
         	alert("Status: " + textStatus); alert("Error: " + errorThrown); 

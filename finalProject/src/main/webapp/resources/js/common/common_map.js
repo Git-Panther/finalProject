@@ -43,7 +43,8 @@ function printMark(position, title, contenttypeid){ // 마커 생성
 	case 0: // 0이면 메인 마커
 		imageSrc = "/planner/resources/images/map/main_marker.png";
 		map.panTo(position); // 지도 중심 잡기
-		marker.setMap(map);
+		marker.setZIndex(2018);
+		customOverlay.setZIndex(2018);
 		break;
 	default:
 		alert("error");
@@ -62,8 +63,8 @@ function printMark(position, title, contenttypeid){ // 마커 생성
 	    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
 		customOverlay.setMap(null);
 	});
-	// marker.setMap(map); // 맵에다가 붙임. 이제는 분류를 클릭해야 표시
 	
+	marker.setMap(map); // 맵에다가 붙임. 이제는 분류를 클릭해야 표시	
 	//console.log(marker);
 }
 

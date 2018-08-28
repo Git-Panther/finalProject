@@ -3,16 +3,44 @@ package com.kh.planner.common;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Base64.Encoder;
 import java.util.Date;
 
 import org.apache.commons.io.IOUtils;
 
 public class JsonParser {
-	private static String serviceKey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
+	//private static String serviceKey = "kLZYhnukkkQDzQJ58%2FtZe6IjLUnEn%2FTtuQiqyzSwbiJ8e9SiuyV3xFtgwUu9jpqT33DASyAZb8ST3r3xGD4PJQ%3D%3D";
 	//private static String serviceKey = "z7V6sSliIR%2Bo5YnTbwqckgea9o%2BSsyWLHFX5ArEqzUHcsMnTtcIpHydqeqqD1erNziNIyDJ%2Fe7ZNvx6WZkcy0A%3D%3D";
 	//private static String serviceKey = "EuYOKtjgM9QR9GFYmz2fS0z%2FHXF3%2B80PelXkPL7lRVc2nzcw4dg8OwalAxk2OZu%2F%2BNOmxyqSRqKFXnUg2pGeBg%3D%3D";
-	//private static String serviceKey = "%2FgAvK8XbnjBXWVvObqp8BnTgGHmHYtNCjqwZ6tIrI8hUoSi9EzB%2FGpIgrvS3YRnk%2FOCGhlZBGRtJ8XaOVYsV6w%3D%3D";
+	private static String serviceKey = "%2FgAvK8XbnjBXWVvObqp8BnTgGHmHYtNCjqwZ6tIrI8hUoSi9EzB%2FGpIgrvS3YRnk%2FOCGhlZBGRtJ8XaOVYsV6w%3D%3D";
+	
+	public static String getDateParam() {
+		String today, p_year, p_month, p_day = "";
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		today = sdf.format(date);
+		
+		int year = Integer.parseInt(today.substring(0, 4));
+		int month = Integer.parseInt(today.substring(4, 6)) - 1;
+		int day = Integer.parseInt(today.substring(6, 8));
+		if(month == 0) {
+			year =- 1;
+			month = 12;
+		}
+		p_year = String.valueOf(year);
+		p_month = String.valueOf(month);
+		p_day = String.valueOf(day);
+		if(p_month.length() < 2) {
+			p_month = "0" + p_month;
+		}
+		if(p_day.length() < 2) {
+			p_day = "0" + p_day;
+		}
+		String dateParam = p_year + p_month + p_day;
+		return dateParam;
+	}
 	public static String getJsonString(String address) {
 		String resultStr = "";
 		try {
@@ -169,33 +197,9 @@ public class JsonParser {
 		return resultJson;
 	}
 	
+	
 	public static String getPopList(String sidoCode, String sigunguCode, String contenttypeid) {
 		String resultJson = "";
-		String today, p_year, p_month, p_day = "";
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		today = sdf.format(date);
-		
-		int year = Integer.parseInt(today.substring(0, 4));
-		int month = Integer.parseInt(today.substring(4, 6)) - 1;
-		int day = Integer.parseInt(today.substring(6, 8));
-		if(month == 0) {
-			year =- 1;
-			month = 12;
-		}
-		p_year = String.valueOf(year);
-		p_month = String.valueOf(month);
-		p_day = String.valueOf(day);
-		if(p_month.length() < 2) {
-			p_month = "0" + p_month;
-		}
-		if(p_day.length() < 2) {
-			p_day = "0" + p_day;
-		}
-		String dateParam = p_year + p_month + p_day;
-		
-		
-		
 		try {
 			String address = "";
 			if(contenttypeid.equals("15")) {
@@ -216,7 +220,7 @@ public class JsonParser {
 			parameter += "&contentTypeId=" + contenttypeid;
 			parameter += "&arrange=" + "B";
 			if(contenttypeid.equals("15")){
-				parameter += "&eventStartDate=" + dateParam;
+				parameter += "&eventStartDate=" + JsonParser.getDateParam();
 			}
 			parameter += "&MobileOS=" + "ETC";
 			parameter += "&MobileApp=" + "AppTest";
@@ -232,6 +236,29 @@ public class JsonParser {
 		return resultJson;
 	}
 
-	
+	public static String getSearchKeyword(String keyword, String curPage) {
+		String resultJson = "";
+		try {
+			String address = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?serviceKey=";
+			String parameter = "";
 
+			parameter += "&numOfRows=" + 15;
+			parameter += "&contentTypeId=" + 15;
+			parameter += "&pageNo=" + curPage;
+			parameter += "&MobileOS=" + "ETC";
+			parameter += "&MobileApp=" + "AppTest";
+			parameter += "&listYN=" + "Y";
+			parameter += "&arrange=" + "A";
+			parameter += "&keyword=" + URLEncoder.encode(keyword, "utf-8");
+			parameter += "&_type= " + "json";
+			address += serviceKey + parameter;
+
+			resultJson = getJsonString(address);
+			System.out.println("getSearchKeyword : =" + resultJson);
+			return resultJson;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultJson;
+	}
 }

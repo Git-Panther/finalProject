@@ -14,6 +14,7 @@ var contenttypename = '15';
 <title>페스티벌 플래너</title>
 <script>
 	var sidoName, sidoCode, sigunguName, sigunguCode;
+	popList('-1', '-1', '15');
 </script>
 </head>
 <body>
@@ -25,7 +26,19 @@ var contenttypename = '15';
 			<div class="main_top_desc">쉽고 빠르게 축제를 찾아보세요.</div>
 			<div class="search_area">
 				<input class="search_input" id="city_search"
-					placeholder="도시명으로 검색">
+					placeholder="축제명으로 검색" onkeypress="if( event.keyCode == 13 ){searchContent();}" />
+					<script>
+					function searchContent() {
+						var keyword = $("#city_search").val();
+						var form = $("<form>");
+						form.attr("id", "searchContent");
+						form.attr("method", "get");
+						form.attr("action", "/planner/searchContent.do?" + keyword);
+						$("<input type='hidden'>").attr("name", "keyword").val(keyword).appendTo(form);
+						form.appendTo($("#header"));
+						form.submit();
+					}
+					</script>
 				<div id="city_autocomplete"></div>
 				<div class="latest_search">
 					추천축제 : <a href="" class="latest_a">축제명</a>

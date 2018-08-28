@@ -15,6 +15,17 @@ $(document).ready(	function() {
 	});
 });
 
+function searchContentTop() {
+	var keyword = $("#gnb_search").val();
+	var form = $("<form>");
+	form.attr("id", "searchContent");
+	form.attr("method", "get");
+	form.attr("action", "/planner/searchContent.do?" + keyword);
+	$("<input type='hidden'>").attr("name", "keyword").val(keyword).appendTo(form);
+	form.appendTo($("#header"));
+	form.submit();
+}
+
 function popList(sidoCode, sigunguCode, contenttypeid) {
 	console.log("popList::sidoCode: ", sidoCode);
 	console.log("popList::sigunguCode: ", sigunguCode);
@@ -211,7 +222,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img ';
 					output += 'src="' + item[i].firstimage + '"';
 					output += 'alt="" class="ht_img"';
-					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '" ';
+					output += 'onclick="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contentid + ",'" + item[i].title + "') " + '" ';
 					output += 'data-srl="' + item[i].contentid + '">';
 					output += '<div class="box_right">';
 					output += '<div class="btn_clip" data-yn="n" data-srl="' + item[i].contentid + '"'; 
@@ -223,7 +234,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<img src="/planner/resources/images/city/spot_list/addplan_ico.png" alt="">';
 					output += '</div>';
 					output += '<a ';
-					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contenttypeid + ",'" + item[i].title + "') " + '"';
+					output += 'href="javascript:moveContent(' + item[i].contenttypeid + ", " + item[i].contentid + ",'" + item[i].title + "') " + '"';
 					output += 'class="ht_title">' + item[i].title + '</a>';
 					output += '<div class="ht_info">';
 					output += '&nbsp;' + '<span>0개의 리뷰가 있습니다.</span>';
@@ -231,7 +242,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '</div>';
 					output += '<div class="ht_addr">';
 					output += item[i].addr1 + " " + item[i].addr2 + '<a class="map_link"';
-					output += 'href="javascript:et_modal(' + "'1144px','816px','1','0','/ko/modal/spot_map?srl=" + item[i].contentId + "&amp;type=2','2','1');" + '">지도보기</a>';
+					output += 'href="javascript:et_modal(' + "'1144px','816px','1','0','/ko/modal/spot_map?srl=" + item[i].contentid + "&amp;type=2','2','1');" + '">지도보기</a>';
 					output += '</div>';
 					output += '<div class="ht_count	">';
 					output += '조회수 : ' + item[i].readcount + '건';
@@ -240,7 +251,7 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 					output += '<a class="ht_view"';
 					output += 'href="javascript:moveContent('
 							+ item[i].contenttypeid + ", "
-							+ item[i].contenttypeid + ",'"
+							+ item[i].contentid + ",'"
 							+ item[i].title + "') " + '"'
 							+ '>자세히보기</a>';
 							output += '</div>';
@@ -312,3 +323,4 @@ function makePaging(total, curPage){
 	paging += '</span>';
 		$('#paging').html(paging);
 }
+

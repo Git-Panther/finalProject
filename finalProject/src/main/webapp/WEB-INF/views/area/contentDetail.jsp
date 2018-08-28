@@ -235,81 +235,77 @@
 						</table>
 					</div>
 				</div>
+				<!-- 덧글 -->
 				<div class="spot_info_box community" >
 					<div class="community_tab on line" data-id="review">리뷰</div>
 					<div class="community_tab" data-id="qa"></div>
 					<div class="clear"></div>
-	
 					<div class="cmmt_tab_content review">
-					<c:forEach items="${rlist }" var="review">
-					               <div class="cmmt_content_box">
-	                  <a class="cmmt_c_user"
-	                     href="내정보보기 호출 url" style= "width: 750px;">
-	                     <img
-	                     <c:if test="${empty user.profilePic}">
-	                        src="/planner/resources/images/common/profile/img_profile.png"
-	                     </c:if>
-	                     <c:if test="${!empty user.profilePic}">
-	                        src="/planner/resources/images/common/profile/${review.profilePic}"
-	                     </c:if>
-	                     class="cmmt_content_uimg"
-	                     onerror="this.src='/planner/resources/images/common/profile/img_profile.png';"/>
-	                     </a>
-	                     <div class="review_opbtn" 
-	                     <c:if test="${review.writer ne user.userNo }">
-	                     	style="display:none"
-	                     </c:if>
-	                     >
-	                     <div class="rv_op_btn rop_delete" data-srl="5353" onclick="reviewDelete(${review.cno})">삭제</div>
-	                     <div class="rv_op_btn line rop_edit" onclick="reviewModify(${review.cno}, this, '${review.content}', ${review.grade});">수정</div>
-	                     <div class="rv_op_btn line rop_cancel" onclick="cancelReview();">취소</div></div>
-	                  <div class="cmmt_c_user_txt">
-	                        <div class="cmmt_c_user_name">
-	                           ${review.writerNm }<span>&nbsp;&nbsp;${review.reg_date}</span>
-	                           <div class="clear"></div>
-	                        </div>
-	                        <div class="cmmt_c_user_level">
-	                           <a href="myReviewList.do?writer=${review.writer}"><div class="rv_cnt" style="margin-left: 1px;">${review.reviewCnt}개의 평가</div></a>
-	                           <div class="clear"></div>
-	                        </div>
-	                     </div>
-	                     <div class="clear"></div>
-	                  <div class="clear"></div>
-	                  <div class="cmmt_content" style="padding-left :13px;">
-	                     <div class="cmmt_content_info">
-	                        <span>
-	                           <c:choose>
-	                              <c:when test="${review.grade eq 1 }">
-	                                 별로에요!
-	                              </c:when>
-	                              <c:when test="${review.grade eq 3 }">
-	                                 괜찮아요!
-	                              </c:when>
-	                              <c:otherwise>
-	                                 좋아요!
-	                              </c:otherwise>
-	                           </c:choose>
-	                        </span>
-	                     </div>
-	                     <span id="content${review.cno }">
-	                        ${review.content}
-	                     </span>
-	                  </div>
-	               </div>
-					
-					</c:forEach>
-				</div>	
-					
-					
-					
-			<div id="no_result_box"
-				<c:if test="${rlist.size() eq 0 }">
-	                     style="display: block;"
-	            </c:if>
-	            <c:if test="${rlist.size() ne 0 }">
-	                     style="display: none;"
-	            </c:if>>
-	            
+						<c:forEach items="${rlist }" var="review">
+							<div class="cmmt_content_box">
+			                  			<a class="cmmt_c_user" href="내정보보기 호출 url" style= "width: 750px;">
+			                	<img
+			                  		<c:if test="${empty user.profilePic}">
+			                   			src="/planner/resources/images/common/profile/img_profile.png"
+			                  		</c:if>
+			                     	<c:if test="${!empty user.profilePic}">
+			                   			src="/planner/resources/images/common/profile/${review.profilePic}"
+			                		</c:if>
+			                    class="cmmt_content_uimg"
+			                    onerror="this.src='/planner/resources/images/common/profile/img_profile.png';"/>
+			                    </a>
+			              		<div class="review_opbtn" 
+				                     <c:if test="${review.writer ne user.userNo }">
+				                     	style="display:none"
+				                     </c:if>
+			                     >
+			                     	<div class="rv_op_btn rop_delete" data-srl="5353" onclick="reviewDelete(${review.cno})">삭제</div>
+			                     	<div class="rv_op_btn line rop_edit" onclick="reviewModify(${review.cno}, this, '${review.content}', ${review.grade});">수정</div>
+			                     	<div class="rv_op_btn line rop_cancel" onclick="cancelReview();">취소</div>
+			                   	</div>
+			           			<div class="cmmt_c_user_txt">
+			                        <div class="cmmt_c_user_name">
+			                           ${review.writerNm }<span>&nbsp;&nbsp;${review.reg_date}</span>
+			                           <div class="clear"></div>
+			                        </div>
+			                        <div class="cmmt_c_user_level">
+			                           <a href="myReviewList.do?writer=${review.writer}"><div class="rv_cnt" style="margin-left: 1px;">${review.reviewCnt}개의 평가</div></a>
+			                           <div class="clear"></div>
+			                        </div>
+			                    </div>
+			                    <div class="clear"></div>
+			                  	<div class="clear"></div>
+			                  	<div class="cmmt_content" style="padding-left :13px;">
+			                    <div class="cmmt_content_info">
+			                    	<span>
+			                    		<c:choose>
+			                              <c:when test="${review.grade eq 1 }">
+			                                 	별로에요!
+			                              </c:when>
+			                              <c:when test="${review.grade eq 3 }">
+			                                 	괜찮아요!
+			                              </c:when>
+			                              <c:otherwise>
+			                                 	좋아요!
+			                              </c:otherwise>
+			                           </c:choose>
+			                        </span>
+			                     </div>
+			                     <span id="content${review.cno }">
+			                        ${review.content}
+			                     </span>
+			                  </div>
+			               </div>
+						</c:forEach>
+					</div>			
+					<div id="no_result_box"
+						<c:if test="${rlist.size() eq 0 }">
+							style="display: block;"
+			            </c:if>
+			            <c:if test="${rlist.size() ne 0 }">
+							style="display: none;"
+			            </c:if>
+			        >
 						<img src="/planner/resources/images/common/no_result_icon.png">
 						<div class="no_result_text">아직 리뷰가 없습니다.</div>
 						<br> <br> <br> <br> <br>
@@ -321,93 +317,82 @@
 						</div>
 						<br> <br> <br> <br> <br>
 					</div>
-	
 					<div class="page review" style="display: none;"></div>
 					<div class="page qa" id="paging"></div>
-	
-					<div class="write_area">
-	
-						<div class="write_review">
-							<div class="write_title r">
-								<span>경복궁</span> 리뷰 남기기
-							</div>
-	
-							<div class="review_box">
-							<!-- <div class="write_left">
-		   				    <img src="/planner/resources/images/common/mobile/img_profile.png" onerror="this.src='/planner/resources/images/common/mobile/img_profile.png';" class="cmmt_content_uimg">
-							<div class="clear"></div>
-							</div> -->
-								<div class="write_center">
-									<div class="rate_box">
-										<div class="rate_btn bad" data-val="1" data="1">별로에요!</div>
-										<div class="rate_btn normal" data-val="3" data="3">괜찮아요!
+						<div class="write_area">
+							<div class="write_review">
+								<div class="write_title r">
+									<span></span> 리뷰 남기기
+								</div>
+								<div class="review_box">
+									<!-- <div class="write_left">
+				   				    <img src="/planner/resources/images/common/mobile/img_profile.png" onerror="this.src='/planner/resources/images/common/mobile/img_profile.png';" class="cmmt_content_uimg">
+									<div class="clear"></div>
+									</div> -->
+									<div class="write_center">
+										<div class="rate_box">
+											<div class="rate_btn bad" data-val="1" data="1">별로에요!</div>
+											<div class="rate_btn normal" data-val="3" data="3">괜찮아요!</div>
+											<div class="rate_btn good on" data-val="5" data="5">좋아요!</div>
+											<div class="clear"></div>
 										</div>
-										<div class="rate_btn good on" data-val="5" data="5">좋아요!</div>
-										<div class="clear"></div>
+										<textarea class="review_area" id="content" placeholder="장소에 대한 리뷰를 입력하세요."></textarea>
 									</div>
-									<textarea class="review_area" id="content" placeholder="장소에 대한 리뷰를 입력하세요."></textarea>
+									<div class="write_right">
+										<div class="btn_review_write" id="si_review_form_submit" style="margin-top: 155px;" data="new" onclick="writeComment();">등록</div>
+									</div>
+									<div class="clear"></div>
 								</div>
-								<div class="write_right">
-									<div class="btn_review_write" id="si_review_form_submit" style="margin-top: 155px;"
-										data="new" onclick="writeComment();">등록</div>
-								</div>
-								<div class="clear"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div> <!-- end of content-wrap -->
+			</div>
+			<div class="content_right">
+				<div class="right_inner" id="nearHotel">
+					<div class="r_inner_title">
+						1km 이내 호텔
+						<!-- 
+							<img src="" alt="" class="ri_img" onerror="this.src='/res/img/common/no_img/hotel55.jpg';">
+						 	<div class="ri_right">
+						 		<div class="ri_title">그랜드 모텔</div>
+						 		<div class="ri_price">￦74,708</div>
+						 		<div class="ri_bottom">
+						 			<div class="ri_distance">거리 25.86km</div>
+						 			<div class="ri_rate">강력추천 <span>9.9</span></div>
+						 			<div class="clear"></div>
+						 		</div>
+						 	</div>
+						 	<div class="clear"></div>
+						 -->
+						<!--  
+						 <a
+							href="/ko/city/seoul_310/hotel?from_lat=37.57736200&amp;from_lng=126.97668500&amp;ht_name=경복궁"
+							class="ri_more ht"> 더보기 &gt; </a>
+						<div class="clear"></div>
+						-->
+					</div>
+					<div class="near_ht"></div>
+				</div>
+				<div class="right_inner" id="nearRestaurant">
+					<div class="r_inner_title">
+						1km 이내 음식점 <!-- <a class="ri_more food"
+							href="/ko/city/seoul_310/restaurant"> 더보기 &gt; </a>-->
+					</div>
+					<div class="near_food"></div>
+				</div>
+				<div class="right_inner" id="nearAttraction">
+					<div class="r_inner_title">
+						1km 이내 관광지<!--   <a class="ri_more attr"
+							href="/ko/city/seoul_310/attraction"> 더보기 &gt; </a>-->
+					</div>
+					<div class="near_attr"></div>
+				</div>
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="content_right">
-			<div class="right_inner" id="nearHotel">
-				<div class="r_inner_title">
-					1km 이내 호텔
-					<!-- 
-						<img src="" alt="" class="ri_img" onerror="this.src='/res/img/common/no_img/hotel55.jpg';">
-					 	<div class="ri_right">
-					 		<div class="ri_title">그랜드 모텔</div>
-					 		<div class="ri_price">￦74,708</div>
-					 		<div class="ri_bottom">
-					 			<div class="ri_distance">거리 25.86km</div>
-					 			<div class="ri_rate">강력추천 <span>9.9</span></div>
-					 			<div class="clear"></div>
-					 		</div>
-					 	</div>
-					 	<div class="clear"></div>
-					 -->
-					<!--  
-					 <a
-						href="/ko/city/seoul_310/hotel?from_lat=37.57736200&amp;from_lng=126.97668500&amp;ht_name=경복궁"
-						class="ri_more ht"> 더보기 &gt; </a>
-					<div class="clear"></div>
-					-->
-				</div>
-				<div class="near_ht"></div>
-			</div>
-
-			<div class="right_inner" id="nearRestaurant">
-				<div class="r_inner_title">
-					1km 이내 음식점 <!-- <a class="ri_more food"
-						href="/ko/city/seoul_310/restaurant"> 더보기 &gt; </a>-->
-				</div>
-				<div class="near_food"></div>
-			</div>
-
-			<div class="right_inner" id="nearAttraction">
-				<div class="r_inner_title">
-					1km 이내 관광지<!--   <a class="ri_more attr"
-						href="/ko/city/seoul_310/attraction"> 더보기 &gt; </a>-->
-				</div>
-				<div class="near_attr"></div>
-			</div>
-
-		</div>
-		<div class="clear"></div>
-	</div>
-
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-
  /*댓글  */
 $(function(){
    //$(".write_area").hide();   
@@ -690,7 +675,7 @@ function go_review(){
 	var container = document.getElementById('map');			
 	var options = {
 		center: new daum.maps.LatLng(33.450701, 126.570667),
-		level: 3
+		level: 4
 		// ,marker: markers // 이미지 지도에 표시할 마커 
 	};			
 	var map = new daum.maps.Map(container, options);
@@ -701,11 +686,12 @@ function go_review(){
 		//console.log(contentid, contenttypeid);
 		setTapEvent();
 		detailCommon(contenttypeid, contentid); // 기본 정보 조회. 이후 순서대로 조회될 것이다.
+		markerCategoryEvent(); // 마커 표시 이벤트 추가
 		setCarouselEvent();
 		setFavoriteEvent();
 		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-		map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);	
-		markerCategoryEvent(); // 마커 표시 이벤트 추가
+		map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC);
+		changeMarker("allMarkers"); // 전체 먼저 누르기
 	});
 </script>
 </body>
