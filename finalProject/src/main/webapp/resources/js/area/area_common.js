@@ -213,8 +213,10 @@ function getList(sidoCode, sigunguCode, contenttypeid, arrange, pageNo, curPage)
 				} else {
 				
 				for (var i = 0; i < (item.length); i++) {
-					addMarker(item[i].title, item[i].mapy, item[i].mapx);
-					console.log("getList::addMarker: ", item[i].title, item[i].mapy, item[i].mapx);
+					if(item[i].mapy != undefined && item[i].mapy != undefined) {
+						addMarker(item[i].title, item[i].mapy, item[i].mapx);
+						console.log("getList::addMarker: ", item[i].title, item[i].mapy, item[i].mapx);
+					}
 					if(item[i].firstimage == undefined) {
 						item[i].firstimage = "/planner/resources/images/common/no_img/hotel55.png";
 					}

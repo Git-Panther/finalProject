@@ -33,6 +33,17 @@ public class PlanController {
     	mv.setViewName("plan/plan");
 		return mv;
 	}
+    
+    @RequestMapping(value = "insertFavorite.do")
+	public ModelAndView insertFavorite(HttpSession session, ModelAndView mv) {
+    	Member user = (Member)session.getAttribute("user");
+    	
+    	List<HashMap<String, String>> planList = service.selectPlanList(user);
+    	System.out.println("test" + planList);
+    	mv.addObject("list", planList);
+    	mv.setViewName("plan/plan");
+		return mv;
+	}
 
     @RequestMapping(value = "selectFavoriteList.do", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
     public @ResponseBody
