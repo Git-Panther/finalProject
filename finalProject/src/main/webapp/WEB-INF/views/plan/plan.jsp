@@ -448,8 +448,7 @@ margin-top:-40px;}
             tipOn = false;
         }
 
-        document.write('<div id="tipDiv" style="position:absolute; visibility:hidden; z-index:100"></div>')
-
+        document.write('<div id="tipDiv" style="position:absolute; visibility:hidden; z-index:100"></div>');
     </script>
 <body>
 <div id="blank" style="width: 115%; height: 110px; text-align: center; padding-top: 40px;">
@@ -459,7 +458,7 @@ margin-top:-40px;}
     <div style="float: left; width: 240px">
         <div id='external-events'>
             <h4 >Drag Festival</h4>
-                <div id="favoriteFestivals" onmouseover="doTooltip(event,0)" onmouseout="hideTip()">
+                <div id="favoriteFestivals">
                 </div>
         </div>
         <br/>
@@ -476,6 +475,15 @@ margin-top:-40px;}
     <input class="btn"  id="btn2" type="button" value="저장">
     </div>
 </div>
+
+<form action="insertPlan.do" id="planForm">
+	<input type="hidden" name="contentid" id="contentid"/>
+	<input type="hidden" name="content" id="content"/>
+	<input type="hidden" name="contenttypeid" id="contenttypeid"/>
+	<input type="hidden" name="startdate" id="startdate"/>
+	<input type="hidden" name="enddate" id="enddate"/>
+</form>
+
 <c:import url="/footer.do"/>
 </body>
 </html>
