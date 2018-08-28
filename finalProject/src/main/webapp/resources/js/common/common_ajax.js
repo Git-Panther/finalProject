@@ -1,6 +1,3 @@
-/**
- * 
- */
 function detailCommon(contenttypeid, contentid){ // 해당 정보의 공통정보
 	$.ajax({        
         url: 'detailCommon.do',
@@ -24,7 +21,6 @@ function detailCommon(contenttypeid, contentid){ // 해당 정보의 공통정�
     	} 
     });	
 }
-
 function detailIntro(contenttypeid, contentid){ // 해당 정보의 상세정보
 	$.ajax({        
         url: 'detailIntro.do',
@@ -41,7 +37,6 @@ function detailIntro(contenttypeid, contentid){ // 해당 정보의 상세정보
     	} 
     });	
 }
-
 function detailInfo(contenttypeid, contentid){ // 해당 정보의 반복정보
 	$.ajax({        
         url: 'detailInfo.do',
@@ -58,7 +53,6 @@ function detailInfo(contenttypeid, contentid){ // 해당 정보의 반복정보
     	} 
     });	
 }
-
 function detailImage(contentid){ // 해당 정보의 반복정보
 	$.ajax({        
         url: 'detailImage.do',
@@ -104,7 +98,6 @@ function forecast(mapx, mapy){
     	} 
     });	
 }
-
 function checkFavorite(){ // 로그인 상태인데 찜을 해놓고 있냐 아니냐
 	if(isUser){
 		$.ajax({        
@@ -127,7 +120,6 @@ function checkFavorite(){ // 로그인 상태인데 찜을 해놓고 있냐 아�
 	    });	
 	}
 }
-
 function insertFavorite(){ // 찜 등록 : 다섯 개 전부 전역 변수이므로 무관
 	$.ajax({        
         url: 'insertFavorite.do',
@@ -161,7 +153,6 @@ function insertFavorite(){ // 찜 등록 : 다섯 개 전부 전역 변수이므
     	} 
     });		
 }
-
 function deleteFavorite(){ // 찜 삭제
 	$.ajax({        
         url: 'deleteFavorite.do',
